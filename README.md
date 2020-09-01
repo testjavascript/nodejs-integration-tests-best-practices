@@ -22,4 +22,14 @@ This repo contains examples for writing Node.js backend tests in THE RIGHT WAY i
 - Testing for proper logging and metrics
 - Debug configuration
 
+# How to start learning quickly and conveniently?
+
+Just do:
+
+- npm i
+- npm run test:dev
+- Open the file ./src/tests/basic-tests
+- Follow the code and best practices inside
+- Move to more advanced use cases in ./src/tests/
+
 
