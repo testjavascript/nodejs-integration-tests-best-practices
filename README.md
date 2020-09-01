@@ -1,4 +1,4 @@
-![Header](/misc/component-tests-v4.jpg "Component Tests")
+![Header](/misc/component-tests-header.jpg "Component Tests")
 
 
 ## Work in progress, to be released in 10/2020
