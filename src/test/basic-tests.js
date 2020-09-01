@@ -11,7 +11,6 @@ let expressConnection;
 let sinonSandbox;
 
 beforeAll(async (done) => {
-  // ⚙️ Open DB connection
 
   // ️️️⚙️ open API connection
   expressApp = express();
@@ -19,21 +18,23 @@ beforeAll(async (done) => {
     apiUnderTest(expressApp);
 
     // ️️️⚙️ Open 'mocking' sandbox
-    sinonSandbox = sinon.sandbox.create();
+    sinonSandbox = sinon.createSandbox();
 
     // We're ready
     done();
   });
 });
 
-afterAll(() => {
+afterAll((done) => {
   if (expressConnection) {
     expressConnection.close();
+    done();
   }
 });
 
 beforeEach(() => {
   if (sinonSandbox) {
+
     sinonSandbox.restore();
   }
 });

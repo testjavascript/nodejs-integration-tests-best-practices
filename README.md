@@ -18,5 +18,8 @@ This repo contains examples for writing Node.js backend tests in THE RIGHT WAY i
 - Tests with message queues
 - Schema migration and seeding
 - Data cleanup
+- Error handling tests
+- Testing for proper logging and metrics
+- Debug configuration
 
 
