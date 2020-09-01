@@ -14,10 +14,12 @@ beforeAll(async (done) => {
 
   // ️️️⚙️ open API connection
   expressApp = express();
+  // ️️️✅ Best Practice: Avoid assigning a specific port to allow multiple tests file to run simoultanously
   expressConnection = expressApp.listen(() => { // no port specified
+    // ️️️✅ Best Practice: Place the backend under test within the same process
     apiUnderTest(expressApp);
 
-    // ️️️⚙️ Open 'mocking' sandbox
+    // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
     sinonSandbox = sinon.createSandbox();
 
     // We're ready
@@ -26,6 +28,7 @@ beforeAll(async (done) => {
 });
 
 afterAll((done) => {
+  // ️️️✅ Best Practice: Clean-up resources after each run
   if (expressConnection) {
     expressConnection.close();
     done();
