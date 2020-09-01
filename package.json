@@ -1,0 +1,41 @@
+{
+  "name": "component-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "jest --silent",
+    "test:dev": "jest --watch --silent --runInBand",
+    "test:dev:verbose": "jest --watch --runInBand",
+    "lint": "eslint .",
+    "db:migrate": "cd src/data-access && sequelize-cli db:migrate"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "pg": "^8.0.0",
+    "sequelize": "^6.3.4"
+  },
+  "devDependencies": {
+    "docker-compose": "^0.23.1",
+    "is-ci": "^2.0.0",
+    "is-port-reachable": "^3.0.0",
+    "jest": "^26.4.2",
+    "jest-silent-reporter": "^0.2.1",
+    "jest-watch-master": "^1.0.0",
+    "jest-watch-repeat": "^2.0.0",
+    "jest-watch-suspend": "^1.1.2",
+    "jest-watch-toggle-config": "^2.0.1",
+    "jest-watch-typeahead": "^0.6.0",
+    "nock": "^13.0.4",
+    "npm": "^6.13.4",
+    "sequelize-cli": "^6.2.0",
+    "sinon": "^9.0.1",
+    "supertest": "^4.0.2",
+    "umzug": "^2.2.0",
+    "wait-port": "^0.2.7"
+  }
+}
