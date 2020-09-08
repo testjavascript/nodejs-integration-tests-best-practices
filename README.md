@@ -14,16 +14,18 @@ This repo contains examples for writing Node.js backend tests in THE RIGHT WAY i
 - Tests against API
 - Isolating 3rd party services
 - Stubbing the backend behavior to simulate corner cases
-- Database setup for performant tests
+- Database setup with speedy RAM folder that supports both Linux, Mac & Windows
 - Local env setup for speedy and convenient tests
 - Documentation based contract tests (validating Swagger correctness)
 - Consumer-driven contract tests (with PACT)
 - Tests with message queues
 - Schema migration and seeding
+- Data seeding
 - Data cleanup
 - Error handling tests
 - Testing for proper logging and metrics
-- Debug configuration
+- Debug configuration and other dev tooling
+- Frameworks examples: Serverless, Nest, Fastify, Koa
 
 # How to start learning quickly and conveniently?
 
