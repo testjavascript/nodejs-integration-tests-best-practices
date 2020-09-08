@@ -18,6 +18,7 @@ This repo contains examples for writing Node.js backend tests in THE RIGHT WAY i
 - Local env setup for speedy and convenient tests
 - Documentation based contract tests (validating Swagger correctness)
 - Consumer-driven contract tests (with PACT)
+- Authentication/Login
 - Tests with message queues
 - Schema migration and seeding
 - Data seeding
