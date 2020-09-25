@@ -1,12 +1,16 @@
 ![Header](/images-for-readme/main-header.jpg "Component Tests")
 
-## Master the art of the most powerful technique for testing modern backend
+<br/>
 
-The name is an homage to the legendary first ever testing book 'The Art Of Software Testing' by Glenford Myers
+### Master the art of the most powerful technique for testing modern backend
 
+```The name is an homage to the legendary first ever testing book ['The Art Of Software Testing' by Glenford Myers](https://www.amazon.com/Art-Software-Testing-Glenford-Myers/dp/1118031962#ace-g9766277718)```
 
+<br/>
 
 ## Note: Work in progress, to be released in 11/2020
+
+<br/><br/><br/>
 
 # Intro
 
@@ -14,10 +18,13 @@ This repo shows the immense power of narrow integration tests, also known as 'co
 
 ![Header](/images-for-readme/component-tests-header.jpg "Component Tests")
 
+<br/><br/><br/>
 
 # Why is this so important
 
 The testing world is moving from pyramids to diamonds, more emphasis is being put on integration tests and for good reasons. Here to put reasons to move toward more integration tests
+
+<br/><br/><br/>
 
 # What can you find here?
 
@@ -27,17 +34,24 @@ This repo provides the following benefits and assets:
 2. 🦶Step by step guide - Detailed instructions on how to setup your intergation test environment and write tests according to best practices
 2. 🚀 Advanced stuff - How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
 
+<br/><br/><br/>
+
 # Example application
 
 Some details on the example applications and link to the folder
 
 
+<br/><br/><br/>
+
 # Step by step guide to get up to speed
 
 Some details on the example applications and link to the folder
 
+<br/><br/><br/>
+
 # Advanced techniques
 
+<br/><br/><br/>
 
 # Reference: List of techniques and features
 
