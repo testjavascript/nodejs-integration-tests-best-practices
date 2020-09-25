@@ -12,7 +12,7 @@ The name is an homage to the legendary first ever testing book 'The Art Of Softw
 
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a huge impact on your testing effort and success 🚀
 
-![Header](/images-for-readme/component-tests-header.jpg "Component Tests")
+![Header](/images-for-readme/component-diagram.jpg "Component Tests")
 
 
 # Why is this so important
