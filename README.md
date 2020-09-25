@@ -1,4 +1,4 @@
-![Header](/misc/main-header.jpg "Component Tests")
+![Header](/images-for-readme/main-header.jpg "Component Tests")
 
 
 ## Note: Work in progress, to be released in 11/2020
@@ -7,7 +7,7 @@
 
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a huge impact on your testing effort and success 🚀
 
-![Header](/misc/component-tests-header.jpg "Component Tests")
+![Header](/images-for-readme/component-tests-header.jpg "Component Tests")
 
 
 # Why is this so important
