@@ -1,5 +1,10 @@
 ![Header](/images-for-readme/main-header.jpg "Component Tests")
 
+## Master the art of the most powerful technique for testing modern backend
+
+The name is an homage to the legendary first ever testing book 'The Art Of Software Testing' by Glenford Myers
+
+
 
 ## Note: Work in progress, to be released in 11/2020
 
