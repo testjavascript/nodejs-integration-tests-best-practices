@@ -1,13 +1,38 @@
 ![Header](/misc/component-tests-header.jpg "Component Tests")
 
 
-## Work in progress, to be released in 10/2020
+## Note: Work in progress, to be released in 11/2020
 
-# Node.js Integration (Component) Tests - Best Practices And Examples
+# Intro
 
-Best practices including examples for writing Node.js integration (component) tests including database setup, API approach, message queue, contract test and more
+This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a huge impact on your testing effort and success 🚀
 
-# What can you find here
+
+# Why is this so important
+
+The testing world is moving from pyramids to diamonds, more emphasis is being put on integration tests and for good reasons. Here to put reasons to move toward more integration tests
+
+# What can you find here?
+
+This repo provides the following benefits and assets:
+
+1. 📊 Example application - Complete showcase of a typical Microservice with tests setup and the test themselves
+2. 🦶Step by step guide - Detailed instructions on how to setup your intergation test environment and write tests according to best practices
+2. 🚀 Advanced stuff - How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
+
+# Example application
+
+Some details on the example applications and link to the folder
+
+
+# Step by step guide to get up to speed
+
+Some details on the example applications and link to the folder
+
+# Advanced techniques
+
+
+# Reference: List of techniques and features
 
 This repo contains examples for writing Node.js backend tests in THE RIGHT WAY including:
 
