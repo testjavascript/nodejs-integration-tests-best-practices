@@ -43,7 +43,32 @@ Some details on the example applications and link to the folder
 
 # Step by step guide to get up to speed
 
-Some details on the example applications and link to the folder
+## Part 1: Web server setup
+
+<br/>
+
+## ⚪️ 1. Place a start and stop method within your app
+
+:white_check_mark: **Do:**
+For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+  ```
+  //my-app.js
+  function start(){
+  }
+  
+
+  function stop(){
+  }
+  
+  ```
+  </details>
+
 
 <br/><br/><br/>
 
