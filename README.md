@@ -4,11 +4,11 @@
 
 ## Master the art of the most powerful technique for testing modern backend
 
-`The name is an homage to the legendary first ever testing book 'The Art Of Software Testing' by Glenford Myers`
+`The name is an homage to the legendary first ever testing book ['The Art Of Software Testing' by Glenford Myers'](https://www.amazon.com/Art-Software-Testing-Glenford-Myers/dp/1118031962#ace-g9766277718)`
 
 <br/>
 
-## Note: Work in progress, to be released in 11/2020
+### Note: Work in progress, to be released in 11/2020
 
 <br/><br/><br/>
 
