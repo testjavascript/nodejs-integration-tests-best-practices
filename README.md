@@ -43,17 +43,23 @@ Some details on the example applications and link to the folder
 
 # Step by step guide to get up to speed
 
+<br/>
+
 ## Part 1: Web server setup
 
-<br/>
+<br/><br/>
 
 ## ⚪️ 1. Place a start and stop method within your app
 
 :white_check_mark: **Do:**
 For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
 
+<br/>
+
 👀 **Alternatives:**
 The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
+
+<br/>
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -71,13 +77,19 @@ The application under test can avoid opening connections and delegate this to th
 
 </details>
 
+<br/><br/>
+
 ## ⚪️ 2. Don't specify a port
 
 :white_check_mark: **Do:**
 For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
 
+<br/>
+
 👀 **Alternatives:**
 The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
+
+<br/>
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
