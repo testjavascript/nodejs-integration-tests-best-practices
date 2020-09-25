@@ -109,8 +109,6 @@ The application under test can avoid opening connections and delegate this to th
 
 <br/><br/>
 
-# Step by step guide to get up to speed
-
 ## Part 2: Database setup
 
 <br/>
