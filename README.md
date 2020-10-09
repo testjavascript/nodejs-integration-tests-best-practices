@@ -1,4 +1,4 @@
-![Header](/images-for-readme/main-header.jpg "Component Tests")
+![Header](/graphics-for-readme/main-header.jpg "Component Tests")
 
 <br/>
 
@@ -6,7 +6,7 @@
 
 `The name is an homage to the legendary first ever testing book 'The Art Of Software Testing' by Glenford Myers`
 
-<br/>
+<br/>****
 
 ## Note: Work in progress, to be released in 11/2020
 
@@ -16,7 +16,7 @@
 
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a huge impact on your testing effort and success 🚀
 
-![Header](/images-for-readme/component-diagram.jpg "Component Tests")
+![Header](/graphics/component-diagram.jpg "Component Tests")
 
 <br/><br/><br/>
 
@@ -52,7 +52,7 @@ Some details on the example applications and link to the folder
 # Advanced techniques
 
 <br/><br/><br/>
-
+****
 # Reference: List of techniques and features
 
 This repo contains examples for writing Node.js backend tests in THE RIGHT WAY including:

@@ -5,13 +5,33 @@ const bodyParser = require('body-parser');
 const mailer = require('./libraries/mailer');
 const OrderRepository = require('./data-access/order-repository');
 
-const initializeAPI = (expressApp) => {
-  // A typical Express setup
+let connection;
+
+const initializeWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    expressApp.use(bodyParser.urlencoded({
+      extended: true,
+    }));
+    expressApp.use(bodyParser.json());
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+
+const defineRoutes = (expressApp) => {
   const router = express.Router();
-  expressApp.use(bodyParser.urlencoded({
-    extended: true,
-  }));
-  expressApp.use(bodyParser.json());
 
   // add new order
   router.post('/', async (req, res, next) => {
@@ -29,6 +49,7 @@ const initializeAPI = (expressApp) => {
       const existingUserResponse = (await axios.get(`http://localhost/user/${req.body.userId}`, {
         validateStatus: false,
       }));
+      console.log(`Asked to get user and get response with status ${existingUserResponse.status}`)
 
       if (existingUserResponse.status === 404) {
         res.status(404).end();
@@ -47,12 +68,15 @@ const initializeAPI = (expressApp) => {
 
   // get existing order
   router.get('/', (req, res, next) => {
-
+    res.json({
+      a: 1
+    });
   });
 
   expressApp.use('/order', router);
 
   expressApp.use((err, req, res, next) => {
+    console.log(err);
     if (process.env.SEND_MAILS === 'true') {
       // important notification logic here
       mailer.send();
@@ -61,13 +85,17 @@ const initializeAPI = (expressApp) => {
     }
     res.status(500).end();
   });
-};
+}
+
 
 process.on('uncaughtException', () => {
-  console.log('Error occured!');
   // a log of other logic here
-  // and here
   console.log('Error occured!');
 });
 
-module.exports = initializeAPI;
+initializeWebServer();
+
+module.exports = {
+  initializeWebServer,
+  stopWebServer
+};

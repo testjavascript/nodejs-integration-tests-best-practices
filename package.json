@@ -1,12 +1,11 @@
 {
-  "name": "component-testing",
+  "name": "Example Application",
   "version": "1.0.0",
   "description": "",
-  "main": "jest.config.js",
   "scripts": {
-    "test": "jest --silent",
+    "test": "jest",
     "test:dev": "jest --watch --silent --runInBand",
-    "test:dev:verbose": "jest --watch --runInBand",
+    "test:dev:verbose": "jest --watch --runInBand --verbose",
     "lint": "eslint .",
     "db:migrate": "cd src/data-access && sequelize-cli db:migrate"
   },
