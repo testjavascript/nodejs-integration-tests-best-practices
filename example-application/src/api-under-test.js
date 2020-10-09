@@ -7,7 +7,7 @@ const OrderRepository = require('./data-access/order-repository');
 
 let connection;
 
-const initializeWebServer = async () => {
+const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
@@ -15,6 +15,9 @@ const initializeWebServer = async () => {
       extended: true,
     }));
     expressApp.use(bodyParser.json());
+    if (customMiddleware) {
+      expressApp.use(customMiddleware);
+    }
     defineRoutes(expressApp);
     connection = expressApp.listen(() => {
       resolve(expressApp);

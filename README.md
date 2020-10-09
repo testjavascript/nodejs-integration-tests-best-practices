@@ -1,4 +1,4 @@
-![Header](/graphics-for-readme/main-header.jpg "Component Tests")
+![Header](/graphics/main-header.jpg "Component Tests")
 
 <br/>
 
@@ -30,14 +30,13 @@ This repo provides the following benefits and assets:
 
 1. 📊 Example application - Complete showcase of a typical Microservice with tests setup and the test themselves
 2. 🦶Step by step guide - Detailed instructions on how to setup your intergation test environment and write tests according to best practices
-2. 🚀 Advanced stuff - How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
+3. 🚀 Advanced stuff - How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
 
 <br/><br/><br/>
 
 # Example application
 
 Some details on the example applications and link to the folder
-
 
 <br/><br/><br/>
 
@@ -51,16 +50,15 @@ Some details on the example applications and link to the folder
 
 ## ⚪️ 1. Place a start and stop method within your app
 
-:white_check_mark:  **Do:**
+:white_check_mark: **Do:**
 For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
 
 <br/>
 
-👀  **Alternatives:**
+👀 **Alternatives:**
 The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
 
 <br/>
-
 
 <details><summary>✏ <b>Code Examples</b></summary>
   
@@ -68,12 +66,11 @@ The application under test can avoid opening connections and delegate this to th
   //my-app.js
   function start(){
   }
-  
 
-  function stop(){
-  }
-  
-  ```
+function stop(){
+}
+
+```
 
 </details>
 
@@ -93,17 +90,17 @@ The application under test can avoid opening connections and delegate this to th
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-  
-  ```
-  //my-app.js
-  function start(){
-  }
-  
 
-  function stop(){
-  }
-  
-  ```
+```
+
+//my-app.js
+function start(){
+}
+
+function stop(){
+}
+
+```
 
 </details>
 
@@ -123,17 +120,17 @@ The application under test can avoid opening connections and delegate this to th
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-  
-  ```
-  //my-app.js
-  function start(){
-  }
-  
 
-  function stop(){
-  }
-  
-  ```
+```
+
+//my-app.js
+function start(){
+}
+
+function stop(){
+}
+
+```
 
 </details>
 
@@ -147,17 +144,17 @@ The application under test can avoid opening connections and delegate this to th
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-  
-  ```
-  //my-app.js
-  function start(){
-  }
-  
 
-  function stop(){
-  }
-  
-  ```
+```
+
+//my-app.js
+function start(){
+}
+
+function stop(){
+}
+
+```
 
 </details>
 
@@ -199,5 +196,4 @@ Just do:
 - Open the file ./src/tests/basic-tests
 - Follow the code and best practices inside
 - Move to more advanced use cases in ./src/tests/
-
-
+```
