@@ -2,11 +2,6 @@ module.exports = {
   verbose: false,
   testMatch: ['**/test/**/*test*.js', '!**/playground/**', '!**/stryker-tmp/**'],
   collectCoverage: false,
-  // reporters: [
-  //   ["jest-silent-reporter", {
-  //     "useDots": false
-  //   }]
-  // ],
   coverageReporters: ['text-summary', 'lcov'],
   collectCoverageFrom: [
     '**/*.js',
@@ -16,8 +11,8 @@ module.exports = {
   forceExit: true,
   testEnvironment: 'node',
   notify: true,
-  globalSetup: './src/test/global-setup.js',
-  globalTeardown: './src/test/global-teardown.js',
+  globalSetup: './example-application/test/global-setup.js',
+  globalTeardown: './example-application/test/global-teardown.js',
   notifyMode: 'change',
   watchPlugins: [
     'jest-watch-typeahead/filename',

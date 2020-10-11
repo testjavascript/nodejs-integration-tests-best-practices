@@ -1,5 +1,5 @@
 {
-  "name": "Example Application",
+  "name": "integration-test-a-z",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -7,14 +7,16 @@
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch --runInBand --verbose",
     "lint": "eslint .",
-    "db:migrate": "cd src/data-access && sequelize-cli db:migrate"
+    "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.0.0",
     "sequelize": "^6.3.4"
   },
@@ -22,7 +24,7 @@
     "docker-compose": "^0.23.1",
     "is-ci": "^2.0.0",
     "is-port-reachable": "^3.0.0",
-    "jest": "^26.4.2",
+    "jest": "^26.5.2",
     "jest-silent-reporter": "^0.2.1",
     "jest-watch-master": "^1.0.0",
     "jest-watch-repeat": "^2.0.0",
