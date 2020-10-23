@@ -20,6 +20,11 @@ beforeAll(async (done) => {
         }
     });
 
+    nock("http://localhost/user/").get(`/1`).reply(200, {
+        id: 1,
+        name: "John",
+    }).persist();
+
     // ️️️✅ Best Practice: Place the backend under test within the same process
     expressApp = await initializeWebServer();
 
@@ -52,10 +57,6 @@ describe("/api", () => {
                 productId: 2,
                 mode: "approved",
             };
-            nock("http://localhost/user/").get(`/1`).reply(200, {
-                id: 1,
-                name: "John",
-            });
 
             //Act
             const receivedAPIResponse = await request(expressApp).post("/order").set('authorization', 'special-back-door').send(orderToAdd);

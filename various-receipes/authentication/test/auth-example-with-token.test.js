@@ -5,14 +5,17 @@ const {
     stopWebServer
 } = require("../api-extension");
 const nock = require("nock");
-const signTokenSynchronously = require("./helper");
+const {
+    signTokenSynchronously,
+    signExpiredTokenSynchronously
+} = require("./helper");
 
 let expressApp;
 let sinonSandbox;
 let defaultValidToken;
 
 beforeAll(async (done) => {
-    defaultValidToken = signTokenSynchronously('test-user', 'user', Math.floor(Date.now() / 1000) + (60 * 3600));
+    defaultValidToken = signTokenSynchronously('test-user', 'user');
 
     // ️️️✅ Best Practice: Place the backend under test within the same process
     expressApp = await initializeWebServer();
@@ -46,11 +49,7 @@ describe("/api", () => {
                 productId: 2,
                 mode: "approved",
             };
-            nock("http://localhost/user/").get(`/1`).reply(200, {
-                id: 1,
-                name: "John",
-            });
-            const expiredToken = signTokenSynchronously('test-user', 'user', -1000);
+            const expiredToken = signExpiredTokenSynchronously('test-user', 'user');
 
             //Act
             const receivedAPIResponse = await request(expressApp).post("/order").set('authorization', expiredToken).send(orderToAdd);

@@ -6,7 +6,6 @@ const authenticationMiddleware = (req, res, next) => {
     //validate JWT integrity
     let succeeded = false;
     const authenticationHeader = req.headers["authorization"];
-    console.log(`About to authorize a request, header is ${authenticationHeader}`);
     try {
         const decoded = jwt.verify(authenticationHeader, config.JWTSecret);
         req.user = decoded.data;
