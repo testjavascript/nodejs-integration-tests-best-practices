@@ -1,4 +1,4 @@
-![Header](/graphics/main-header.jpg "Component Tests")
+![Header](/graphics/main-header-v2.jpg "Component Tests")
 
 <br/>
 
