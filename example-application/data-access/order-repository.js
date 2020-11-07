@@ -28,7 +28,6 @@ module.exports = class OrderReposiroty {
   }
 
   async addOrder(orderDetails) {
-    
     return await orderModel.create(orderDetails);
   }
 };

@@ -78,11 +78,11 @@ const defineRoutes = (expressApp) => {
 
   expressApp.use('/order', router);
 
-  expressApp.use((err, req, res, next) => {
+  expressApp.use(async (err, req, res, next) => {
     console.log(err);
     if (process.env.SEND_MAILS === 'true') {
       // important notification logic here
-      mailer.send();
+      await mailer.send('Error', err.message, 'admin@app.com');
 
       // Other important notification logic here
     }
