@@ -95,7 +95,7 @@ You may initialize one webserver in a dedicated processes, but then the tests an
 ## ⚪️ 3. Define infrastructure in a docker-compose file
 
 :white_check_mark:  **Do:**
-All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production
+All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually mor comfortable for developers
 
 <br/>
 
@@ -111,83 +111,103 @@ https://github.com/testjavascript/integration-tests-a-z/blob/9b6c9dbd19bf90cdaa3
 
 <br/><br/>
 
-<br/><br/>
-
-## ⚪️ 4. Define infrastructure in a docker-compose file
+## ⚪️ 4. Start docker-compose in a global setup process
 
 :white_check_mark:  **Do:**
-All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production
+In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. In a development environment, it's useful not to initialize the DB on every run - If the DB is already up, we can skip this step. See bullet about teardown which suggest stopping the DB only in CI env
 
 <br/>
 
 👀  **Alternatives:**
-Minikube, manual installation
+Invoke before the test command (e.g. package.json scripts) - Then tests can't control the teardown
 
 <br/>
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/9b6c9dbd19bf90cdaa3492db16f31daadb49a5f6/example-application/test/docker-compose.yml#L1
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/global-setup.js#L11-L21
 </details>
 
 <br/><br/>
 
+## ⚪️ 5. Teardown the DB only in a CI environment
 
-## Part 2: Database setup
+:white_check_mark:  **Do:**
+In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. 
 
 <br/>
 
-## ⚪️ 1. Place a start and stop method within your app
+👀  **Alternatives:**
+Invoke before the test command (e.g. package.json scripts) - Then tests can't control the teardown
 
-:white_check_mark: **Do:**
-For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
-
-👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
+<br/>
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-
-```
-
-//my-app.js
-function start(){
-}
-
-function stop(){
-}
-
-```
-
-</details>
-
-## ⚪️ 2. Don't specify a port
-
-:white_check_mark: **Do:**
-For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
-
-👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
-
-
-<details><summary>✏ <b>Code Examples</b></summary>
-
-```
-
-//my-app.js
-function start(){
-}
-
-function stop(){
-}
-
-```
-
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/global-teardown.js#L6-L8
 </details>
 
 <br/><br/>
 
-<br/><br/><br/>
+## ⚪️ 6. Run migrations only if needed
+
+:white_check_mark:  **Do:**
+As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
+
+<br/>
+
+👀  **Alternatives:**
+Migrate all the time
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/global-setup.js#L23-L26
+</details>
+
+<br/><br/>
+
+## ⚪️ 7. Initialize the app within the beforeAll hook
+
+:white_check_mark:  **Do:**
+Within each test file, initialize the app and the webserver inside the beforeAll hook (In mocha this is called 'before'). Ensure to await for its readiness so the tests won't try to approach when the server is not ready to accept connections
+
+<br/>
+
+👀  **Alternatives:**
+-
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.js#L14-L22
+</details>
+
+<br/><br/>
+
+## ⚪️ 7. Teardown the app within the afterAll hook
+
+:white_check_mark:  **Do:**
+Within each test file, close the app and the webserver inside the afterAll hook (In mocha this is called 'after')
+
+<br/>
+
+👀  **Alternatives:**
+-
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.js#L24-L28
+</details>
+
+<br/><br/>
+
+
+
 
 # Advanced techniques
 
