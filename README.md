@@ -62,15 +62,7 @@ The application under test can avoid opening connections and delegate this to th
 
 <details><summary>✏ <b>Code Examples</b></summary>
   
-  ```
-  //my-app.js
-  function start(){
-  }
-
-function stop(){
-}
-
-```
+  https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
 
 </details>
 
