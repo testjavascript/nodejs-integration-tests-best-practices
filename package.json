@@ -21,7 +21,6 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
-    "@types/leakage": "^0.4.0",
     "docker-compose": "^0.23.1",
     "is-ci": "^2.0.0",
     "is-port-reachable": "^3.0.0",
@@ -32,7 +31,6 @@
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-toggle-config": "^2.0.1",
     "jest-watch-typeahead": "^0.6.0",
-    "leakage": "^0.5.0",
     "nock": "^13.0.4",
     "npm": "^6.13.4",
     "sequelize-cli": "^6.2.0",

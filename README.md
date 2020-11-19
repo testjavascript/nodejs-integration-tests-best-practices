@@ -48,10 +48,10 @@ Some details on the example applications and link to the folder
 
 <br/>
 
-## ⚪️ 1. Place a start and stop method within your app
+## ⚪️ 1. Place a start and stop method within your app entry point
 
 :white_check_mark: **Do:**
-For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
 
 <br/>
 
@@ -68,15 +68,15 @@ The application under test can avoid opening connections and delegate this to th
 
 <br/><br/>
 
-## ⚪️ 2. Don't specify a port
+## ⚪️ 2. Specify a specific port only in production
 
 :white_check_mark:  **Do:**
-For proper teardown, the app must expose for the testing a start and stop methods that will initialize and teardown all resources
+Let the web server randomize a port in testing to allow multiple processes and instances. Specifying a specific port in testing will prevent two testing processes from running at the same time. In production, specify a specific port in an environment variable and use it. In testing, specify no port. 
 
 <br/>
 
 👀  **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
+You may initialize one webserver in a dedicated processes, but then the tests and API under test won't be on the same process and many features like coverage and test doubles won't be feasible
 
 <br/>
 
@@ -85,18 +85,53 @@ The application under test can avoid opening connections and delegate this to th
 
 ```
 
-//my-app.js
-function start(){
-}
-
-function stop(){
-}
 
 ```
 
 </details>
 
 <br/><br/>
+
+## ⚪️ 3. Define infrastructure in a docker-compose file
+
+:white_check_mark:  **Do:**
+All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production
+
+<br/>
+
+👀  **Alternatives:**
+Minikube, manual installation
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+https://github.com/testjavascript/integration-tests-a-z/blob/9b6c9dbd19bf90cdaa3492db16f31daadb49a5f6/example-application/test/docker-compose.yml#L1
+</details>
+
+<br/><br/>
+
+<br/><br/>
+
+## ⚪️ 4. Define infrastructure in a docker-compose file
+
+:white_check_mark:  **Do:**
+All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production
+
+<br/>
+
+👀  **Alternatives:**
+Minikube, manual installation
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+https://github.com/testjavascript/integration-tests-a-z/blob/9b6c9dbd19bf90cdaa3492db16f31daadb49a5f6/example-application/test/docker-compose.yml#L1
+</details>
+
+<br/><br/>
+
 
 ## Part 2: Database setup
 
