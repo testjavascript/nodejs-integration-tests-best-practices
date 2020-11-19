@@ -206,8 +206,24 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
+## ⚪️ 8. Isolate the component from the world
+
+:white_check_mark:  **Do:**
+Intercept all calls to extraneous services and provide a default sensible result. Use the library nock for this matter. Consider raising an exception anytime an unknown HTTP call was made
+
+<br/>
+
+👀  **Alternatives:**
+- 
+
+<br/>
 
 
+<details><summary>✏ <b>Code Examples</b></summary>
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.js#L24-L28
+</details>
+
+<br/><br/>
 
 # Advanced techniques
 
