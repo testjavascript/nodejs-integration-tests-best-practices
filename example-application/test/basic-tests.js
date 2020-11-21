@@ -1,10 +1,7 @@
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
-const {
-  initializeWebServer,
-  stopWebServer
-} = require("../api-under-test");
+const { initializeWebServer, stopWebServer } = require("../api-under-test");
 const mailer = require("../libraries/mailer");
 const OrderRepository = require("../data-access/order-repository");
 
@@ -18,6 +15,9 @@ beforeAll(async (done) => {
   // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
   sinonSandbox = sinon.createSandbox();
 
+  // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
+  nock.disableNetConnect();
+
   done();
 });
 
@@ -28,12 +28,18 @@ afterAll(async (done) => {
 });
 
 beforeEach(() => {
+  nock.cleanAll();
+  nock("http://localhost/user/").get(`/1`).reply(200, {
+    id: 1,
+    name: "John",
+  });
+
   if (sinonSandbox) {
     sinonSandbox.restore();
   }
 });
 
-// ️️️✅ Best Practice: Structure tests 
+// ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
   describe("POST /orders", () => {
     test.todo("When adding order without product, return 400");
@@ -72,10 +78,7 @@ describe("/api", () => {
       const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
-      const {
-        status,
-        body
-      } = receivedAPIResponse;
+      const { status, body } = receivedAPIResponse;
 
       expect({
         status,
@@ -124,9 +127,7 @@ describe("/api", () => {
       };
 
       //Act
-      const orderAddResult = await request(expressApp)
-        .post("/order")
-        .send(orderToAdd)
+      const orderAddResult = await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
       expect(orderAddResult.status).toBe(404);
@@ -138,6 +139,4 @@ describe("/api", () => {
       expect(true).toBe(true);
     });
   });
-
-
 });
