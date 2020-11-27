@@ -5,7 +5,7 @@ const {
     initializeWebServer,
     stopWebServer
 } = require('../../../example-application/api-under-test');
-const ordersData = require('./data.json');
+const ordersData = require('./orders-data-for-paramterized-test.json');
 
 let expressApp;
 let sinonSandbox;
