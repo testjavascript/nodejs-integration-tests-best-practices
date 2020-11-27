@@ -40,7 +40,7 @@ beforeEach(() => {
 // ️️️✅ Best Practice: Structure tests 
 describe("/api", () => {
     describe("POST /orders", () => {
-        test.each(ordersData)("When adding a new valid order, Then should get back 200 response111", async (orderToAdd) => {
+        test.each(ordersData)("When adding a new valid order, Then should get back 200 response", async (orderToAdd) => {
             //Act
             const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
             //Assert
