@@ -4,9 +4,7 @@
 
 ## Master the art of the most powerful technique for testing modern backend
 
-The name is an homage to the legendary first ever testing book ['The Art Of Software Testing' by Glenford Myers'](https://www.amazon.com/Art-Software-Testing-Glenford-Myers/dp/1118031962#ace-g9766277718)
-
-`Note: Work in progress, to be released in 01/2021`
+### Note: Work in progress, to be released in 01/2021
 
 <br/>
 
@@ -28,9 +26,11 @@ The testing world is moving from pyramids to diamonds, more emphasis is being pu
 
 This repo provides the following benefits and assets:
 
-1. 📊 Example application - Complete showcase of a typical Microservice with tests setup and the test themselves
-2. 🦶Step by step guide - Detailed instructions on how to setup your intergation test environment and write tests according to best practices
-3. 🚀 Advanced stuff - How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
+**1. 📊  Example application -** Complete showcase of a typical Microservice with tests setup and the test themselves
+
+**2. 🦶. Step by step guide -** Detailed instructions on how to setup your intergation test environment and write tests according to best practices
+
+**3. 🚀   Advanced stuff -** How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
 
 <br/><br/><br/>
 
