@@ -4,7 +4,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const mailer = require("./libraries/mailer");
 const OrderRepository = require("./data-access/order-repository");
-
+const PubsubHandler = require("../various-receipes/message-queue/src/pubsub");
 let connection;
 
 const initializeWebServer = async (customMiddleware) => {
@@ -39,7 +39,7 @@ const stopWebServer = async () => {
 
 const defineRoutes = (expressApp) => {
   const router = express.Router();
-
+  const pubsubRouter = express.Router();
   // add new order
   router.post("/", async (req, res, next) => {
     try {
@@ -78,6 +78,60 @@ const defineRoutes = (expressApp) => {
       a: 1,
     });
   });
+
+  /**
+   * Pubsub API
+   */
+
+  const topicName = 'test-topic';
+  const subscriptionName = 'test-subscription';
+  const pubsubHandler = new PubsubHandler();
+  const instanceMessages = [];
+
+  // send a message to the pubsub
+  pubsubRouter.post('/emit', async (req, res, next) => {
+    try {
+      console.log(`Pubsub API was called to emit a new message ${util.inspect(req.body)}`);
+      // validation
+      const message = req.body.message;
+      if (!message) {
+        res.status(400).end();
+
+        return;
+      }
+
+      const response = await pubsubHandler.emitMessage(message, topicName);
+
+      res.json(response);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  pubsubRouter.get('/messages', async (req, res, next) => {
+    try {
+      console.log('Pubsub API was called to listen for new messages');
+
+      const opts = {
+        onMessage(message) {
+          instanceMessages.push(JSON.parse(message.data));
+        },
+        options: {
+          autoAck: true,
+        },
+      }
+      await pubsubHandler.listen(topicName, subscriptionName, opts);
+
+      res.json(instanceMessages);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  expressApp.use('/pubsub', pubsubRouter);
+  /**
+   * End of pubsub API
+   */
 
   expressApp.use("/order", router);
 

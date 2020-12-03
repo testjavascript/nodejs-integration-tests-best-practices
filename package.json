@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/pubsub": "^2.7.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/nock": "^11.1.0",
     "axios": "^0.20.0",

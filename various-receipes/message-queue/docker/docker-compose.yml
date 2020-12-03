@@ -1,0 +1,9 @@
+pubsub-emulator:
+  image: 'singularities/pubsub-emulator'
+  container_name: 'pubsub-emulator'
+  environment:
+    - PUBSUB_PROJECT_ID=mq-tests
+    - PUBSUB_LISTEN_ADDRESS=0.0.0.0:8085
+    - PUBSUB_EMULATOR_HOST=0.0.0.0:8085
+  ports:
+    - '8085:8085'

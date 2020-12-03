@@ -6,6 +6,10 @@ const npm = require('npm');
 const util = require('util');
 
 module.exports = async () => {
+  if (process.env.noInfrastructure) {
+    return;
+  }
+
   console.time('global-setup');
 
   const isDBReachable = await isPortReachable(54320);
