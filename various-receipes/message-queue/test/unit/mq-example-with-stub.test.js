@@ -1,6 +1,5 @@
 const request = require("supertest");
 const sinon = require("sinon");
-const nock = require("nock");
 const { initializeWebServer, stopWebServer } = require("../../../../example-application/api-under-test");
 const { PubSub, Subscription } = require("@google-cloud/pubsub");
 
@@ -90,7 +89,6 @@ describe("pubsub", () => {
 
                 //Assert
                 expect(body).toMatchObject([messageToSend]);
-
             });
         });
     });

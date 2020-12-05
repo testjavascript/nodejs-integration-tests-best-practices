@@ -4,7 +4,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const mailer = require("./libraries/mailer");
 const OrderRepository = require("./data-access/order-repository");
-const PubsubHandler = require("../various-receipes/message-queue/src/pubsub");
+const PubsubHandler = require("./libraries/pubsub");
 let connection;
 
 const initializeWebServer = async (customMiddleware) => {
