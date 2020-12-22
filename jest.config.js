@@ -21,6 +21,12 @@ module.exports = {
       key: 'r',
       prompt: 'repeat test runs.',
     }],
+    [
+      "jest-watch-suspend", {
+        "key": "s",
+        "prompt": "suspend watch mode",
+      }
+    ],
     'jest-watch-master',
     ['jest-watch-toggle-config', {
       setting: 'verbose',
