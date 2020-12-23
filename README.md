@@ -182,7 +182,7 @@ Within each test file, initialize the app and the webserver inside the beforeAll
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.js#L14-L22
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L14-L22
 </details>
 
 <br/><br/>
@@ -201,7 +201,7 @@ Within each test file, close the app and the webserver inside the afterAll hook 
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.js#L24-L28
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L24-L28
 </details>
 
 <br/><br/>
@@ -220,26 +220,7 @@ Intercept all calls to extraneous services and provide a default sensible result
 
 
 <details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/edf9744d7b97f2742a684c71dce92049b5eb1dc7/example-application/test/basic-tests.js#L19
-</details>
-
-<br/><br/>
-
-## ⚪️ 9. Isolate the component from the world using HTTP interceptor
-
-:white_check_mark:  **Do:**
-Intercept all calls to extraneous services and provide a default sensible result. Use the library nock for this matter. Consider raising an exception anytime an unknown HTTP call was made. If a specific request affects the test result, the interception of this call must be defined within the test so the reader will be able to easily grasp the cause and effect
-
-<br/>
-
-👀  **Alternatives:**
-- 
-
-<br/>
-
-
-<details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/edf9744d7b97f2742a684c71dce92049b5eb1dc7/example-application/test/basic-tests.js#L19
+https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L24-L28
 </details>
 
 <br/><br/>
@@ -275,7 +256,7 @@ Just do:
 
 - npm i
 - npm run test:dev
-- Open the file ./src/tests/basic-tests
+- Open the file ./src/tests/basic-tests.test
 - Follow the code and best practices inside
 - Move to more advanced use cases in ./src/tests/
 ```

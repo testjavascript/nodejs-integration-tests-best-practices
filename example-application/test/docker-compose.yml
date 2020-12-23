@@ -1,4 +1,4 @@
-version: "3"
+version: "3.6"
 services:
   db:
     image: postgres:11
@@ -10,10 +10,4 @@ services:
     container_name: "postgres-for-testing"
     ports:
       - "54320:5432"
-    volumes:
-      - data:/var/lib/postgresql/data
-volumes:
-  data:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
+    tmpfs: /var/lib/postgresql/data

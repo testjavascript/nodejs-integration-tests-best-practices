@@ -98,6 +98,7 @@ describe("/api", () => {
         id: 1,
         name: "John",
       });
+      nock("http://localhost/").post(`/mailer`).reply(202);
       sinonSandbox.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
       const spyOnMailer = sinon.spy(mailer, "send");
       const orderToAdd = {
