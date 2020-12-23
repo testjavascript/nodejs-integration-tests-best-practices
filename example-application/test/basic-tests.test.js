@@ -17,6 +17,7 @@ beforeAll(async (done) => {
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
+  nock.enableNetConnect("127.0.0.1");
 
   done();
 });
@@ -98,9 +99,16 @@ describe("/api", () => {
         id: 1,
         name: "John",
       });
-      nock("http://localhost/").post(`/mailer`).reply(202);
+      // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
+      // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
+      const scope = nock("https://mailer.com")
+        .post("/send", {
+          subject: /^(?!\s*$).+/,
+          body: /^(?!\s*$).+/,
+          recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        })
+        .reply(202);
       sinonSandbox.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
-      const spyOnMailer = sinon.spy(mailer, "send");
       const orderToAdd = {
         userId: 1,
         productId: 2,
@@ -111,7 +119,8 @@ describe("/api", () => {
       await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
-      expect(spyOnMailer.called).toBe(true);
+      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
+      expect(scope.isDone()).toBe(true);
     });
 
     test("When the user does not exist, return http 404", async () => {
