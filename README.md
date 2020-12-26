@@ -130,7 +130,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/> 
 
-## ⚪️ 5. Teardown the DB only in a CI environment.
+## ⚪️ 5. Teardown the DB only in a CI environment
 
 :white_check_mark:  **Do:**
 In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. 
