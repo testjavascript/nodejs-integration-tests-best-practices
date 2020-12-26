@@ -13,15 +13,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
-
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+
+    - name: Read .nvmrc
+      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+      id: nvm
+
+    - name: Use Node.js (.nvmrc)
+      uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: "${{ steps.nvm.outputs.NVMRC }}"
+
     - run: npm ci
     - run: npm test
