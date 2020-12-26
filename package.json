@@ -37,7 +37,6 @@
     "sequelize-cli": "^6.2.0",
     "sinon": "^9.0.1",
     "supertest": "^4.0.2",
-    "umzug": "^2.2.0",
-    "wait-port": "^0.2.7"
+    "umzug": "^2.2.0"
   }
 }
