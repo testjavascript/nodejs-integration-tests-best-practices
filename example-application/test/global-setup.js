@@ -1,6 +1,5 @@
 const isPortReachable = require('is-port-reachable');
 const path = require('path');
-const waitPort = require('wait-port');
 const dockerCompose = require('docker-compose');
 const npm = require('npm');
 const util = require('util');
