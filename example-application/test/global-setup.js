@@ -15,9 +15,8 @@ module.exports = async () => {
       log: true,
     });
   }
-  await waitPort({
-    host: 'localhost',
-    port: 54320,
+  await dockerCompose.exec('db', ['sh', '-c', 'until pg_isready ; do sleep 1; done'], {
+    cwd: path.join(__dirname),
   });
 
   const npmLoadAsPromise = util.promisify(npm.load);
