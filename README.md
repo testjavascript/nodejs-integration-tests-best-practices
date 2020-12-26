@@ -128,9 +128,9 @@ Invoke before the test command (e.g. package.json scripts) - Then tests can't co
 https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/global-setup.js#L11-L21
 </details>
 
-<br/><br/>
+<br/><br/> 
 
-## ⚪️ 5. Teardown the DB only in a CI environment
+## ⚪️ 5. Teardown the DB only in a CI environment.
 
 :white_check_mark:  **Do:**
 In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. 
