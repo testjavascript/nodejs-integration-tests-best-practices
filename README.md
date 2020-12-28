@@ -128,7 +128,7 @@ Invoke before the test command (e.g. package.json scripts) - Then tests can't co
 https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/global-setup.js#L11-L21
 </details>
 
-<br/><br/>
+<br/><br/> 
 
 ## ⚪️ 5. Teardown the DB only in a CI environment
 
@@ -206,10 +206,10 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
-## ⚪️ 8. Isolate the component from the world
+## ⚪️ 8. Isolate the component from the world using HTTP interceptor
 
 :white_check_mark:  **Do:**
-Intercept all calls to extraneous services and provide a default sensible result. Use the library nock for this matter. Consider raising an exception anytime an unknown HTTP call was made
+Intercept all calls to extraneous services and provide a default sensible result. Use the library nock for this matter. Consider raising an exception anytime an unknown HTTP call was made. If a specific request affects the test result, the interception of this call must be defined within the test so the reader will be able to easily grasp the cause and effect
 
 <br/>
 

@@ -85,7 +85,7 @@ const defineRoutes = (expressApp) => {
     console.log(err);
     if (process.env.SEND_MAILS === "true") {
       // important notification logic here
-      await mailer.send('Error', err.message, 'admin@app.com');
+      await mailer.send("Error", err.message, "admin@app.com");
 
       // Other important notification logic here
     }
@@ -97,8 +97,6 @@ process.on("uncaughtException", () => {
   // a log of other logic here
   console.log("Error occured!");
 });
-
-initializeWebServer();
 
 module.exports = {
   initializeWebServer,
