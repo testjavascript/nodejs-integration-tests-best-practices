@@ -8,7 +8,6 @@ const {
 const OrderRepository = require("../../../example-application/data-access/order-repository");
 
 let expressApp;
-let sinonSandbox;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -16,9 +15,6 @@ beforeAll(async (done) => {
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the Api-Under-Test
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
-
-  // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-  sinonSandbox = sinon.createSandbox();
 
   done();
 });
@@ -35,10 +31,6 @@ beforeEach(() => {
     id: 1,
     name: "John",
   })
-
-  if (sinonSandbox) {
-    sinonSandbox.restore();
-  }
 });
 
 afterEach(() => {
@@ -91,7 +83,7 @@ describe("/api", () => {
     test("When order failed, send mail to admin", async () => {
       //Arrange
       process.env.SEND_MAILS = "true";
-      sinonSandbox.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
+      sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected 
       const scope = nock("https://mailer.com")
