@@ -1,4 +1,4 @@
-![Header](/graphics/main-header-v2.jpg "Component Tests")
+![Header](/graphics/main-header.jpg "Component Tests")
 
 <br/>
 
@@ -10,7 +10,7 @@
 
 # Intro
 
-This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a huge impact on your testing effort and success 🚀
+This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
@@ -28,7 +28,7 @@ This repo provides the following benefits and assets:
 
 **1. 📊  Example application -** Complete showcase of a typical Microservice with tests setup and the test themselves
 
-**2. 🦶. Step by step guide -** Detailed instructions on how to setup your intergation test environment and write tests according to best practices
+**2. ✅ 40+ Best Practices List -** Detailed instructions on how to write integartiong tests in the RIGHT way including code example and reference to the example application
 
 **3. 🚀   Advanced stuff -** How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
 
@@ -40,11 +40,11 @@ Some details on the example applications and link to the folder
 
 <br/><br/><br/>
 
-# Step by step guide to get up to speed
+# ✅ Best Practices
 
 <br/>
 
-## Part 1: Web server setup
+## Web server setup
 
 <br/>
 
@@ -56,13 +56,36 @@ For proper startup and teardown, the app entry point (e.g. webserver start code)
 <br/>
 
 👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources but then with frequent testing many connections will leak and might choke the machine
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
   
-  https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
 
 </details>
 
@@ -225,7 +248,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
-# Advanced techniques
+# Advanced techniques and reference to all features
 
 <br/><br/><br/>
 ****
