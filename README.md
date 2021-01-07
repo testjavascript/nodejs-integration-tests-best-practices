@@ -295,6 +295,242 @@ const stopWebServer = async () => {
 
 <br/><br/>
 
+## **Section: Basic Principles
+
+<br/>
+
+## ⚪️ 1. Test should not be longer than 5-10 statements
+
+:white_check_mark: **Do:**
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+<br/>
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+## **Section: Test Isolation
+
+<br/>
+
+## ⚪️ 1. Test should not be longer than 5-10 statements
+
+:white_check_mark: **Do:**
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+<br/>
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+## **Section: Dealing With Data
+
+<br/>
+
+## ⚪️ 1. Test should not be longer than 5-10 statements
+
+:white_check_mark: **Do:**
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+<br/>
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+## **Section: Error And Failure Handling
+
+<br/>
+
+## ⚪️ 1. Test should not be longer than 5-10 statements
+
+:white_check_mark: **Do:**
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+<br/>
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+## **Section: Testing Our Contracts With Others
+
+<br/>
+
+## ⚪️ 1. Test should not be longer than 5-10 statements
+
+:white_check_mark: **Do:**
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+<br/>
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+
 # Advanced techniques and reference to all features
 
 <br/><br/><br/>
