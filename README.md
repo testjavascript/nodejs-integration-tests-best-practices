@@ -48,7 +48,7 @@ Some details on the example applications and link to the folder
 
 <br/>
 
-## ⚪️ 1. Place a start and stop method within your app entry point
+### ⚪️ 1. Place a start and stop method within your app entry point
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
