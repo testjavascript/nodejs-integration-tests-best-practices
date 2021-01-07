@@ -48,7 +48,7 @@ Some details on the example applications and link to the folder
 
 <br/>
 
-### ⚪️ 1. Place a start and stop method within your app entry point
+#### ⚪️ 1. Place a start and stop method within your app entry point
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -91,7 +91,7 @@ const stopWebServer = async () => {
 
 <br/><br/>
 
-## ⚪️ 2. Specify a specific port only in production
+### ⚪️ 2. Specify a specific port only in production
 
 :white_check_mark:  **Do:**
 Let the web server randomize a port in testing to allow multiple processes and instances. Specifying a specific port in testing will prevent two testing processes from running at the same time. In production, specify a specific port in an environment variable and use it. In testing, specify no port. 
@@ -115,7 +115,7 @@ You may initialize one webserver in a dedicated processes, but then the tests an
 
 <br/><br/>
 
-## ⚪️ 3. Define infrastructure in a docker-compose file
+### ⚪️ 3. Define infrastructure in a docker-compose file
 
 :white_check_mark:  **Do:**
 All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually mor comfortable for developers
@@ -134,7 +134,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/9b6c9dbd19bf90cdaa3
 
 <br/><br/>
 
-## ⚪️ 4. Start docker-compose in a global setup process
+### ⚪️ 4. Start docker-compose in a global setup process
 
 :white_check_mark:  **Do:**
 In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. In a development environment, it's useful not to initialize the DB on every run - If the DB is already up, we can skip this step. See bullet about teardown which suggest stopping the DB only in CI env
@@ -153,7 +153,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/> 
 
-## ⚪️ 5. Teardown the DB only in a CI environment
+### ⚪️ 5. Teardown the DB only in a CI environment
 
 :white_check_mark:  **Do:**
 In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. 
@@ -172,7 +172,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
-## ⚪️ 6. Run migrations only if needed
+### ⚪️ 6. Run migrations only if needed
 
 :white_check_mark:  **Do:**
 As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
@@ -191,7 +191,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
-## ⚪️ 7. Initialize the app within the beforeAll hook
+### ⚪️ 7. Initialize the app within the beforeAll hook
 
 :white_check_mark:  **Do:**
 Within each test file, initialize the app and the webserver inside the beforeAll hook (In mocha this is called 'before'). Ensure to await for its readiness so the tests won't try to approach when the server is not ready to accept connections
@@ -210,7 +210,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
-## ⚪️ 7. Teardown the app within the afterAll hook
+### ⚪️ 7. Teardown the app within the afterAll hook
 
 :white_check_mark:  **Do:**
 Within each test file, close the app and the webserver inside the afterAll hook (In mocha this is called 'after')
@@ -229,7 +229,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/><br/>
 
-## ⚪️ 8. Isolate the component from the world using HTTP interceptor
+### ⚪️ 8. Isolate the component from the world using HTTP interceptor
 
 :white_check_mark:  **Do:**
 Intercept all calls to extraneous services and provide a default sensible result. Use the library nock for this matter. Consider raising an exception anytime an unknown HTTP call was made. If a specific request affects the test result, the interception of this call must be defined within the test so the reader will be able to easily grasp the cause and effect
@@ -252,7 +252,7 @@ https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1
 
 <br/>
 
-## ⚪️ 1. Place a start and stop method within your app entry point
+### ⚪️ 1. Place a start and stop method within your app entry point
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -299,7 +299,7 @@ const stopWebServer = async () => {
 
 <br/>
 
-## ⚪️ 1. Test should not be longer than 5-10 statements
+### ⚪️ 1. Test should not be longer than 5-10 statements
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -346,7 +346,7 @@ const stopWebServer = async () => {
 
 <br/>
 
-## ⚪️ 1. Test should not be longer than 5-10 statements
+### ⚪️ 1. Test should not be longer than 5-10 statements
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -393,7 +393,7 @@ const stopWebServer = async () => {
 
 <br/>
 
-## ⚪️ 1. Test should not be longer than 5-10 statements
+### ⚪️ 1. Test should not be longer than 5-10 statements
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -440,7 +440,7 @@ const stopWebServer = async () => {
 
 <br/>
 
-## ⚪️ 1. Test should not be longer than 5-10 statements
+### ⚪️ 1. Test should not be longer than 5-10 statements
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -487,7 +487,7 @@ const stopWebServer = async () => {
 
 <br/>
 
-## ⚪️ 1. Test should not be longer than 5-10 statements
+### ⚪️ 1. Test should not be longer than 5-10 statements
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
