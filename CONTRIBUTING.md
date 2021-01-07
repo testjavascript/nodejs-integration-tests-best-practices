@@ -1,3 +1,6 @@
+So you want to join our family, people who appreciate and love testing? 💜
+You might get addiced and dramatically push your testing skills, you've been warned. Still interesting? Keep reading
+
 <a name="pull-requests"></a>
 ## Pull requests
 
