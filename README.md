@@ -1,4 +1,4 @@
-![Header](/graphics/main-header.jpg "Component Tests")
+![Header](/graphics/main-header.png "Component Tests")
 
 <br/>
 
@@ -44,7 +44,7 @@ Some details on the example applications and link to the folder
 
 <br/>
 
-## Web server setup
+## **Section: Web server setup**
 
 <br/>
 
@@ -244,6 +244,53 @@ Intercept all calls to extraneous services and provide a default sensible result
 
 <details><summary>✏ <b>Code Examples</b></summary>
 https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L24-L28
+</details>
+
+<br/><br/>
+
+## **Section: Database and infrastructure setup**
+
+<br/>
+
+## ⚪️ 1. Place a start and stop method within your app entry point
+
+:white_check_mark: **Do:**
+For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+<br/>
+
+👀 **Alternatives:**
+The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
 </details>
 
 <br/><br/>
