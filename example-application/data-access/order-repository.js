@@ -4,7 +4,7 @@ const sequelizeConfig = require('./config/config');
 let repository;
 let orderModel;
 
-module.exports = class OrderReposiroty {
+module.exports = class OrderRepository {
   constructor() {
     if (!repository) {
       repository = new Sequelize('shop', 'myuser', 'myuserpassword', sequelizeConfig);

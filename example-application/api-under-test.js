@@ -2,8 +2,8 @@ const express = require("express");
 const util = require("util");
 const axios = require("axios");
 const bodyParser = require("body-parser");
-const mailer = require("./libraries/mailer");
 const OrderRepository = require("./data-access/order-repository");
+const errorHandler = require("./error-handling").errorHandler;
 
 let connection;
 
@@ -82,20 +82,17 @@ const defineRoutes = (expressApp) => {
   expressApp.use("/order", router);
 
   expressApp.use(async (err, req, res, next) => {
-    console.log(err);
-    if (process.env.SEND_MAILS === "true") {
-      // important notification logic here
-      await mailer.send("Error", err.message, "admin@app.com");
-
-      // Other important notification logic here
-    }
+    errorHandler.handleError(err);
     res.status(500).end();
   });
 };
 
-process.on("uncaughtException", () => {
-  // a log of other logic here
-  console.log("Error occured!");
+process.on("uncaughtException", (error) => {
+  errorHandler.handleError(error);
+});
+
+process.on("unhandledRejection", (reason, originPromise) => {
+  errorHandler.handleError(reason);
 });
 
 module.exports = {
