@@ -30,7 +30,9 @@ beforeEach(() => {
   nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
-  })
+  });
+
+  sinon.restore();
 });
 
 afterEach(() => {

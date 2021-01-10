@@ -30,6 +30,8 @@ beforeEach(() => {
     id: 1,
     name: "John",
   });
+
+  sinon.restore();
 });
 
 // ️️️✅ Best Practice: Structure tests

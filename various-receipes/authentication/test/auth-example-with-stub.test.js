@@ -10,6 +10,7 @@ const authenticationMiddleware = require("../authentication-middleware");
 let expressApp;
 
 beforeAll(async (done) => {
+    sinon.restore();
     sinon.stub(authenticationMiddleware, "authenticationMiddleware").callsFake((req, res, next) => {
         if (req.headers['authorization'] === 'special-back-door') {
             next();
