@@ -56,7 +56,6 @@ const defineRoutes = (expressApp) => {
       const existingUserResponse = await axios.get(`http://localhost/user/${req.body.userId}`, {
         validateStatus: false,
       });
-      console.log(`Asked to get user and get response with status ${existingUserResponse.status}`);
 
       if (existingUserResponse.status === 404) {
         res.status(404).end();
@@ -82,7 +81,12 @@ const defineRoutes = (expressApp) => {
   expressApp.use("/order", router);
 
   expressApp.use(async (err, req, res, next) => {
-    errorHandler.handleError(err);
+    if (typeof err === "object") {
+      if (err.isTrusted === undefined || err.isTrusted === null) {
+        err.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
+      }
+    }
+    await errorHandler.handleError(err);
     res.status(500).end();
   });
 };
