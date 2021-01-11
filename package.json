@@ -6,6 +6,7 @@
     "test": "jest",
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch --runInBand --verbose",
+    "test:mocha": "mocha",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
   },
@@ -22,6 +23,7 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "docker-compose": "^0.23.1",
     "is-ci": "^2.0.0",
     "is-port-reachable": "^3.0.0",
@@ -32,6 +34,7 @@
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-toggle-config": "^2.0.1",
     "jest-watch-typeahead": "^0.6.0",
+    "mocha": "^8.2.1",
     "nock": "^13.0.4",
     "npm": "^6.13.4",
     "sequelize-cli": "^6.2.0",
