@@ -132,15 +132,15 @@ afterAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Specify a specific port only in production
+### ⚪️ 3. Specify a port in production, randomize in testing
 
-:white_check_mark:  **Do:**
-Let the web server randomize a port in testing to allow multiple processes and instances. Specifying a specific port in testing will prevent two testing processes from running at the same time. In production, specify a specific port in an environment variable and use it. In testing, specify no port. 
+🏷&nbsp; **Tags:** `#intermediate`
+
+:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
 
 <br/>
 
-👀  **Alternatives:**
-You may initialize one webserver in a dedicated processes, but then the tests and API under test won't be on the same process and many features like coverage and test doubles won't be feasible
+👀 &nbsp; **Alternatives:** Running a single process will slow down the tests ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
 
 <br/>
 
@@ -148,6 +148,21 @@ You may initialize one webserver in a dedicated processes, but then the tests an
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
+
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
 
 
 ```
