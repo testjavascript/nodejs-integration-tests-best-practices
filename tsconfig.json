@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "dist",
+    "allowJs": true,
+    "types": [
+      "node",
+      "jest"
+    ]
+  },
+  "include": [
+    "example-application/**/*",
+    "various-receipes/**/*",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
