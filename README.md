@@ -48,7 +48,7 @@ In this folder you may find a complete example of real-world like application, a
 
 <br/>
 
-#### ⚪️ 1. The test and the backend should live within the same process
+### ⚪️ 1. The test and the backend should live within the same process
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
@@ -77,16 +77,15 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-#### ⚪️ 2. Let the tests control when the server should start and shutoff
+### ⚪️ 2. Let the tests control when the server should start and shutoff
 
-:white_check_mark: **Do:**
+🏷&nbsp; **Tags:** `#basic, #strategic`
 
-The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initializtion logic and the test should control the timing
+:white_check_mark: &nbsp; **Do:** The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initializtion logic and the test should control the timing
 
 <br/>
 
-👀 **Alternatives:**
-The web server initializtion code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternativelly, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
+👀 &nbsp; **Alternatives:** The web server initializtion code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternativelly, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
 
 <br/>
 
