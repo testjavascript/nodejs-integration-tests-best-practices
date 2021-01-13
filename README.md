@@ -50,7 +50,7 @@ In this folder you may find a complete example of real-world like application, a
 
 #### ⚪️ 1. The test and the backend should live within the same process
 
-🏷&nbsp; **Tags:** #basic, #strategic
+🏷&nbsp; **Tags:** `#basic, #strategic`
 
 :white_check_mark: **Do:**
 
