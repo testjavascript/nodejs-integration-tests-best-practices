@@ -172,34 +172,56 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 3. Define infrastructure in a docker-compose file
 
-:white_check_mark:  **Do:**
-All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment. This allows easily share tests setup between developers and CI in environment that resembles a typical production. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually mor comfortable for developers
+## **Section: Database setup**
 
 <br/>
 
-👀  **Alternatives:**
-Minikube, manual installation
+### ⚪️ 1. Use Docker-Compose to host the database and other infrastructure
+
+🏷&nbsp; **Tags:** `#strategic`
+
+:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can't be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers
+
 
 <br/>
 
+👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kuberentes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;  
+
+<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/9b6c9dbd19bf90cdaa3492db16f31daadb49a5f6/example-application/test/docker-compose.yml#L1
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
 </details>
 
 <br/><br/>
 
-### ⚪️ 4. Start docker-compose in a global setup process
+### ⚪️ 2. Start docker-compose using code in the global setup process
 
-:white_check_mark:  **Do:**
-In a typical multi-process test runner, the infrastructure should be started in a global setup process - Most test runners have a dedicated hook for this. Otherwise, database will get initiated in every process which is very wasteful. In a development environment, it's useful not to initialize the DB on every run - If the DB is already up, we can skip this step. See bullet about teardown which suggest stopping the DB only in CI env
+:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook using custom code that spins up the docker-compose file. This takes away common workflows pains - DB is an explicit dependency of the tests and tests can not fail becuase the DB is down. Everything happens automatically, no developers wonder what setup steps did they miss. In addition, the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase we obviously need to shutoff (See dedicated bullet below) 
+
 
 <br/>
 
 👀  **Alternatives:**
-Invoke before the test command (e.g. package.json scripts) - Then tests can't control the teardown
+Invoke before the test command (e.g. package.json scripts) - Then tests can't control the teardown; per file; Manually;
 
 <br/>
 
