@@ -48,7 +48,39 @@ In this folder you may find a complete example of real-world like application, a
 
 <br/>
 
-#### ⚪️ 1. Let the tests control when the server should start and shutoff
+#### ⚪️ 1. The test and the backend should live within the same process
+
+🏷 **Tags: ** #basic, #strategic
+
+:white_check_mark: **Do:**
+
+The tests should start the webserver within the same process, not in a remote environment or container. Failing to do so will result in lose of critical features: A test won't be able to simulate various important events using test doubles (e.g. make some component throw an exception), customize environment variables, and make configuration changes. Also, the complexity of measuring code coverage and intercepting network calls will highly increase
+
+<br/>
+
+👀 **Alternatives:**
+one might spin the backend in Docker container or just a separate Node process. This configuration better resembles the production but it will lack critical testing features as mentioned above ❌; Some teams run integration tests against production-like cloud envrionment (see bullet 'Reuse tests against production-like environment), this is a valid technique for extra validation but will get too slow and limiting to rely on during develoment ❌; 
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const apiUnderTest = require('../api/start.js');
+
+beforeAll(async (done) => {
+  //Start the backend in the same process
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+#### ⚪️ 2. Let the tests control when the server should start and shutoff
 
 :white_check_mark: **Do:**
 
