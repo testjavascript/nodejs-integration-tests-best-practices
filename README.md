@@ -1,16 +1,15 @@
-![Header](/graphics/main-header.png "Component Tests")
+![Header](./graphics/main-header.png "Component Tests")
 
 <br/>
 
 ## Master the art of the most powerful technique for testing modern backend
 
-### Note: Work in progress, to be released in 01/2021
 
 <br/>
 
 # Intro
 
-This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀
+This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
@@ -18,7 +17,7 @@ This repo shows the immense power of narrow integration tests, also known as 'co
 
 # Why is this so important
 
-The testing world is moving from pyramids to diamonds, more emphasis is being put on integration tests and for good reasons. Here to put reasons to move toward more integration tests
+TBD - The testing world is moving from pyramids to diamonds, more emphasis is being put on integration tests and for good reasons. Here to put reasons to move toward more integration tests
 
 <br/><br/><br/>
 
@@ -26,7 +25,7 @@ The testing world is moving from pyramids to diamonds, more emphasis is being pu
 
 This repo provides the following benefits and assets:
 
-**1. 📊  Example application -** Complete showcase of a typical Microservice with tests setup and the test themselves
+**1. 📊  Example application -** A Complete showcase of a typical Microservice with tests setup and the test themselves
 
 **2. ✅ 40+ Best Practices List -** Detailed instructions on how to write integartiong tests in the RIGHT way including code example and reference to the example application
 
@@ -34,9 +33,10 @@ This repo provides the following benefits and assets:
 
 <br/><br/><br/>
 
-# Example application
+# 📊 Example application
 
-Some details on the example applications and link to the folder
+In this folder you may find a complete example of real-world like application, a tiny Orders component (e.g. e-commerce ordering), including tests. We recommend skimming through this examples before or during reading the best practices. Note that we intentionally kept the app small enough to ease the reader experience. On top of it, a 'various-recipes' folder exists with additional patterns and practices - This is your next step in the learning journey
+
 
 <br/><br/><br/>
 
@@ -48,15 +48,16 @@ Some details on the example applications and link to the folder
 
 <br/>
 
-#### ⚪️ 1. Place a start and stop method within your app entry point
+#### ⚪️ 1. Let the tests control when the server should start and shutoff
 
 :white_check_mark: **Do:**
-For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+
+The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initializtion logic and the test should control the timing
 
 <br/>
 
 👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+The web server initializtion code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternativelly, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
 
 <br/>
 
@@ -81,6 +82,18 @@ const stopWebServer = async () => {
     })
   });
 }
+
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();
+  done();
+  }
+
+afterAll(async (done) => {
+  await stopWebServer();
+  done();
+});
+
+
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
