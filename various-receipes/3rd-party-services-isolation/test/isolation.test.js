@@ -1,6 +1,7 @@
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
+const validator = require("validator");
 const {
   initializeWebServer,
   stopWebServer
@@ -95,11 +96,10 @@ describe("/api", () => {
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected 
       const scope = nock("https://mailer.com")
-        .post('/send', {
-          subject: /^(?!\s*$).+/, 
-          body: /^(?!\s*$).+/, 
-          recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        })
+        .post('/send', payload => validator.isEmail(payload.recipientAddress)
+            && !validator.isEmpty(payload.subject) 
+            && !validator.isEmpty(payload.body)
+        )
         .reply(202);
       const orderToAdd = {
         userId: 1,

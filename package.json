@@ -19,7 +19,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.0.0",
-    "sequelize": "^6.3.4"
+    "sequelize": "^6.3.4",
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "docker-compose": "^0.23.1",
