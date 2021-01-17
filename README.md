@@ -525,7 +525,7 @@ services:
 
 :white_check_mark:  **Do:** A common need is happy path + corner cases, not possible technically to change existing path - need to remove. Instead of removing, create unique path and unique response. This minimizes coupling between tests. 
 
-Remember that after every test everything is cleaned-up, see bullet about clean-up
+Remember that after every test everything is cleaned-up, see bullet about clean-up.
 
 <br/>
 
@@ -979,8 +979,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3Mz
-E3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0
-MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX
-0=
+eyJoaXN0b3J5IjpbMjA2NDYxODAyNSwtNzg2OTY3Nzg5LDE0ND
+ExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYx
+MDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNy
+w2MDI1Nzc5MzBdfQ==
 -->
