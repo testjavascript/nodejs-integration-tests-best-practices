@@ -786,7 +786,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #advanced, #draft`
 
-:white_check_mark:  **Do:** This is an open discussion in the testing community, when should test data get cleaned out. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. 
+:white_check_mark:  **Do:** This is an open discussion in the testing community, when should test data get cleaned out. Any options has Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. Cleaning in the end scores best in terms of performance but might trigger collission between tests - Overcome this by adding some randomness to your test data.
 
 <br/>
 
@@ -1011,7 +1011,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY1MjI5MzkxOSwxMTU1NzEwMDY4LC0xNT
+eyJoaXN0b3J5IjpbLTc4Nzc2Njc3MCwxMTU1NzEwMDY4LC0xNT
 U2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4MDM2
 NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3OD
 ksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0
