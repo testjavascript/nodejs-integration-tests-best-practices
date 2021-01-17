@@ -630,7 +630,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 6.  Catch incorrect requests by specifying the request bodies
+### ⚪️ 6.  Catch incorrect requests by specifying the request schema
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -978,8 +978,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTk5MDEwMCwxMTI1Mjk2OTQ4LC03OD
-Y5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3
-MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC
-0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTIwODYxOTYwNTMsMTEyNTI5Njk0OCwtNz
+g2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4
+NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1Mi
+wtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
