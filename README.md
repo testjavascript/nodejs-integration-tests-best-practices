@@ -671,8 +671,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. 
-
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
 <br/>
 
@@ -681,6 +680,7 @@ services:
 
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
+
 ```
 version: "3.6"
 services:
@@ -693,6 +693,7 @@ services:
       - POSTGRES_DB=shop
     ports:
       - "5432:5432"
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -974,8 +975,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEyNTE4MDM5MSwxMzQxMTc3ODY2LDExMj
-UyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYw
-MzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLT
-E1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMT
+I1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2
+MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC
+0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
