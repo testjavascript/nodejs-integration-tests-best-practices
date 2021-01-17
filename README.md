@@ -529,11 +529,12 @@ Remember that after every test everything is cleaned-up, see bullet about clean-
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Don't have default  ❌ &nbsp; ; Use global scope ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
+
 ```
 version: "3.6"
 services:
@@ -979,8 +980,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2NDYxODAyNSwtNzg2OTY3Nzg5LDE0ND
-ExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYx
-MDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNy
-w2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbNDY4ODQ5NDg4LC03ODY5Njc3ODksMTQ0MT
+E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
+MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
+YwMjU3NzkzMF19
 -->
