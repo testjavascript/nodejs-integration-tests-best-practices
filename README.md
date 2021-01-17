@@ -441,7 +441,38 @@ services:
 
 <br/>
 
+### ⚪️ 1.  Isolate the component from the world using HTTP interceptor
 
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Use ORM sync - Important piece, migration, is left untested ❌;  Migrate all the time with local disc check (without DB call)
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
 
 <br/><br/>
 
@@ -717,7 +748,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM4MDQ0MzkwNywtNDgxMDU4NzE0LC05ND
-kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
-MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbLTEzNzkyMzM5NDQsLTQ4MTA1ODcxNCwtOT
+Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
+NzI0MDcsNjAyNTc3OTMwXX0=
 -->
