@@ -481,17 +481,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 2.  Define default responses before every test
+### ⚪️ 2.  Define default responses before every test to ensure a clean slate
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
-
-Goes against the Microservice idea, not big bang
-
-Analogue - Simulator, like fighting combats - Practice the outside conditions without the damage
-
-Downside - What if they changed...
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something
 
 <br/>
 
@@ -793,7 +787,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NTA3NjIxMDMsLTQ4MTA1ODcxNCwtOT
-Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
-NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbNzY3NTk5MzU5LC00ODEwNTg3MTQsLTk0OT
+I0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nzcy
+NDA3LDYwMjU3NzkzMF19
 -->
