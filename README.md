@@ -667,7 +667,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 7.  Record real requests to ensure awarence of all integrations
+### ⚪️ 7.  Record real requests for awareness
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -975,8 +975,9 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMT
-I1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2
-MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC
-0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTExMjI5MDU1MzYsLTE4MDM2NjM1ODYsMT
+M0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3
+NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMS
+wyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LDYw
+MjU3NzkzMF19
 -->
