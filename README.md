@@ -790,7 +790,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Transactions, no need to clean-up, but leads to cascading transaction, won't work in noSQL DB and harder to debug since the data does not persist  ❌ &nbsp; ; After every test - Not only bad performance, will fail in multi-process runner ❌&nbsp;; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1011,7 +1011,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ5Nzc2ODIyOCwxMTU1NzEwMDY4LC0xNT
+eyJoaXN0b3J5IjpbLTY4NDE0NTU5NiwxMTU1NzEwMDY4LC0xNT
 U2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4MDM2
 NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3OD
 ksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0
