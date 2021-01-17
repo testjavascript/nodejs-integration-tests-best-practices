@@ -564,7 +564,8 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Trust your work, anyway likely to fail,   ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Trust your work, anyway likely to fail, but why  ❌ &nbsp; 
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -976,8 +977,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExODM2MDUyMywtNzg2OTY3Nzg5LDE0ND
-ExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYx
-MDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNy
-w2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbNjQxNDcyNDg4LC03ODY5Njc3ODksMTQ0MT
+E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
+MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
+YwMjU3NzkzMF19
 -->
