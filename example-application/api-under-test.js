@@ -95,7 +95,7 @@ process.on("uncaughtException", (error) => {
   errorHandler.handleError(error);
 });
 
-process.on("unhandledRejection", (reason, originPromise) => {
+process.on("unhandledRejection", (reason) => {
   errorHandler.handleError(reason);
 });
 
