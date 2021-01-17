@@ -398,18 +398,37 @@ services:
 
 <br/><br/>
 
+### ⚪️ 6. Build the DB schema using migrations
 
+🏷&nbsp; **Tags:** `#performance, #draft`
 
-
-As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
-👀  **Alternatives:**
--
+:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because
 
 <br/>
 
+👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+
+<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L24-L28
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
 </details>
 
 <br/><br/>
@@ -752,6 +771,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NzA5Mzc1MzksMjAxMTcwMjQzMywtMT
+eyJoaXN0b3J5IjpbLTIxMzgxNjAxMDIsMjAxMTcwMjQzMywtMT
 U4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
