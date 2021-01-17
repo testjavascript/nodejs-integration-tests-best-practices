@@ -820,9 +820,9 @@ services:
 
 ### ⚪️ 4.  Add some randomness to unique fields
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#advanced, strategic, #draft`
 
-:white_check_mark:  **Do:** Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. 
+:white_check_mark:  **Do:** Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp
 
 <br/>
 
@@ -854,7 +854,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 5.  Record real requests for awareness
+### ⚪️ 5.  Test the response schema when testing specific values in impossible
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -1011,10 +1011,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEwMjI0MzcxMSwxMDA3NzQyMjYxLDExNT
-U3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEzMjMw
-NjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUyOTY5ND
-gsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYsLTQ4
-MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNT
-AzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTE5MzE5MTUwMzIsMTEwMjI0MzcxMSwxMD
+A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
+ODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3OD
+Y2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3
+MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MD
+I0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMw
+XX0=
 -->
