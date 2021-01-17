@@ -519,6 +519,196 @@ services:
 
 <br/><br/>
 
+### ⚪️ 3.  Define default responses before every test to ensure a clean slate
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+
+Downside: performance penalty, we measured 1ms. 
+
+How to override, see bullet...
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 4.  Define default responses before every test to ensure a clean slate
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+
+Downside: performance penalty, we measured 1ms. 
+
+How to override, see bullet...
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 5.  Define default responses before every test to ensure a clean slate
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+
+Downside: performance penalty, we measured 1ms. 
+
+How to override, see bullet...
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 6.  Define default responses before every test to ensure a clean slate
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+
+Downside: performance penalty, we measured 1ms. 
+
+How to override, see bullet...
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 7.  Define default responses before every test to ensure a clean slate
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+
+Downside: performance penalty, we measured 1ms. 
+
+How to override, see bullet...
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
 ## **Section: Basic Principles
 
 <br/>
@@ -791,7 +981,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05ND
-kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
-MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbMTEyMjQ3NzE1MywxNzMxNzA2MDM2LC00OD
+EwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUw
+MzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
