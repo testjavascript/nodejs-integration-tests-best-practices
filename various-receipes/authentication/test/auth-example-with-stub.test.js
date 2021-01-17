@@ -8,7 +8,6 @@ const {
 const authenticationMiddleware = require("../authentication-middleware");
 
 let expressApp;
-let sinonSandbox;
 
 beforeAll(async (done) => {
     sinon.stub(authenticationMiddleware, "authenticationMiddleware").callsFake((req, res, next) => {
@@ -28,22 +27,15 @@ beforeAll(async (done) => {
     // ️️️✅ Best Practice: Place the backend under test within the same process
     expressApp = await initializeWebServer();
 
-    // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-    sinonSandbox = sinon.createSandbox();
-
     done();
 });
 
 afterAll(async (done) => {
     // ️️️✅ Best Practice: Clean-up resources after each run
     await stopWebServer();
+    sinon.restore();
+    nock.cleanAll();
     done();
-});
-
-beforeEach(() => {
-    if (sinonSandbox) {
-        sinonSandbox.restore();
-    }
 });
 
 // ️️️✅ Best Practice: Structure tests 
