@@ -330,7 +330,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** On why i
+:white_check_mark:  **Do:** Avoid fake DBs, it brings noise, loosen the DB durability settings to gain performance boost, for example {something}, show numbers,
 
 
 <br/>
@@ -760,6 +760,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU5NzE5OTAyNCwtMTU4MDE1MDM1MiwtMT
-UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbMjAwMDY0ODM5LC0xNTgwMTUwMzUyLC0xNT
+I3NzcyNDA3LDYwMjU3NzkzMF19
 -->
