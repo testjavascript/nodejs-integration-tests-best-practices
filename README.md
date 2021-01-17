@@ -667,11 +667,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 7.  Define default responses before every test to ensure a clean slate
+### ⚪️ 7.  Record real requests to ensure awarence of all integrations
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+:white_check_mark:  **Do:** Interception tools include 
 
 Downside: performance penalty, we measured 1ms. 
 
@@ -977,8 +977,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03OD
-Y5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3
-MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC
-0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbNDk3Mzg4LDEzNDExNzc4NjYsMTEyNTI5Nj
+k0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwt
+NDgxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MD
+E1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
