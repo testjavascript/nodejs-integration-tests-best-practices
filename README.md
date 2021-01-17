@@ -437,7 +437,7 @@ services:
 <br/><br/>
 
 
-## **Section: Database and infrastructure setup**
+## **Section: Isolating from collaborator services**
 
 <br/>
 
@@ -756,7 +756,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMT
-E3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3
-OTMwXX0=
+eyJoaXN0b3J5IjpbMTY4ODQyNDE1NCwtNDgxMDU4NzE0LC05ND
+kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
+MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
