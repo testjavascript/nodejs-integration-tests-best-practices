@@ -392,7 +392,6 @@ services:
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
-  
 
 </details>
 
@@ -403,6 +402,8 @@ services:
 🏷&nbsp; **Tags:** `#performance, #draft`
 
 :white_check_mark:  **Do:** As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
+
+Use npm script, 
 
 <br/>
 
@@ -771,6 +772,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTIzMjM3NjQsMjAxMTcwMjQzMywtMT
-U4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbMTI1MjIwNDA0MSwyMDExNzAyNDMzLC0xNT
+gwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
