@@ -445,7 +445,9 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util, 
+:white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client, 
+
+Downside - What if they changed...
 
 <br/>
 
@@ -748,7 +750,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjgwNzY3MzQsLTQ4MTA1ODcxNCwtOT
+eyJoaXN0b3J5IjpbLTEzODA4NDk5MjgsLTQ4MTA1ODcxNCwtOT
 Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
 NzI0MDcsNjAyNTc3OTMwXX0=
 -->
