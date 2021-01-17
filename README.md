@@ -523,7 +523,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** A common need, not possible technically to change scope - need to remove
+:white_check_mark:  **Do:** A common need, not possible technically to change scope - need to remove. Instead of removing, create unique path and unique response. 
 
 <br/>
 
@@ -977,7 +977,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MzQxMTAxNDgsMTczMTcwNjAzNiwtND
-gxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1
-MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbMTUyODA5MTkyNywxNzMxNzA2MDM2LC00OD
+EwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUw
+MzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
