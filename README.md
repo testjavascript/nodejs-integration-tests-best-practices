@@ -593,11 +593,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 5.  Simulate chaos
+### ⚪️ 5.  Simulate network chaos
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also non-response, delayed response. If you have a circuit-breaker than you may test it only and exclude thest te
+:white_check_mark:  **Do:** There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route.
 
 <br/>
 
@@ -975,7 +975,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE3NzI3NTA2MiwtNzg2OTY3Nzg5LDE0ND
+eyJoaXN0b3J5IjpbMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0ND
 ExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYx
 MDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNy
 w2MDI1Nzc5MzBdfQ==
