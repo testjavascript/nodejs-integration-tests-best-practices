@@ -858,11 +858,11 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Sometime the response contains important fields with dynamic data, like a date or incrementing number. Can't check specific 
+:white_check_mark:  **Do:** Sometime the response contains important fields with dynamic data, like a date or incrementing number. Can't check specific value but still it's important to ensure that the right thing was returned - Check not only that the field is not null rather have the right type. Jest and Sinon allows checking entire objects schema.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Not null  ❌ &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1011,11 +1011,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUyNjU3MzI2LDExMDIyNDM3MTEsMTAwNz
-c0MjI2MSwxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1
-NTAwLDExMzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2Ni
-wxMTI1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMx
-NzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyND
-MzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
-
+eyJoaXN0b3J5IjpbLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMD
+A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
+ODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3OD
+Y2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3
+MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MD
+I0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMw
+XX0=
 -->
