@@ -523,7 +523,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** A common need, not possible technically to change existing path - need to remove. Instead of removing, create unique path and unique response. This minimizes coupling between tests.
+:white_check_mark:  **Do:** A common need is happy path + corner cases, not possible technically to change existing path - need to remove. Instead of removing, create unique path and unique response. This minimizes coupling between tests. 
 
 Remember that after every test everything is cleaned-up, see bullet about clean-up
 
@@ -979,7 +979,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00OD
-EwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUw
-MzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3Mz
+E3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0
+MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX
+0=
 -->
