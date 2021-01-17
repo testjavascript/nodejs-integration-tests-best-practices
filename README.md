@@ -671,11 +671,8 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Interception tools include 
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. 
 
-Downside: performance penalty, we measured 1ms. 
-
-How to override, see bullet...
 
 <br/>
 
@@ -977,8 +974,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDk3Mzg4LDEzNDExNzc4NjYsMTEyNTI5Nj
-k0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwt
-NDgxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MD
-E1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbMjEyNTE4MDM5MSwxMzQxMTc3ODY2LDExMj
+UyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYw
+MzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLT
+E1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
 -->
