@@ -398,15 +398,15 @@ services:
 
 <br/><br/>
 
-### ⚪️ 6. Build the DB schema using migrations
+### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because
+:white_check_mark:  **Do:** As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+👀 &nbsp; **Alternatives:** Use ORM sync - Important piece, migration, is left untested ❌;  no optimizations
 
 <br/>
 
@@ -771,6 +771,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzgxNjAxMDIsMjAxMTcwMjQzMywtMT
+eyJoaXN0b3J5IjpbLTE3OTIzMjM3NjQsMjAxMTcwMjQzMywtMT
 U4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
