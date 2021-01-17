@@ -25,14 +25,16 @@ afterAll(async (done) => {
 });
 
 beforeEach(() => {
-  nock.cleanAll();
   nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
   });
-
-  sinon.restore();
 });
+
+afterEach(() => {
+  nock.cleanAll();
+  sinon.restore();
+})
 
 // ️️️✅ Best Practice: Structure tests
 describe("/api", () => {

@@ -22,6 +22,7 @@ beforeAll(async (done) => {
 afterAll(async (done) => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
+  nock.enableNetConnect();
   done();
 });
 
@@ -31,13 +32,12 @@ beforeEach(() => {
     id: 1,
     name: "John",
   });
-
-  sinon.restore();
 });
 
 afterEach(() => {
-  // ️️️✅ Best Practice: Clean nock interceptors between tests
+  // ️️️✅ Best Practice: Clean nock interceptors and sinon test-doubles between tests
   nock.cleanAll();
+  sinon.restore();
 })
 
 // ️️️✅ Best Practice: Structure tests 

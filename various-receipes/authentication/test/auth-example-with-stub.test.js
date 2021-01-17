@@ -10,7 +10,13 @@ const authenticationMiddleware = require("../authentication-middleware");
 let expressApp;
 
 beforeAll(async (done) => {
-    sinon.restore();
+    // ️️️✅ Best Practice: Place the backend under test within the same process
+    expressApp = await initializeWebServer();
+
+    done();
+});
+
+beforeEach(() => {
     sinon.stub(authenticationMiddleware, "authenticationMiddleware").callsFake((req, res, next) => {
         if (req.headers['authorization'] === 'special-back-door') {
             next();
@@ -23,13 +29,14 @@ beforeAll(async (done) => {
     nock("http://localhost/user/").get(`/1`).reply(200, {
         id: 1,
         name: "John",
-    }).persist();
-
-    // ️️️✅ Best Practice: Place the backend under test within the same process
-    expressApp = await initializeWebServer();
-
-    done();
+    });
 });
+
+afterEach(() => {
+      // ️️️✅ Best Practice: Clean nock interceptors and sinon test-doubles between tests
+    sinon.restore();
+    nock.cleanAll();
+})
 
 afterAll(async (done) => {
     // ️️️✅ Best Practice: Clean-up resources after each run
