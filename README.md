@@ -455,7 +455,7 @@ Downside - What if they changed...
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox envir
+👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox environments &nbsp; ❌;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -753,7 +753,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTI1NjA0ODUsLTQ4MTA1ODcxNCwtOT
-Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
-NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTIzOTAyNzgwLC00ODEwNTg3MTQsLTk0OT
+I0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nzcy
+NDA3LDYwMjU3NzkzMF19
 -->
