@@ -445,7 +445,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** On the existencCollaborator services
+:white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util, 
 
 <br/>
 
@@ -748,7 +748,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDMzNjk2MzU1LC00ODEwNTg3MTQsLTk0OT
-I0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nzcy
-NDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTE4NjgwNzY3MzQsLTQ4MTA1ODcxNCwtOT
+Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
+NzI0MDcsNjAyNTc3OTMwXX0=
 -->
