@@ -786,7 +786,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #advanced, #draft`
 
-:white_check_mark:  **Do:** This is an open discussion in the testing community, when should test data get cleaned out. Any option but clean in the end will lead to significant 
+:white_check_mark:  **Do:** This is an open discussion in the testing community, when should test data get cleaned out. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. 
 
 <br/>
 
@@ -1011,10 +1011,10 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjUwOTU2NDksMTE1NTcxMDA2OCwtMT
-U1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAz
-NjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nz
-g5LDE0NDExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05
-NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNz
-c3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbLTY1MjI5MzkxOSwxMTU1NzEwMDY4LC0xNT
+U2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4MDM2
+NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3OD
+ksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0
+OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nz
+cyNDA3LDYwMjU3NzkzMF19
 -->
