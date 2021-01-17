@@ -523,7 +523,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** A common need is happy path + corner cases, not possible technically to change existing path - need to remove. Instead of removing, create unique path and unique response. This minimizes coupling between tests. 
+:white_check_mark:  **Do:** A common need is happy path + corner cases, not possible technically to change existing path - need to remove. Instead of removing, create unique path and unique response. Do this by acting on unique resources. If not possible, other option is global scope. This minimizes coupling between tests. 
 
 Remember that after every test everything is cleaned-up, see bullet about clean-up.
 
@@ -583,6 +583,7 @@ services:
       - POSTGRES_DB=shop
     ports:
       - "5432:5432"
+    ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -592,15 +593,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 5.  Define default responses before every test to ensure a clean slate
+### ⚪️ 5.  Simulate chaos
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
-
-Downside: performance penalty, we measured 1ms. 
-
-How to override, see bullet...
+:white_check_mark:  **Do:** Resi
 
 <br/>
 
@@ -978,8 +975,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODY5NjkzMDAwLC03ODY5Njc3ODksMTQ0MT
-E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
-MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
-YwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTEzODAzMTI5MzgsLTc4Njk2Nzc4OSwxND
+QxMTc3Mzg3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2
+MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MD
+csNjAyNTc3OTMwXX0=
 -->
