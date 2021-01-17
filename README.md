@@ -746,7 +746,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 2.  Only metadata should be seeded
+### ⚪️ 2.  Only metadata should be seeded to the database
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -1011,9 +1011,9 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTU1NTA0OTExLC0xMDM0MTg1NTAwLDExMz
-IzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2
-OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC
-00ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgw
-MTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMT
+EzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUy
+OTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMz
+YsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1
+ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
 -->
