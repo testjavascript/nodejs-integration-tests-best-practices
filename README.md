@@ -556,7 +556,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 4.  Define default responses before every test to ensure a clean slate
+### ⚪️ 4. Define default responses before every test to ensure a clean slate
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -980,7 +980,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDY4ODQ5NDg4LC03ODY5Njc3ODksMTQ0MT
+eyJoaXN0b3J5IjpbMTk1MDA3MjQ4LC03ODY5Njc3ODksMTQ0MT
 E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
 MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
 YwMjU3NzkzMF19
