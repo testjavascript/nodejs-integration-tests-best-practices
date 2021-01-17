@@ -485,13 +485,15 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults,
+:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
 
-Downside: performance penalty, we measured 1ms, 
+Downside: performance penalty, we measured 1ms. 
+
+How to override, see bullet...
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox environments &nbsp; ❌;
+👀 &nbsp; **Alternatives:** Persist &nbsp; ❌; In every test &nbsp; ❌;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -789,7 +791,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYxOTU1NjM4MCwtNDgxMDU4NzE0LC05ND
-kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
-MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbOTM0NDE4ODA4LC00ODEwNTg3MTQsLTk0OT
+I0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nzcy
+NDA3LDYwMjU3NzkzMF19
 -->
