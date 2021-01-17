@@ -25,15 +25,19 @@ afterAll(async (done) => {
 });
 
 beforeEach(() => {
-  nock.cleanAll();
   // ️️️✅ Best Practice: Isolate the service under test by intercepting requests to 3rd party services
   nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
   });
   nock("https://mailer.com").post("/send").reply(202);
-  sinon.restore();
+
   sinon.stub(process, "exit");
+});
+
+afterEach(() => {
+  nock.cleanAll();
+  sinon.restore();
 });
 
 // ️️️✅ Best Practice: Structure tests

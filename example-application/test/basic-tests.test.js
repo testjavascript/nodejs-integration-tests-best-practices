@@ -2,7 +2,6 @@ const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
 const { initializeWebServer, stopWebServer } = require("../api-under-test");
-const mailer = require("../error-handling").mailer;
 const OrderRepository = require("../data-access/order-repository");
 
 let expressApp;
