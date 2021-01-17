@@ -854,11 +854,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 5.  Test the response schema when testing specific values in impossible
+### ⚪️ 5.  Test the response schema when specific value is unknown
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+:white_check_mark:  **Do:** When gettin
 
 <br/>
 
@@ -1011,11 +1011,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzE5MTUwMzIsMTEwMjI0MzcxMSwxMD
-A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
-ODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3OD
-Y2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3
-MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MD
-I0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMw
-XX0=
+eyJoaXN0b3J5IjpbLTI5ODgwODAyMCwxMTAyMjQzNzExLDEwMD
+c3NDIyNjEsMTE1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4
+NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4Nj
+YsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTcz
+MTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMj
+QzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBd
+fQ==
 -->
