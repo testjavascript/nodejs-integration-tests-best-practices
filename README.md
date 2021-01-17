@@ -493,7 +493,7 @@ How to override, see bullet...
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist &nbsp; &nbsp ❌; In every test &nbsp; ❌&nbsp ;
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -791,7 +791,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzU4NDA2ODAsLTQ4MTA1ODcxNCwtOT
-Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
-NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05ND
+kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
+MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
