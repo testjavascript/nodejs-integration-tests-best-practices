@@ -294,7 +294,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing 
+:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
 
 <br/>
 
@@ -325,6 +325,44 @@ services:
 </details>
 
 <br/><br/>
+
+### ⚪️ 4. Optimize the DB speed for testing, loos
+
+🏷&nbsp; **Tags:** `#performance, #draft`
+
+:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
+
+<br/>
+
+
+👀 &nbsp; **Alternatives:** Re-start anytime ❌;   
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+
 
 ### ⚪️ 6. Run migrations only if needed
 
@@ -721,6 +759,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0ODI5OTgxMTcsLTE1ODAxNTAzNTIsLT
-E1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbMTAwNDE5MDgwMywtMTU4MDE1MDM1MiwtMT
+UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
