@@ -447,14 +447,15 @@ services:
 
 :white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
 
-Analogue - Simulator, like fighting combats - Practice the outside conditions without 
+Goes against the Microservice idea, not big bang
+
+Analogue - Simulator, like fighting combats - Practice the outside conditions without the damage
 
 Downside - What if they changed...
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Use ORM sync - Important piece, migration, is left untested ❌;  Migrate all the time with local disc check (without DB call)
-
+👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox envir
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -752,7 +753,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwMDMzNjY4NSwtNDgxMDU4NzE0LC05ND
-kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
-MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbLTEyNTI1NjA0ODUsLTQ4MTA1ODcxNCwtOT
+Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
+NzI0MDcsNjAyNTc3OTMwXX0=
 -->
