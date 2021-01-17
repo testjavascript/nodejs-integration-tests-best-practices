@@ -401,7 +401,9 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
+:white_check_mark:  **Do:** While there are various way to build the DB tables, the yec
+
+As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
 
 Use npm script for this, migration is like the production mechanism
 
@@ -772,6 +774,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQxNDA3MTc4LDIwMTE3MDI0MzMsLTE1OD
-AxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbMTI1MTIxMDM5MiwyMDExNzAyNDMzLC0xNT
+gwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
