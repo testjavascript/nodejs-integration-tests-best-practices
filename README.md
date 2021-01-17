@@ -400,51 +400,8 @@ services:
 
 
 
-### ⚪️ 6. Run migrations only if needed
 
-:white_check_mark:  **Do:**
 As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
-
-<br/>
-
-👀  **Alternatives:**
-Migrate all the time
-
-<br/>
-
-
-<details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/global-setup.js#L23-L26
-</details>
-
-<br/><br/>
-
-### ⚪️ 7. Initialize the app within the beforeAll hook
-
-:white_check_mark:  **Do:**
-Within each test file, initialize the app and the webserver inside the beforeAll hook (In mocha this is called 'before'). Ensure to await for its readiness so the tests won't try to approach when the server is not ready to accept connections
-
-<br/>
-
-👀  **Alternatives:**
--
-
-<br/>
-
-
-<details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L14-L22
-</details>
-
-<br/><br/>
-
-### ⚪️ 7. Teardown the app within the afterAll hook
-
-:white_check_mark:  **Do:**
-Within each test file, close the app and the webserver inside the afterAll hook (In mocha this is called 'after')
-
-<br/>
-
 👀  **Alternatives:**
 -
 
@@ -795,6 +752,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMT
-UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbLTE0NzA5Mzc1MzksMjAxMTcwMjQzMywtMT
+U4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
