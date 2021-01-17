@@ -367,7 +367,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider
+:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because
 
 <br/>
 
@@ -795,6 +795,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwNzY0MzA2NSwtMTU4MDE1MDM1MiwtMT
+eyJoaXN0b3J5IjpbMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMT
 UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
