@@ -818,11 +818,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 4.  Record real requests for awareness
+### ⚪️ 4.  Add some randomness to unique fields
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+:white_check_mark:  **Do:** A test should assume nothing on other tests neither should the writer read previous tests implementation. Then how
 
 <br/>
 
@@ -1011,10 +1011,10 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwNzc0MjI2MSwxMTU1NzEwMDY4LC0xNT
-U2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4MDM2
-NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3OD
-ksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0
-OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nz
-cyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTE0NTMwNDMxOTAsMTAwNzc0MjI2MSwxMT
+U1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIz
+MDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OT
+Q4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00
+ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMT
+UwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
