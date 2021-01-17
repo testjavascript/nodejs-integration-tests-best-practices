@@ -255,7 +255,7 @@ services:
 
 ### ⚪️ 2. Start docker-compose using code in the global setup process
 
-:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures)  using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than 'git clone && npm test'. Everything happens automatically, no developers wonder what setup steps did they miss. In addition, the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
+:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures)  using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
 
 <br/>
 
@@ -685,6 +685,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjQxMjA2MzAsLTE1ODAxNTAzNTIsLTE1Mj
-c3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTM1NzkzMjc5OSwtMTU4MDE1MDM1MiwtMT
+UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
