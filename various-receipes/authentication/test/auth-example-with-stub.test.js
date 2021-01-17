@@ -6,7 +6,6 @@ const authenticationMiddleware = require("../authentication-middleware");
 
 let expressApp;
 let sinonSandbox;
-const userNockScope;
 
 beforeAll(async (done) => {
   sinon.stub(authenticationMiddleware, "authenticationMiddleware").callsFake((req, res, next) => {
