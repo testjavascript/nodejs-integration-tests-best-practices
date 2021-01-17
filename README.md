@@ -703,46 +703,40 @@ services:
 
 <br/><br/>
 
-## **Section: Basic Principles
+## **Dealing with data**
 
 <br/>
 
-### ⚪️ 1. Test should not be longer than 5-10 statements
 
-:white_check_mark: **Do:**
-For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+### ⚪️ 1.  Record real requests for awareness
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
 <br/>
 
-👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
-
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
 
 ```
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    defineRoutes(expressApp);
-    connection = expressApp.listen(() => {
-      resolve(expressApp);
-    });
-  });
-}
-
-const stopWebServer = async () => {
-  return new Promise((resolve, reject) => {
-    connection.close(() => {
-      resolve();
-    })
-  });
-}
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
   
 
@@ -750,52 +744,187 @@ const stopWebServer = async () => {
 
 <br/><br/>
 
-## **Section: Test Isolation
+### ⚪️ 1.  Record real requests for awareness
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
 <br/>
 
-### ⚪️ 1. Test should not be longer than 5-10 statements
-
-:white_check_mark: **Do:**
-For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
-
-<br/>
-
-👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
-
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
 
 ```
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    defineRoutes(expressApp);
-    connection = expressApp.listen(() => {
-      resolve(expressApp);
-    });
-  });
-}
-
-const stopWebServer = async () => {
-  return new Promise((resolve, reject) => {
-    connection.close(() => {
-      resolve();
-    })
-  });
-}
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
   
 
 </details>
 
 <br/><br/>
+
+### ⚪️ 1.  Record real requests for awareness
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 1.  Record real requests for awareness
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 1.  Record real requests for awareness
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 1.  Record real requests for awareness
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+
 
 ## **Section: Dealing With Data
 
@@ -975,9 +1104,9 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjI5MDU1MzYsLTE4MDM2NjM1ODYsMT
-M0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3
-NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMS
-wyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LDYw
-MjU3NzkzMF19
+eyJoaXN0b3J5IjpbMTExNzczMjkwLC0xODAzNjYzNTg2LDEzND
+ExNzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0NDExNzcz
+ODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYxMDEsMj
+AxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1
+Nzc5MzBdfQ==
 -->
