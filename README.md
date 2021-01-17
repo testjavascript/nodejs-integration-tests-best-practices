@@ -172,9 +172,9 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 3. Specify a port in production, randomize in testing
+### ⚪️ 4. One more thing here
 
-🏷&nbsp; **Tags:** `#intermediate`
+🏷&nbsp; **Tags:** `#intermediate, #draft`
 
 :white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
 
@@ -686,5 +686,5 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzIyODQyNDA3XX0=
+eyJoaXN0b3J5IjpbNjAyNTc3OTMwXX0=
 -->
