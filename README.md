@@ -708,7 +708,7 @@ services:
 <br/>
 
 
-### ⚪️ 1.  Record real requests for awareness
+### ⚪️ 1.  Each test should act on its own records only
 
 🏷&nbsp; **Tags:** `#strategic, #advanced, #draft`
 
@@ -1009,7 +1009,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc1MTQ4NzkxNSwtMTgwMzY2MzU4NiwxMz
+eyJoaXN0b3J5IjpbMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMz
 QxMTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3
 Mzg3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLD
 IwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAy
