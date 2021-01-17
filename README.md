@@ -336,7 +336,44 @@ services:
 <br/>
 
 
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;   
+👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 5. Store test data in RAM folder
+
+🏷&nbsp; **Tags:** `#performance, #draft`
+
+:white_check_mark:  **Do:** Avoid fake DBs, it brings noise, loosen the DB durability settings to gain performance boost, for example {something}, show numbers,
+
+
+<br/>
+
+
+👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
 
 <br/>
 
@@ -760,6 +797,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwMDY0ODM5LC0xNTgwMTUwMzUyLC0xNT
-I3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTEyNjcxNzM5OTQsLTE1ODAxNTAzNTIsLT
+E1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
 -->
