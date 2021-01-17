@@ -436,23 +436,6 @@ services:
 
 <br/><br/>
 
-### ⚪️ 8.
-
-:white_check_mark:  **Do:**
-
-<br/>
-
-👀  **Alternatives:**
-- 
-
-<br/>
-
-
-<details><summary>✏ <b>Code Examples</b></summary>
-https://github.com/testjavascript/integration-tests-a-z/blob/06c02a4b56b07fd08f1fc42e67404de290856d3b/example-application/test/basic-tests.test.js#L24-L28
-</details>
-
-<br/><br/>
 
 ## **Section: Database and infrastructure setup**
 
@@ -773,7 +756,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ4OTQwNTI0OCwtOTQ5MjQ2MTAxLDIwMT
+eyJoaXN0b3J5IjpbLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMT
 E3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3
 OTMwXX0=
 -->
