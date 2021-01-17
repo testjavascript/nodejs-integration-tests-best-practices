@@ -443,7 +443,7 @@ services:
 
 ### ⚪️ 1.  Isolate the component from the world using HTTP interceptor
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#strategic #basic, #draft`
 
 :white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
 
@@ -519,15 +519,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 3.  Define default responses before every test to ensure a clean slate
+### ⚪️ 3.  Override defaults for specific test scenario using unique paths
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
-
-Downside: performance penalty, we measured 1ms. 
-
-How to override, see bullet...
+:white_check_mark:  **Do:** A common need, not possible technically to change scope - need to remove
 
 <br/>
 
@@ -981,7 +977,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyMjQ3NzE1MywxNzMxNzA2MDM2LC00OD
-EwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUw
-MzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTE0MzQxMTAxNDgsMTczMTcwNjAzNiwtND
+gxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1
+MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
