@@ -601,11 +601,12 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Avoid testing this will result in unneccessary failures  ❌ &nbsp; ; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
+
 ```
 version: "3.6"
 services:
@@ -975,8 +976,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTkzOTE5NTEyLDExMjUyOTY5NDgsLTc4Nj
-k2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYsLTQ4MTA1ODcx
-NCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLT
-E1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTY0Mzk2NDIxMCwxMTI1Mjk2OTQ4LC03OD
+Y5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3
+MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC
+0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
