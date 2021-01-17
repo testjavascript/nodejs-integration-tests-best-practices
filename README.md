@@ -294,12 +294,12 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), 
+:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing 
 
 <br/>
 
 
-👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kuberentes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;  
+👀 &nbsp; **Alternatives:** Re-start anytime ❌;   
 
 <br/>
 
@@ -721,6 +721,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYyODgzMTgsLTE1ODAxNTAzNTIsLTE1Mj
-c3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTE0ODI5OTgxMTcsLTE1ODAxNTAzNTIsLT
+E1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
 -->
