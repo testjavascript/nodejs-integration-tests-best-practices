@@ -481,7 +481,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 2.  Isolate the component from the world using HTTP interceptor
+### ⚪️ 2.  Define default responses before every test
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -793,7 +793,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTQzOTcxOCwtNDgxMDU4NzE0LC05ND
-kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
-MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbLTE3NTA3NjIxMDMsLTQ4MTA1ODcxNCwtOT
+Q5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3
+NzI0MDcsNjAyNTc3OTMwXX0=
 -->
