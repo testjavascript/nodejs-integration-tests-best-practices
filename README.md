@@ -172,6 +172,46 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
+### ⚪️ 3. Specify a port in production, randomize in testing
+
+🏷&nbsp; **Tags:** `#intermediate`
+
+:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Running a single process will slow down the tests ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
+
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
+
+</details>
+
+<br/><br/>
+
 
 ## **Section: Database setup**
 
@@ -645,3 +685,6 @@ Just do:
 - Follow the code and best practices inside
 - Move to more advanced use cases in ./src/tests/
 ```
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNzIyODQyNDA3XX0=
+-->
