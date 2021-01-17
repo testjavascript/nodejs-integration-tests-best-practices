@@ -481,6 +481,46 @@ services:
 
 <br/><br/>
 
+### ⚪️ 2.  Isolate the component from the world using HTTP interceptor
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
+
+Goes against the Microservice idea, not big bang
+
+Analogue - Simulator, like fighting combats - Practice the outside conditions without the damage
+
+Downside - What if they changed...
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox environments &nbsp; ❌;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
 ## **Section: Basic Principles
 
 <br/>
@@ -753,7 +793,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzOTAyNzgwLC00ODEwNTg3MTQsLTk0OT
-I0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3Nzcy
-NDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTEwMTQzOTcxOCwtNDgxMDU4NzE0LC05ND
+kyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3
+MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
