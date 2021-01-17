@@ -519,7 +519,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 3.  Override defaults for specific test scenario using unique paths
+### ⚪️ 3.  Override the happy defaults with corner cases using unique paths
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
@@ -978,8 +978,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1MTk0OTc1NCwtNzg2OTY3Nzg5LDE0ND
-ExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYx
-MDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNy
-w2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbODY5NjkzMDAwLC03ODY5Njc3ODksMTQ0MT
+E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
+MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
+YwMjU3NzkzMF19
 -->
