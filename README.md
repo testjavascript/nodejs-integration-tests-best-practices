@@ -750,7 +750,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Data is not part of the test context is called "metadata", for example - currencies, countries, etc. This type of data makes no impact on the tests result but is needed for the app to wor, it can be seeded globally to the DB in the migration phase
+:white_check_mark:  **Do:** Data is not part of the test context is called "metadata", for example - currencies, countries, etc. This type of data makes no impact on the tests result but is needed for the app to work. One can understand a test without being aware of this data. Since it  it can be seeded globally to the DB in the migration phase
 
 <br/>
 
@@ -1011,7 +1011,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3ODM3ODEzNSwtMTU1NjY3OTQ5MCwtMT
+eyJoaXN0b3J5IjpbMTE1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMT
 AzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNTg2LDEzNDEx
 Nzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0NDExNzczOD
 csMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYxMDEsMjAx
