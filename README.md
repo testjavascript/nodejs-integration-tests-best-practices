@@ -560,11 +560,11 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Having all nocks defined doesn't guarantee, protect our borders. The nock.enableNetConnect
+:white_check_mark:  **Do:** Having all nocks defined doesn't guarantee, protect our borders. The nock.enableNetConnect() command, remember to include localhost + port, remember to clean-up
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Trust your work  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -976,8 +976,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTkxNzM0MjQzLC03ODY5Njc3ODksMTQ0MT
-E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
-MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
-YwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbMTcwNzEwMzA5NSwtNzg2OTY3Nzg5LDE0ND
+ExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYx
+MDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNy
+w2MDI1Nzc5MzBdfQ==
 -->
