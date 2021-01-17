@@ -822,7 +822,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** A test should assume nothing on other tests neither should the writer read previous tests implementation. Then how
+:white_check_mark:  **Do:** Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. 
 
 <br/>
 
@@ -1011,10 +1011,10 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NTMwNDMxOTAsMTAwNzc0MjI2MSwxMT
-U1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIz
-MDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OT
-Q4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00
-ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMT
-UwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbMTEwMjI0MzcxMSwxMDA3NzQyMjYxLDExNT
+U3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEzMjMw
+NjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUyOTY5ND
+gsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYsLTQ4
+MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNT
+AzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
 -->
