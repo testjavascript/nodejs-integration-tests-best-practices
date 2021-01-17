@@ -746,11 +746,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 2.  Only metadata should be seeded to the database
+### ⚪️ 2.  Only metadata should be pre-seeded to the database
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+:white_check_mark:  **Do:** Data is not part of the test context is called "meintegrations.
 
 <br/>
 
@@ -1011,9 +1011,10 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMT
-EzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUy
-OTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMz
-YsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1
-ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTE0NjY4MjM4MDMsLTE1NTY2Nzk0OTAsLT
+EwMzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQx
+MTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mz
+g3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIw
+MTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNT
+c3OTMwXX0=
 -->
