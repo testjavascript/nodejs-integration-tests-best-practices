@@ -750,11 +750,11 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Data is not part of the test context is called "meintegrations.
+:white_check_mark:  **Do:** Data is not part of the test context is called "metadata", for example - currencies, countries, etc. This type of data makes no impact on the tests result but is needed for the app to wor, it can be seeded globally to the DB in the migration phase
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Per-suite, expensive  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1011,10 +1011,10 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NjY4MjM4MDMsLTE1NTY2Nzk0OTAsLT
-EwMzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQx
-MTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mz
-g3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIw
-MTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNT
-c3OTMwXX0=
+eyJoaXN0b3J5IjpbLTQ3ODM3ODEzNSwtMTU1NjY3OTQ5MCwtMT
+AzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNTg2LDEzNDEx
+Nzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0NDExNzczOD
+csMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYxMDEsMjAx
+MTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nz
+c5MzBdfQ==
 -->
