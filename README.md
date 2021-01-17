@@ -367,11 +367,9 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Avoid fake DBs, it brings noise, loosen the DB durability settings to gain performance boost, for example {something}, show numbers,
-
+:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider
 
 <br/>
-
 
 👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
 
@@ -797,6 +795,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNjcxNzM5OTQsLTE1ODAxNTAzNTIsLT
-E1Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTkwNzY0MzA2NSwtMTU4MDE1MDM1MiwtMT
+UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
