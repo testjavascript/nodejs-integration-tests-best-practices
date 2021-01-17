@@ -854,11 +854,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 5.  Test the response schema when specific value is unknown
+### ⚪️ 5.  Test types when the value is unknown
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** When gettin
+:white_check_mark:  **Do:** Sometime the response contains important fields with dynamic data, like a date or incrementing number. Can't check specific 
 
 <br/>
 
@@ -1011,11 +1011,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI5ODgwODAyMCwxMTAyMjQzNzExLDEwMD
-c3NDIyNjEsMTE1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4
-NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4Nj
-YsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTcz
-MTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMj
-QzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQwNyw2MDI1Nzc5MzBd
-fQ==
+eyJoaXN0b3J5IjpbMjUyNjU3MzI2LDExMDIyNDM3MTEsMTAwNz
+c0MjI2MSwxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1
+NTAwLDExMzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2Ni
+wxMTI1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMx
+NzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyND
+MzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+
 -->
