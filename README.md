@@ -634,11 +634,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
-
-Downside: performance penalty, we measured 1ms. 
-
-How to override, see bullet...
+:white_check_mark:  **Do:** When faking collaborators, th
 
 <br/>
 
@@ -978,8 +974,8 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODYxOTYwNTMsMTEyNTI5Njk0OCwtNz
-g2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4
-NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1Mi
-wtMTUyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
+eyJoaXN0b3J5IjpbMTc1NTQxNjk3NSwxMTI1Mjk2OTQ4LC03OD
+Y5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3
+MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC
+0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
