@@ -638,12 +638,14 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Catch-all and   ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Catch-all and rely on E2E test, too late to discover bugs  ❌ &nbsp; ; Run PACT tests as well - Good approach ✅&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
+
 ```
+
 version: "3.6"
 services:
   db:
@@ -655,6 +657,7 @@ services:
       - POSTGRES_DB=shop
     ports:
       - "5432:5432"
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -974,7 +977,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1MTU1NTI1MywxMTI1Mjk2OTQ4LC03OD
+eyJoaXN0b3J5IjpbMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03OD
 Y5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3
 MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC
 0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
