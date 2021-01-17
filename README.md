@@ -712,7 +712,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #advanced, #draft`
 
-:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+:white_check_mark:  **Do:** Any record that effects the test results Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
 <br/>
 
@@ -1009,9 +1009,9 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMz
-QxMTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3
-Mzg3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLD
-IwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAy
-NTc3OTMwXX0=
+eyJoaXN0b3J5IjpbLTEwMzQxODU1MDAsMTEzMjMwNjkxOSwtMT
+gwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2
+Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNC
+wtOTQ5MjQ2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1
+Mjc3NzI0MDcsNjAyNTc3OTMwXX0=
 -->
