@@ -556,15 +556,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 4. Define default responses before every test to ensure a clean slate
+### ⚪️ 4. Deny all outgoing requests by default 
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
-
-Downside: performance penalty, we measured 1ms. 
-
-How to override, see bullet...
+:white_check_mark:  **Do:** Having all nocks defined doesn't guarantee, protect our borders. The nock.enableNetConnect
 
 <br/>
 
@@ -980,7 +976,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk1MDA3MjQ4LC03ODY5Njc3ODksMTQ0MT
+eyJoaXN0b3J5IjpbNTkxNzM0MjQzLC03ODY5Njc3ODksMTQ0MT
 E3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEw
 MSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC0xNTI3NzcyNDA3LD
 YwMjU3NzkzMF19
