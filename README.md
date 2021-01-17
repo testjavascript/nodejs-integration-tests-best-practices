@@ -405,7 +405,7 @@ services:
 
 As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
 
-Use npm script for this, migration is like the production mechanism
+Use npm script for this, migration is like the production mechanism. Use this for metadata only, see the bullet 'Each test act on dedicated DB rows'
 
 <br/>
 
@@ -436,10 +436,9 @@ services:
 
 <br/><br/>
 
-### ⚪️ 8. Isolate the component from the world using HTTP interceptor
+### ⚪️ 8.
 
 :white_check_mark:  **Do:**
-Intercept all calls to extraneous services and provide a default sensible result. Use the library nock for this matter. Consider raising an exception anytime an unknown HTTP call was made. If a specific request affects the test result, the interception of this call must be defined within the test so the reader will be able to easily grasp the cause and effect
 
 <br/>
 
@@ -774,6 +773,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNT
-gwMTUwMzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
+eyJoaXN0b3J5IjpbLTQ4OTQwNTI0OCwtOTQ5MjQ2MTAxLDIwMT
+E3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3
+OTMwXX0=
 -->
