@@ -605,6 +605,7 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+
 //docker-compose file
 
 ```
@@ -619,6 +620,7 @@ services:
       - POSTGRES_DB=shop
     ports:
       - "5432:5432"
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -628,7 +630,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 6.  Define default responses before every test to ensure a clean slate
+### ⚪️ 6.  Catch incorrect requests by specifying the request bodies
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -976,7 +978,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0Mzk2NDIxMCwxMTI1Mjk2OTQ4LC03OD
+eyJoaXN0b3J5IjpbLTE5MTk5MDEwMCwxMTI1Mjk2OTQ4LC03OD
 Y5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3
 MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUyLC
 0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
