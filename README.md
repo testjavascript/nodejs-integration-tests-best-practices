@@ -712,7 +712,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #advanced, #draft`
 
-:white_check_mark:  **Do:** Any record that effects the test results should be added at the begining of the test. Excelemation mark. A common mistake is to seed the entire test data or add one per suite - Leads to coupling between tests. What if test num #37 deletes the entity that test #38 relies on? Also lead to obscure tests... A test is a standlone story with <7 statements. 
+:white_check_mark:  **Do:** Any record that effects the test results should be added at the begining of the test. Excelemation mark. A common mistake is to seed the entire test data or add one per suite - Leads to coupling between tests. What if test num #37 deletes the entity that test #38 relies on? Also lead to obscure tests... A test is a standlone story with <7 statements.  
 
 <br/>
 
@@ -1009,7 +1009,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzMDQwNjA0MSwtMTAzNDE4NTUwMCwxMT
+eyJoaXN0b3J5IjpbMTQ3MzM4MTk3MSwtMTAzNDE4NTUwMCwxMT
 MyMzA2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5
 Njk0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNi
 wtNDgxMDU4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4
