@@ -326,11 +326,12 @@ services:
 
 <br/><br/>
 
-### ⚪️ 4. Loosen DB durability setting, boost the performance
+### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
+:white_check_mark:  **Do:** On why i
+
 
 <br/>
 
@@ -759,6 +760,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcyMDQyMzQyNSwtMTU4MDE1MDM1MiwtMT
+eyJoaXN0b3J5IjpbMTU5NzE5OTAyNCwtMTU4MDE1MDM1MiwtMT
 UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
