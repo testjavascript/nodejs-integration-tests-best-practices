@@ -523,7 +523,9 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** A common need, not possible technically to change scope - need to remove. Instead of removing, create unique path and unique response. 
+:white_check_mark:  **Do:** A common need, not possible technically to change existing path - need to remove. Instead of removing, create unique path and unique response. This minimizes coupling between tests.
+
+Remember that after every test everything is cleaned-up, see bullet about clean-up
 
 <br/>
 
@@ -977,7 +979,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyODA5MTkyNywxNzMxNzA2MDM2LC00OD
+eyJoaXN0b3J5IjpbMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00OD
 EwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUw
 MzUyLC0xNTI3NzcyNDA3LDYwMjU3NzkzMF19
 -->
