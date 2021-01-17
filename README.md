@@ -326,7 +326,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 4. Optimize the DB speed for testing, loos
+### ⚪️ 4. Loosen DB durability setting, boost the performance
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
@@ -335,7 +335,7 @@ services:
 <br/>
 
 
-👀 &nbsp; **Alternatives:** Re-start anytime ❌;   
+👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;   
 
 <br/>
 
@@ -759,6 +759,6 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwNDE5MDgwMywtMTU4MDE1MDM1MiwtMT
+eyJoaXN0b3J5IjpbMTcyMDQyMzQyNSwtMTU4MDE1MDM1MiwtMT
 UyNzc3MjQwNyw2MDI1Nzc5MzBdfQ==
 -->
