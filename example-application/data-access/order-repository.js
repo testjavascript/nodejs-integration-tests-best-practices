@@ -27,7 +27,16 @@ module.exports = class OrderReposiroty {
     }
   }
 
-  async addOrder(orderDetails) {
-    return await orderModel.create(orderDetails);
+  async getOrderById(id) {
+    return orderModel.findOne({ where: { id: id } });
   }
+
+  async addOrder(orderDetails) {
+    return orderModel.create(orderDetails);
+  }
+
+  async clear() {
+    return orderModel.destroy({ truncate : true, cascade: false, restartIdentity: true });
+  }
+
 };
