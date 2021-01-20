@@ -94,12 +94,13 @@ describe("/api", () => {
       process.env.SEND_MAILS = "true";
       sinonSandbox.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
-      // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected 
-      const scope = nock("https://mailer.com")
-        .post('/send', payload => validator.isEmail(payload.recipientAddress)
-            && !validator.isEmpty(payload.subject) 
-            && !validator.isEmpty(payload.body)
-        )
+      // ️️️✅ Best Practice: Save the body when you need to make sure you call the 3rd party service as expected 
+      let emailPayload;
+      nock("https://mailer.com")
+        .post('/send', payload => {
+          emailPayload = payload;
+          return true;
+        })
         .reply(202);
       const orderToAdd = {
         userId: 1,
@@ -112,7 +113,11 @@ describe("/api", () => {
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-      expect(scope.isDone()).toBe(true);
+      expect(emailPayload).toMatchObject({
+        subject: expect.any(String),
+        body: expect.any(String),
+        recipientAddress: expect.stringMatching(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
+      });
     });
   });
 });
