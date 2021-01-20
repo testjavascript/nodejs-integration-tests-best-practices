@@ -6,7 +6,7 @@
     "test": "jest",
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch --runInBand --verbose",
-    "typescript:test": "jest --watch --runInBand --verbose --config='jest.typescript.config.js'",
+    "test:typescript": "jest --watch --runInBand --config='./various-receipes/typescript/ts-jest.config.js'",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
   },
