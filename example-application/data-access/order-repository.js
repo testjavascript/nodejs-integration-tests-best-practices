@@ -35,8 +35,4 @@ module.exports = class OrderReposiroty {
     return orderModel.create(orderDetails);
   }
 
-  async clear() {
-    return orderModel.destroy({ truncate : true, cascade: false, restartIdentity: true });
-  }
-
 };

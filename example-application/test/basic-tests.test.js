@@ -34,7 +34,6 @@ afterEach(() => {
 afterAll(async (done) => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
-  await new OrderRepository().clear();
   nock.enableNetConnect();
   done();
 });
@@ -83,7 +82,7 @@ describe("/api", () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
-        productId: 4,
+        productId: 2,
         mode: "approved",
       };
       nock("http://localhost/user/").get(`/1`).reply(200, {
@@ -103,8 +102,9 @@ describe("/api", () => {
       }).toMatchObject({
         body: {
           id: addedOrderId ,
-          productId: 4
-        },
+          userId: 1,
+          productId: 2
+        }
       });
 
     });
@@ -130,7 +130,7 @@ describe("/api", () => {
 
       const orderToAdd = {
         userId: 1,
-        productId: 20,
+        productId: 2,
         mode: "approved",
       };
 
