@@ -1,16 +1,11 @@
+const path = require("path");
+const axios = require("axios");
 const request = require("supertest");
 const nock = require("nock");
+const jestOpenAPI = require("jest-openapi");
+const { initializeWebServer, stopWebServer } = require("../../../example-application/api-under-test");
 
-import * as fs from 'fs';
-import * as path from 'path';
-
-import { OpenApiValidator } from 'express-openapi-validate';
-import { initializeWebServer, stopWebServer } from '../../../example-application/api-under-test';
-
-const file = fs.readFileSync(path.join(__dirname, '../../../example-application/openapi/openapi.json'));
-
-const opan_api = JSON.parse(file.toString());
-const validator = new OpenApiValidator(opan_api, {});
+jestOpenAPI(path.join(__dirname, "../../../example-application/openapi/openapi.json"));
 
 let expressApp;
 
@@ -31,7 +26,6 @@ describe("Verify openApi spec", () => {
     describe("POST /orders", () => {
 
         test("When added a valid order and 200 was expected", async () => {
-            const validateResponse = validator.validateResponse("post", "/order");
             nock("http://localhost/user/").get(`/1`).reply(200, {
                 id: 1,
                 name: "John",
@@ -42,15 +36,14 @@ describe("Verify openApi spec", () => {
                 mode: "approved",
             };
 
-            const res = await request(expressApp)
-                .post("/order")
-                .send(orderToAdd);
+            const res = await request(expressApp).post("/order").send(orderToAdd);
 
-            expect(validateResponse(res)).toBeUndefined();
+            // const res = await axios.post('http://localhost:33666/post', orderToAdd);
+
+            expect(res).toSatisfyApiSpec();
         });
 
         test("When an invalid order was send and 400 was expected", async () => {
-            const validateResponse = validator.validateResponse("post", "/order");
             nock("http://localhost/user/").get(`/1`).reply(200, {
                 id: 1,
                 name: "John",
@@ -64,11 +57,10 @@ describe("Verify openApi spec", () => {
                 .post("/order")
                 .send(orderToAdd);
 
-            expect(validateResponse(res)).toBeUndefined();
+            expect(res).toSatisfyApiSpec();
         });
 
         test("When an external call failed and 404 was expected", async () => {
-            const validateResponse = validator.validateResponse("post", "/order");
             nock("http://localhost/user/").get(`/1`).reply(404);
             const orderToAdd = {
                 userId: 1,
@@ -80,7 +72,7 @@ describe("Verify openApi spec", () => {
                 .post("/order")
                 .send(orderToAdd);
 
-            expect(validateResponse(res)).toBeUndefined();
+            expect(res).toSatisfyApiSpec();
         });
 
     });

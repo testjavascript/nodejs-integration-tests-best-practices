@@ -74,13 +74,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
@@ -101,6 +95,11 @@
     "schemas": {
       "Order": {
         "type": "object",
+        "required": [
+          "productId",
+          "userId",
+          "mode"
+        ],
         "properties": {
           "id": {
             "type": "integer",
