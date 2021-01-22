@@ -1,7 +1,6 @@
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
-const validator = require("validator");
 const {
   initializeWebServer,
   stopWebServer
