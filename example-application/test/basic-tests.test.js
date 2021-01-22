@@ -6,14 +6,10 @@ const mailer = require("../libraries/mailer");
 const OrderRepository = require("../data-access/order-repository");
 
 let expressApp;
-let sinonSandbox;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   expressApp = await initializeWebServer();
-
-  // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-  sinonSandbox = sinon.createSandbox();
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
@@ -22,22 +18,22 @@ beforeAll(async (done) => {
   done();
 });
 
-afterAll(async (done) => {
-  // ️️️✅ Best Practice: Clean-up resources after each run
-  await stopWebServer();
-  done();
-});
-
 beforeEach(() => {
-  nock.cleanAll();
   nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
   });
+});
 
-  if (sinonSandbox) {
-    sinonSandbox.restore();
-  }
+afterEach(() => {
+  nock.cleanAll();
+  sinon.restore();
+});
+
+afterAll(async (done) => {
+  // ️️️✅ Best Practice: Clean-up resources after each run
+  await stopWebServer();
+  done();
 });
 
 // ️️️✅ Best Practice: Structure tests
@@ -108,7 +104,8 @@ describe("/api", () => {
           recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
         })
         .reply(202);
-      sinonSandbox.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
+        
+      sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
       const orderToAdd = {
         userId: 1,
         productId: 2,
