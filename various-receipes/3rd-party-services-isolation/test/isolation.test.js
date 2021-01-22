@@ -97,10 +97,7 @@ describe("/api", () => {
       // ️️️✅ Best Practice: Save the body when you need to make sure you call the 3rd party service as expected 
       let emailPayload;
       nock("https://mailer.com")
-        .post('/send', payload => {
-          emailPayload = payload;
-          return true;
-        })
+        .post('/send', payload => (emailPayload = payload, true))
         .reply(202);
       const orderToAdd = {
         userId: 1,
