@@ -26,7 +26,6 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  process.env.SEND_MAILS = "false";
   nock.cleanAll();
   sinon.restore();
 });
@@ -75,9 +74,7 @@ describe("/api", () => {
       const getResponse = await request(expressApp).get("/order/" + nonExistingOrderId);
 
       //Assert
-      expect(getResponse).toMatchObject({
-        status: 404
-      });
+      expect(getResponse.status).toBe(404);
 
     });
 
