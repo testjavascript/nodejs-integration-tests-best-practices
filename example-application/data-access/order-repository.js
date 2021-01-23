@@ -28,11 +28,11 @@ module.exports = class OrderReposiroty {
   }
 
   async getOrderById(id) {
-    return orderModel.findOne({ where: { id: id } });
+    return await orderModel.findOne({ where: { id: id } });
   }
 
   async addOrder(orderDetails) {
-    return orderModel.create(orderDetails);
+    return await orderModel.create(orderDetails);
   }
 
 };

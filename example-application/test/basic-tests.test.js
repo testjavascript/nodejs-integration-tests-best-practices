@@ -41,10 +41,46 @@ afterAll(async (done) => {
 // ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
 
-  describe("GET /orders", () => {
+  describe("GET /order", () => {
 
-    test.todo("When filtering for canceled orders, should show only relevant items")
-    
+    test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: "approved",
+      };
+      const { body: { id: addedOrderId } } = await request(expressApp).post("/order").send(orderToAdd);
+
+      //Act
+      const getResponse = await request(expressApp).get("/order/" + addedOrderId);
+
+      //Assert
+      expect(getResponse).toMatchObject({
+        status: 200,
+        body: {
+          userId: 1,
+          productId: 2,
+          mode: "approved",
+        },
+      });
+
+    });
+
+    test("When asked for an non-existing order, Then should receive 404 response", async () => {
+      //Arrange
+      const nonExistingOrderId = 404;
+
+      //Act
+      const getResponse = await request(expressApp).get("/order/" + nonExistingOrderId);
+
+      //Assert
+      expect(getResponse).toMatchObject({
+        status: 404
+      });
+
+    });
+
   });
 
   describe("POST /orders", () => {
@@ -56,21 +92,12 @@ describe("/api", () => {
         productId: 2,
         mode: "approved",
       };
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
 
       //Act
       const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
-      const { status, body } = receivedAPIResponse;
-
-      expect({
-        status,
-        body,
-      }).toMatchObject({
+      expect(receivedAPIResponse).toMatchObject({
         status: 200,
         body: {
           mode: "approved",
@@ -85,23 +112,20 @@ describe("/api", () => {
         productId: 2,
         mode: "approved",
       };
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
 
       //Act
-      const addedOrderId = (await request(expressApp).post("/order").send(orderToAdd)).body.id;
-      const retreivedAddedOrder = await request(expressApp).get("/order/" + addedOrderId);
+      const { body: { id: addedOrderId } } = await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
-      const { body } = retreivedAddedOrder;
+      const { body, status } = await request(expressApp).get("/order/" + addedOrderId);
 
       expect({
-        body
+        body,
+        status
       }).toMatchObject({
+        status: 200,
         body: {
-          id: addedOrderId ,
+          id: addedOrderId,
           userId: 1,
           productId: 2
         }
@@ -112,11 +136,6 @@ describe("/api", () => {
     test("When adding a new valid order, Then an email should be send to admin", async () => {
       //Arrange
       process.env.SEND_MAILS = "true";
-      
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
 
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
@@ -144,10 +163,6 @@ describe("/api", () => {
 
     test("When adding an order without specifying product, stop and return 400", async () => {
       //Arrange
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
       const orderToAdd = {
         userId: 1,
         mode: "draft",
@@ -182,10 +197,6 @@ describe("/api", () => {
     test("When order failed, send mail to admin", async () => {
       //Arrange
       process.env.SEND_MAILS = "true";
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
       const scope = nock("https://mailer.com")
