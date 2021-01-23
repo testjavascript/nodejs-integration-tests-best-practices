@@ -66,17 +66,27 @@ const defineRoutes = (expressApp) => {
       // save to DB (Caution: simplistic code without layers and validation)
       const DBResponse = await new OrderRepository().addOrder(req.body);
 
+      if (process.env.SEND_MAILS === "true") {
+        await mailer.send("New order was placed", `user ${DBResponse.userId} ordered ${DBResponse.productId}`, "admin@app.com");
+      }
+
       res.json(DBResponse);
     } catch (error) {
       next(error);
     }
   });
 
-  // get existing order
-  router.get("/", (req, res, next) => {
-    res.json({
-      a: 1,
-    });
+  // get existing order by id
+  router.get("/:id", async (req, res, next) => {
+
+    const response = await new OrderRepository().getOrderById(req.params.id);
+
+    if (!response) {
+      res.status(404).end();
+      return;
+    }
+
+    res.json(response);
   });
 
   expressApp.use("/order", router);

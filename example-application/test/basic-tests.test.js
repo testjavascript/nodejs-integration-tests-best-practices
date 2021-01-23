@@ -33,54 +33,68 @@ afterEach(() => {
 afterAll(async (done) => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
+  nock.enableNetConnect();
   done();
 });
 
 // ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
-  describe("POST /orders", () => {
-    test.todo("When adding order without product, return 400");
 
-    test("When adding an order without specifying product, stop and return 400", async () => {
-      //Arrange
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
-      const orderToAdd = {
-        userId: 1,
-        mode: "draft",
-      };
+  describe("GET /order", () => {
 
-      //Act
-      const orderAddResult = await request(expressApp).post("/order").send(orderToAdd);
-
-      //Assert
-      expect(orderAddResult.status).toBe(400);
-    });
-
-    test("When adding  a new valid order , Then should get back 200 response", async () => {
+    test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
         mode: "approved",
       };
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
+      const { body: { id: addedOrderId } } = await request(expressApp).post("/order").send(orderToAdd);
+
+      //Act
+      const getResponse = await request(expressApp).get("/order/" + addedOrderId);
+
+      //Assert
+      expect(getResponse).toMatchObject({
+        status: 200,
+        body: {
+          userId: 1,
+          productId: 2,
+          mode: "approved",
+        },
       });
+
+    });
+
+    test("When asked for an non-existing order, Then should receive 404 response", async () => {
+      //Arrange
+      const nonExistingOrderId = 404;
+
+      //Act
+      const getResponse = await request(expressApp).get("/order/" + nonExistingOrderId);
+
+      //Assert
+      expect(getResponse.status).toBe(404);
+
+    });
+
+  });
+
+  describe("POST /orders", () => {
+
+    test("When adding a new valid order, Then should get back 200 response", async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: "approved",
+      };
 
       //Act
       const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
-      const { status, body } = receivedAPIResponse;
-
-      expect({
-        status,
-        body,
-      }).toMatchObject({
+      expect(receivedAPIResponse).toMatchObject({
         status: 200,
         body: {
           mode: "approved",
@@ -88,13 +102,38 @@ describe("/api", () => {
       });
     });
 
-    test("When order failed, send mail to admin", async () => {
+    test("When adding a new valid order, Then should be able to retrieve it", async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: "approved",
+      };
+
+      //Act
+      const { body: { id: addedOrderId } } = await request(expressApp).post("/order").send(orderToAdd);
+
+      //Assert
+      const { body, status } = await request(expressApp).get("/order/" + addedOrderId);
+
+      expect({
+        body,
+        status
+      }).toMatchObject({
+        status: 200,
+        body: {
+          id: addedOrderId,
+          userId: 1,
+          productId: 2
+        }
+      });
+
+    });
+
+    test("When adding a new valid order, Then an email should be send to admin", async () => {
       //Arrange
       process.env.SEND_MAILS = "true";
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
+
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
       const scope = nock("https://mailer.com")
@@ -104,8 +143,7 @@ describe("/api", () => {
           recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
         })
         .reply(202);
-        
-      sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
+
       const orderToAdd = {
         userId: 1,
         productId: 2,
@@ -120,7 +158,21 @@ describe("/api", () => {
       expect(scope.isDone()).toBe(true);
     });
 
-    test("When the user does not exist, return http 404", async () => {
+    test("When adding an order without specifying product, stop and return 400", async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        mode: "draft",
+      };
+
+      //Act
+      const orderAddResult = await request(expressApp).post("/order").send(orderToAdd);
+
+      //Assert
+      expect(orderAddResult.status).toBe(400);
+    });
+
+    test("When the user does not exist, return 404 response", async () => {
       //Arrange
       nock("http://localhost/user/").get(`/7`).reply(404, {
         message: "User does not exist",
@@ -138,11 +190,35 @@ describe("/api", () => {
       //Assert
       expect(orderAddResult.status).toBe(404);
     });
+
+    test("When order failed, send mail to admin", async () => {
+      //Arrange
+      process.env.SEND_MAILS = "true";
+      // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
+      // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
+      const scope = nock("https://mailer.com")
+        .post("/send", {
+          subject: /^(?!\s*$).+/,
+          body: /^(?!\s*$).+/,
+          recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        })
+        .reply(202);
+
+      sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: "approved",
+      };
+
+      //Act
+      await request(expressApp).post("/order").send(orderToAdd);
+
+      //Assert
+      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
+      expect(scope.isDone()).toBe(true);
+    });
+
   });
 
-  describe("GET /orders", () => {
-    test("When filtering for canceled orders, should show only relevant items", () => {
-      expect(true).toBe(true);
-    });
-  });
 });
