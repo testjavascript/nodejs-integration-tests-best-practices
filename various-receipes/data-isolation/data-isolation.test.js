@@ -8,7 +8,6 @@ const { getShortUnique } = require("./test-helper");
 let expressApp;
 
 beforeAll(async (done) => {
-  // ️️️✅ Best Practice: Place the backend under test within the same process
   expressApp = await initializeWebServer();
 
   done();
@@ -27,13 +26,14 @@ afterEach(() => {
 });
 
 afterAll(async (done) => {
-  // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
   nock.enableNetConnect();
   done();
+
+  // ️️️✅ Best Practice: Avoid cleaning-up the database after each test or afterAll
+  // This will interfere with other tests that run in different processes
 });
 
-// ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
   describe("POST /orders", () => {
     test("When adding a new valid order, Then should get back 200 response", async () => {
@@ -42,6 +42,8 @@ describe("/api", () => {
         userId: 1,
         productId: 2,
         mode: "approved",
+        // ️️️✅ Best Practice: Set unique value to unique fields so that tests writer wouldn't have to
+        // read previous tests before adding a new one
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
 
@@ -68,7 +70,7 @@ describe("/api", () => {
       expect(receivedAPIResponse.body.mode).toBe("approved");
     });
   });
-  describe("GET /order", () => {
+  describe("GET /order:/id", () => {
     test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
       // Arrange
       const orderToAdd = {
@@ -76,6 +78,7 @@ describe("/api", () => {
         productId: 2,
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
+      // ️️️✅ Best Practice: Each test acts on its own record. Avoid relying on records from previous tests
       const {
         body: { id: existingOrderId },
       } = await request(expressApp).post("/order").send(orderToAdd);
@@ -87,6 +90,11 @@ describe("/api", () => {
       expect(receivedResponse.status).toBe(200);
     });
   });
+  describe("Get /order", () => {
+    // ️️️✅ Best Practice: Acknowledge that other unknown records might exist, find your expectations within
+    // the result
+    test.todo("When adding 2 orders, then these orders exist in result when querying for all");
+  });
   describe("DELETE /order", () => {
     test("When deleting an existing order, Then should get a successful message", async () => {
       // Arrange
@@ -95,6 +103,7 @@ describe("/api", () => {
         productId: 2,
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
+      // ️️️✅ Best Practice: Each test acts on its own record. Avoid relying on records from previous tests
       const {
         body: { id: existingOrderId },
       } = await request(expressApp).post("/order").send(orderToAdd);

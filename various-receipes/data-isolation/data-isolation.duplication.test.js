@@ -1,3 +1,7 @@
+// ️️️✅ Best Practice: This file is a duplication of 'data-isolation.test.js' and aims to show that
+// the two can run together simultaneously without interfering with each other thanks
+// to the data isolation
+
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");

@@ -16,7 +16,7 @@ beforeAll(async (done) => {
     mode: "approved",
   };
 
-  // ❌ Anti-Pattern: Adding global record that all tests mutate will lead to high coupling and flakiness
+  // ❌ Anti-Pattern: Adding global records which are mutated by the tests. This will lead to high coupling and flakiness
   //existingOrderId = (await request(expressApp).post("/order").send(orderToAdd)).body.id;
 
   done();
@@ -34,7 +34,7 @@ afterEach(() => {
   sinon.restore();
 
   // ❌ Anti-Pattern: Cleaning here now will affect tests in other processes
-  // new OrderRepository().cleanup();
+  new OrderRepository().cleanup();
 });
 
 afterAll(async (done) => {
@@ -44,7 +44,6 @@ afterAll(async (done) => {
   done();
 });
 
-// ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
   describe("POST /orders", () => {
     test("When adding a new valid order, Then should get back 200 response", async () => {
@@ -64,19 +63,33 @@ describe("/api", () => {
       expect(receivedAPIResponse.status).toBe(200);
     });
   });
-  describe("GET /order", () => {
+  describe("GET /order/:id", () => {
     test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
       //Act
-      // ❌ Anti-Pattern: This test relies on previous tests
+      // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
       const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+
 
       //Assert
       expect(receivedResponse.status).toBe(200);
     });
+
+  });
+
+    describe('Get /order', () => {
+      
+    // ❌ Anti-Pattern: Avoid assuming that only known records exist as other tests run in parallel
+    // and might add more records to the table
+    test.todo("When adding 2 orders, then get two orders when querying for all");
+
+    });
+
+    
   });
   describe("DELETE /order", () => {
     test("When deleting an existing order, Then should get a successful message", async () => {
       //Act
+      // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
       const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
 
       //Assert
