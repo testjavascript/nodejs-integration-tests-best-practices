@@ -67,7 +67,11 @@ const defineRoutes = (expressApp) => {
       const DBResponse = await new OrderRepository().addOrder(req.body);
 
       if (process.env.SEND_MAILS === "true") {
-        await mailer.send("New order was placed", `user ${DBResponse.userId} ordered ${DBResponse.productId}`, "admin@app.com");
+        await mailer.send(
+          "New order was placed",
+          `user ${DBResponse.userId} ordered ${DBResponse.productId}`,
+          "admin@app.com"
+        );
       }
 
       res.json(DBResponse);
@@ -78,7 +82,6 @@ const defineRoutes = (expressApp) => {
 
   // get existing order by id
   router.get("/:id", async (req, res, next) => {
-
     const response = await new OrderRepository().getOrderById(req.params.id);
 
     if (!response) {
@@ -87,6 +90,12 @@ const defineRoutes = (expressApp) => {
     }
 
     res.json(response);
+  });
+
+  router.delete("/:id", async (req, res, next) => {
+    console.log(`Order API was called to delete order ${req.params.id}`);
+    await new OrderRepository().deleteOrder(req.params.id);
+    res.status(204).end();
   });
 
   expressApp.use("/order", router);

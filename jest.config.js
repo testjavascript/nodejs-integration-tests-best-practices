@@ -1,38 +1,44 @@
 module.exports = {
   verbose: false,
-  testMatch: ['**/test/**/*test*.js', '!**/playground/**', '!**/stryker-tmp/**'],
+  testMatch: ["**/test/**/*test*.js", "**/*test*.js", "!**/playground/**", "!**/*test-helper*", "!**/*anti-pattern*"],
   collectCoverage: false,
-  coverageReporters: ['text-summary', 'lcov'],
-  collectCoverageFrom: [
-    '**/*.js',
-    '!**/node_modules/**',
-    '!**/test/**',
-  ],
+  coverageReporters: ["text-summary", "lcov"],
+  collectCoverageFrom: ["**/*.js", "!**/node_modules/**", "!**/test/**"],
   forceExit: true,
-  testEnvironment: 'node',
+  testEnvironment: "node",
   notify: true,
-  globalSetup: './example-application/test/global-setup.js',
-  globalTeardown: './example-application/test/global-teardown.js',
-  notifyMode: 'change',
+  globalSetup: "./example-application/test/global-setup.js",
+  globalTeardown: "./example-application/test/global-teardown.js",
+  notifyMode: "change",
   watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-    ['jest-watch-repeat', {
-      key: 'r',
-      prompt: 'repeat test runs.',
-    }],
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
     [
-      "jest-watch-suspend", {
-        "key": "s",
-        "prompt": "suspend watch mode",
-      }
+      "jest-watch-repeat",
+      {
+        key: "r",
+        prompt: "repeat test runs.",
+      },
     ],
-    'jest-watch-master',
-    ['jest-watch-toggle-config', {
-      setting: 'verbose',
-    }],
-    ['jest-watch-toggle-config', {
-      setting: 'collectCoverage',
-    }],
+    [
+      "jest-watch-suspend",
+      {
+        key: "s",
+        prompt: "suspend watch mode",
+      },
+    ],
+    "jest-watch-master",
+    [
+      "jest-watch-toggle-config",
+      {
+        setting: "verbose",
+      },
+    ],
+    [
+      "jest-watch-toggle-config",
+      {
+        setting: "collectCoverage",
+      },
+    ],
   ],
 };
