@@ -39,9 +39,7 @@ afterAll(async (done) => {
 
 // ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
-
   describe("GET /order", () => {
-
     test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
       //Arrange
       const orderToAdd = {
@@ -49,7 +47,9 @@ describe("/api", () => {
         productId: 2,
         mode: "approved",
       };
-      const { body: { id: addedOrderId } } = await request(expressApp).post("/order").send(orderToAdd);
+      const {
+        body: { id: addedOrderId },
+      } = await request(expressApp).post("/order").send(orderToAdd);
 
       //Act
       const getResponse = await request(expressApp).get("/order/" + addedOrderId);
@@ -63,25 +63,21 @@ describe("/api", () => {
           mode: "approved",
         },
       });
-
     });
 
     test("When asked for an non-existing order, Then should receive 404 response", async () => {
       //Arrange
-      const nonExistingOrderId = 404;
+      const nonExistingOrderId = -1;
 
       //Act
       const getResponse = await request(expressApp).get("/order/" + nonExistingOrderId);
 
       //Assert
       expect(getResponse.status).toBe(404);
-
     });
-
   });
 
   describe("POST /orders", () => {
-
     test("When adding a new valid order, Then should get back 200 response", async () => {
       //Arrange
       const orderToAdd = {
@@ -111,23 +107,24 @@ describe("/api", () => {
       };
 
       //Act
-      const { body: { id: addedOrderId } } = await request(expressApp).post("/order").send(orderToAdd);
+      const {
+        body: { id: addedOrderId },
+      } = await request(expressApp).post("/order").send(orderToAdd);
 
       //Assert
       const { body, status } = await request(expressApp).get("/order/" + addedOrderId);
 
       expect({
         body,
-        status
+        status,
       }).toMatchObject({
         status: 200,
         body: {
           id: addedOrderId,
           userId: 1,
-          productId: 2
-        }
+          productId: 2,
+        },
       });
-
     });
 
     test("When adding a new valid order, Then an email should be send to admin", async () => {
@@ -218,7 +215,5 @@ describe("/api", () => {
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
       expect(scope.isDone()).toBe(true);
     });
-
   });
-
 });
