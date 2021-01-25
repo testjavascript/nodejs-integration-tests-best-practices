@@ -1,3 +1,4 @@
+// ❌ Anti-Pattern file: This code contains bad practices for educational purposes
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
