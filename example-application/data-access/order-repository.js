@@ -1,5 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelizeConfig = require("./config/config");
+const Sequelize = require('sequelize');
+const sequelizeConfig = require('./config/config');
 
 let repository;
 let orderModel;
@@ -7,8 +7,13 @@ let orderModel;
 module.exports = class OrderReposiroty {
   constructor() {
     if (!repository) {
-      repository = new Sequelize("shop", "myuser", "myuserpassword", sequelizeConfig);
-      orderModel = repository.define("Order", {
+      repository = new Sequelize(
+        'shop',
+        'myuser',
+        'myuserpassword',
+        sequelizeConfig
+      );
+      orderModel = repository.define('Order', {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
