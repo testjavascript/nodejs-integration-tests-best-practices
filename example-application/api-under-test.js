@@ -80,13 +80,13 @@ const defineRoutes = (expressApp) => {
 
   expressApp.use("/order", router);
 
-  expressApp.use(async (err, req, res, next) => {
-    if (typeof err === "object") {
-      if (err.isTrusted === undefined || err.isTrusted === null) {
-        err.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
+  expressApp.use(async (error, req, res, next) => {
+    if (typeof error === "object") {
+      if (error.isTrusted === undefined || error.isTrusted === null) {
+        error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
       }
     }
-    await errorHandler.handleError(err);
+    await errorHandler.handleError(error);
     res.status(500).end();
   });
 };

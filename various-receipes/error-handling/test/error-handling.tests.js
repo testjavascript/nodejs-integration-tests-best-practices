@@ -101,6 +101,26 @@ describe("Error Handling", () => {
       //Assert
       expect(processExitListener.called).toBe(true);
     });
+
+    test("When unknown exception is throw during request, Then its treated as trusted error and the process stays alive", async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: "approved",
+      };
+      sinon.restore();
+      const processExitListener = sinon.stub(process, "exit");
+      // Arbitrarily choose an object that throws an error
+      const errorToThrow = new Error("Something vague and unknown");
+      sinon.stub(OrderRepository.prototype, "addOrder").throws(errorToThrow);
+
+      //Act
+      await request(expressApp).post("/order").send(orderToAdd);
+
+      //Assert
+      expect(processExitListener.called).toBe(false);
+    });
   });
 
   describe("Various Throwing Scenarios And Locations", () => {
