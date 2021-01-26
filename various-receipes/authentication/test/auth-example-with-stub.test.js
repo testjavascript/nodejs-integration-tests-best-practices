@@ -5,9 +5,11 @@ const { initializeWebServer, stopWebServer } = require("../api-extension");
 const authenticationMiddleware = require("../authentication-middleware");
 
 let expressApp;
-let sinonSandbox;
-
+console.log("-1");
 beforeAll(async (done) => {
+  console.log("0");
+
+  
   sinon.stub(authenticationMiddleware, "authenticationMiddleware").callsFake((req, res, next) => {
     if (req.headers["authorization"] === "special-back-door") {
       next();
@@ -17,12 +19,9 @@ beforeAll(async (done) => {
     }
   });
 
-  // ️️️✅ Best Practice: Place the backend under test within the same process
   expressApp = await initializeWebServer();
-
-  // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-  sinonSandbox = sinon.createSandbox();
-
+  
+  console.log("1");
   done();
 });
 
@@ -33,14 +32,11 @@ afterAll(async (done) => {
 });
 
 beforeEach(() => {
+  console.log("2");
   userNock = nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
   });
-
-  if (sinonSandbox) {
-    sinonSandbox.restore();
-  }
 });
 
 afterEach(() => {
@@ -54,6 +50,7 @@ afterAll(() => {});
 describe("/api", () => {
   describe("POST /orders", () => {
     test("When adding a new valid order, Then should get back 200 response", async () => {
+      console.log("2.5");
       //Arrange
       const orderToAdd = {
         userId: 2,
@@ -64,6 +61,7 @@ describe("/api", () => {
         id: 1,
         name: "John",
       });
+      console.log("3");
 
       //Act
       const receivedAPIResponse = await request(expressApp)
@@ -73,6 +71,7 @@ describe("/api", () => {
 
       //Assert
       const { status, body } = receivedAPIResponse;
+      console.log("4");
 
       expect({
         status,

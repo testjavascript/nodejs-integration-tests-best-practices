@@ -8,7 +8,6 @@ const {
 const OrderRepository = require("../../../example-application/data-access/order-repository");
 
 let expressApp;
-let sinonSandbox;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -17,15 +16,6 @@ beforeAll(async (done) => {
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
 
-  // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-  sinonSandbox = sinon.createSandbox();
-
-  done();
-});
-
-afterAll(async (done) => {
-  // ️️️✅ Best Practice: Clean-up resources after each run
-  await stopWebServer();
   done();
 });
 
@@ -34,17 +24,21 @@ beforeEach(() => {
   nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
-  })
-
-  if (sinonSandbox) {
-    sinonSandbox.restore();
-  }
+  });
 });
 
 afterEach(() => {
-  // ️️️✅ Best Practice: Clean nock interceptors between tests
+  // ️️️✅ Best Practice: Clean nock interceptors and sinon test-doubles between tests
   nock.cleanAll();
+  sinon.restore();
 })
+
+afterAll(async (done) => {
+  // ️️️✅ Best Practice: Clean-up resources after each run
+  await stopWebServer();
+  nock.enableNetConnect();
+  done();
+});
 
 // ️️️✅ Best Practice: Structure tests 
 describe("/api", () => {
@@ -91,15 +85,12 @@ describe("/api", () => {
     test("When order failed, send mail to admin", async () => {
       //Arrange
       process.env.SEND_MAILS = "true";
-      sinonSandbox.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
+      sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
-      // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected 
-      const scope = nock("https://mailer.com")
-        .post('/send', {
-          subject: /^(?!\s*$).+/, 
-          body: /^(?!\s*$).+/, 
-          recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        })
+      // ️️️✅ Best Practice: Save the body when you need to make sure you call the 3rd party service as expected 
+      let emailPayload;
+      nock("https://mailer.com")
+        .post('/send', payload => (emailPayload = payload, true))
         .reply(202);
       const orderToAdd = {
         userId: 1,
@@ -112,7 +103,11 @@ describe("/api", () => {
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-      expect(scope.isDone()).toBe(true);
+      expect(emailPayload).toMatchObject({
+        subject: expect.any(String),
+        body: expect.any(String),
+        recipientAddress: expect.stringMatching(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
+      });
     });
   });
 });
