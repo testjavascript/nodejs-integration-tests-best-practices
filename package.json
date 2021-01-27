@@ -22,8 +22,6 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
-    "@types/eslint": "^7.2.6",
-    "@types/prettier": "^2.1.6",
     "docker-compose": "^0.23.1",
     "eslint": "^7.18.0",
     "is-ci": "^2.0.0",
