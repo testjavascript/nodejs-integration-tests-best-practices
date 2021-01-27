@@ -1,4 +1,4 @@
-version: "3.6"
+version: '3.6'
 services:
   database:
     image: postgres:11
@@ -7,7 +7,7 @@ services:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=myuserpassword
       - POSTGRES_DB=shop
-    container_name: "db-for-testing"
+    container_name: 'postgres-for-testing'
     ports:
-      - "54310:5432"
+      - '54310:5432'
     tmpfs: /var/lib/postgresql/data

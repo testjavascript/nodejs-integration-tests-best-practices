@@ -1,7 +1,10 @@
-const request = require("supertest");
-const nock = require("nock");
-const { initializeWebServer, stopWebServer } = require("../../../example-application/api-under-test");
-const ordersData = require("./orders-data-for-paramterized-test.json");
+const request = require('supertest');
+const nock = require('nock');
+const {
+  initializeWebServer,
+  stopWebServer,
+} = require('../../../example-application/api');
+const ordersData = require('./orders-data-for-paramterized-test.json');
 
 let expressApp;
 
@@ -13,9 +16,9 @@ beforeAll(async (done) => {
 });
 
 beforeEach(() => {
-  nock("http://localhost/user/").get(`/1`).reply(200, {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
-    name: "John",
+    name: 'John',
   });
 });
 
@@ -30,19 +33,20 @@ afterAll(async (done) => {
 });
 
 // ️️️✅ Best Practice: Structure tests
-describe("/api", () => {
-  describe("POST /orders", () => {
+describe('/api', () => {
+  describe('POST /orders', () => {
     test.each(ordersData)(
-      "When adding a new valid order, Then should get back 200 response",
+      'When adding a new valid order, Then should get back 200 response',
       async (orderToAdd) => {
         //Act
-        const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
+        const receivedAPIResponse = await request(expressApp)
+          .post('/order')
+          .send(orderToAdd);
         //Assert
         const { status } = receivedAPIResponse;
 
         expect(status).toBe(200);
-      },
-      10000
-    ); //Since it runs 100 tests, it OK to increase the timeout
+      }
+    );
   });
 });

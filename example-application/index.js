@@ -1,3 +1,3 @@
-const apiUnderTest = require('./api-under-test');
+const apiUnderTest = require("./api");
 
 module.exports = apiUnderTest;

@@ -1,7 +1,7 @@
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
-const { initializeWebServer, stopWebServer } = require("../../../example-application/api-under-test");
+const { initializeWebServer, stopWebServer } = require("../../../example-application/api");
 const OrderRepository = require("../../../example-application/data-access/order-repository");
 const { metricsExporter } = require("../../../example-application/error-handling");
 const { AppError } = require("../../../example-application/error-handling");

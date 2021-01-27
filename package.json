@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "test:dev": "jest --watch --silent --runInBand",
-    "test:dev:verbose": "jest --watch --runInBand --verbose",
+    "test:dev:verbose": "jest --watch --verbose",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
   },
@@ -22,7 +22,10 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
+    "@types/eslint": "^7.2.6",
+    "@types/prettier": "^2.1.6",
     "docker-compose": "^0.23.1",
+    "eslint": "^7.18.0",
     "is-ci": "^2.0.0",
     "is-port-reachable": "^3.0.0",
     "jest": "^26.5.2",
@@ -34,6 +37,7 @@
     "jest-watch-typeahead": "^0.6.0",
     "nock": "^13.0.4",
     "npm": "^6.13.4",
+    "prettier": "2.2.1",
     "sequelize-cli": "^6.2.0",
     "sinon": "^9.0.1",
     "supertest": "^4.0.2",

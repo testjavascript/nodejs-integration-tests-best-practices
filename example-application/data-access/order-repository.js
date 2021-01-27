@@ -7,12 +7,22 @@ let orderModel;
 module.exports = class OrderRepository {
   constructor() {
     if (!repository) {
-      repository = new Sequelize('shop', 'myuser', 'myuserpassword', sequelizeConfig);
+      repository = new Sequelize(
+        'shop',
+        'myuser',
+        'myuserpassword',
+        sequelizeConfig
+      );
       orderModel = repository.define('Order', {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
           autoIncrement: true,
+        },
+        externalIdentifier: {
+          type: Sequelize.STRING,
+          unique: true,
+          allowNull: true,
         },
         mode: {
           type: Sequelize.STRING,
@@ -35,4 +45,13 @@ module.exports = class OrderRepository {
     return await orderModel.create(orderDetails);
   }
 
+  async deleteOrder(orderToDelete) {
+    await orderModel.destroy({ where: { id: orderToDelete } });
+    return;
+  }
+
+  async cleanup() {
+    await orderModel.destroy({ where: {}, truncate: false });
+    return;
+  }
 };
