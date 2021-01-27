@@ -1,10 +1,10 @@
 const express = require('express');
 const util = require('util');
-const axios = require('axios');
 const bodyParser = require('body-parser');
 const mailer = require('./libraries/mailer');
 const OrderRepository = require('./data-access/order-repository');
 const errorHandler = require('./error-handling').errorHandler;
+const { getUser } = require('./libraries/users-service');
 
 let connection;
 
@@ -56,15 +56,7 @@ const defineRoutes = (expressApp) => {
       }
 
       // verify user existence by calling external Microservice
-      const existingUserResponse = await axios.get(
-        `http://localhost/user/${req.body.userId}`,
-        {
-          validateStatus: false,
-        }
-      );
-      console.log(
-        `Asked to get user and get response with status ${existingUserResponse.status}`
-      );
+      const existingUserResponse = await getUser(req.body.userId);
 
       if (existingUserResponse.status === 404) {
         res.status(404).end();
@@ -115,7 +107,9 @@ const defineRoutes = (expressApp) => {
       }
     }
     await errorHandler.handleError(error);
-    res.status(500).end();
+
+    const outgoingStatusCode = error?.isAxiosError && error?.code === 'ECONNABORTED' ? 503 : 500;
+    res.status(outgoingStatusCode).end();
   });
 };
 

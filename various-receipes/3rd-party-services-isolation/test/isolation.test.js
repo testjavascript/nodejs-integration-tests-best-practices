@@ -116,4 +116,54 @@ describe('/api', () => {
       });
     });
   });
+
+  test('When users service doesn\'t reply within 2 seconds, return 503', async () => {
+    //Arrange
+    nock.cleanAll();
+    nock('http://localhost/user/')
+      .get('/1')
+      .delay(3000)
+      .reply(200);
+    nock('https://mailer.com')
+      .post('/send')
+      .reply(202);
+    const orderToAdd = {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    };
+
+    //Act
+    const response = await request(expressApp).post('/order').send(orderToAdd);
+    
+    //Assert
+    expect(response.status).toBe(503);
+  });
+
+  test.only('When users service replies with 503, should retry the request', async () => {
+    // Arrange
+    nock.cleanAll();
+    const firstRequest = nock('http://localhost/user/')
+      .get('/1')
+      .reply(503, undefined, { 'Retry-After': 100 });
+    const secondRequest = nock('http://localhost/user/')
+      .get('/1')
+      .reply(200);
+    nock('https://mailer.com')
+      .post('/send')
+      .reply(202);
+    const orderToAdd = {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    };
+
+    //Act
+    const response = await request(expressApp).post('/order').send(orderToAdd);
+
+    //Assert
+    expect(response.status).toBe(200);
+    expect(firstRequest.isDone()).toBeTruthy();
+    expect(secondRequest.isDone()).toBeTruthy();
+  });
 });
