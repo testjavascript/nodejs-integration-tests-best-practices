@@ -46,6 +46,7 @@ afterAll(async (done) => {
 });
 
 describe("/api", () => {
+
   describe("POST /orders", () => {
     test("When adding a new valid order, Then should get back 200 response", async () => {
       //Arrange
@@ -85,16 +86,15 @@ describe("/api", () => {
 
     });
 
-    
-  });
-  describe("DELETE /order", () => {
-    test("When deleting an existing order, Then should get a successful message", async () => {
-      //Act
-      // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
-      const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
-
-      //Assert
-      expect(receivedResponse.status).toBe(200);
+    describe("DELETE /order", () => {
+      test("When deleting an existing order, Then should get a successful message", async () => {
+        //Act
+        // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
+        const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+  
+        //Assert
+        expect(receivedResponse.status).toBe(200);
+      });
     });
-  });
-});
+    
+  }n);
