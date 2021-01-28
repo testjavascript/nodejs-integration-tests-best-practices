@@ -5,6 +5,7 @@ const mailer = require('./libraries/mailer');
 const OrderRepository = require('./data-access/order-repository');
 const errorHandler = require('./error-handling').errorHandler;
 const { getUser } = require('./libraries/users-service');
+const { metricsExporter } = require('./error-handling');
 
 let connection;
 
@@ -96,6 +97,20 @@ const defineRoutes = (expressApp) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
     await new OrderRepository().deleteOrder(req.params.id);
     res.status(204).end();
+  });
+
+  expressApp.use((req, res, next) => {
+    const start = Date.now();
+
+    res.on('finish', async () => {
+      const duration = Date.now() - start;
+
+      if (duration > 1 * 3000) {
+        await metricsExporter.fireMetric('too slow response');
+      }
+    });
+
+    next();
   });
 
   expressApp.use('/order', router);

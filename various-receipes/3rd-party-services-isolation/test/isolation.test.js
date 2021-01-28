@@ -6,6 +6,7 @@ const {
   stopWebServer,
 } = require('../../../example-application/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
+const { metricsExporter } = require('../../../example-application/error-handling');
 
 let expressApp;
 
@@ -140,8 +141,8 @@ describe('/api', () => {
     expect(response.status).toBe(503);
   });
 
-  test.only('When users service replies with 503, should retry the request', async () => {
-    // Arrange
+  test('When users service replies with 503, should retry the request', async () => {
+    //Arrange
     nock.cleanAll();
     const firstRequest = nock('http://localhost/user/')
       .get('/1')
@@ -165,5 +166,34 @@ describe('/api', () => {
     expect(response.status).toBe(200);
     expect(firstRequest.isDone()).toBeTruthy();
     expect(secondRequest.isDone()).toBeTruthy();
+  });
+
+  test.only('When request is more than 3 seconds, should fire a metric', async () => {
+    //Assert
+    const clock = sinon.useFakeTimers();
+    
+    sinon
+      .stub(OrderRepository.prototype, 'addOrder')
+      .callsFake((...args) => {
+        clock.tick(5000);
+        return OrderRepository.prototype.addOrder.wrappedMethod(...args)
+      });
+    
+    const orderToAdd = {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    };
+
+    const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
+
+    //Act
+    await request(expressApp).post('/order').send(orderToAdd);
+    
+    //Assert
+    expect(metricsExporterDouble.calledWith('too slow response')).toBe(true);
+
+    //Clean
+    clock.uninstall();
   });
 });
