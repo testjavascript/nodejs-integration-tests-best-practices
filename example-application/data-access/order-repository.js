@@ -41,6 +41,10 @@ module.exports = class OrderRepository {
     return await orderModel.findOne({ where: { id: id } });
   }
 
+  async getAllOrders() {
+    return await orderModel.findAll();
+  }
+
   async addOrder(orderDetails) {
     return await orderModel.create(orderDetails);
   }

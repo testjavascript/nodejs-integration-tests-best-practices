@@ -71,30 +71,58 @@ describe("/api", () => {
       // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
       const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
 
-
       //Assert
       expect(receivedResponse.status).toBe(200);
     });
 
   });
 
-    describe('Get /order', () => {
-      
+  describe('Get /order', () => {
+
     // ❌ Anti-Pattern: Avoid assuming that only known records exist as other tests run in parallel
     // and might add more records to the table
-    test.todo("When adding 2 orders, then get two orders when querying for all");
-
-    });
-
-    describe("DELETE /order", () => {
-      test("When deleting an existing order, Then should get a successful message", async () => {
-        //Act
-        // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
-        const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
-  
-        //Assert
-        expect(receivedResponse.status).toBe(200);
+    test.only("When adding 2 orders, then get both when querying for all", async () => {
+      //Arrange
+      nock("http://localhost/user/").get(`/1`).reply(200, {
+        id: 1,
+        name: "John",
       });
+      const orderToAdd1 = {
+        userId: 1,
+        productId: 2,
+        externalIdentifier: `id-${getShortUnique()}`,
+        mode: "approved"
+      };
+      const orderToAdd2 = {
+        userId: 1,
+        productId: 3,
+        externalIdentifier: `id-${getShortUnique()}`,
+        mode: "pending"
+      };
+      await Promise.all([
+        request(expressApp).post("/order").send(orderToAdd1),
+        request(expressApp).post("/order").send(orderToAdd2)
+      ]);
+
+      //Act
+      const { body: allOrders } = await request(expressApp).get("/order");
+
+      //Assert
+      // ❌ Anti-Pattern: Don't assume these are the only recored in the DB. Other tests also manipulate the DB.
+      expect(allOrders.length).toBe(2);
     });
-    
-  }n);
+
+  });
+
+  describe("DELETE /order", () => {
+    test("When deleting an existing order, Then should get a successful message", async () => {
+      //Act
+      // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
+      const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+
+      //Assert
+      expect(receivedResponse.status).toBe(200);
+    });
+  });
+
+});

@@ -88,6 +88,12 @@ const defineRoutes = (expressApp) => {
     }
   });
 
+  // get all existing orders
+  router.get('/', async (req, res, next) => {
+    const response = await new OrderRepository().getAllOrders();
+    res.json(response);
+  });
+  
   // get existing order by id
   router.get('/:id', async (req, res, next) => {
     const response = await new OrderRepository().getOrderById(req.params.id);

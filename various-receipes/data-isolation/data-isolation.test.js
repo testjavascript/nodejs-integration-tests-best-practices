@@ -91,10 +91,47 @@ describe("/api", () => {
     });
   });
   describe("Get /order", () => {
+
     // ️️️✅ Best Practice: Acknowledge that other unknown records might exist, find your expectations within
     // the result
-    test.todo("When adding 2 orders, then these orders exist in result when querying for all");
+    test.only("When adding 2 orders, then get both when querying for all", async () => {
+      //Arrange
+      // TODO: Should we nock every call or persist?
+      nock("http://localhost/user/").get(`/1`).reply(200, {
+        id: 1,
+        name: "John",
+      });
+      const orderToAdd1 = {
+        userId: 1,
+        productId: 2,
+        externalIdentifier: `id-${getShortUnique()}`,
+        mode: "approved"
+      };
+      const orderToAdd2 = {
+        userId: 1,
+        productId: 3,
+        externalIdentifier: `id-${getShortUnique()}`,
+        mode: "pending"
+      };
+      const [{ body: { id: id1 } }, { body: { id: id2 } }] = await Promise.all([
+        request(expressApp).post("/order").send(orderToAdd1),
+        request(expressApp).post("/order").send(orderToAdd2)
+      ]);
+
+      //Act
+      const { body: allOrders } = await request(expressApp).get("/order");
+
+      //Assert
+      expect(allOrders).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ id: id1, ...orderToAdd1 }),
+          expect.objectContaining({ id: id2, ...orderToAdd2 })
+        ])
+      );
+    });
+
   });
+
   describe("DELETE /order", () => {
     test("When deleting an existing order, Then should get a successful message", async () => {
       // Arrange
@@ -115,4 +152,5 @@ describe("/api", () => {
       expect(receivedResponse.status).toBe(200);
     });
   });
+
 });
