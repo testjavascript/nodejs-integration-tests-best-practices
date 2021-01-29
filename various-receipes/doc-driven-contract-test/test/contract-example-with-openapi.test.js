@@ -3,7 +3,7 @@ const axios = require("axios");
 const request = require("supertest");
 const nock = require("nock");
 const jestOpenAPI = require("jest-openapi");
-const { initializeWebServer, stopWebServer } = require("../../../example-application/api-under-test");
+const { initializeWebServer, stopWebServer } = require("../../../example-application/api");
 
 jestOpenAPI(path.join(__dirname, "../../../example-application/openapi/openapi.json"));
 
