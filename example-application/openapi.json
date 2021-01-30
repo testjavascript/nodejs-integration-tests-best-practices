@@ -95,11 +95,7 @@
     "schemas": {
       "Order": {
         "type": "object",
-        "required": [
-          "productId",
-          "userId",
-          "mode"
-        ],
+        "required": ["productId", "userId", "mode"],
         "properties": {
           "id": {
             "type": "integer",
