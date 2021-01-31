@@ -66,7 +66,7 @@ describe('Error Handling', () => {
       await request(expressApp).post('/order').send(orderToAdd);
 
       //Assert
-      expect(loggerDouble.called).toBe(true);
+      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(Object));
     });
 
     test('When exception is throw during request, Then a metric is fired', async () => {

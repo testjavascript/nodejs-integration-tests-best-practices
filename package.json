@@ -6,6 +6,7 @@
     "test": "jest",
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch --verbose",
+    "test:anti-patterns": "jest --config=./various-receipes/friendly-structure-for-reporting/jest.config.js",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
   },
