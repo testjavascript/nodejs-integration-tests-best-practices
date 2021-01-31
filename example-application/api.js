@@ -82,7 +82,7 @@ const defineRoutes = (expressApp) => {
         );
       }
 
-      res.json(DBResponse);
+      res.json(DBResponse.dataValues);
     } catch (error) {
       next(error);
     }
@@ -90,6 +90,7 @@ const defineRoutes = (expressApp) => {
 
   // get existing order by id
   router.get('/:id', async (req, res, next) => {
+    console.log(`Order API was called to get user by id ${req.params.id}`);
     const response = await new OrderRepository().getOrderById(req.params.id);
 
     if (!response) {
