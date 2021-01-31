@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Swagger Petstore",
-    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "title": "Shop",
+    "description": "This is the API docs of the shop API.",
     "termsOfService": "http://swagger.io/terms/",
     "license": {
       "name": "Apache 2.0",
@@ -95,11 +95,7 @@
     "schemas": {
       "Order": {
         "type": "object",
-        "required": [
-          "productId",
-          "userId",
-          "mode"
-        ],
+        "required": ["productId", "userId", "mode"],
         "properties": {
           "id": {
             "type": "integer",
