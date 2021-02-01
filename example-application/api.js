@@ -44,6 +44,7 @@ const defineRoutes = (expressApp) => {
   // add new order
   router.post('/', async (req, res, next) => {
     try {
+      
       console.log(
         `Order API was called to add new Order ${util.inspect(req.body)}`
       );

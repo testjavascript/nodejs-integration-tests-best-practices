@@ -46,7 +46,6 @@ afterEach(() => {
   sinon.restore();
 });
 
-// ️️️✅ Best Practice: Structure tests
 describe('Error Handling', () => {
   describe('Selected Examples', () => {
     test('When exception is throw during request, Then logger reports the error', async () => {
@@ -56,17 +55,15 @@ describe('Error Handling', () => {
         productId: 2,
         mode: 'approved',
       };
-      // Arbitrarily choose which an object and error to throw
-      sinon
-        .stub(OrderRepository.prototype, 'addOrder')
-        .throws(new Error('Failed!'));
+      // ️️️✅ Best Practice: Simulate also internal error
+      sinon.stub(OrderRepository.prototype, 'addOrder');
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act
       await request(expressApp).post('/order').send(orderToAdd);
 
       //Assert
-      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(Object));
+      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(String));
     });
 
     test('When exception is throw during request, Then a metric is fired', async () => {
