@@ -144,8 +144,8 @@ describe('/api', () => {
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
       let emailPayload;
-      nock('http://localhost')
-        .post('/mailer/send', (payload) => ((emailPayload = payload), true))
+      nock('http://mailer.com')
+        .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
 
       const orderToAdd = {
@@ -225,8 +225,8 @@ describe('/api', () => {
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
       let emailPayload;
-      nock('http://localhost')
-        .post('/mailer/send', (payload) => ((emailPayload = payload), true))
+      nock('http://mailer.com')
+        .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
 
       sinon

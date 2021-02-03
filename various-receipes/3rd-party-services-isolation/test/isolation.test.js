@@ -25,7 +25,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  mailerNock = nock('http://localhost').post('/mailer/send').reply(202);
+  mailerNock = nock('http://mailer.com').post('/send').reply(202);
 });
 
 afterEach(() => {
@@ -53,13 +53,13 @@ describe.skip('/api', () => {
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Save the body when you need to make sure you call the external service as expected
       nock.removeInterceptor({
-        hostname: 'localhost',
+        hostname: 'mailer.com',
         method: 'POST',
-        path: '/mailer/send',
+        path: '/send',
       });
       let emailPayload;
-      nock('http://localhost')
-        .post('/mailer/send', (payload) => ((emailPayload = payload), true))
+      nock('http://mailer.com')
+        .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
       const orderToAdd = {
         userId: 1,
@@ -81,7 +81,7 @@ describe.skip('/api', () => {
       });
     });
 
-    test('When adding  a new valid order , Then should get back 200 response', async () => {
+    test('When adding a new valid order , Then should get back 200 response', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
