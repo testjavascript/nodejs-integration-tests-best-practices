@@ -6,7 +6,7 @@ module.exports = {
     '!**/playground/**',
     '!**/*test-helper*',
     '!**/*anti-pattern*',
-    '!**/*performance*',
+    //'!**/*performance*',
   ],
   collectCoverage: false,
   coverageReporters: ['text-summary', 'lcov'],

@@ -44,7 +44,6 @@ const defineRoutes = (expressApp) => {
   // add new order
   router.post('/', async (req, res, next) => {
     try {
-      
       console.log(
         `Order API was called to add new Order ${util.inspect(req.body)}`
       );
@@ -71,6 +70,8 @@ const defineRoutes = (expressApp) => {
         res.status(404).end();
         return;
       }
+
+      throw new Error();
 
       // save to DB (Caution: simplistic code without layers and validation)
       const DBResponse = await new OrderRepository().addOrder(req.body);

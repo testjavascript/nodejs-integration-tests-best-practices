@@ -81,6 +81,7 @@ describe('/api', () => {
   });
 
   describe('POST /orders', () => {
+    // ️️️✅ Best Practice: Check the response
     test('When adding a new valid order, Then should get back approval with 200 response', async () => {
       //Arrange
       const orderToAdd = {
@@ -103,6 +104,7 @@ describe('/api', () => {
       });
     });
 
+    // ️️️✅ Best Practice: Check the new state
     test('When adding a new valid order, Then should be able to retrieve it', async () => {
       //Arrange
       const orderToAdd = {
@@ -134,6 +136,7 @@ describe('/api', () => {
       });
     });
 
+    // ️️️✅ Best Practice: Check external calls
     test('When adding a new valid order, Then an email should be send to admin', async () => {
       //Arrange
       process.env.SEND_MAILS = 'true';
@@ -165,6 +168,7 @@ describe('/api', () => {
       });
     });
 
+    // ️️️✅ Best Practice: Check invalid input
     test('When adding an order without specifying product, stop and return 400', async () => {
       //Arrange
       const orderToAdd = {
@@ -180,6 +184,19 @@ describe('/api', () => {
       //Assert
       expect(orderAddResult.status).toBe(400);
     });
+
+    // ️️️✅ Best Practice: Check error handling
+    test.todo('When a new order failed, an invalid-order error was handled');
+
+    // ️️️✅ Best Practice: Check monitoring metrics
+    test.todo(
+      'When a new valid order was added, then order-added metric was fired'
+    );
+
+    // ️️️✅ Best Practice: Simulate external failures
+    test.todo(
+      'When the user service is down, then order is still added successfully'
+    );
 
     test('When the user does not exist, return 404 response', async () => {
       //Arrange

@@ -52,7 +52,7 @@ describe('/api', () => {
         userId: 1,
         productId: 2,
         mode: 'approved',
-        //externalIdentifier: `some-external`, //unique value
+        externalIdentifier: `some-external - ${getShortUnique()}`, //unique value
       };
 
       //Act
@@ -69,11 +69,20 @@ describe('/api', () => {
   describe('GET /order/:id', () => {
     test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
       //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+        externalIdentifier: `some-external - ${getShortUnique()}`, //unique value
+      };
+      const receivedAPIResponse = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
 
       //Act
       // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
       const receivedResponse = await request(expressApp).get(
-        `/order/${existingOrderId}`
+        `/order/${receivedAPIResponse.body.id}`
       );
 
       //Assert
