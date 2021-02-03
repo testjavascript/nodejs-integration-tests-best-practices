@@ -8,6 +8,6 @@ module.exports.send = async (subject, body, recipientAddress) => {
       body,
       recipientAddress,
     },
-    { timeout: 1000 }
+    { timeout: 3000 } //It's a bit slow sometime, we are willing to wait for it
   );
 };

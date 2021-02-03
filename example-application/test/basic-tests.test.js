@@ -52,7 +52,7 @@ describe('/api', () => {
 
       //Act
       const getResponse = await request(expressApp).get(
-        '/order/' + addedOrderId
+        `/order/${addedOrderId}`
       );
 
       //Assert
@@ -72,7 +72,7 @@ describe('/api', () => {
 
       //Act
       const getResponse = await request(expressApp).get(
-        '/order/' + nonExistingOrderId
+        `/order/${nonExistingOrderId}`
       );
 
       //Assert
@@ -120,7 +120,7 @@ describe('/api', () => {
 
       //Assert
       const { body, status } = await request(expressApp).get(
-        '/order/' + addedOrderId
+        `/order/${addedOrderId}`
       );
 
       expect({

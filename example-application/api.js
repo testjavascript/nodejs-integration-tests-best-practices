@@ -71,8 +71,6 @@ const defineRoutes = (expressApp) => {
         return;
       }
 
-      throw new Error();
-
       // save to DB (Caution: simplistic code without layers and validation)
       const DBResponse = await new OrderRepository().addOrder(req.body);
 
@@ -84,7 +82,7 @@ const defineRoutes = (expressApp) => {
         );
       }
 
-      res.json(DBResponse.dataValues);
+      res.json(DBResponse);
     } catch (error) {
       next(error);
     }

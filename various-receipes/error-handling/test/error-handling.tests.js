@@ -56,7 +56,9 @@ describe('Error Handling', () => {
         mode: 'approved',
       };
       // ️️️✅ Best Practice: Simulate also internal error
-      sinon.stub(OrderRepository.prototype, 'addOrder');
+      sinon
+        .stub(OrderRepository.prototype, 'addOrder')
+        .rejects(new AppError('saving-failed', true));
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act

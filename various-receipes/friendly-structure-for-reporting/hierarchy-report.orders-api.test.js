@@ -1,3 +1,6 @@
+// ️️️✅ Best Practice: Create hierarchical test reports so the reader can understand the various categories and scenarios
+//  before delving into all the details
+
 describe('/API', () => {
   describe('/orders', () => {
     describe('POST', () => {
