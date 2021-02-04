@@ -10,7 +10,6 @@ const OrderRepository = require('../../../example-application/data-access/order-
 let expressApp;
 
 beforeAll(async (done) => {
-  // ️️️✅ Best Practice: Place the backend under test within the same process
   expressApp = await initializeWebServer();
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the api
   nock.disableNetConnect();
@@ -20,7 +19,8 @@ beforeAll(async (done) => {
 });
 
 beforeEach(() => {
-  // ️️️✅ Best Practice: Isolate the service under test by intercepting requests to 3rd party services
+  // ️️️✅ Best Practice: Define a sensible default for all the tests.
+  // Otherwise, all tests must repeat this nock again and again
   nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
     name: 'John',
@@ -63,17 +63,18 @@ describe('/api', () => {
 
     test('When the user does not exist, return http 404', async () => {
       //Arrange
-      // ️️️✅ Best Practice: Simulate 3rd party service responses to test different scenarios like 404, 422 or 500.
-      //                    Use specific params (like ids) to easily bypass the beforeEach interceptor.
-      nock('http://localhost/user/').get(`/7`).reply(404, {
-        message: 'User does not exist',
-        code: 'nonExisting',
-      });
       const orderToAdd = {
         userId: 7,
         productId: 2,
         mode: 'draft',
       };
+
+      // ️️️✅ Best Practice: Simulate non-happy external services responses like 404, 422 or 500.
+      // ✅ Best Practice: Override the default response with a custom scenario by triggering a unique path
+      nock('http://localhost/user/').get(`/7`).reply(404, {
+        message: 'User does not exist',
+        code: 'nonExisting',
+      });
 
       //Act
       const orderAddResult = await request(expressApp)
@@ -90,8 +91,7 @@ describe('/api', () => {
       sinon
         .stub(OrderRepository.prototype, 'addOrder')
         .throws(new Error('Unknown error'));
-      // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
-      // ️️️✅ Best Practice: Save the body when you need to make sure you call the 3rd party service as expected
+
       let emailPayload;
       nock('https://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
@@ -106,7 +106,7 @@ describe('/api', () => {
       await request(expressApp).post('/order').send(orderToAdd);
 
       //Assert
-      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
+      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately with the right input
       expect(emailPayload).toMatchObject({
         subject: expect.any(String),
         body: expect.any(String),
