@@ -52,7 +52,7 @@ describe('/api', () => {
         userId: 1,
         productId: 2,
         mode: 'approved',
-        externalIdentifier: `some-external - ${getShortUnique()}`, //unique value
+        externalIdentifier: `some-external-${getShortUnique()}`, //unique value
       };
 
       //Act
@@ -73,11 +73,9 @@ describe('/api', () => {
         userId: 1,
         productId: 2,
         mode: 'approved',
-        externalIdentifier: `some-external - ${getShortUnique()}`, //unique value
+        externalIdentifier: `some-external-${getShortUnique()}`, //unique value
       };
-      const receivedAPIResponse = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      //Add order
 
       //Act
       // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone

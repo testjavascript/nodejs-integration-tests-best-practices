@@ -11,6 +11,7 @@ let expressApp, mailerNock;
 
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
+  
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the api
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
@@ -44,7 +45,7 @@ afterAll(async (done) => {
 });
 
 // ️️️✅ Best Practice: Structure tests
-describe.skip('/api', () => {
+describe('/api', () => {
   describe('POST /orders', () => {
     test('When order succeed, send mail to store manager', async () => {
       //Arrange
@@ -60,7 +61,9 @@ describe.skip('/api', () => {
       let emailPayload;
       nock('http://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
+        .times(1)
         .reply(202);
+
       const orderToAdd = {
         userId: 1,
         productId: 2,
@@ -99,7 +102,7 @@ describe.skip('/api', () => {
       expect(orderAddResult.status).toBe(200);
     });
 
-    tests.skip('When the user does not exist, return http 404', async () => {
+    test.skip('When the user does not exist, return http 404', async () => {
       //Arrange
       const orderToAdd = {
         userId: 7,

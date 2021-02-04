@@ -15,7 +15,6 @@ beforeAll(async (done) => {
 
   // ❌ Anti-Pattern: By default, we allow outgoing network calls -
   // If some unknown code locations will issue HTTP request - It will passthrough out
-
   done();
 });
 

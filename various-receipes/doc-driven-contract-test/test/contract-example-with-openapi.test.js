@@ -1,5 +1,4 @@
 const path = require('path');
-const axios = require('axios');
 const request = require('supertest');
 const nock = require('nock');
 const jestOpenAPI = require('jest-openapi');
