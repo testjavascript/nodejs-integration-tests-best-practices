@@ -703,6 +703,42 @@ services:
 
 <br/><br/>
 
+### ⚪️ 8.  Fake the time to minimize network call duration
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
 ## **Dealing with data**
 
 <br/>
