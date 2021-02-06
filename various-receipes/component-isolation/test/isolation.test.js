@@ -9,7 +9,7 @@ const OrderRepository = require('../../../example-application/data-access/order-
 const { metricsExporter } = require('../../../example-application/error-handling');
 
 let expressApp;
-
+let mailerNock, userServiceNock;
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the api
@@ -22,10 +22,13 @@ beforeAll(async (done) => {
 beforeEach(() => {
   // ️️️✅ Best Practice: Define a sensible default for all the tests.
   // Otherwise, all tests must repeat this nock again and again
-  nock('http://localhost/user/').get(`/1`).reply(200, {
+  userServiceNock = nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
     name: 'John',
   });
+  mailerNock = nock('https://mailer.com')
+    .post('/send')
+    .reply(202);
 });
 
 afterEach(() => {
@@ -93,6 +96,7 @@ describe('/api', () => {
         .stub(OrderRepository.prototype, 'addOrder')
         .throws(new Error('Unknown error'));
 
+      nock.removeInterceptor(mailerNock.interceptors[0])
       let emailPayload;
       nock('https://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
@@ -120,14 +124,13 @@ describe('/api', () => {
 
   test('When users service doesn\'t reply within 2 seconds, return 503', async () => {
     //Arrange
-    nock.cleanAll();
+    // ✅ Best Practice: use "fake timers" to simulate long requests. 
+    const clock = sinon.useFakeTimers();
+    nock.removeInterceptor(userServiceNock.interceptors[0]);
     nock('http://localhost/user/')
-      .get('/1')
-      .delay(3000)
+      .get('/1', () => (clock.tick(5000)))
       .reply(200);
-    nock('https://mailer.com')
-      .post('/send')
-      .reply(202);
+
     const orderToAdd = {
       userId: 1,
       productId: 2,
@@ -139,20 +142,20 @@ describe('/api', () => {
     
     //Assert
     expect(response.status).toBe(503);
+
+    //Clean
+    clock.uninstall();
   });
 
-  test('When users service replies with 503, should retry the request', async () => {
+  test('When users service replies with 503 once and retry mechanism is applied, then an order is added successfully', async () => {
     //Arrange
-    nock.cleanAll();
-    const firstRequest = nock('http://localhost/user/')
+    nock.removeInterceptor(userServiceNock.interceptors[0])
+    nock('http://localhost/user/')
       .get('/1')
       .reply(503, undefined, { 'Retry-After': 100 });
-    const secondRequest = nock('http://localhost/user/')
+    nock('http://localhost/user/')
       .get('/1')
       .reply(200);
-    nock('https://mailer.com')
-      .post('/send')
-      .reply(202);
     const orderToAdd = {
       userId: 1,
       productId: 2,
@@ -164,36 +167,5 @@ describe('/api', () => {
 
     //Assert
     expect(response.status).toBe(200);
-    expect(firstRequest.isDone()).toBeTruthy();
-    expect(secondRequest.isDone()).toBeTruthy();
-  });
-
-  test.only('When request is more than 3 seconds, should fire a metric', async () => {
-    //Assert
-    const clock = sinon.useFakeTimers();
-    
-    sinon
-      .stub(OrderRepository.prototype, 'addOrder')
-      .callsFake((...args) => {
-        clock.tick(5000);
-        return OrderRepository.prototype.addOrder.wrappedMethod(...args)
-      });
-    
-    const orderToAdd = {
-      userId: 1,
-      productId: 2,
-      mode: 'approved',
-    };
-
-    const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
-
-    //Act
-    await request(expressApp).post('/order').send(orderToAdd);
-    
-    //Assert
-    expect(metricsExporterDouble.calledWith('too slow response')).toBe(true);
-
-    //Clean
-    clock.uninstall();
   });
 });
