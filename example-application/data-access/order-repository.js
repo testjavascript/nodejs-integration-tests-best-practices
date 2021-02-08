@@ -46,6 +46,7 @@ module.exports = class OrderRepository {
   }
 
   async deleteOrder(orderToDelete) {
+    console.log(`Order is about to be deleted`, orderToDelete);
     await orderModel.destroy({ where: { id: orderToDelete } });
     return;
   }

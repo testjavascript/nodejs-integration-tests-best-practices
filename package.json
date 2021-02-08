@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/amqplib": "^0.5.17",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/nock": "^11.1.0",
+    "amqplib": "^0.6.0",
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",

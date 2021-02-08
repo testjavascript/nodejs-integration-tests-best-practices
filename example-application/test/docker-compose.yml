@@ -7,7 +7,19 @@ services:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=myuserpassword
       - POSTGRES_DB=shop
-    container_name: 'postgres-for-testing'
     ports:
       - '54310:5432'
     tmpfs: /var/lib/postgresql/data
+  message-queue:
+    image: 'rabbitmq:3.8.11-management-alpine'
+    hostname: 'rabbit1'
+    environment:
+      RABBITMQ_ERLANG_COOKIE: 'SWQOKODSQALRPCLNMEQG'
+      RABBITMQ_DEFAULT_USER: 'rabbitmq'
+      RABBITMQ_DEFAULT_PASS: 'rabbitmq'
+      RABBITMQ_DEFAULT_VHOST: '/'
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    labels:
+      NAME: 'rabbitmq1'
