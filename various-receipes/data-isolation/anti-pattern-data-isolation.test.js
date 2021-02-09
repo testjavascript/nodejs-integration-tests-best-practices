@@ -16,7 +16,11 @@ beforeAll(async (done) => {
   expressApp = await initializeWebServer();
 
   // ❌ Anti-Pattern: Adding global records which are mutated by the tests. This will lead to high coupling and flakiness
-  //existingOrderId = (await request(expressApp).post("/order").send({userId:1, mode:'approved'})).body.id;
+  existingOrderId = (
+    await request(expressApp)
+      .post('/order')
+      .send({ userId: 1, mode: 'approved' })
+  ).body.id;
 
   done();
 });
