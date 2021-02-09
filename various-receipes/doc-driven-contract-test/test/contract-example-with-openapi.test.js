@@ -1,4 +1,5 @@
 const path = require('path');
+const axios = require('axios');
 const request = require('supertest');
 const nock = require('nock');
 const jestOpenAPI = require('jest-openapi');
@@ -7,9 +8,7 @@ const {
   stopWebServer,
 } = require('../../../example-application/api');
 
-jestOpenAPI(
-  path.join(__dirname, '../../../example-application/openapi/openapi.json')
-);
+jestOpenAPI(path.join(__dirname, '../../../example-application/openapi.json'));
 
 let expressApp;
 
@@ -25,7 +24,8 @@ afterAll(async () => {
   await stopWebServer();
 });
 
-describe('Verify openApi spec', () => {
+describe('Verify openApi (Swagger) spec', () => {
+  // ️️️✅ Best Practice: When testing the API contract/doc, write a test against each route and potential HTTP status
   describe('POST /orders', () => {
     test('When added a valid order and 200 was expected', async () => {
       nock('http://localhost/user/').get(`/1`).reply(200, {
@@ -40,12 +40,11 @@ describe('Verify openApi spec', () => {
 
       const res = await request(expressApp).post('/order').send(orderToAdd);
 
-      // const res = await axios.post('http://localhost:33666/post', orderToAdd);
-
+      // ️️️✅ Best Practice: When testing the API contract/doc
       expect(res).toSatisfyApiSpec();
     });
 
-    test('When an invalid order is sent, then response 400 is expected', async () => {
+    test('When an invalid order was send, then error 400 is expected', async () => {
       nock('http://localhost/user/').get(`/1`).reply(200, {
         id: 1,
         name: 'John',
@@ -55,14 +54,12 @@ describe('Verify openApi spec', () => {
         mode: 'approved',
       };
 
-      const receivedResponse = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const res = await request(expressApp).post('/order').send(orderToAdd);
 
-      expect(receivedResponse).toSatisfyApiSpec();
+      expect(res).toSatisfyApiSpec();
     });
 
-    test('When an external call failed and 404 was expected', async () => {
+    test('When a call to the users microservice fails, then get back 404 error', async () => {
       nock('http://localhost/user/').get(`/1`).reply(404);
       const orderToAdd = {
         userId: 1,
