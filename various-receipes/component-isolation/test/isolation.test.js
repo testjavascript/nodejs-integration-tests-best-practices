@@ -102,7 +102,7 @@ describe('/api', () => {
       expect(orderAddResult.status).toBe(200);
     });
 
-    test.skip('When the user does not exist, return http 404', async () => {
+    test('When the user does not exist, return http 404', async () => {
       //Arrange
       const orderToAdd = {
         userId: 7,

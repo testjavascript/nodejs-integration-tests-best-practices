@@ -5,7 +5,7 @@ module.exports = {
     '**/*test*.js',
     '!**/playground/**',
     '!**/*test-helper*',
-    '!**/*anti-pattern*',
+    //'!**/*anti-pattern*', Uncomment this only when you want to inspect the consequences of anti-patterns
     '!**/*performance*',
   ],
   collectCoverage: false,

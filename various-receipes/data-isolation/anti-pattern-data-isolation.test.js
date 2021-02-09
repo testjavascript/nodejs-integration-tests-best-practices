@@ -33,7 +33,6 @@ afterEach(async () => {
   nock.cleanAll();
   sinon.restore();
 
-  // ❌ Anti-Pattern: Cleaning here now will affect tests in other processes
   //await new OrderRepository().cleanup();
 });
 
@@ -75,7 +74,9 @@ describe('/api', () => {
         mode: 'approved',
         externalIdentifier: `some-external-${getShortUnique()}`, //unique value
       };
-      //Add order
+      const receivedAPIResponse = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
 
       //Act
       // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
@@ -94,9 +95,5 @@ describe('/api', () => {
     test.todo(
       'When adding 2 orders, then get two orders when querying for all'
     );
-  });
-
-  describe('DELETE /order', () => {
-    test('When deleting an existing order, Then should get a successful message', async () => {});
   });
 });
