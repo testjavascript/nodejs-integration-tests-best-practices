@@ -4,13 +4,13 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../example-application/api');
+} = require('../../example-application/entry-points/api');
 const messageQueueClient = require('../../example-application/libraries/message-queue-client');
 const {
   MessageQueueStarter,
-} = require('../../example-application/message-queue-consumer-start');
+} = require('../../example-application/entry-points/message-queue-starter');
 
-let expressApp;
+let expressApp, sendMQMessageStub;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -28,6 +28,10 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
+  nock('https://mailer.com')
+    .post('/send', (payload) => ((emailPayload = payload), true))
+    .reply(202);
+  sendMQMessageStub = sinon.stub(messageQueueClient);
 });
 
 afterEach(() => {
@@ -43,43 +47,23 @@ afterAll(async (done) => {
   done();
 });
 
-test.skip('When a user deletion message arrive, then his orders are disabled', async (done) => {
-  // Arrange
+test('When adding a new valid order, a message is put in queue', async () => {
+  //Arrange
   const orderToAdd = {
     userId: 1,
     productId: 2,
     mode: 'approved',
   };
-  console.log('test-add-order');
-  const {
-    body: { id: addedOrderId },
-  } = await request(expressApp).post('/order').send(orderToAdd);
-  console.log('test-added-order', addedOrderId);
-  sinon
-    .stub(messageQueueClient, 'consume')
-    .callsFake(async (queueName, onMessageCallback) => {
-      console.log('test-fake-consume');
-      await onMessageCallback(JSON.stringify({ id: addedOrderId }));
-    });
+  sendMQMessageStub.sendMessage.returns(Promise.resolve({}));
 
-  // Act
-  const messageQueueStarter = new MessageQueueStarter();
-  messageQueueStarter.on('message-handled', async () => {
-    console.log('test-msg-handled');
-    // Assert
-    const deletedOrder = await request(expressApp).get(
-      `/order/${addedOrderId}`
-    );
-    console.log('Test done', deletedOrder.body);
-    expect(deletedOrder.body).toEqual({});
-    done();
-  });
-  messageQueueStarter.startMessageQueueConsumer();
+  //Act
+  await request(expressApp).post('/order').send(orderToAdd);
+
+  //Assert
+  expect(sendMQMessageStub.sendMessage.called).toBe(true);
 });
 
-test.skip('When adding a new valid order, a message is put in queue', () => {});
-
-test('When a user deletion message arrive, then his orders are disabled', async (done) => {
+test('When a user deletion message arrive, then his orders are deleted', async (done) => {
   // Arrange
   const orderToAdd = {
     userId: 1,
@@ -89,33 +73,19 @@ test('When a user deletion message arrive, then his orders are disabled', async 
   const {
     body: { id: addedOrderId },
   } = await request(expressApp).post('/order').send(orderToAdd);
+
+  sendMQMessageStub.consume.callsFake(async (queueName, onMessageCallback) => {
+    await onMessageCallback(JSON.stringify({ id: addedOrderId }));
+  });
+
   const messageQueueStarter = new MessageQueueStarter();
+
   messageQueueStarter.on('message-handled', async () => {
-    console.log('Test got handled');
     const deletedOrder = await request(expressApp).get(
       `/order/${addedOrderId}`
     );
-    console.log('Test done', deletedOrder.body);
     expect(deletedOrder.body).toEqual({});
     done();
   });
-  messageQueueStarter.startMessageQueueConsumer();
-  //   messageQueueClient.on('message-handled', () => {
-  //     console.log('Handled');
-  //     done();
-  //   });
-  //   messageQueueClient.consume('deleted-user', (message) => {
-  //     console.log('1');
-  //     console.log('test subscriber', message);
-  //     //done();
-  //   });
-
-  // Act
-  console.log('0');
-  console.log('2');
-  await messageQueueClient.sendMessage('deleted-user', { id: addedOrderId });
-  console.log('3');
-  //await startMessageQueueConsumer();
-
-  // Assert
+  messageQueueStarter.start();
 });

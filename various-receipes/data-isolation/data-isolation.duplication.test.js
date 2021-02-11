@@ -2,12 +2,15 @@
 // the two can run together simultaneously without interfering with each other thanks
 // to the data isolation
 
-const request = require("supertest");
-const sinon = require("sinon");
-const nock = require("nock");
-const { initializeWebServer, stopWebServer } = require("../../example-application/api");
-const OrderRepository = require("../../example-application/data-access/order-repository");
-const { getShortUnique } = require("./test-helper");
+const request = require('supertest');
+const sinon = require('sinon');
+const nock = require('nock');
+const {
+  initializeWebServer,
+  stopWebServer,
+} = require('../../example-application/entry-points/api');
+const OrderRepository = require('../../example-application/data-access/order-repository');
+const { getShortUnique } = require('./test-helper');
 
 let expressApp;
 
@@ -19,9 +22,9 @@ beforeAll(async (done) => {
 });
 
 beforeEach(() => {
-  nock("http://localhost/user/").get(`/1`).reply(200, {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
-    name: "John",
+    name: 'John',
   });
 });
 
@@ -38,42 +41,46 @@ afterAll(async (done) => {
 });
 
 // ️️️✅ Best Practice: Structure tests
-describe("/api", () => {
-  describe("POST /orders", () => {
-    test("When adding a new valid order, Then should get back 200 response", async () => {
+describe('/api', () => {
+  describe('POST /orders', () => {
+    test('When adding a new valid order, Then should get back 200 response', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        mode: "approved",
+        mode: 'approved',
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
+      const receivedAPIResponse = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
 
       //Assert
       expect(receivedAPIResponse.status).toBe(200);
     });
 
-    test("When adding a new valid order, Then it should be approved", async () => {
+    test('When adding a new valid order, Then it should be approved', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        mode: "approved",
+        mode: 'approved',
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
+      const receivedAPIResponse = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
 
       //Assert
-      expect(receivedAPIResponse.body.mode).toBe("approved");
+      expect(receivedAPIResponse.body.mode).toBe('approved');
     });
   });
-  describe("GET /order", () => {
-    test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
+  describe('GET /order', () => {
+    test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
       // Arrange
       const orderToAdd = {
         userId: 1,
@@ -82,17 +89,19 @@ describe("/api", () => {
       };
       const {
         body: { id: existingOrderId },
-      } = await request(expressApp).post("/order").send(orderToAdd);
+      } = await request(expressApp).post('/order').send(orderToAdd);
 
       // Act
-      const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+      const receivedResponse = await request(expressApp).get(
+        `/order/${existingOrderId}`
+      );
 
       // Assert
       expect(receivedResponse.status).toBe(200);
     });
   });
-  describe("DELETE /order", () => {
-    test("When deleting an existing order, Then should get a successful message", async () => {
+  describe('DELETE /order', () => {
+    test('When deleting an existing order, Then should get a successful message', async () => {
       // Arrange
       const orderToAdd = {
         userId: 1,
@@ -101,10 +110,12 @@ describe("/api", () => {
       };
       const {
         body: { id: existingOrderId },
-      } = await request(expressApp).post("/order").send(orderToAdd);
+      } = await request(expressApp).post('/order').send(orderToAdd);
 
       // Act
-      const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+      const receivedResponse = await request(expressApp).get(
+        `/order/${existingOrderId}`
+      );
 
       // Assert
       expect(receivedResponse.status).toBe(200);

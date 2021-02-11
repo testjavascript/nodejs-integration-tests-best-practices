@@ -2,9 +2,10 @@ const express = require('express');
 const util = require('util');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const mailer = require('./libraries/mailer');
-const OrderRepository = require('./data-access/order-repository');
-const errorHandler = require('./error-handling').errorHandler;
+const mailer = require('../libraries/mailer');
+const OrderRepository = require('../data-access/order-repository');
+const errorHandler = require('../error-handling').errorHandler;
+const messageQueueClient = require('../libraries/message-queue-client');
 
 let connection;
 
@@ -81,6 +82,9 @@ const defineRoutes = (expressApp) => {
           'admin@app.com'
         );
       }
+
+      // We should notify others that a new order was added - Let's put a message in a queue
+      messageQueueClient.sendMessage('new-order', req.body);
       res.json(DBResponse);
     } catch (error) {
       next(error);

@@ -1,7 +1,7 @@
 const request = require('supertest');
 const sinon = require('sinon');
 const nock = require('nock');
-const { initializeWebServer, stopWebServer } = require('../api');
+const { initializeWebServer, stopWebServer } = require('../entry-points/api');
 const OrderRepository = require('../data-access/order-repository');
 
 let expressApp;
@@ -49,8 +49,6 @@ describe('/api', () => {
       const {
         body: { id: addedOrderId },
       } = await request(expressApp).post('/order').send(orderToAdd);
-
-      
 
       //Act
       const getResponse = await request(expressApp).get(

@@ -1,10 +1,11 @@
 const amqplib = require('amqplib');
-const { send } = require('./mailer');
 const { EventEmitter } = require('events');
 
 let channel, connection;
 let isReady = false;
 
+// This is a simplistic client for a popular message queue product - RabbitMQ
+// It's generic in order to be used by any service in the organization
 class MessageQueueClient extends EventEmitter {
   constructor() {
     super();
@@ -15,7 +16,7 @@ class MessageQueueClient extends EventEmitter {
       hostname: 'localhost',
       port: 5672,
       username: 'rabbitmq',
-      password: 'rabbitmq', // This is a demo app, not security considerations
+      password: 'rabbitmq', // This is a demo app, no security considerations. This is the password for the local dev server
       locale: 'en_US',
       frameMax: 0,
       heartbeat: 0,
@@ -42,7 +43,6 @@ class MessageQueueClient extends EventEmitter {
       queueName,
       Buffer.from(JSON.stringify(message))
     );
-    console.log('2.5', sendResponse);
 
     return sendResponse;
   }
@@ -51,16 +51,13 @@ class MessageQueueClient extends EventEmitter {
     if (!isReady) {
       await this.connect();
     }
-    console.log('0.1');
     channel.assertQueue(queueName);
-    console.log('0.2', queueName);
 
     await channel.consume(queueName, async (theNewMessage) => {
-      console.log('Client just asked to consume')
-      await onMessageCallback(theNewMessage.content.toString());
-      this.emit('message-handled');
-      console.log('after callaback ');
-      channel.ack(theNewMessage);
+      onMessageCallback(theNewMessage.content.toString()).then(() => {
+        this.emit('message-handled');
+        channel.ack(theNewMessage);
+      });
     });
 
     return;

@@ -1,7 +1,7 @@
 const request = require("supertest");
 const sinon = require("sinon");
 const nock = require("nock");
-const { initializeWebServer, stopWebServer } = require("../../example-application/api");
+const { initializeWebServer, stopWebServer } = require("../../example-application/entry-points/api");
 const OrderRepository = require("../../example-application/data-access/order-repository");
 const { getShortUnique } = require("./test-helper");
 
