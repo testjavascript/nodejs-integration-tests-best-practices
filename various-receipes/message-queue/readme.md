@@ -7,7 +7,10 @@ Sometimes the message queues are just on obstacle to overcome, for exmaple when 
 There are two fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
 
 |                                          | Real message queue | Stub |
-| ---------------------------------------- | ------------------ | ---- |
+|------------------------------------------|--------------------|------|
+| Discover a bug in the client lib         | 👍🏼                 | 😢    |
 | Test that a message was tried to be sent | 👍🏼                 | 👍🏼   |
-| Speed                                    | 👍🏼                 | 😐   |
+| Speed                                    | 👍🏼                 | 😐    |
 | Test a flow that starts with a message   | 👍🏼                 | 👍🏼   |
+| Test arrival to dead-letter-queue        | 😐                  | 👍🏼   |
+| Test a poisoned message                  | 👍🏼                 | 👍🏼   |

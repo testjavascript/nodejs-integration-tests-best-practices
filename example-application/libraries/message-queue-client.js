@@ -7,9 +7,20 @@ let isReady = false;
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
 class MessageQueueClient extends EventEmitter {
-  constructor() {
+  constructor(customMessageQueueProvider) {
     super();
+
+    if (customMessageQueueProvider) {
+      this.messageQueueProvider = customMessageQueueProvider;
+    } else {
+      this.messageQueueProvider = amqplib;
+    }
   }
+
+  setMessageQueueProvider(customMessageQueueProvider) {
+    this.messageQueueProvider = customMessageQueueProvider;
+  }
+
   async connect() {
     const connectionProperties = {
       protocol: 'amqp',
@@ -22,7 +33,7 @@ class MessageQueueClient extends EventEmitter {
       heartbeat: 0,
       vhost: '/',
     };
-    connection = await amqplib.connect(connectionProperties);
+    connection = await this.messageQueueProvider.connect(connectionProperties);
     channel = await connection.createChannel();
     isReady = true;
   }
@@ -54,14 +65,23 @@ class MessageQueueClient extends EventEmitter {
     channel.assertQueue(queueName);
 
     await channel.consume(queueName, async (theNewMessage) => {
-      onMessageCallback(theNewMessage.content.toString()).then(() => {
-        this.emit('message-handled');
-        channel.ack(theNewMessage);
-      });
+      //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
+      onMessageCallback(theNewMessage.content.toString())
+        .then(() => {
+          // ️️️✅ Best Practice: Emit events from the message queue client/wrapper to facilitate testing and metrics
+          this.emit('handled-successfully');
+          channel.ack(theNewMessage);
+          this.emit('message-acknowledged');
+        })
+        .catch((error) => {
+          this.emit('handling-failure');
+          channel.nack(theNewMessage);
+          this.emit('message-rejected');
+        });
     });
 
     return;
   }
 }
 
-module.exports = new MessageQueueClient();
+module.exports = MessageQueueClient;
