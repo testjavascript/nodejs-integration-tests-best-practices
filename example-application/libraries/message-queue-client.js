@@ -15,6 +15,7 @@ class MessageQueueClient extends EventEmitter {
     } else {
       this.messageQueueProvider = amqplib;
     }
+    console.log('Client-constuctor', this.messageQueueProvider);
   }
 
   setMessageQueueProvider(customMessageQueueProvider) {
@@ -63,8 +64,10 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     channel.assertQueue(queueName);
+    console.log('Client-consume start');
 
     await channel.consume(queueName, async (theNewMessage) => {
+      console.log('Client msg arrived', theNewMessage);
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
@@ -74,9 +77,11 @@ class MessageQueueClient extends EventEmitter {
           this.emit('message-acknowledged');
         })
         .catch((error) => {
+          console.log('Client-error', error);
           this.emit('handling-failure');
           channel.nack(theNewMessage);
           this.emit('message-rejected');
+          throw error;
         });
     });
 

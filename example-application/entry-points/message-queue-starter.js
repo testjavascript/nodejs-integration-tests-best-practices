@@ -7,6 +7,7 @@ const { EventEmitter } = require('events');
 class MessageQueueStarter extends EventEmitter {
   constructor(customMessageQueueProvider) {
     super();
+    console.log('Starter-constructor', customMessageQueueProvider);
     this.messageQueueClient = new MessageQueueClient(
       customMessageQueueProvider
     );
@@ -18,9 +19,15 @@ class MessageQueueStarter extends EventEmitter {
     const deletedOrderMessageHandler = (message) => {
       return new Promise((resolve, reject) => {
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
+        console.log('Starter-start');
+        const newMessageAsObject = JSON.parse(message);
+        if (!newMessageAsObject.id) {
+          console.log('Starter-reject');
+          return reject(new Error('Invalid message schema, poisoned maybe?'));
+        }
 
         const orderRepository = new OrderRepository();
-        const newMessageAsObject = JSON.parse(message);
+
         orderRepository.deleteOrder(newMessageAsObject.id).then(() => {
           this.emit('message-handled');
           return resolve();

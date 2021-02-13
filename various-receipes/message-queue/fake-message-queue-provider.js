@@ -1,11 +1,15 @@
 const { EventEmitter } = require('events');
 
+let channel;
+
 class Channel extends EventEmitter {
   async nack() {
+    console.log('Faker-nack');
     this.emit('message-rejected');
   }
 
   async ack() {
+    console.log('Faker-ack');
     this.emit('message-acknowledged');
   }
 
@@ -20,7 +24,9 @@ class Channel extends EventEmitter {
   }
 
   async fakeANewMessageInQueue(newMessage) {
+    console.log('Faker-fake');
     if (this.messageHandler) {
+      console.log('Faker-fake-msg-handler-exist');
       this.messageHandler(newMessage);
       this.emit('message-arrived');
     }
@@ -29,12 +35,35 @@ class Channel extends EventEmitter {
 
 class Connection {
   async createChannel() {
-    return new Channel();
+    if (!channel) {
+      channel = new Channel();
+    }
+
+    return channel;
   }
 }
 
 async function connect() {
-  return new Connection();
+  return new Connection(channel);
 }
 
-module.exports = { connect };
+function fakeANewMessageInQueue(message) {
+  if (!channel) {
+    channel = new Channel();
+  }
+  channel.fakeANewMessageInQueue(message);
+}
+
+function getChannel() {
+  if (!channel) {
+    channel = new Channel();
+  }
+  return channel;
+}
+
+module.exports = { connect, fakeANewMessageInQueue, getChannel };
+
+// Send spy should have access to this without instantiating starter
+// Listen should be able to fetch ack/nack
+// Listen should be able to inject multiple message
+// Listen should be able to isolate from other tests

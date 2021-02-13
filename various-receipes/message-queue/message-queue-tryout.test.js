@@ -70,14 +70,18 @@ test.skip('When adding a new valid order, a message is put in queue', async () =
 // ️️️✅ Best Practice: Ensure that your app stop early enough when a poisoned 💉 message arrives
 test('When a poisoned message arrives, then it being ignored', async () => {
   // Arrange
-  const messageWithInvalidSchema = { id: 650 };
+  const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
 
   // Assert
   const messageQueueStarter = new MessageQueueStarter(fakeMessageQueueProvider);
-  messageQueueStarter.on('message-handled', async () => {
+  fakeMessageQueueProvider.getChannel().on('message-rejected', async () => {
+    console.log('test-rejected');
     done();
   });
 
   // Act
-  messageQueueStarter.start();
+  await messageQueueStarter.start();
+  console.log('test-before-put-fake-msg');
+  fakeMessageQueueProvider.fakeANewMessageInQueue(messageWithInvalidSchema);
+  console.log('test-last-line');
 });
