@@ -67,21 +67,19 @@ test.skip('When adding a new valid order, a message is put in queue', async () =
   expect(messageQueueClientStub.sendMessage.called).toBe(true);
 });
 
-// ️️️✅ Best Practice: Ensure that your app stop early enough when a poisoned 💉 message arrives
-test('When a poisoned message arrives, then it being ignored', async () => {
+// ️️️✅ Best Practice: Ensure that your app stops early enough when a poisoned 💉 message arrives
+test('When a poisoned message arrives, then it is being rejected back', async (done) => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
 
   // Assert
-  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueueProvider);
-  fakeMessageQueueProvider.getChannel().on('message-rejected', async () => {
-    console.log('test-rejected');
+  fakeMessageQueueProvider.getChannel().on('message-rejected', async (eventDescription) => {
+    expect(eventDescription.name).toBe('message-rejected')
     done();
   });
 
   // Act
+  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueueProvider);
   await messageQueueStarter.start();
-  console.log('test-before-put-fake-msg');
   fakeMessageQueueProvider.fakeANewMessageInQueue(messageWithInvalidSchema);
-  console.log('test-last-line');
 });

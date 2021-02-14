@@ -19,7 +19,7 @@ class MessageQueueStarter extends EventEmitter {
     const deletedOrderMessageHandler = (message) => {
       return new Promise((resolve, reject) => {
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
-        console.log('Starter-start');
+        console.log('Starter-start', JSON.stringify(message));
         const newMessageAsObject = JSON.parse(message);
         if (!newMessageAsObject.id) {
           console.log('Starter-reject');
@@ -39,6 +39,7 @@ class MessageQueueStarter extends EventEmitter {
       'deleted-user',
       deletedOrderMessageHandler
     );
+    console.log('Starter-register');
     return;
   }
 }

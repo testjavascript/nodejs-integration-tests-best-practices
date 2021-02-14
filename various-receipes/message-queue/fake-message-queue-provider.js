@@ -4,31 +4,31 @@ let channel;
 
 class Channel extends EventEmitter {
   async nack() {
-    console.log('Faker-nack');
-    this.emit('message-rejected');
+    const eventDescription = { name: 'message-rejected' };
+    this.emit('message-rejected', eventDescription);
   }
 
   async ack() {
-    console.log('Faker-ack');
-    this.emit('message-acknowledged');
+    const eventDescription = { name: 'message-acknowledged' };
+    this.emit('message-acknowledged', eventDescription);
   }
 
-  async sendToQueue() {
-    this.emit('message-sent');
+  async sendToQueue(message) {
+    this.emit('message-sent', message);
   }
 
   async assertQueue() {}
 
-  async consume(queueName, callback) {
-    this.messageHandler = callback;
+  async consume(queueName, messageHandler) {
+    this.messageHandler = messageHandler;
   }
 
   async fakeANewMessageInQueue(newMessage) {
-    console.log('Faker-fake');
     if (this.messageHandler) {
-      console.log('Faker-fake-msg-handler-exist');
-      this.messageHandler(newMessage);
-      this.emit('message-arrived');
+      const wrappedMessage = {
+        content: Buffer.from(JSON.stringify(newMessage)),
+      };
+      this.messageHandler(wrappedMessage);
     }
   }
 }

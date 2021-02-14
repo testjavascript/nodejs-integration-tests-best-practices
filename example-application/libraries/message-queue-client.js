@@ -67,7 +67,7 @@ class MessageQueueClient extends EventEmitter {
     console.log('Client-consume start');
 
     await channel.consume(queueName, async (theNewMessage) => {
-      console.log('Client msg arrived', theNewMessage);
+      console.log('Client msg arrived', theNewMessage, onMessageCallback);
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
