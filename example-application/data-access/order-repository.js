@@ -42,7 +42,9 @@ module.exports = class OrderRepository {
   }
 
   async addOrder(orderDetails) {
-    return await orderModel.create(orderDetails);
+    const DBResponse = await orderModel.create(orderDetails);
+
+    return DBResponse.dataValues;
   }
 
   async deleteOrder(orderToDelete) {

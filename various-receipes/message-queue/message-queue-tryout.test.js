@@ -1,8 +1,7 @@
-const amqplib = require('amqplib');
 const request = require('supertest');
 const sinon = require('sinon');
 const nock = require('nock');
-const fakeMessageQueueProvider = require('./fake-message-queue-provider');
+const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
 
 const {
   initializeWebServer,
@@ -32,10 +31,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  nock('https://mailer.com')
-    .post('/send', (payload) => ((emailPayload = payload), true))
-    .reply(202);
-  messageQueueClientStub = sinon.stub(messageQueueClient);
+  nock('https://mail.com').post('/send').reply(202);
 });
 
 afterEach(() => {
@@ -67,19 +63,49 @@ test.skip('When adding a new valid order, a message is put in queue', async () =
   expect(messageQueueClientStub.sendMessage.called).toBe(true);
 });
 
-// ️️️✅ Best Practice: Ensure that your app stops early enough when a poisoned 💉 message arrives
+test('Whenever a user deletion message arrive, then his orders are deleted', async (done) => {
+  // Arrange
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+  console.log('test-before order added');
+  const response = await request(expressApp).post('/order').send(orderToAdd);
+  console.log('response', response.status);
+  const addedOrderId = response.body.id;
+  console.log('test-order added', addedOrderId);
+
+  const fakeMessageQueue = new FakeMessageQueueProvider();
+  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
+  await messageQueueStarter.start();
+
+  // Act
+  fakeMessageQueue.on('message-handled', async () => {
+    const deletedOrder = await request(expressApp).get(
+      `/order/${addedOrderId}`
+    );
+    expect(deletedOrder.body).toEqual({});
+    done();
+  });
+
+  console.log('test-id', addedOrderId);
+  fakeMessageQueue.fakeANewMessageInQueue({ id: addedOrderId });
+});
+
 test('When a poisoned message arrives, then it is being rejected back', async (done) => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
+  const fakeMessageQueue = new FakeMessageQueueProvider();
+  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
+  await messageQueueStarter.start();
 
-  // Assert
-  fakeMessageQueueProvider.getChannel().on('message-rejected', async (eventDescription) => {
-    expect(eventDescription.name).toBe('message-rejected')
+  fakeMessageQueue.on('message-rejected', (eventDescription) => {
     done();
   });
 
   // Act
-  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueueProvider);
-  await messageQueueStarter.start();
-  fakeMessageQueueProvider.fakeANewMessageInQueue(messageWithInvalidSchema);
+  fakeMessageQueue.fakeANewMessageInQueue(messageWithInvalidSchema);
+
+  // Assert
 });

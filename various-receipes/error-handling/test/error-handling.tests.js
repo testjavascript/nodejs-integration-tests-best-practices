@@ -36,7 +36,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  nock('https://mailer.com').post('/send').reply(202);
+  nock('https://mail.com').post('/send').reply(202);
 
   sinon.stub(process, 'exit');
 });

@@ -21,6 +21,7 @@ class MessageQueueStarter extends EventEmitter {
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
         console.log('Starter-start', JSON.stringify(message));
         const newMessageAsObject = JSON.parse(message);
+        // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
         if (!newMessageAsObject.id) {
           console.log('Starter-reject');
           return reject(new Error('Invalid message schema, poisoned maybe?'));
@@ -39,7 +40,7 @@ class MessageQueueStarter extends EventEmitter {
       'deleted-user',
       deletedOrderMessageHandler
     );
-    console.log('Starter-register');
+    console.log('Starter-register-finish');
     return;
   }
 }
@@ -47,7 +48,6 @@ module.exports = { MessageQueueStarter };
 
 process.on('uncaughtException', (error) => {
   errorHandler.handleError(error);
-  console.log(error);
 });
 
 process.on('unhandledRejection', (reason) => {

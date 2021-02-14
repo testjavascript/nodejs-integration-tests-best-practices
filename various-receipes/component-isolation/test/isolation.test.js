@@ -93,7 +93,7 @@ describe('/api', () => {
         .throws(new Error('Unknown error'));
 
       let emailPayload;
-      nock('https://mailer.com')
+      nock('https://mail.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
       const orderToAdd = {

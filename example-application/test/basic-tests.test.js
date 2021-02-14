@@ -140,7 +140,7 @@ describe('/api', () => {
 
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
-      const scope = nock('https://mailer.com')
+      const scope = nock('https://mail.com')
         .post('/send', {
           subject: /^(?!\s*$).+/,
           body: /^(?!\s*$).+/,
@@ -204,7 +204,7 @@ describe('/api', () => {
       process.env.SEND_MAILS = 'true';
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
-      const scope = nock('https://mailer.com')
+      const scope = nock('https://mail.com')
         .post('/send', {
           subject: /^(?!\s*$).+/,
           body: /^(?!\s*$).+/,

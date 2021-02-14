@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mailer = require('../libraries/mailer');
 const OrderRepository = require('../data-access/order-repository');
 const errorHandler = require('../error-handling').errorHandler;
-const messageQueueClient = require('../libraries/message-queue-client');
+const MessageQueueClient = require('../libraries/message-queue-client');
 
 let connection;
 
@@ -63,9 +63,6 @@ const defineRoutes = (expressApp) => {
           validateStatus: false,
         }
       );
-      console.log(
-        `Asked to get user and get response with status ${existingUserResponse.status}`
-      );
 
       if (existingUserResponse.status === 404) {
         res.status(404).end();
@@ -74,6 +71,7 @@ const defineRoutes = (expressApp) => {
 
       // save to DB (Caution: simplistic code without layers and validation)
       const DBResponse = await new OrderRepository().addOrder(req.body);
+      console.log('11');
 
       if (process.env.SEND_MAILS === 'true') {
         await mailer.send(
@@ -82,9 +80,11 @@ const defineRoutes = (expressApp) => {
           'admin@app.com'
         );
       }
+      console.log('22');
 
       // We should notify others that a new order was added - Let's put a message in a queue
-      messageQueueClient.sendMessage('new-order', req.body);
+      //new MessageQueueClient().sendMessage('new-order', req.body);
+      console.log('db response', DBResponse);
       res.json(DBResponse);
     } catch (error) {
       next(error);
@@ -112,6 +112,7 @@ const defineRoutes = (expressApp) => {
   expressApp.use('/order', router);
 
   expressApp.use(async (error, req, res, next) => {
+    console.log('error', error);
     if (typeof error === 'object') {
       if (error.isTrusted === undefined || error.isTrusted === null) {
         error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit

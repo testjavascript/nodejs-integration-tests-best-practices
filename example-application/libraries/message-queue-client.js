@@ -1,15 +1,12 @@
 const amqplib = require('amqplib');
 const { EventEmitter } = require('events');
 
-let channel, connection;
-let isReady = false;
-
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
 class MessageQueueClient extends EventEmitter {
   constructor(customMessageQueueProvider) {
     super();
-
+    this.isReady = false;
     if (customMessageQueueProvider) {
       this.messageQueueProvider = customMessageQueueProvider;
     } else {
@@ -34,24 +31,26 @@ class MessageQueueClient extends EventEmitter {
       heartbeat: 0,
       vhost: '/',
     };
-    connection = await this.messageQueueProvider.connect(connectionProperties);
-    channel = await connection.createChannel();
-    isReady = true;
+    this.connection = await this.messageQueueProvider.connect(
+      connectionProperties
+    );
+    this.channel = await this.connection.createChannel();
+    this.isReady = true;
   }
 
   async close() {
-    if (connection) {
-      await connection.close();
+    if (this.connection) {
+      await this.connection.close();
     }
     return;
   }
 
   async sendMessage(queueName, message) {
-    if (!isReady) {
+    if (!this.isReady) {
       await this.connect();
     }
-    await channel.assertQueue(queueName);
-    const sendResponse = await channel.sendToQueue(
+    await this.channel.assertQueue(queueName);
+    const sendResponse = await this.channel.sendToQueue(
       queueName,
       Buffer.from(JSON.stringify(message))
     );
@@ -60,26 +59,26 @@ class MessageQueueClient extends EventEmitter {
   }
 
   async consume(queueName, onMessageCallback) {
-    if (!isReady) {
+    if (!this.isReady) {
       await this.connect();
     }
-    channel.assertQueue(queueName);
+    this.channel.assertQueue(queueName);
     console.log('Client-consume start');
 
-    await channel.consume(queueName, async (theNewMessage) => {
+    await this.channel.consume(queueName, async (theNewMessage) => {
       console.log('Client msg arrived', theNewMessage, onMessageCallback);
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
           // ️️️✅ Best Practice: Emit events from the message queue client/wrapper to facilitate testing and metrics
           this.emit('handled-successfully');
-          channel.ack(theNewMessage);
+          this.channel.ack(theNewMessage);
           this.emit('message-acknowledged');
         })
         .catch((error) => {
           console.log('Client-error', error);
           this.emit('handling-failure');
-          channel.nack(theNewMessage);
+          this.channel.nack(theNewMessage);
           this.emit('message-rejected');
           throw error;
         });
