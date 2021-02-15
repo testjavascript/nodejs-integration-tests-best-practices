@@ -79,7 +79,6 @@ const defineRoutes = (expressApp) => {
           'admin@app.com'
         );
       }
-
       res.json(DBResponse);
     } catch (error) {
       next(error);
