@@ -36,7 +36,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  nock('https://mail.com').post('/send').reply(202);
+  nock('http://mail.com').post('/send').reply(202);
 
   sinon.stub(process, 'exit');
 });
@@ -46,7 +46,6 @@ afterEach(() => {
   sinon.restore();
 });
 
-// ️️️✅ Best Practice: Structure tests
 describe('Error Handling', () => {
   describe('Selected Examples', () => {
     test('When exception is throw during request, Then logger reports the error', async () => {
@@ -56,17 +55,17 @@ describe('Error Handling', () => {
         productId: 2,
         mode: 'approved',
       };
-      // Arbitrarily choose which an object and error to throw
+      // ️️️✅ Best Practice: Simulate also internal error
       sinon
         .stub(OrderRepository.prototype, 'addOrder')
-        .throws(new Error('Failed!'));
+        .rejects(new AppError('saving-failed', true));
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act
       await request(expressApp).post('/order').send(orderToAdd);
 
       //Assert
-      expect(loggerDouble.called).toBe(true);
+      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(String));
     });
 
     test('When exception is throw during request, Then a metric is fired', async () => {

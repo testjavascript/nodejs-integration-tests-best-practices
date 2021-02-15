@@ -52,7 +52,7 @@ describe('/api', () => {
 
       //Act
       const getResponse = await request(expressApp).get(
-        '/order/' + addedOrderId
+        `/order/${addedOrderId}`
       );
 
       //Assert
@@ -72,7 +72,7 @@ describe('/api', () => {
 
       //Act
       const getResponse = await request(expressApp).get(
-        '/order/' + nonExistingOrderId
+        `/order/${nonExistingOrderId}`
       );
 
       //Assert
@@ -81,7 +81,8 @@ describe('/api', () => {
   });
 
   describe('POST /orders', () => {
-    test('When adding a new valid order, Then should get back 200 response', async () => {
+    // ️️️✅ Best Practice: Check the response
+    test('When adding a new valid order, Then should get back approval with 200 response', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
@@ -103,6 +104,7 @@ describe('/api', () => {
       });
     });
 
+    // ️️️✅ Best Practice: Check the new state
     test('When adding a new valid order, Then should be able to retrieve it', async () => {
       //Arrange
       const orderToAdd = {
@@ -118,7 +120,7 @@ describe('/api', () => {
 
       //Assert
       const { body, status } = await request(expressApp).get(
-        '/order/' + addedOrderId
+        `/order/${addedOrderId}`
       );
 
       expect({
@@ -134,18 +136,16 @@ describe('/api', () => {
       });
     });
 
-    test('When adding a new valid order, Then an email should be send to admin', async () => {
+    // ️️️✅ Best Practice: Check external calls
+    test('When adding a new valid order, Then an email should be send to store manager', async () => {
       //Arrange
       process.env.SEND_MAILS = 'true';
 
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
-      const scope = nock('https://mail.com')
-        .post('/send', {
-          subject: /^(?!\s*$).+/,
-          body: /^(?!\s*$).+/,
-          recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        })
+      let emailPayload;
+      nock('http://mail.com')
+        .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
 
       const orderToAdd = {
@@ -159,9 +159,16 @@ describe('/api', () => {
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-      expect(scope.isDone()).toBe(true);
+      expect(emailPayload).toMatchObject({
+        subject: expect.any(String),
+        body: expect.any(String),
+        recipientAddress: expect.stringMatching(
+          /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        ),
+      });
     });
 
+    // ️️️✅ Best Practice: Check invalid input
     test('When adding an order without specifying product, stop and return 400', async () => {
       //Arrange
       const orderToAdd = {
@@ -177,6 +184,19 @@ describe('/api', () => {
       //Assert
       expect(orderAddResult.status).toBe(400);
     });
+
+    // ️️️✅ Best Practice: Check error handling
+    test.todo('When a new order failed, an invalid-order error was handled');
+
+    // ️️️✅ Best Practice: Check monitoring metrics
+    test.todo(
+      'When a new valid order was added, then order-added metric was fired'
+    );
+
+    // ️️️✅ Best Practice: Simulate external failures
+    test.todo(
+      'When the user service is down, then order is still added successfully'
+    );
 
     test('When the user does not exist, return 404 response', async () => {
       //Arrange
@@ -204,12 +224,9 @@ describe('/api', () => {
       process.env.SEND_MAILS = 'true';
       // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
       // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
-      const scope = nock('https://mail.com')
-        .post('/send', {
-          subject: /^(?!\s*$).+/,
-          body: /^(?!\s*$).+/,
-          recipientAddress: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        })
+      let emailPayload;
+      nock('http://mail.com')
+        .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
 
       sinon
@@ -226,7 +243,13 @@ describe('/api', () => {
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-      expect(scope.isDone()).toBe(true);
+      expect(emailPayload).toMatchObject({
+        subject: expect.any(String),
+        body: expect.any(String),
+        recipientAddress: expect.stringMatching(
+          /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        ),
+      });
     });
   });
 });

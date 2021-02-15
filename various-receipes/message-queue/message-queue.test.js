@@ -33,7 +33,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  nock('https://mail.com').post('/send').reply(202);
+  nock('http://mail.com').post('/send').reply(202);
 });
 
 afterEach(() => {
