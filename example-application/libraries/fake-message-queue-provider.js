@@ -1,15 +1,17 @@
 const { EventEmitter } = require('events');
 
+// This class is the heart of the MQ testing - It replaces the MQ provider client library
+// and implement the same signature, but each method does nothing but emit an event which the test
+// can verify that indeed happened
 class FakeMessageQueueProvider extends EventEmitter {
   async nack() {
-    console.log('Faker nack');
-    const eventDescription = { name: 'message-rejected' };
-    this.emit('message-rejected', eventDescription);
+    const eventDescription = { event: 'message-rejected' };
+    this.emit('message-rejected', eventDescription); // Multiple events allows the test to filter for the relevant event
     this.emit('message-handled', eventDescription);
   }
 
   async ack() {
-    const eventDescription = { name: 'message-acknowledged' };
+    const eventDescription = { event: 'message-acknowledged' };
     this.emit('message-acknowledged', eventDescription);
     this.emit('message-handled', eventDescription);
   }
@@ -21,18 +23,24 @@ class FakeMessageQueueProvider extends EventEmitter {
   async assertQueue() {}
 
   async consume(queueName, messageHandler) {
-    console.log('faker consume', messageHandler);
+    // We just save the callback (handler) locally, whenever a message will put into this queue
+    // we will fire this handler
     this.messageHandler = messageHandler;
   }
 
-  async fakeANewMessageInQueue(queue, newMessage) {
-    console.log('Fake MQ new message', newMessage, this.messageHandler);
+  // This is the only method that does not exist in the MQ client library
+  // It allows us to fake like there is a new message in the queue and start a flow
+  async pushMessageToQueue(queue, newMessage) {
     if (this.messageHandler) {
-      console.log('Fake message handler exists', newMessage);
       const wrappedMessage = {
         content: Buffer.from(JSON.stringify(newMessage)),
       };
       this.messageHandler(wrappedMessage);
+    } else {
+      // Just warning and no exception because the test might want to simulate that
+      console.error(
+        'A new message put into the fake queue but no handlers exist'
+      );
     }
   }
 
@@ -46,8 +54,3 @@ class FakeMessageQueueProvider extends EventEmitter {
 }
 
 module.exports = { FakeMessageQueueProvider };
-
-// Send spy should have access to this without instantiating starter
-// Listen should be able to fetch ack/nack
-// Listen should be able to inject multiple message
-// Listen should be able to isolate from other tests

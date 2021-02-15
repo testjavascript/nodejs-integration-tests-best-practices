@@ -2,7 +2,10 @@ const request = require('supertest');
 const sinon = require('sinon');
 const nock = require('nock');
 const { once } = require('events');
-const testsHelper = require('./test-helpers');
+const {
+  getNextMQConfirmation,
+  startFakeMessageQueue,
+} = require('./test-helpers');
 const {
   FakeMessageQueueProvider,
 } = require('../../example-application/libraries/fake-message-queue-provider');
@@ -12,9 +15,7 @@ const {
   stopWebServer,
 } = require('../../example-application/entry-points/api');
 
-const { default: Axios } = require('axios');
-
-let expressApp, messageQueueStarter, fakeMessageQueue;
+let expressApp;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -48,6 +49,7 @@ afterAll(async (done) => {
   done();
 });
 
+// ️️️✅ Best Practice: Test a flow that starts via a queue message and ends with removing/confirming the message
 test('Whenever a user deletion message arrive, then his orders are deleted', async () => {
   // Arrange
   const orderToAdd = {
@@ -55,35 +57,39 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
     productId: 2,
     mode: 'approved',
   };
-  const addedOrderId = (await request(expressApp).post('/order').send(orderToAdd)).body.id;
-  const fakeMessageQueue = await testsHelper.startFakeMessageQueue();
-  const messageQueueEvent = eventAsPromise(fakeMessageQueue, 'message-handled');
+  const addedOrderId = (
+    await request(expressApp).post('/order').send(orderToAdd)
+  ).body.id;
+  const fakeMessageQueue = await startFakeMessageQueue();
+  const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue);
 
   // Act
-  fakeMessageQueue.fakeANewMessageInQueue('user-deleted', { id: addedOrderId });
+  fakeMessageQueue.pushMessageToQueue('deleted-user', { id: addedOrderId });
 
   // Assert
-  await messageQueueEvent;
-  const aQueryForDeletedOrder = await request(expressApp).get(`/order/${addedOrderId}`);
+  await getNextMQEvent;
+  const aQueryForDeletedOrder = await request(expressApp).get(
+    `/order/${addedOrderId}`
+  );
   expect(aQueryForDeletedOrder.status).toBe(404);
 });
 
 test('When a poisoned message arrives, then it is being rejected back', async () => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
-  const fakeMessageQueue = await testsHelper.startFakeMessageQueue();
-  const waitForMessageQueueEvent = once(fakeMessageQueue, 'message-rejected');
+  const fakeMessageQueue = await startFakeMessageQueue();
+  const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue);
 
   // Act
-  fakeMessageQueue.fakeANewMessageInQueue(messageWithInvalidSchema);
+  fakeMessageQueue.pushMessageToQueue('deleted-user', messageWithInvalidSchema);
 
   // Assert
-  const eventFromMessageQueue = await waitForMessageQueueEvent;
-  expect(eventFromMessageQueue).toEqual([{ name: 'message-rejected' }]);
+  const eventFromMessageQueue = await getNextMQEvent;
+  expect(eventFromMessageQueue).toEqual([{ event: 'message-rejected' }]);
 });
 
+// ️️️✅ Best Practice: Verify that messages are put in queue whenever the requirements state so
 test('When a valid order is added, then a message is emitted to the new-order queue', async () => {
-  console.log('foo');
   //Arrange
   const orderToAdd = {
     userId: 1,
@@ -100,7 +106,7 @@ test('When a valid order is added, then a message is emitted to the new-order qu
 
   // Assert
   expect(spyOnSendMessage.called).toBe(true);
-  expect(spyOnSendMessage.lastCall.args).toMatchObject({});
+  expect(spyOnSendMessage.lastCall.args).toMatchObject({}); //TODO
 });
 
 test.todo('When an error occurs, then the message is not acknowledged');

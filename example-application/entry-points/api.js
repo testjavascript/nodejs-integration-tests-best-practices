@@ -52,7 +52,6 @@ const defineRoutes = (expressApp) => {
       // validation
       if (!req.body.productId) {
         res.status(400).end();
-
         return;
       }
 
@@ -60,9 +59,7 @@ const defineRoutes = (expressApp) => {
       // verify user existence by calling external Microservice
       const existingUserResponse = await axios.get(
         `http://localhost/user/${req.body.userId}`,
-        {
-          validateStatus: false,
-        }
+        { validateStatus: false }
       );
 
       if (existingUserResponse.status === 404) {
@@ -70,23 +67,20 @@ const defineRoutes = (expressApp) => {
         return;
       }
 
-      // save to DB (Caution: simplistic code without layers and validation)
-      const DBResponse = await new OrderRepository().addOrder(req.body);
-      console.log('11');
+      const responseToCaller = await new OrderRepository().addOrder(req.body);
 
       if (process.env.SEND_MAILS === 'true') {
         await mailer.send(
           'New order was placed',
-          `user ${DBResponse.userId} ordered ${DBResponse.productId}`,
+          `user ${responseToCaller.userId} ordered ${responseToCaller.productId}`,
           'admin@app.com'
         );
       }
-      console.log('22');
 
       // We should notify others that a new order was added - Let's put a message in a queue
       new MessageQueueClient().sendMessage('new-order', req.body);
-      console.log('db response', DBResponse);
-      res.json(DBResponse);
+
+      res.json(responseToCaller);
     } catch (error) {
       next(error);
     }

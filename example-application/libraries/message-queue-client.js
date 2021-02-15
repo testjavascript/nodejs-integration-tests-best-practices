@@ -1,5 +1,6 @@
 const amqplib = require('amqplib');
 const { EventEmitter } = require('events');
+const { AppError, errorHandler } = require('../error-handling');
 const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
@@ -21,10 +22,6 @@ class MessageQueueClient extends EventEmitter {
     console.log('Client-constuctor', this.messageQueueProvider);
   }
 
-  setMessageQueueProvider(customMessageQueueProvider) {
-    this.messageQueueProvider = customMessageQueueProvider;
-  }
-
   async connect() {
     const connectionProperties = {
       protocol: 'amqp',
@@ -41,7 +38,6 @@ class MessageQueueClient extends EventEmitter {
       connectionProperties
     );
     this.channel = await this.connection.createChannel();
-    this.isReady = true;
   }
 
   async close() {
@@ -52,7 +48,7 @@ class MessageQueueClient extends EventEmitter {
   }
 
   async sendMessage(queueName, message) {
-    if (!this.isReady) {
+    if (!this.channel) {
       await this.connect();
     }
     await this.channel.assertQueue(queueName);
@@ -65,23 +61,21 @@ class MessageQueueClient extends EventEmitter {
   }
 
   async consume(queueName, onMessageCallback) {
-    if (!this.isReady) {
+    if (!this.channel) {
       await this.connect();
     }
     this.channel.assertQueue(queueName);
-    console.log('Client-consume start');
 
     await this.channel.consume(queueName, async (theNewMessage) => {
-      console.log('Client msg arrived', theNewMessage, onMessageCallback);
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
-          // ️️️✅ Best Practice: Emit events from the message queue client/wrapper to facilitate testing and metrics
           this.channel.ack(theNewMessage);
         })
         .catch((error) => {
-          console.log('Client-error', error);
           this.channel.nack(theNewMessage);
+          error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
+          errorHandler.handleError(error);
         });
     });
 

@@ -23,11 +23,9 @@ class MessageQueueStarter extends EventEmitter {
     const deletedOrderMessageHandler = (message) => {
       return new Promise((resolve, reject) => {
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
-        console.log('Starter-start', JSON.stringify(message));
         const newMessageAsObject = JSON.parse(message);
         // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
         if (!newMessageAsObject.id) {
-          console.log('Starter-reject');
           return reject(new AppError('invalid-message', true));
         }
 
@@ -44,7 +42,6 @@ class MessageQueueStarter extends EventEmitter {
       'deleted-user',
       deletedOrderMessageHandler
     );
-    console.log('Starter-register-finish');
     return;
   }
 }
