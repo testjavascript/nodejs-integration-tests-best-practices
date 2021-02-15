@@ -1,9 +1,10 @@
 const mailer = require('./libraries/mailer');
+const logger = require('./libraries/logger');
 
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
   handleError: async (errorToHandle) => {
-    console.error(errorToHandle);
+    logger.error(`Error occured ${errorToHandle}`);
     metricsExporter.fireMetric('error', {
       errorName: errorToHandle.name || 'generic-error',
     });

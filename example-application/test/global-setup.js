@@ -7,8 +7,10 @@ const util = require('util');
 module.exports = async () => {
   console.time('global-setup');
 
+  // ️️️✅ Best Practice: Speed up during development, if already live then do nothing
   const isDBReachable = await isPortReachable(54310);
   if (!isDBReachable) {
+    // ️️️✅ Best Practice: Start the infrastructure within a test hook - No failures occur because the DB is down
     await dockerCompose.upAll({
       cwd: path.join(__dirname),
       log: true,
@@ -22,6 +24,7 @@ module.exports = async () => {
       }
     );
 
+    // ️️️✅ Best Practice: Use npm script for data seeding and migrations
     const npmLoadAsPromise = util.promisify(npm.load);
     await npmLoadAsPromise();
     const npmCommandAsPromise = util.promisify(npm.commands.run);
