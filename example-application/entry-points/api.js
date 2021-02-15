@@ -56,6 +56,7 @@ const defineRoutes = (expressApp) => {
         return;
       }
 
+      console.log('API before user');
       // verify user existence by calling external Microservice
       const existingUserResponse = await axios.get(
         `http://localhost/user/${req.body.userId}`,
@@ -83,7 +84,7 @@ const defineRoutes = (expressApp) => {
       console.log('22');
 
       // We should notify others that a new order was added - Let's put a message in a queue
-      //new MessageQueueClient().sendMessage('new-order', req.body);
+      new MessageQueueClient().sendMessage('new-order', req.body);
       console.log('db response', DBResponse);
       res.json(DBResponse);
     } catch (error) {

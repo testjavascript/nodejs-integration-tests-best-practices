@@ -30,7 +30,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  nock('https://mail.com')
+  nock('https://mailer.com')
     .post('/send', (payload) => ((emailPayload = payload), true))
     .reply(202);
   messageQueueClientStub = sinon.stub(messageQueueClient);
@@ -102,7 +102,6 @@ test('When a user deletion message arrive, then his orders are deleted', async (
   // Make the message queue client fire a new message also there is no real queue
   messageQueueClientStub.consume.callsFake(
     async (queueName, onMessageCallback) => {
-      console.log('2', addedOrderId);
       await onMessageCallback(JSON.stringify({ id: addedOrderId }));
     }
   );
@@ -157,10 +156,3 @@ test('fpp', async (done) => {
   messageQueueStarter.start();
 });
 
-test.todo('When an error occurs, then the message is not acknowledged');
-test.todo(
-  'When a new valid user-deletion message is processes, then the message is acknowledged'
-);
-test.todo(
-  'When two identical create-order messages arrives, then the app is idempotent and only one is created'
-);

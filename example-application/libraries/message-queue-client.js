@@ -1,5 +1,6 @@
 const amqplib = require('amqplib');
 const { EventEmitter } = require('events');
+const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
@@ -7,10 +8,15 @@ class MessageQueueClient extends EventEmitter {
   constructor(customMessageQueueProvider) {
     super();
     this.isReady = false;
+
+    // To facilitate testing, the client allows working with a fake MQ provider
+    // It can get one in the constructor here or even change by environment variables
     if (customMessageQueueProvider) {
       this.messageQueueProvider = customMessageQueueProvider;
-    } else {
+    } else if (process.env.MESSAGE_QUEUE_PROVIDER === 'real') {
       this.messageQueueProvider = amqplib;
+    } else {
+      this.messageQueueProvider = new FakeMessageQueueProvider();
     }
     console.log('Client-constuctor', this.messageQueueProvider);
   }
@@ -71,16 +77,11 @@ class MessageQueueClient extends EventEmitter {
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
           // ️️️✅ Best Practice: Emit events from the message queue client/wrapper to facilitate testing and metrics
-          this.emit('handled-successfully');
           this.channel.ack(theNewMessage);
-          this.emit('message-acknowledged');
         })
         .catch((error) => {
           console.log('Client-error', error);
-          this.emit('handling-failure');
           this.channel.nack(theNewMessage);
-          this.emit('message-rejected');
-          throw error;
         });
     });
 

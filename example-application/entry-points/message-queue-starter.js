@@ -1,5 +1,5 @@
 const MessageQueueClient = require('../libraries/message-queue-client');
-const { errorHandler } = require('../error-handling');
+const { errorHandler, AppError } = require('../error-handling');
 const OrderRepository = require('../data-access/order-repository');
 const { EventEmitter } = require('events');
 
@@ -14,6 +14,10 @@ class MessageQueueStarter extends EventEmitter {
   }
 
   async start() {
+    return await this.consumeUserDeletionQueue();
+  }
+
+  async consumeUserDeletionQueue() {
     // This function is what handles a new message. Like API route handler, but for MQ.
     // When it finishes, it emits a message, otherwise the tests does not know when to assert
     const deletedOrderMessageHandler = (message) => {
@@ -24,7 +28,7 @@ class MessageQueueStarter extends EventEmitter {
         // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
         if (!newMessageAsObject.id) {
           console.log('Starter-reject');
-          return reject(new Error('Invalid message schema, poisoned maybe?'));
+          return reject(new AppError('invalid-message', true));
         }
 
         const orderRepository = new OrderRepository();
@@ -44,7 +48,6 @@ class MessageQueueStarter extends EventEmitter {
     return;
   }
 }
-module.exports = { MessageQueueStarter };
 
 process.on('uncaughtException', (error) => {
   errorHandler.handleError(error);
@@ -53,3 +56,5 @@ process.on('uncaughtException', (error) => {
 process.on('unhandledRejection', (reason) => {
   errorHandler.handleError(reason);
 });
+
+module.exports = { MessageQueueStarter };

@@ -8,6 +8,7 @@ const errorHandler = {
     metricsExporter.fireMetric('error', {
       errorName: errorToHandle.name || 'generic-error',
     });
+    
     // // This is used to simulate sending email to admin when an error occurs
     // // In real world - The right flow is sending alerts from the monitoring system
     // await mailer.send(
@@ -23,6 +24,7 @@ const errorHandler = {
 
 const decideWhetherToCrash = (error) => {
   if (!error.isTrusted) {
+    console.error('Error handler is about to crash the process', error);
     process.exit();
   }
 };

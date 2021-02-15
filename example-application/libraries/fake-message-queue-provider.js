@@ -14,7 +14,7 @@ class FakeMessageQueueProvider extends EventEmitter {
     this.emit('message-handled', eventDescription);
   }
 
-  async sendToQueue(message) {
+  async sendToQueue(queueName, message) {
     this.emit('message-sent', message);
   }
 
@@ -25,7 +25,7 @@ class FakeMessageQueueProvider extends EventEmitter {
     this.messageHandler = messageHandler;
   }
 
-  async fakeANewMessageInQueue(newMessage) {
+  async fakeANewMessageInQueue(queue, newMessage) {
     console.log('Fake MQ new message', newMessage, this.messageHandler);
     if (this.messageHandler) {
       console.log('Fake message handler exists', newMessage);

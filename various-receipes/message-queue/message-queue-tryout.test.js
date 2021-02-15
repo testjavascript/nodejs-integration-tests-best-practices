@@ -1,19 +1,20 @@
 const request = require('supertest');
 const sinon = require('sinon');
 const nock = require('nock');
-const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
+const { once } = require('events');
+const testsHelper = require('./test-helpers');
+const {
+  FakeMessageQueueProvider,
+} = require('../../example-application/libraries/fake-message-queue-provider');
 
 const {
   initializeWebServer,
   stopWebServer,
 } = require('../../example-application/entry-points/api');
-const messageQueueClient = require('../../example-application/libraries/message-queue-client');
-const {
-  MessageQueueStarter,
-} = require('../../example-application/entry-points/message-queue-starter');
+
 const { default: Axios } = require('axios');
 
-let expressApp, messageQueueClientStub;
+let expressApp, messageQueueStarter, fakeMessageQueue;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -47,65 +48,74 @@ afterAll(async (done) => {
   done();
 });
 
-test.skip('When adding a new valid order, a message is put in queue', async () => {
+test('Whenever a user deletion message arrive, then his orders are deleted', async () => {
+  // Arrange
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+  const addedOrderId = (await request(expressApp).post('/order').send(orderToAdd)).body.id;
+  const fakeMessageQueue = await testsHelper.startFakeMessageQueue();
+  const messageQueueEvent = eventAsPromise(fakeMessageQueue, 'message-handled');
+
+  // Act
+  fakeMessageQueue.fakeANewMessageInQueue('user-deleted', { id: addedOrderId });
+
+  // Assert
+  await messageQueueEvent;
+  const aQueryForDeletedOrder = await request(expressApp).get(`/order/${addedOrderId}`);
+  expect(aQueryForDeletedOrder.status).toBe(404);
+});
+
+test('When a poisoned message arrives, then it is being rejected back', async () => {
+  // Arrange
+  const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
+  const fakeMessageQueue = await testsHelper.startFakeMessageQueue();
+  const waitForMessageQueueEvent = once(fakeMessageQueue, 'message-rejected');
+
+  // Act
+  fakeMessageQueue.fakeANewMessageInQueue(messageWithInvalidSchema);
+
+  // Assert
+  const eventFromMessageQueue = await waitForMessageQueueEvent;
+  expect(eventFromMessageQueue).toEqual([{ name: 'message-rejected' }]);
+});
+
+test('When a valid order is added, then a message is emitted to the new-order queue', async () => {
+  console.log('foo');
   //Arrange
   const orderToAdd = {
     userId: 1,
     productId: 2,
     mode: 'approved',
   };
-  messageQueueClientStub.sendMessage.returns(Promise.resolve({}));
+  const spyOnSendMessage = sinon.stub(
+    FakeMessageQueueProvider.prototype,
+    'sendToQueue'
+  );
 
   //Act
   await request(expressApp).post('/order').send(orderToAdd);
 
-  //Assert
-  expect(messageQueueClientStub.sendMessage.called).toBe(true);
-});
-
-test('Whenever a user deletion message arrive, then his orders are deleted', async (done) => {
-  // Arrange
-  const orderToAdd = {
-    userId: 1,
-    productId: 2,
-    mode: 'approved',
-  };
-  console.log('test-before order added');
-  const response = await request(expressApp).post('/order').send(orderToAdd);
-  console.log('response', response.status);
-  const addedOrderId = response.body.id;
-  console.log('test-order added', addedOrderId);
-
-  const fakeMessageQueue = new FakeMessageQueueProvider();
-  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
-  await messageQueueStarter.start();
-
-  // Act
-  fakeMessageQueue.on('message-handled', async () => {
-    const deletedOrder = await request(expressApp).get(
-      `/order/${addedOrderId}`
-    );
-    expect(deletedOrder.body).toEqual({});
-    done();
-  });
-
-  console.log('test-id', addedOrderId);
-  fakeMessageQueue.fakeANewMessageInQueue({ id: addedOrderId });
-});
-
-test('When a poisoned message arrives, then it is being rejected back', async (done) => {
-  // Arrange
-  const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
-  const fakeMessageQueue = new FakeMessageQueueProvider();
-  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
-  await messageQueueStarter.start();
-
-  fakeMessageQueue.on('message-rejected', (eventDescription) => {
-    done();
-  });
-
-  // Act
-  fakeMessageQueue.fakeANewMessageInQueue(messageWithInvalidSchema);
-
   // Assert
+  expect(spyOnSendMessage.called).toBe(true);
+  expect(spyOnSendMessage.lastCall.args).toMatchObject({});
 });
+
+test.todo('When an error occurs, then the message is not acknowledged');
+test.todo(
+  'When a new valid user-deletion message is processes, then the message is acknowledged'
+);
+test.todo(
+  'When two identical create-order messages arrives, then the app is idempotent and only one is created'
+);
+test.todo(
+  'When occasional failure occur during message processing , then the error is handled appropriately'
+);
+test.todo(
+  'When multiple user deletion message arrives, then all the user orders are deleted'
+);
+test.todo(
+  'When multiple user deletion message arrives and one fails, then only the failed message is not acknowledged'
+);
