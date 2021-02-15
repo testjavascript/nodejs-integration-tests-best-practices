@@ -1,12 +1,17 @@
 const express = require('express');
 const util = require('util');
 const bodyParser = require('body-parser');
+const axios = require('axios');
+const axiosRetry = require('axios-retry');
 const mailer = require('./libraries/mailer');
 const OrderRepository = require('./data-access/order-repository');
 const errorHandler = require('./error-handling').errorHandler;
-const { getUserFromUserService } = require('./libraries/users-service-sdk');
+const { AppError } = require('./error-handling');
 
 let connection;
+
+const client = axios.create();
+axiosRetry(client, { retries: 3 });
 
 const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
@@ -57,13 +62,19 @@ const defineRoutes = (expressApp) => {
 
       // verify user existence by calling external Microservice
       try {
-        const user = await getUserFromUserService(req.body.userId);
+        const user = await getUserFromUsersService(req.body.userId);
       } catch (error) {
         const { response } = error;
     
         if (response && response.status === 404) {
           res.status(404).end();
           return;
+        }
+
+        if (error?.code === 'ECONNABORTED') {
+          throw new AppError(error.code, {
+            status: 503
+          });
         }
 
         throw error;
@@ -113,8 +124,7 @@ const defineRoutes = (expressApp) => {
     }
     await errorHandler.handleError(error);
 
-    const outgoingStatusCode = error?.isAxiosError && error?.code === 'ECONNABORTED' ? 503 : 500;
-    res.status(outgoingStatusCode).end();
+    res.status(error?.status || 500).end();
   });
 };
 
@@ -125,6 +135,15 @@ process.on('uncaughtException', (error) => {
 process.on('unhandledRejection', (reason) => {
   errorHandler.handleError(reason);
 });
+
+async function getUserFromUsersService(userId) {
+  return await client.get(
+    `http://localhost/user/${userId}`,
+    {
+      timeout: 2000,
+    }
+  );
+}
 
 module.exports = {
   initializeWebServer,

@@ -69,7 +69,7 @@ describe("Error Handling", () => {
         mode: "approved",
       };
 
-      const errorToThrow = new AppError("example-error-name", true);
+      const errorToThrow = new AppError("example-error", { isTrusted: true, name: 'example-error-name' });
 
       // Arbitrarily choose an object that throws an error
       sinon.stub(OrderRepository.prototype, "addOrder").throws(errorToThrow);
@@ -92,7 +92,7 @@ describe("Error Handling", () => {
       sinon.restore();
       const processExitListener = sinon.stub(process, "exit");
       // Arbitrarily choose an object that throws an error
-      const errorToThrow = new AppError("example-error-name", false);
+      const errorToThrow = new AppError("example-error-name", { isTrusted: false });
       sinon.stub(OrderRepository.prototype, "addOrder").throws(errorToThrow);
 
       //Act
@@ -133,13 +133,13 @@ describe("Error Handling", () => {
 
   describe("Various Error Types", () => {
     test.each`
-      errorInstance                       | errorTypeDescription
-      ${null}                             | ${"Null as error"}
-      ${"This is a string"}               | ${"String as error"}
-      ${1}                                | ${"Number as error"}
-      ${{}}                               | ${"Object as error"}
-      ${new Error("JS basic error")}      | ${"JS error"}
-      ${new AppError("error-name", true)} | ${"AppError"}
+      errorInstance                  | errorTypeDescription
+      ${null}                        | ${"Null as error"}
+      ${"This is a string"}          | ${"String as error"}
+      ${1}                           | ${"Number as error"}
+      ${{}}                          | ${"Object as error"}
+      ${new Error("JS basic error")} | ${"JS error"}
+      ${new AppError("error-name")}  | ${"AppError"}
     `(`When throwing $errorTypeDescription, Then it's handled correctly`, async ({ errorInstance }) => {
       //Arrange
       const orderToAdd = {

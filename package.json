@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "test:dev": "jest --watch --silent --runInBand",
+    "test:dev": "jest --watch --runInBand",
     "test:dev:verbose": "jest --watch --verbose",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
