@@ -22,6 +22,10 @@ beforeAll(async (done) => {
 beforeEach(() => {
   // ❌ Anti-Pattern: There is no default behaviour for the users and email external service, if one test forgets to define a nock than
   // there will be an outgoing call
+  nock('http://localhost/user/').get(`/1`).reply(200, {
+    id: 1,
+    name: 'John',
+  });
 });
 
 afterEach(() => {
@@ -37,15 +41,13 @@ afterAll(async (done) => {
 
 describe('/api', () => {
   describe('POST /orders', () => {
-    test('When order failed, send mail to admin', async () => {
+    test('When adding  a new valid order , Then should get back 200 response', async () => {
       //Arrange
       process.env.SEND_MAILS = 'true';
-      sinon
-        .stub(OrderRepository.prototype, 'addOrder')
-        .throws(new Error('Unknown error'));
+
       // ❌ Anti-Pattern: The call will succeed regardless if the input, even if no mail address will get provided
       // We're not really simulating the integration data
-      const emailHTTPCall = nock('https://mailer.com').post('/send').reply(202);
+      nock('https://mailer.com').post('/send').reply(202);
       const orderToAdd = {
         userId: 1,
         productId: 2,
@@ -53,10 +55,10 @@ describe('/api', () => {
       };
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      const orderAddResult = await request(expressApp).post('/order').send(orderToAdd);
 
       //Assert
-      expect(emailHTTPCall.isDone()).toBe(true);
+      expect(orderAddResult.status).toBe(200);
     });
   });
 });

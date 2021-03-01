@@ -4,6 +4,7 @@ const logger = require('./libraries/logger');
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
   handleError: async (errorToHandle) => {
+    logger.error('💂‍♀️ Error handler is in charge now');
     logger.error(errorToHandle);
     metricsExporter.fireMetric('error', {
       errorName: errorToHandle.name || 'generic-error',
@@ -28,9 +29,10 @@ const decideWhetherToCrash = (error) => {
 };
 
 class AppError extends Error {
-  constructor(name, isTrusted, message = 'Something wrong') {
+  constructor(name, isTrusted, status, message = 'Something wrong') {
     super(message);
     this.name = name;
+    this.status = status;
     this.isTrusted = isTrusted;
   }
 }

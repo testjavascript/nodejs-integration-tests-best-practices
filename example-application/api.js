@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const mailer = require('./libraries/mailer');
 const OrderRepository = require('./data-access/order-repository');
 const errorHandler = require('./error-handling').errorHandler;
+const axiosRetry = require('axios-retry');
+const { AppError } = require('./error-handling');
 
 let connection;
 
@@ -56,18 +58,15 @@ const defineRoutes = (expressApp) => {
       }
 
       // verify user existence by calling external Microservice
-      const existingUserResponse = await axios.get(
-        `http://localhost/user/${req.body.userId}`,
-        {
-          validateStatus: false,
-        }
+      const existingUserResponse = await getUserFromUsersService(
+        req.body.userId
       );
       console.log(
         `Asked to get user and get response with status ${existingUserResponse.status}`
       );
 
-      if (existingUserResponse.status === 404) {
-        res.status(404).end();
+      if (existingUserResponse.status !== 200) {
+        res.status(existingUserResponse.status).end();
         return;
       }
 
@@ -114,8 +113,10 @@ const defineRoutes = (expressApp) => {
         error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
       }
     }
+    console.log('foo', error);
     await errorHandler.handleError(error);
-    res.status(500).end();
+    
+    res.status(error.status || 500).end();
   });
 };
 
@@ -126,6 +127,20 @@ process.on('uncaughtException', (error) => {
 process.on('unhandledRejection', (reason) => {
   errorHandler.handleError(reason);
 });
+
+async function getUserFromUsersService(userId) {
+  try {
+    const client = axios.create();
+    axiosRetry(client, { retries: 3 });
+    return await client.get(`http://localhost/user/${userId}`, {
+      timeout: 2000,
+    });
+  } catch (error) {
+    if (error.code === 'ECONNABORTED') {
+      throw new AppError('http-service-unavailable', true, 503);
+    }
+  }
+}
 
 module.exports = {
   initializeWebServer,

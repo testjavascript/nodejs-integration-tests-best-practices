@@ -7,7 +7,7 @@ const {
 } = require('../../../example-application/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 
-let expressApp;
+let expressApp, userServiceNock;
 
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
@@ -21,10 +21,11 @@ beforeAll(async (done) => {
 beforeEach(() => {
   // ️️️✅ Best Practice: Define a sensible default for all the tests.
   // Otherwise, all tests must repeat this nock again and again
-  nock('http://localhost/user/').get(`/1`).reply(200, {
+  userServiceNock = nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
     name: 'John',
   });
+  nock('https://mailer.com').post('/send').reply(202);
 });
 
 afterEach(() => {
@@ -43,7 +44,7 @@ afterAll(async (done) => {
 // ️️️✅ Best Practice: Structure tests
 describe('/api', () => {
   describe('POST /orders', () => {
-    test('When adding  a new valid order , Then should get back 200 response', async () => {
+    test('When adding a new valid order , Then should get back 200 response', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
@@ -114,6 +115,52 @@ describe('/api', () => {
           /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
         ),
       });
+    });
+
+    test('When users service does not reply within 2 seconds, return 503', async () => {
+      //Arrange
+      // ✅ Best Practice: use "fake timers" to simulate long requests.
+      const clock = sinon.useFakeTimers();
+      nock.removeInterceptor(userServiceNock.interceptors[0]);
+      nock('http://localhost/user/')
+        .get('/1', () => clock.tick(5000))
+        .reply(200);
+
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
+
+      //Act
+      const response = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
+
+      //Assert
+      expect(response.status).toBe(503);
+    });
+
+    test('When users service replies with 503 once and retry mechanism is applied, then an order is added successfully', async () => {
+      //Arrange
+      nock.removeInterceptor(userServiceNock.interceptors[0]);
+      nock('http://localhost/user/')
+        .get('/1')
+        .reply(503, undefined, { 'Retry-After': 100 });
+      nock('http://localhost/user/').get('/1').reply(200);
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
+
+      //Act
+      const response = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
+
+      //Assert
+      expect(response.status).toBe(200);
     });
   });
 });
