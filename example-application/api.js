@@ -62,7 +62,7 @@ const defineRoutes = (expressApp) => {
         req.body.userId
       );
       console.log(
-        `Asked to get user and get response with status ${existingUserResponse.status}`
+        `Asked to get user and get response with status ${existingUserResponse}`
       );
 
       if (existingUserResponse.status !== 200) {
@@ -113,9 +113,9 @@ const defineRoutes = (expressApp) => {
         error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
       }
     }
-    console.log('foo', error);
+
     await errorHandler.handleError(error);
-    
+
     res.status(error.status || 500).end();
   });
 };
@@ -130,7 +130,11 @@ process.on('unhandledRejection', (reason) => {
 
 async function getUserFromUsersService(userId) {
   try {
-    const client = axios.create();
+    const client = axios.create({
+      validateStatus: function (status) {
+        return status !== 503;
+      },
+    });
     axiosRetry(client, { retries: 3 });
     return await client.get(`http://localhost/user/${userId}`, {
       timeout: 2000,
@@ -138,6 +142,8 @@ async function getUserFromUsersService(userId) {
   } catch (error) {
     if (error.code === 'ECONNABORTED') {
       throw new AppError('http-service-unavailable', true, 503);
+    } else {
+      throw new AppError('http-request-error', true, 500);
     }
   }
 }

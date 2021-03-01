@@ -18,7 +18,7 @@ beforeAll(async (done) => {
   };
 
   // ❌ Anti-Pattern: Adding global records which are mutated by the tests. This will lead to high coupling and flakiness
-  existingOrderId = (await request(expressApp).post("/order").send(orderToAdd)).body.id;
+  //existingOrderId = (await request(expressApp).post("/order").send(orderToAdd)).body.id;
 
   done();
 });
@@ -35,7 +35,7 @@ afterEach(() => {
   sinon.restore();
 
   // ❌ Anti-Pattern: Cleaning here now will affect tests in other processes
-  await new OrderRepository().cleanup();
+  //await new OrderRepository().cleanup();
 });
 
 afterAll(async (done) => {
@@ -96,5 +96,4 @@ describe("/api", () => {
         expect(receivedResponse.status).toBe(200);
       });
     });
-    
-  }n);
+  });

@@ -7,7 +7,7 @@ const {
 } = require('../../../example-application/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 
-let expressApp, userServiceNock;
+let expressApp, userServiceNock, mailerNock;
 
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
@@ -25,7 +25,7 @@ beforeEach(() => {
     id: 1,
     name: 'John',
   });
-  nock('https://mailer.com').post('/send').reply(202);
+  mailerNock = nock('https://mailer.com').post('/send').reply(202);
 });
 
 afterEach(() => {
@@ -86,14 +86,12 @@ describe('/api', () => {
       expect(orderAddResult.status).toBe(404);
     });
 
-    test('When order failed, send mail to admin', async () => {
+    test('When order is added successfully, send mail to admin', async () => {
       //Arrange
       process.env.SEND_MAILS = 'true';
-      sinon
-        .stub(OrderRepository.prototype, 'addOrder')
-        .throws(new Error('Unknown error'));
 
       let emailPayload;
+      nock.removeInterceptor(mailerNock.interceptors[0]);
       nock('https://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
