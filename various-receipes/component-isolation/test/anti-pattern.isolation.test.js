@@ -41,13 +41,13 @@ afterAll(async (done) => {
 
 describe('/api', () => {
   describe('POST /orders', () => {
-    test('When adding  a new valid order , Then should get back 200 response', async () => {
+    test('When adding a new valid order, Then should get back 200 response', async () => {
       //Arrange
       process.env.SEND_MAILS = 'true';
 
       // ❌ Anti-Pattern: The call will succeed regardless if the input, even if no mail address will get provided
       // We're not really simulating the integration data
-      nock('https://mailer.com').post('/send').reply(202);
+      nock('https://mailer.com').post('/send').reply(200);
       const orderToAdd = {
         userId: 1,
         productId: 2,
@@ -55,7 +55,9 @@ describe('/api', () => {
       };
 
       //Act
-      const orderAddResult = await request(expressApp).post('/order').send(orderToAdd);
+      const orderAddResult = await request(expressApp)
+        .post('/order')
+        .send(orderToAdd);
 
       //Assert
       expect(orderAddResult.status).toBe(200);
@@ -69,3 +71,6 @@ describe('/api', () => {
 // ❌ Anti-Pattern: We didn't test the scenario of occasional one-time response failure which can be mitigated with retry
 // ❌ Anti-Pattern: We didn't test that WE send the right payload
 // ❌ Anti-Pattern: We have no guarantee that we covered all the outgoing network calls
+
+//nock('https://mailer.com').post('/send').once().reply(500);
+//await axios.get('https://google.com');

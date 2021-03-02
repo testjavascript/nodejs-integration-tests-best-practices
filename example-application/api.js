@@ -65,6 +65,8 @@ const defineRoutes = (expressApp) => {
         `Asked to get user and get response with status ${existingUserResponse}`
       );
 
+      //await axios.get('https://google.com');
+
       if (existingUserResponse.status !== 200) {
         res.status(existingUserResponse.status).end();
         return;
@@ -116,6 +118,7 @@ const defineRoutes = (expressApp) => {
 
     await errorHandler.handleError(error);
 
+    //throw new Error("Failure!");
     res.status(error.status || 500).end();
   });
 };
