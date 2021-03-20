@@ -15,11 +15,14 @@ beforeAll(async (done) => {
 
   // ❌ Anti-Pattern: By default, we allow outgoing network calls -
   // If some unknown code locations will issue HTTP request - It will passthrough out
-
   done();
 });
 
 beforeEach(() => {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
+    id: 1,
+    name: 'John',
+  });
   // ❌ Anti-Pattern: There is no default behaviour for the users and email external service, if one test forgets to define a nock than
   // there will be an outgoing call
 });
@@ -37,15 +40,13 @@ afterAll(async (done) => {
 
 describe('/api', () => {
   describe('POST /orders', () => {
-    test('When order failed, send mail to admin', async () => {
+    test('When order succeed, send mail to store manager', async () => {
       //Arrange
       process.env.SEND_MAILS = 'true';
-      sinon
-        .stub(OrderRepository.prototype, 'addOrder')
-        .throws(new Error('Unknown error'));
+
       // ❌ Anti-Pattern: The call will succeed regardless if the input, even if no mail address will get provided
       // We're not really simulating the integration data
-      const emailHTTPCall = nock('https://mailer.com')
+      const emailHTTPCall = nock('http://mailer.com')
         .post('/send')
         // ❌ Anti-Pattern: use fake timers instead of nock delay to simulate long requests
         .delay(1000)

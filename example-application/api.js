@@ -80,6 +80,8 @@ const defineRoutes = (expressApp) => {
         throw error;
       }
 
+      
+
       // save to DB (Caution: simplistic code without layers and validation)
       const DBResponse = await new OrderRepository().addOrder(req.body);
 
@@ -90,6 +92,7 @@ const defineRoutes = (expressApp) => {
           'admin@app.com'
         );
       }
+
       res.json(DBResponse);
     } catch (error) {
       next(error);
@@ -98,6 +101,7 @@ const defineRoutes = (expressApp) => {
 
   // get existing order by id
   router.get('/:id', async (req, res, next) => {
+    console.log(`Order API was called to get user by id ${req.params.id}`);
     const response = await new OrderRepository().getOrderById(req.params.id);
 
     if (!response) {
