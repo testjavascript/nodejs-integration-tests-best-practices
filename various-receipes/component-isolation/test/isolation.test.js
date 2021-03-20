@@ -135,7 +135,7 @@ describe('/api', () => {
 
       nock.removeInterceptor(mailerNock.interceptors[0])
       let emailPayload;
-      nock('https://mailer.com')
+      nock('http://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
       const orderToAdd = {
