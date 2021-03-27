@@ -1,9 +1,7 @@
 const express = require('express');
 const util = require('util');
-const axios = require('axios');
 const bodyParser = require('body-parser');
-const mailer = require('./libraries/mailer');
-const OrderRepository = require('./data-access/order-repository');
+const OrderService = require('./domain/order-service');
 const errorHandler = require('./error-handling').errorHandler;
 
 let connection;
@@ -43,49 +41,24 @@ const defineRoutes = (expressApp) => {
 
   // add new order
   router.post('/', async (req, res, next) => {
+    console.log(`Order API was called to add new Order ${util.inspect(req.body)}`);
+
     try {
-      console.log(
-        `Order API was called to add new Order ${util.inspect(req.body)}`
-      );
-
-      // validation
-      if (!req.body.productId) {
-        res.status(400).end();
-
-        return;
-      }
-
-      // verify user existence by calling external Microservice
-      const existingUserResponse = await axios.get(
-        `http://localhost/user/${req.body.userId}`,
-        {
-          validateStatus: false,
-        }
-      );
-      console.log(
-        `Asked to get user and get response with status ${existingUserResponse.status}`
-      );
-
-      if (existingUserResponse.status === 404) {
-        res.status(404).end();
-        return;
-      }
-
-      
-
-      // save to DB (Caution: simplistic code without layers and validation)
-      const DBResponse = await new OrderRepository().addOrder(req.body);
-
-      if (process.env.SEND_MAILS === 'true') {
-        await mailer.send(
-          'New order was placed',
-          `user ${DBResponse.userId} ordered ${DBResponse.productId}`,
-          'admin@app.com'
-        );
-      }
-
-      res.json(DBResponse);
+      const response = await new OrderService().addOrder(req.body);
+      res.json(response);
     } catch (error) {
+      if (error.isTrusted) {
+        if (error.name == 'bad-order') {
+          res.status(400).end();
+          return;
+        }
+
+        if (error.name == 'user-not-found') {
+          res.status(404).end();
+          return;
+        }
+      }
+
       next(error);
     }
   });
@@ -93,19 +66,26 @@ const defineRoutes = (expressApp) => {
   // get existing order by id
   router.get('/:id', async (req, res, next) => {
     console.log(`Order API was called to get user by id ${req.params.id}`);
-    const response = await new OrderRepository().getOrderById(req.params.id);
+    
+    try {
+      const response = await new OrderService().getOrderById(req.params.id);
+      res.json(response);
+    } catch(error) {
+      if (error.isTrusted) {
+        if (error.name == 'non-existing-order') {
+          res.status(404).end();
+          return;
+        }
+      }
 
-    if (!response) {
-      res.status(404).end();
-      return;
+      next(error);
     }
-
-    res.json(response);
+    
   });
 
   router.delete('/:id', async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
-    await new OrderRepository().deleteOrder(req.params.id);
+    await new OrderService().deleteOrderById(req.params.id);
     res.status(204).end();
   });
 
@@ -114,7 +94,7 @@ const defineRoutes = (expressApp) => {
   expressApp.use(async (error, req, res, next) => {
     if (typeof error === 'object') {
       if (error.isTrusted === undefined || error.isTrusted === null) {
-        error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
+        error.isTrusted = true; // Error during a specific request is usually not catastrophic and should not lead to process exit
       }
     }
     await errorHandler.handleError(error);

@@ -5,7 +5,7 @@ const {
   initializeWebServer,
   stopWebServer,
 } = require('../../../example-application/api');
-const OrderRepository = require('../../../example-application/data-access/order-repository');
+const OrderService = require('../../../example-application/domain/order-service');
 const {
   metricsExporter,
 } = require('../../../example-application/error-handling');
@@ -57,7 +57,7 @@ describe('Error Handling', () => {
       };
       // ️️️✅ Best Practice: Simulate also internal error
       sinon
-        .stub(OrderRepository.prototype, 'addOrder')
+        .stub(OrderService.prototype, 'addOrder')
         .rejects(new AppError('saving-failed', true));
       const loggerDouble = sinon.stub(logger, 'error');
 
@@ -79,7 +79,7 @@ describe('Error Handling', () => {
       const errorToThrow = new AppError('example-error-name', true);
 
       // Arbitrarily choose an object that throws an error
-      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
+      sinon.stub(OrderService.prototype, 'addOrder').throws(errorToThrow);
       const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
 
       //Act
@@ -104,7 +104,7 @@ describe('Error Handling', () => {
       const processExitListener = sinon.stub(process, 'exit');
       // Arbitrarily choose an object that throws an error
       const errorToThrow = new AppError('example-error-name', false);
-      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
+      sinon.stub(OrderService.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
       await request(expressApp).post('/order').send(orderToAdd);
@@ -124,7 +124,7 @@ describe('Error Handling', () => {
       const processExitListener = sinon.stub(process, 'exit');
       // Arbitrarily choose an object that throws an error
       const errorToThrow = new Error('Something vague and unknown');
-      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
+      sinon.stub(OrderService.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
       await request(expressApp).post('/order').send(orderToAdd);
@@ -171,7 +171,7 @@ describe('Error Handling', () => {
           mode: 'approved',
         };
 
-        sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
+        sinon.stub(OrderService.prototype, 'addOrder').throws(errorInstance);
         const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
         const loggerDouble = sinon.stub(logger, 'error');
 
