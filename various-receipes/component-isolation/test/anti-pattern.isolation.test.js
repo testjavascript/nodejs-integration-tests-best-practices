@@ -46,10 +46,11 @@ describe('/api', () => {
 
       // ❌ Anti-Pattern: The call will succeed regardless if the input, even if no mail address will get provided
       // We're not really simulating the integration data
-      const emailHTTPCall = nock('http://localhost')
-        .post('/mailer/send')
+      const emailHTTPCall = nock('http://mailer.com')
+        .post('/send')
+        // ❌ Anti-Pattern: use fake timers instead of nock delay to simulate long requests
+        .delay(1000)
         .reply(202);
-
       const orderToAdd = {
         userId: 1,
         productId: 2,

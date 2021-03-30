@@ -28,10 +28,11 @@ const decideWhetherToCrash = (error) => {
 };
 
 class AppError extends Error {
-  constructor(name, isTrusted, message = 'Something wrong') {
+  constructor(message = 'Something wrong', meta = {}) {
     super(message);
-    this.name = name;
-    this.isTrusted = isTrusted;
+    this.name = meta.name;
+    this.isTrusted = meta.isTrusted;
+    this.status = meta.status;
   }
 }
 

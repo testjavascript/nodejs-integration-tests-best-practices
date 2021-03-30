@@ -7,7 +7,7 @@ const {
 } = require('../../../example-application/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 
-let expressApp, mailerNock;
+let expressApp, mailerNock, userServiceNock;
 
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
@@ -22,7 +22,7 @@ beforeAll(async (done) => {
 beforeEach(() => {
   // ️️️✅ Best Practice: Define a sensible default for all the tests.
   // Otherwise, all tests must repeat this nock again and again
-  nock('http://localhost/user/').get(`/1`).reply(200, {
+  userServiceNock = nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
     name: 'John',
   });
@@ -125,5 +125,84 @@ describe('/api', () => {
       //Assert
       expect(orderAddResult.status).toBe(404);
     });
+
+    test('When order failed, send mail to admin', async () => {
+      //Arrange
+      process.env.SEND_MAILS = 'true';
+      sinon
+        .stub(OrderRepository.prototype, 'addOrder')
+        .throws(new Error('Unknown error'));
+
+      nock.removeInterceptor(mailerNock.interceptors[0])
+      let emailPayload;
+      nock('http://mailer.com')
+        .post('/send', (payload) => ((emailPayload = payload), true))
+        .reply(202);
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
+
+      //Act
+      await request(expressApp).post('/order').send(orderToAdd);
+
+      //Assert
+      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately with the right input
+      expect(emailPayload).toMatchObject({
+        subject: expect.any(String),
+        body: expect.any(String),
+        recipientAddress: expect.stringMatching(
+          /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        ),
+      });
+    });
+  });
+
+  test('When users service doesn\'t reply within 2 seconds, return 503', async () => {
+    //Arrange
+    // ✅ Best Practice: use "fake timers" to simulate long requests. 
+    const clock = sinon.useFakeTimers();
+    nock.removeInterceptor(userServiceNock.interceptors[0]);
+    nock('http://localhost/user/')
+      .get('/1', () => (clock.tick(5000)))
+      .reply(200);
+
+    const orderToAdd = {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    };
+
+    //Act
+    const response = await request(expressApp).post('/order').send(orderToAdd);
+    
+    //Assert
+    expect(response.status).toBe(503);
+
+    //Clean
+    clock.uninstall();
+  });
+
+  test('When users service replies with 503 once and retry mechanism is applied, then an order is added successfully', async () => {
+    //Arrange
+    nock.removeInterceptor(userServiceNock.interceptors[0])
+    nock('http://localhost/user/')
+      .get('/1')
+      .reply(503, undefined, { 'Retry-After': 100 });
+    nock('http://localhost/user/')
+      .get('/1')
+      .reply(200);
+    const orderToAdd = {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    };
+
+    //Act
+    const response = await request(expressApp).post('/order').send(orderToAdd);
+
+    //Assert
+    expect(response.status).toBe(200);
   });
 });

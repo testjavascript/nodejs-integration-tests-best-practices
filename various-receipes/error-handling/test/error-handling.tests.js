@@ -76,7 +76,7 @@ describe('Error Handling', () => {
         mode: 'approved',
       };
 
-      const errorToThrow = new AppError('example-error-name', true);
+      const errorToThrow = new AppError('example-error', { isTrusted: true, name: 'example-error-name' });
 
       // Arbitrarily choose an object that throws an error
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
@@ -103,7 +103,7 @@ describe('Error Handling', () => {
       sinon.restore();
       const processExitListener = sinon.stub(process, 'exit');
       // Arbitrarily choose an object that throws an error
-      const errorToThrow = new AppError('example-error-name', false);
+      const errorToThrow = new AppError('example-error-name', { isTrusted: false });
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
@@ -154,34 +154,31 @@ describe('Error Handling', () => {
 
   describe('Various Error Types', () => {
     test.each`
-      errorInstance                       | errorTypeDescription
-      ${null}                             | ${'Null as error'}
-      ${'This is a string'}               | ${'String as error'}
-      ${1}                                | ${'Number as error'}
-      ${{}}                               | ${'Object as error'}
-      ${new Error('JS basic error')}      | ${'JS error'}
-      ${new AppError('error-name', true)} | ${'AppError'}
-    `(
-      `When throwing $errorTypeDescription, Then it's handled correctly`,
-      async ({ errorInstance }) => {
-        //Arrange
-        const orderToAdd = {
-          userId: 1,
-          productId: 2,
-          mode: 'approved',
-        };
+      errorInstance                  | errorTypeDescription
+      ${null}                        | ${'Null as error'}
+      ${'This is a string'}          | ${'String as error'}
+      ${1}                           | ${'Number as error'}
+      ${{}}                          | ${'Object as error'}
+      ${new Error('JS basic error')} | ${'JS error'}
+      ${new AppError('error-name')}  | ${'AppError'}
+    `(`When throwing $errorTypeDescription, Then it's handled correctly`, async ({ errorInstance }) => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
 
-        sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
-        const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
-        const loggerDouble = sinon.stub(logger, 'error');
+      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
+      const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
+      const consoleErrorDouble = sinon.stub(console, 'error');
 
-        //Act
-        await request(expressApp).post('/order').send(orderToAdd);
+      //Act
+      await request(expressApp).post('/order').send(orderToAdd);
 
-        //Assert
-        expect(metricsExporterDouble.called).toBe(true);
-        expect(loggerDouble.called).toBe(true);
-      }
-    );
+      //Assert
+      expect(metricsExporterDouble.called).toBe(true);
+      expect(consoleErrorDouble.called).toBe(true);
+    });
   });
 });
