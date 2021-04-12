@@ -285,9 +285,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers` machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion. Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different  the docker-compose should be stopped after every execution. 
-
-If the DB is already alive, On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers` machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companionShould you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
 
 <br/>
 
@@ -1040,7 +1038,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc5MzkzODU3MSwtMTc1OTc0MDU3NiwtMj
+eyJoaXN0b3J5IjpbMTM3MDk5MzQ4NCwtMTc1OTc0MDU3NiwtMj
 A2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcx
 MDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OT
 E5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwt
