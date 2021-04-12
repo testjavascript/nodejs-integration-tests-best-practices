@@ -415,7 +415,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic #basic`
 
-:white_check_mark:  **Do:** 
+:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator component won't get hit. Nock is a great tool for this mission that patches 
 
 Simple - Isolate what you deploy, nock
 Why isolate - Noise, performance but mostly isolation. If doing Microservice, goes against. A good flight simulator is
@@ -431,7 +431,7 @@ What if they changed - Need some E2E
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
 ```
-// 
+// Show simple nock definition
 ```
 </details>
 
@@ -1003,11 +1003,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDQ4NTMwNDEsMTAwNDgzNjQ3MCwtOT
-M5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgz
-NTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3Ni
-wtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1
-NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMz
-A2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0
-OCwtNzg2OTY3Nzg5XX0=
+eyJoaXN0b3J5IjpbMTAzNjUyNjU0MSwxMDA0ODM2NDcwLC05Mz
+k2OTg0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1
+NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC
+0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1
+NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMD
+Y5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4
+LC03ODY5Njc3ODldfQ==
 -->
