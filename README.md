@@ -395,18 +395,9 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-
+// Show global-setup conditional migration command
+//Show npm script
+```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
   
@@ -1026,7 +1017,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzODQyOTgxMiwxMDk4ODk0NjI4LDIxMz
+eyJoaXN0b3J5IjpbLTY4MDE0NDMzMCwxMDk4ODk0NjI4LDIxMz
 c4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1
 NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLD
 ExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEz
