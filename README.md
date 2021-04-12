@@ -285,7 +285,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Keep the database and other inTo encourage developers to run the tests continously, it's imperative to tune-up for very quick start-up. If the DB is already alive, On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and make them a codin  If the DB is already alive, On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
 
 <br/>
 
@@ -1038,11 +1038,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwNDE3NDU4LC0xNzU5NzQwNTc2LC0yMD
-YxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEw
-MDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MT
-ksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03
-ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNT
-g3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUy
-LC0xNTI3NzcyNDA3XX0=
+eyJoaXN0b3J5IjpbLTk5MjczMTM2NywtMTc1OTc0MDU3NiwtMj
+A2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcx
+MDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OT
+E5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwt
+Nzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwtNDgxMD
+U4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1
+MiwtMTUyNzc3MjQwN119
 -->
