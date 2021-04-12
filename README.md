@@ -431,22 +431,8 @@ What if they changed - Need some E2E
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
+// 
+```
 </details>
 
 <br/><br/>
@@ -1017,11 +1003,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwNDgzNjQ3MCwtOTM5Njk4NDg5LC0xMz
-c2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgzNTcwLDEwMDI4NjE2
-NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3NiwtMjA2MTUzMzA0My
-wxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OCwtMTU1
-NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAzNj
-YzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5
-LDE0NDExNzczODddfQ==
+eyJoaXN0b3J5IjpbLTE5MDQ4NTMwNDEsMTAwNDgzNjQ3MCwtOT
+M5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgz
+NTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3Ni
+wtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1
+NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMz
+A2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0
+OCwtNzg2OTY3Nzg5XX0=
 -->
