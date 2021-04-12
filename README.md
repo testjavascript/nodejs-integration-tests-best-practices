@@ -419,19 +419,13 @@ services:
 
 Simple - Isolate what you deploy, nock
 Why isolate - Noise, performance but mostly isolation. If doing Microservice, goes against. A good flight simulator is
-Why network - Not replacing any code with a version that is not deployed to production, simulate network failures
-What if they changed - Need 
-
-On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
-
-
-Analogue - Simulator, like fighting combats - Practice the outside conditions without the damage
-
-Downside - What if they changed...Also need E2E tests
+Why network - Not replacing any code with a version that is not deployed to production, simulate network failures, Analogue - Simulator, like fighting combats - . How it works - Replace HTTP client
+What if they changed - Need some E2E
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox environments &nbsp; ❌;
+👀 &nbsp; **Alternatives:** Fake servers, out of process, hard to set during the test &nbsp; ❌; Sandbox environments;  &nbsp; ❌;
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1023,7 +1017,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzNDI4MzIwNywtOTM5Njk4NDg5LC0xMz
+eyJoaXN0b3J5IjpbMTAwNDgzNjQ3MCwtOTM5Njk4NDg5LC0xMz
 c2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgzNTcwLDEwMDI4NjE2
 NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3NiwtMjA2MTUzMzA0My
 wxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OCwtMTU1
