@@ -285,7 +285,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
+:white_check_mark:  **Do:** To encourage developers running the tests continously, it's imperative to tune-up for very quickOn the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
 
 <br/>
 
@@ -1038,11 +1038,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMT
-EwMjI0MzcxMSwxMDA3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2
-Nzk0OTAsLTEwMzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2Mz
-U4NiwxMzQxMTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwx
-NDQxMTc3Mzg3LDE3MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5Mj
-Q2MTAxLDIwMTE3MDI0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0
-MDcsNjAyNTc3OTMwXX0=
+eyJoaXN0b3J5IjpbNDU0MDU2MTk3LC0xNzU5NzQwNTc2LC0yMD
+YxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEw
+MDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MT
+ksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03
+ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNT
+g3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMzLC0xNTgwMTUwMzUy
+LC0xNTI3NzcyNDA3XX0=
 -->
