@@ -415,7 +415,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic #basic`
 
-:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator HTTP API won't get hit. Nock is a great tool for this mission as it provide a convenient syntax for defining external services behaviour. Isolation is a must to prevent noise and slow-performance but mostly to simulate various scenario and responses - A good flight simulator is not about painting clear blue sky rather bringing safe storms and chaos. This is re-infornced in a Microservice architecture where the focus should always be on a single component without involvign the rest of the world. Though it's possible to simulate external service behaviour using test doubles (mocking), it's preferable not to touch the deployed code and act on the network level to keep the tests a pure black-box tests. The downside of isolation is not detecting when the collaborator component changes and not realizing misunderstandings between the two services - Make sure to compensate for this using a few contract or E2E tests
+:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator HTTP API won't get hit. Nock is a great tool for this mission as it provides a convenient syntax for defining external services behavior. Isolation is a must to prevent noise and slow performance but mostly to simulate various scenarios and responses - A good flight simulator is not about painting clear blue sky rather bringing safe storms and chaos. This is reinforced in a Microservice architecture where the focus should always be on a single component without involving the rest of the world. Though it's possible to simulate external service behavior using test doubles (mocking), it's preferable not to touch the deployed code and act on the network level to keep the tests pure black-box. The downside of isolation is not detecting when the collaborator component changes and not realizing misunderstandings between the two services - Make sure to compensate for this using a few contract or E2E tests
 
 <br/>
 
@@ -998,11 +998,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1Mj
-MzNDA4LDEwMDQ4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4
-NiwxMDk4ODk0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMz
-E0MzYwODcsLTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMTEwMjI0
-MzcxMSwxMDA3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OT
-AsLTEwMzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4Niwx
-MzQxMTc3ODY2XX0=
+eyJoaXN0b3J5IjpbLTIwMzQzNTU4NDgsMjE0Mjk0ODAwLDc0MD
+U3MjU4NiwtNjU1MjMzNDA4LDEwMDQ4MzY0NzAsLTkzOTY5ODQ4
+OSwtMTM3NjM3NzM4NiwxMDk4ODk0NjI4LDIxMzc4MzU3MCwxMD
+AyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1NzYsLTIwNjE1
+MzMwNDMsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLDExNTU3MTAwNj
+gsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEzMjMwNjkxOSwt
+MTgwMzY2MzU4Nl19
 -->
