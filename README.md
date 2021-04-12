@@ -290,25 +290,15 @@ services:
 <br/>
 
 
-👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continous-testing experience.  ❌;   
+👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continous-testing experience ❌;   
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-
+// Put teardown code that shows how we check for CI
+```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
   
@@ -323,9 +313,7 @@ services:
 
 :white_check_mark:  **Do:** Avoid fake DBs, it brings noise, loosen the DB durability settings to gain performance boost, for example {something}, show numbers,
 
-
 <br/>
-
 
 👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
 
@@ -1038,7 +1026,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzNzMwNzEzNywtMTc1OTc0MDU3NiwtMj
+eyJoaXN0b3J5IjpbMTEzMTQzNjA4NywtMTc1OTc0MDU3NiwtMj
 A2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcx
 MDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OT
 E5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwt
