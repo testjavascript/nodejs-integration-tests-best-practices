@@ -384,9 +384,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered, should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, 
-
-As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
+:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered, should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated but will maximize the tests start-up time and only demand from developers to execute the migrations
 
 Use npm script for this, migration is like the production mechanism. Use this for metadata only, see the bullet 'Each test act on dedicated DB rows'
 
@@ -1030,11 +1028,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNDI4NzY4ODUsMTA5ODg5NDYyOCwyMT
-M3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQw
-NTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MS
-wxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDEx
-MzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mj
-k2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2
-LC00ODEwNTg3MTRdfQ==
+eyJoaXN0b3J5IjpbMTQ3NDI5ODMxLDEwOTg4OTQ2MjgsMjEzNz
+gzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3
+NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMT
+E1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMy
+MzA2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Nj
+k0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwt
+NDgxMDU4NzE0XX0=
 -->
