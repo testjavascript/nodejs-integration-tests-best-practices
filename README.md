@@ -415,7 +415,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic #basic`
 
-:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator component won't get hit. Nock is a great tool for this mission as it provide a convenient syntax to define external services behaviour. Isolation is a must to prevent noise and slow-performance but mostly 
+:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator component won't get hit. Nock is a great tool for this mission as it provide a convenient syntax to define external services behaviour. Isolation is a must to prevent noise and slow-performance but mostly to simulate various scenario and responses - A good flight simulator is not about painting clear blue sky rather bringing storms and chaos. This is re
 
 Why isolate - Noise, performance but mostly isolation. If doing Microservice, goes against. A good flight simulator is
 Why network - Not replacing any code with a version that is not deployed to production, simulate network failures, Analogue - Simulator, like fighting combats - . How it works - Replace HTTP client
@@ -1002,7 +1002,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE2MDMyMzg1MywxMDA0ODM2NDcwLC05Mz
+eyJoaXN0b3J5IjpbMTY2Mjg2NzkwMSwxMDA0ODM2NDcwLC05Mz
 k2OTg0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1
 NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC
 0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1
