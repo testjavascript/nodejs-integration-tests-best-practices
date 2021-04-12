@@ -436,13 +436,11 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Typically one wishes to define *default* responses to HTTP requests and might need to override with custom behaviour for specific tests (i.e. simulate some specific response). Define the default HTTP responses inside the hook that is executed before each test (Jest - beforeEach, Mocha - before), clean-up after every test. Why? This way, every test will face the default behaviour and not some custom and surprising behaviour that was defined by the previous test. You  might see a minor performance degragation since the HTTP requests are being redefined per test - Fear no, we have benchmarked this and found that the cost is 1ms per test
-
-Downside - This of course will cost some performance, we measured 1ms
+:white_check_mark:  **Do:** Typically one wishes to define *default* responses to HTTP requests and might need to override with custom behaviour for specific tests (i.e. simulate some specific response). Define the default HTTP responses inside the hook that is executed before each test (Jest - beforeEach, Mocha - before), clean-up after every test. Why? This way, every test will face the default behaviour and not some custom and surprising behaviour that was defined by the previous test. You  might see a minor performance degragation since the HTTP requests are being redefined per test - We have benchmarked this and found that the cost is 1ms per test
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** You might use [nock persist](https://github.com/nock/nock#persist) behaviour which make the  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -986,11 +984,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTM2MjQ1ODYyLDUyMzA1OTE4LC05MDQ4Nz
-M2MjMsMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEw
-MDQ4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4OD
-k0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcs
-LTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMD
-A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
-ODU1MDBdfQ==
+eyJoaXN0b3J5IjpbLTk5OTc2MTYzOSw1MjMwNTkxOCwtOTA0OD
+czNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYsLTY1NTIzMzQwOCwx
+MDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNzYzNzczODYsMTA5OD
+g5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3
+LC0xNzU5NzQwNTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMT
+AwNzc0MjI2MSwxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0
+MTg1NTAwXX0=
 -->
