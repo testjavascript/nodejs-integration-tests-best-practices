@@ -384,7 +384,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** While there are various way to build the DB tables, the technique that is used in production is always preferred.
+:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered, should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful s
 
 As part of initializing the DB (via docker-compose) run the data migration. Since this is a time consuming operation - Run this only in CI or if an explicit environment variable was specified. To allow developers to migrate in a development environment, create a dedicated test command which includes the environment variable flag
 
@@ -1030,11 +1030,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMj
-g2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMz
-MDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEwMDY4LC
-0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4
-MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Nj
-c3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQs
-LTk0OTI0NjEwMV19
+eyJoaXN0b3J5IjpbLTE5NTM0NTA0NDQsMTA5ODg5NDYyOCwyMT
+M3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQw
+NTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MS
+wxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDEx
+MzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mj
+k2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2
+LC00ODEwNTg3MTRdfQ==
 -->
