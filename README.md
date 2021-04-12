@@ -419,7 +419,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some services provide a fake version that can be deployed by the caller locally, usually using Docker - This will ease the setup and boos &nbsp; ❌; Sandbox environments;  &nbsp; ❌;
+👀 &nbsp; **Alternatives:** Some services provide a fake version that can be deployed by the caller locally, usually using Docker - This will ease the setup and boost the performance but won't help with simulating various responses &nbsp; ❌; Some services provide 'sandbox' environment so the real service is hit but no costs or side effects are ;  &nbsp; ❌;
 
 <br/>
 
@@ -998,11 +998,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNDk5MDcyNDEsMTAwNDgzNjQ3MCwtOT
-M5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgz
-NTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3Ni
-wtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1
-NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMz
-A2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0
-OCwtNzg2OTY3Nzg5XX0=
+eyJoaXN0b3J5IjpbLTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mz
+k2OTg0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1
+NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC
+0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1
+NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMD
+Y5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4
+LC03ODY5Njc3ODldfQ==
 -->
