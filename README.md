@@ -434,9 +434,14 @@ services:
 
 ### ⚪️ 2.  Define default responses before every test to ensure a clean slate
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
+:white_check_mark:  **Do:** 
+
+Simple - Redefine expected net behaviour in beforeEach to ensure there is no messy state
+
+
+What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
 
 Downside: performance penalty, we measured 1ms. 
 
@@ -998,11 +1003,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwNDg3MzYyMywyMTQyOTQ4MDAsNzQwNT
-cyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3MCwtOTM5Njk4NDg5
-LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgzNTcwLDEwMD
-I4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3NiwtMjA2MTUz
-MzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OC
-wtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OTE5LC0x
-ODAzNjYzNTg2XX0=
+eyJoaXN0b3J5IjpbLTE1NDQ3NDY1MjUsLTkwNDg3MzYyMywyMT
+QyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3
+MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMj
+EzNzgzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0
+MDU3NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNj
+EsMTE1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwx
+MTMyMzA2OTE5XX0=
 -->
