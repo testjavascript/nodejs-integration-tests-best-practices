@@ -255,7 +255,7 @@ services:
 
 ### ⚪️ 2. Start docker-compose using code in the global setup process
 
-🏷&nbsp; **Tags:** `#strategic, #draft`
+🏷&nbsp; **Tags:** `#strategic
 
 :white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures)  using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
 
@@ -269,17 +269,7 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -1047,7 +1037,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3Mjk3MjcyOCwtMjA2MTUzMzA0MywxMT
+eyJoaXN0b3J5IjpbMTI0MTM1NDU2OCwtMjA2MTUzMzA0MywxMT
 AyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OCwtMTU1NjY3
 OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNT
 g2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0
