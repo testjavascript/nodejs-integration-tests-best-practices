@@ -285,7 +285,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers` machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion. Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower. 
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers` machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion. Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower. Keeping the DB alive requires clean-up strategy
 
 This careful tune-up is mostly important in a developer machine where the test might get executed frequently, in a CI environement the docker-compose should be stopped after every execution. 
 
@@ -1042,7 +1042,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjg0MDUzNDI3LC0xNzU5NzQwNTc2LC0yMD
+eyJoaXN0b3J5IjpbNTEwNDYxNjA2LC0xNzU5NzQwNTc2LC0yMD
 YxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEw
 MDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MT
 ksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03
