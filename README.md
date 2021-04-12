@@ -384,11 +384,11 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration (or tests with migrations) but will maximize the tests start time. Note that migration is used to build the schema and potentially also some metadata - But not the tests data itself (See bulle
+:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration (or tests with migrations) but will maximize the tests start time. Note that migration is used to build the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Use ORM sync - Important piece, migration, is left untested ❌;  Migrate all the time with local disc check (without DB call)
+👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that build the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌;  Migrate all the time with local disc check (without DB call)
 
 <br/>
 
@@ -1026,11 +1026,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI2NzAyOTM2NiwxMDk4ODk0NjI4LDIxMz
-c4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1
-NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLD
-ExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEz
-MjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUyOT
-Y5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYs
-LTQ4MTA1ODcxNF19
+eyJoaXN0b3J5IjpbMzMyODYwNzU0LDEwOTg4OTQ2MjgsMjEzNz
+gzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3
+NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMT
+E1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMy
+MzA2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Nj
+k0OCwtNzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwt
+NDgxMDU4NzE0XX0=
 -->
