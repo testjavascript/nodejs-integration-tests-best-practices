@@ -415,10 +415,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic #basic`
 
-:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator HTTP API won't get hit. Nock is a great tool for this mission as it provide a convenient syntax for defining external services behaviour. Isolation is a must to prevent noise and slow-performance but mostly to simulate various scenario and responses - A good flight simulator is not about painting clear blue sky rather bringing storms and chaos. This is re-infornced in a Microservice architecture where the focus should always be on a single component without involvign the rest of the world. Though it's possible to simulate external service behaviour using test doubles (mocking), it's preferable not to touch the deployed code and onl
-
-Why network - Not replacing any code with a version that is not deployed to production, simulate network failures, Analogue - Simulator, like fighting combats - . How it works - Replace HTTP client
-What if they changed - Need some E2E
+:white_check_mark:  **Do:** Isolate the component under test by intercepting any outgoing HTTP request and providing the desired response so the collaborator HTTP API won't get hit. Nock is a great tool for this mission as it provide a convenient syntax for defining external services behaviour. Isolation is a must to prevent noise and slow-performance but mostly to simulate various scenario and responses - A good flight simulator is not about painting clear blue sky rather bringing storms and chaos. This is re-infornced in a Microservice architecture where the focus should always be on a single component without involvign the rest of the world. Though it's possible to simulate external service behaviour using test doubles (mocking), it's preferable not to touch the deployed code and act on the network level to keep the tests a pure black-box tests. 
 
 <br/>
 
@@ -1001,11 +998,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNjAzMDgwNzQsMTAwNDgzNjQ3MCwtOT
-M5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgz
-NTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3Ni
-wtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1
-NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMz
-A2OTE5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0
-OCwtNzg2OTY3Nzg5XX0=
+eyJoaXN0b3J5IjpbLTE1MTg4NTQ5MywxMDA0ODM2NDcwLC05Mz
+k2OTg0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1
+NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC
+0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1
+NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMD
+Y5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4
+LC03ODY5Njc3ODldfQ==
 -->
