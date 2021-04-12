@@ -892,7 +892,7 @@ services:
 
 ### ⚪️ 5.  Test types when the value is unknown
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic, #draft`gg
 
 :white_check_mark:  **Do:** Sometime the response contains important fields with dynamic data, like a date or incrementing number. Can't check specific value but still it's important to ensure that the right thing was returned - Check not only that the field is not null rather have the right type. Jest and Sinon allows checking entire objects schema.
 
@@ -1047,11 +1047,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMD
-A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
-ODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3OD
-Y2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3
-MzE3MDYwMzYsLTQ4MTA1ODcxNCwtOTQ5MjQ2MTAxLDIwMTE3MD
-I0MzMsLTE1ODAxNTAzNTIsLTE1Mjc3NzI0MDcsNjAyNTc3OTMw
-XX0=
+eyJoaXN0b3J5IjpbLTY3Mjk3MjcyOCwtMjA2MTUzMzA0MywxMT
+AyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OCwtMTU1NjY3
+OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNT
+g2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0
+NDExNzczODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyND
+YxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1MiwtMTUyNzc3MjQw
+Nyw2MDI1Nzc5MzBdfQ==
 -->
