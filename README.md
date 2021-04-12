@@ -439,13 +439,8 @@ services:
 :white_check_mark:  **Do:** 
 
 Simple - Redefine expected net behaviour in beforeEach to ensure there is no messy state
-
-
-What are global default responses, define in beforeEach, cleanup in afterEach. This ensure that if something was overriden, the next test doesn't suffer. One place to see all defaults.
-
-Downside: performance penalty, we measured 1ms. 
-
-How to override, see bullet...
+Why - Sometimes test override the defaults and leave messy state + See all in one place
+Downside - This of course will cost some performance, we measured 1ms
 
 <br/>
 
@@ -1003,7 +998,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDQ3NDY1MjUsLTkwNDg3MzYyMywyMT
+eyJoaXN0b3J5IjpbLTE4OTM0MjQ1MjUsLTkwNDg3MzYyMywyMT
 QyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3
 MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMj
 EzNzgzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0
