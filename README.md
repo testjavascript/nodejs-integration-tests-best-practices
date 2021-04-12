@@ -317,6 +317,8 @@ services:
 
 👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
 
+
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1026,11 +1028,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzMTQzNjA4NywtMTc1OTc0MDU3NiwtMj
-A2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcx
-MDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OT
-E5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwt
-Nzg2OTY3Nzg5LDE0NDExNzczODcsMTczMTcwNjAzNiwtNDgxMD
-U4NzE0LC05NDkyNDYxMDEsMjAxMTcwMjQzMywtMTU4MDE1MDM1
-MiwtMTUyNzc3MjQwN119
+eyJoaXN0b3J5IjpbMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNz
+U5NzQwNTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0
+MjI2MSwxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NT
+AwLDExMzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2Niwx
+MTI1Mjk2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNz
+A2MDM2LC00ODEwNTg3MTQsLTk0OTI0NjEwMSwyMDExNzAyNDMz
+LC0xNTgwMTUwMzUyXX0=
 -->
