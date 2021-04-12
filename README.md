@@ -436,7 +436,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** 
+:white_check_mark:  **Do:** Define the HTTP re
 
 Simple - Redefine expected net behaviour in beforeEach to ensure there is no messy state
 Why - Sometimes test override the defaults and leave messy state + See all in one place
@@ -988,11 +988,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTIzMDU5MTgsLTkwNDg3MzYyMywyMTQyOT
-Q4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3MCwt
-OTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNz
-gzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3
-NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMT
-E1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMy
-MzA2OTE5XX0=
+eyJoaXN0b3J5IjpbLTUzOTcyMjgxLDUyMzA1OTE4LC05MDQ4Nz
+M2MjMsMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEw
+MDQ4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4OD
+k0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcs
+LTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMD
+A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
+ODU1MDBdfQ==
 -->
