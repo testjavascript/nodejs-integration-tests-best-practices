@@ -382,7 +382,7 @@ services:
 
 ### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
 
-🏷&nbsp; **Tags:** `#performance, #draft`
+🏷&nbsp; **Tags:** `#performance`
 
 :white_check_mark:  **Do:** While there are various way to build the DB tables, the technique that is used in production is always preferred.
 
@@ -1030,11 +1030,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzNzgzNTcwLDEwMDI4NjE2NTksMTEzMT
-QzNjA4NywtMTc1OTc0MDU3NiwtMjA2MTUzMzA0MywxMTAyMjQz
-NzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OCwtMTU1NjY3OTQ5MC
-wtMTAzNDE4NTUwMCwxMTMyMzA2OTE5LC0xODAzNjYzNTg2LDEz
-NDExNzc4NjYsMTEyNTI5Njk0OCwtNzg2OTY3Nzg5LDE0NDExNz
-czODcsMTczMTcwNjAzNiwtNDgxMDU4NzE0LC05NDkyNDYxMDEs
-MjAxMTcwMjQzM119
+eyJoaXN0b3J5IjpbMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMj
+g2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMz
+MDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEwMDY4LC
+0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4
+MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Nj
+c3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2LC00ODEwNTg3MTQs
+LTk0OTI0NjEwMV19
 -->
