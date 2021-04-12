@@ -415,7 +415,12 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic #basic, #draft`
 
-:white_check_mark:  **Do:** On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
+:white_check_mark:  **Do:** 
+
+Simple - Isolate what you deploy
+Why isolate - Noise, performance and isolation
+
+On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
 
 Goes against the Microservice idea, not big bang
 
@@ -1017,11 +1022,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMT
-M3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQw
-NTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MS
-wxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDEx
-MzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mj
-k2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2
-LC00ODEwNTg3MTRdfQ==
+eyJoaXN0b3J5IjpbLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMD
+k4ODk0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYw
+ODcsLTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMS
+wxMDA3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEw
+MzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMT
+c3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3
+LDE3MzE3MDYwMzZdfQ==
 -->
