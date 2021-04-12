@@ -448,19 +448,9 @@ Downside - This of course will cost some performance, we measured 1ms
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+// Show before and after each
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -998,11 +988,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4OTM0MjQ1MjUsLTkwNDg3MzYyMywyMT
-QyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3
-MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMj
-EzNzgzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0
-MDU3NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNj
-EsMTE1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwx
-MTMyMzA2OTE5XX0=
+eyJoaXN0b3J5IjpbNTIzMDU5MTgsLTkwNDg3MzYyMywyMTQyOT
+Q4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3MCwt
+OTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNz
+gzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3
+NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMT
+E1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMy
+MzA2OTE5XX0=
 -->
