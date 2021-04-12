@@ -413,12 +413,13 @@ services:
 
 ### ⚪️ 1.  Isolate the component from the world using HTTP interceptor
 
-🏷&nbsp; **Tags:** `#strategic #basic, #draft`
+🏷&nbsp; **Tags:** `#strategic #basic`
 
 :white_check_mark:  **Do:** 
 
 Simple - Isolate what you deploy
-Why isolate - Noise, performance and isolation
+Why isolate - Noise, performance but mostly isolation
+Why network - Not re
 
 On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
 
@@ -1022,11 +1023,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMD
-k4ODk0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYw
-ODcsLTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMS
-wxMDA3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEw
-MzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMT
-c3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3
-LDE3MzE3MDYwMzZdfQ==
+eyJoaXN0b3J5IjpbLTE3ODU5MzI0MzQsLTkzOTY5ODQ4OSwtMT
+M3NjM3NzM4NiwxMDk4ODk0NjI4LDIxMzc4MzU3MCwxMDAyODYx
+NjU5LDExMzE0MzYwODcsLTE3NTk3NDA1NzYsLTIwNjE1MzMwND
+MsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLDExNTU3MTAwNjgsLTE1
+NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMz
+Y2MzU4NiwxMzQxMTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4
+OSwxNDQxMTc3Mzg3XX0=
 -->
