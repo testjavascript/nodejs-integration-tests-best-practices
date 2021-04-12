@@ -421,7 +421,7 @@ Goes against the Microservice idea, not big bang
 
 Analogue - Simulator, like fighting combats - Practice the outside conditions without the damage
 
-Downside - What if they changed...
+Downside - What if they changed...Also need E2E tests
 
 <br/>
 
@@ -1017,11 +1017,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY4MDE0NDMzMCwxMDk4ODk0NjI4LDIxMz
-c4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1
-NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLD
-ExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEz
-MjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUyOT
-Y5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYs
-LTQ4MTA1ODcxNF19
+eyJoaXN0b3J5IjpbLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMT
+M3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQw
+NTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MS
+wxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDEx
+MzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mj
+k2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2
+LC00ODEwNTg3MTRdfQ==
 -->
