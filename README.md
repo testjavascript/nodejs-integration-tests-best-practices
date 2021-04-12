@@ -440,7 +440,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** You might use [nock persist](https://github.com/nock/nock#persist) behaviour which make the  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** It's possible to define the HTTP responses once in the before-all hook, in this case should soe test intentionally or mistakenly override the behaviour - It will affect all the tests ❌ &nbsp; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -984,7 +984,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5OTc2MTYzOSw1MjMwNTkxOCwtOTA0OD
+eyJoaXN0b3J5IjpbMTM1MjUzMjc4Nyw1MjMwNTkxOCwtOTA0OD
 czNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYsLTY1NTIzMzQwOCwx
 MDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNzYzNzczODYsMTA5OD
 g5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3
