@@ -417,9 +417,9 @@ services:
 
 :white_check_mark:  **Do:** 
 
-Simple - Isolate what you deploy
+Simple - Isolate what you deploy, nock
 Why isolate - Noise, performance but mostly isolation
-Why network - Not re
+Why network - Not replacing any code with a version that is not deployed to production, simulate netw
 
 On the existence of collaborator services, they make high impact on logic and resilliency. We want to simulate all the complexity they bring without paying the price (slow, noisy, hard to reproduce). We can put a util that fakes the response, it works by replacing node's http client. In any case, don't allow calls outside, 
 
@@ -1023,11 +1023,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODU5MzI0MzQsLTkzOTY5ODQ4OSwtMT
-M3NjM3NzM4NiwxMDk4ODk0NjI4LDIxMzc4MzU3MCwxMDAyODYx
-NjU5LDExMzE0MzYwODcsLTE3NTk3NDA1NzYsLTIwNjE1MzMwND
-MsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLDExNTU3MTAwNjgsLTE1
-NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEzMjMwNjkxOSwtMTgwMz
-Y2MzU4NiwxMzQxMTc3ODY2LDExMjUyOTY5NDgsLTc4Njk2Nzc4
-OSwxNDQxMTc3Mzg3XX0=
+eyJoaXN0b3J5IjpbNTQyOTMwMzIzLC05Mzk2OTg0ODksLTEzNz
+YzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1
+OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMzMDQzLD
+ExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEwMDY4LC0xNTU2
+Njc5NDkwLC0xMDM0MTg1NTAwLDExMzIzMDY5MTksLTE4MDM2Nj
+M1ODYsMTM0MTE3Nzg2NiwxMTI1Mjk2OTQ4LC03ODY5Njc3ODks
+MTQ0MTE3NzM4N119
 -->
