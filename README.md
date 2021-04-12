@@ -285,7 +285,9 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Keep the database and other infrastructure always alive so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and make them a codin  If the DB is already alive, On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers` machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion. Should you shut-off the docker-compose and restart in every tests execution, the startup time is likely  
+
+If the DB is already alive, On the performance gain while keeping up in dev environment, what about cleaning data (other bullet), show numbers, an emotional sentence why it's so fun to get feedback while writing. CI is the same, just cold start
 
 <br/>
 
@@ -1038,7 +1040,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5MjczMTM2NywtMTc1OTc0MDU3NiwtMj
+eyJoaXN0b3J5IjpbLTEwNjQ5MTY2MywtMTc1OTc0MDU3NiwtMj
 A2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcx
 MDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMyMzA2OT
 E5LC0xODAzNjYzNTg2LDEzNDExNzc4NjYsMTEyNTI5Njk0OCwt
