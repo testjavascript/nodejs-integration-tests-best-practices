@@ -388,7 +388,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that build the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌;  Migrate all the time with local disc check (without DB call)
+👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that build the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌;  Some migration frameworks allow checking for newer version by looking at local files which is way faster, this is a viable option ✅;
 
 <br/>
 
@@ -1026,7 +1026,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzMyODYwNzU0LDEwOTg4OTQ2MjgsMjEzNz
+eyJoaXN0b3J5IjpbOTkxNDk5MDk0LDEwOTg4OTQ2MjgsMjEzNz
 gzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3
 NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIyNjEsMT
 E1NTcxMDA2OCwtMTU1NjY3OTQ5MCwtMTAzNDE4NTUwMCwxMTMy
