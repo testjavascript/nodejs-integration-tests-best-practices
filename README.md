@@ -436,7 +436,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Typically one wishes to define *default* responses to HTTP requests and might need to override with custom behaviour for specific tests. Define the default HTTP responses inside the hook that is executed before each test (Jest - beforeEach, Mocha - before), clean-up after every test. Why? This way, every test will face the default behaviour and not some custom and surprising behaviour that was defined by previous test. This will heart the performance sin
+:white_check_mark:  **Do:** Typically one wishes to define *default* responses to HTTP requests and might need to override with custom behaviour for specific tests (i.e. simulate some specific response . Define the default HTTP responses inside the hook that is executed before each test (Jest - beforeEach, Mocha - before), clean-up after every test. Why? This way, every test will face the default behaviour and not some custom and surprising behaviour that was defined by previous test. Since the
 
 Downside - This of course will cost some performance, we measured 1ms
 
@@ -986,7 +986,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODM3MTgzNzcsNTIzMDU5MTgsLTkwND
+eyJoaXN0b3J5IjpbLTE4Mjk4MjEwOTAsNTIzMDU5MTgsLTkwND
 g3MzYyMywyMTQyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgs
 MTAwNDgzNjQ3MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOT
 g4OTQ2MjgsMjEzNzgzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4
