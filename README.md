@@ -384,7 +384,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated but will maximize the tests start-up time and only demand from developers to fix the failure by executing the migrations
+:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration (or tests with migrations) but will maximize the tests start time. Note that migration is used to build the schema and potentially also some metadata - But not the tests data itself (See bulle
 
 <br/>
 
@@ -1026,11 +1026,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NjY5Mzg4MzgsMTA5ODg5NDYyOCwyMT
-M3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQw
-NTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MS
-wxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0MTg1NTAwLDEx
-MzIzMDY5MTksLTE4MDM2NjM1ODYsMTM0MTE3Nzg2NiwxMTI1Mj
-k2OTQ4LC03ODY5Njc3ODksMTQ0MTE3NzM4NywxNzMxNzA2MDM2
-LC00ODEwNTg3MTRdfQ==
+eyJoaXN0b3J5IjpbLTI2NzAyOTM2NiwxMDk4ODk0NjI4LDIxMz
+c4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1
+NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMDA3NzQyMjYxLD
+ExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQxODU1MDAsMTEz
+MjMwNjkxOSwtMTgwMzY2MzU4NiwxMzQxMTc3ODY2LDExMjUyOT
+Y5NDgsLTc4Njk2Nzc4OSwxNDQxMTc3Mzg3LDE3MzE3MDYwMzYs
+LTQ4MTA1ODcxNF19
 -->
