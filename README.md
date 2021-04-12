@@ -436,7 +436,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Define the HTTP requests and responses inside the hook that is executed before each test (Jest - beforeEach, Mocha - before) 
+:white_check_mark:  **Do:** Define the default HTTP requests and responses inside the hook that is executed before each test (Jest - beforeEach, Mocha - before) so every test will start with a clean slate. Often tests override some request`s behaviour, 
 
 Simple - Redefine expected net behaviour in beforeEach to ensure there is no messy state
 Why - Sometimes test override the defaults and leave messy state + See all in one place
@@ -988,11 +988,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3MjM5NjE0Myw1MjMwNTkxOCwtOTA0OD
-czNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYsLTY1NTIzMzQwOCwx
-MDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNzYzNzczODYsMTA5OD
-g5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3
-LC0xNzU5NzQwNTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3MTEsMT
-AwNzc0MjI2MSwxMTU1NzEwMDY4LC0xNTU2Njc5NDkwLC0xMDM0
-MTg1NTAwXX0=
+eyJoaXN0b3J5IjpbLTU4MjY0NDMyLDUyMzA1OTE4LC05MDQ4Nz
+M2MjMsMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEw
+MDQ4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4OD
+k0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcs
+LTE3NTk3NDA1NzYsLTIwNjE1MzMwNDMsMTEwMjI0MzcxMSwxMD
+A3NzQyMjYxLDExNTU3MTAwNjgsLTE1NTY2Nzk0OTAsLTEwMzQx
+ODU1MDBdfQ==
 -->
