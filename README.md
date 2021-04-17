@@ -37,7 +37,11 @@ This repo provides the following benefits and assets:
 
 # 6 min explainer video
 
-https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/awesome-homepage/graphics/component-tests-explainer-video.mp4
+
+https://user-images.githubusercontent.com/8571500/115119222-ef6e2b80-9faf-11eb-8fd9-60c58bbcac59.mp4
+
+
+
 
 <br/><br/><br/>
 
