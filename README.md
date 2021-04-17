@@ -19,6 +19,11 @@ This repo shows the immense power of narrow integration tests, also known as 'co
 
 TBD - The testing world is moving from pyramids to diamonds, more emphasis is being put on integration tests and for good reasons. Here to put reasons to move toward more integration tests
 
+https://user-images.githubusercontent.com/8571500/115118459-e11e1080-9fab-11eb-91d7-b8df7a1b7138.mp4
+
+
+
+
 <br/><br/><br/>
 
 # What can you find here?
