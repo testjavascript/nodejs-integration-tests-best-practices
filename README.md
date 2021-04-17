@@ -19,10 +19,6 @@ This repo shows the immense power of narrow integration tests, also known as 'co
 
 TBD - The testing world is moving from pyramids to diamonds, more emphasis is being put on integration tests and for good reasons. Here to put reasons to move toward more integration tests
 
-https://user-images.githubusercontent.com/8571500/115118459-e11e1080-9fab-11eb-91d7-b8df7a1b7138.mp4
-
-
-
 
 <br/><br/><br/>
 
@@ -35,6 +31,13 @@ This repo provides the following benefits and assets:
 **2. ✅ 40+ Best Practices List -** Detailed instructions on how to write integartiong tests in the RIGHT way including code example and reference to the example application
 
 **3. 🚀   Advanced stuff -** How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
+
+<br/><br/><br/>
+
+
+# 6 min explainer video
+
+https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/awesome-homepage/graphics/component-tests-explainer-video.mp4
 
 <br/><br/><br/>
 
