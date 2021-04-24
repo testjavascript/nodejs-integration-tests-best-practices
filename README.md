@@ -323,7 +323,8 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Others tempt to use other in-memory SQL DB like SQL-Lite that are 99% compatible - This not only bring noise but also slower.
+:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. 
+ - This not only bring noise but also slower.
 
 Avoid fake DBs, it brings noise, loosen the DB durability settings to gain performance boost, for example {something}, show numbers,
 
@@ -1000,11 +1001,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzE2OTAyMjE4LC0xODY0NTMwNzMsLTMzND
-I4NTQ1NSw1NzcyNjMxODAsNTIzMDU5MTgsLTkwNDg3MzYyMywy
-MTQyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNj
-Q3MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2Mjgs
-MjEzNzgzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OT
-c0MDU3NiwtMjA2MTUzMzA0MywxMTAyMjQzNzExLDEwMDc3NDIy
-NjFdfQ==
+eyJoaXN0b3J5IjpbLTU5MTI0MDY3OCw3MTY5MDIyMTgsLTE4Nj
+Q1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4MCw1MjMwNTkxOCwt
+OTA0ODczNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYsLTY1NTIzMz
+QwOCwxMDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNzYzNzczODYs
+MTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1OSwxMTMxND
+M2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3
+MTFdfQ==
 -->
