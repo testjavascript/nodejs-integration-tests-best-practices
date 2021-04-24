@@ -336,12 +336,13 @@ Avoid fake DBs, it brings noise, loosen the DB durability settings to gain perfo
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
 ```
+//docker-compose file
 version: "3.6"
 services:
   db:
-    image: postgres:11
+    image: postgres:13
     command: postgres
     environment:
       - POSTGRES_USER=myuser
@@ -349,6 +350,7 @@ services:
       - POSTGRES_DB=shop
     ports:
       - "5432:5432"
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -996,11 +998,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMD
-U5MTgsLTkwNDg3MzYyMywyMTQyOTQ4MDAsNzQwNTcyNTg2LC02
-NTUyMzM0MDgsMTAwNDgzNjQ3MCwtOTM5Njk4NDg5LC0xMzc2Mz
-c3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgzNTcwLDEwMDI4NjE2NTks
-MTEzMTQzNjA4NywtMTc1OTc0MDU3NiwtMjA2MTUzMzA0MywxMT
-AyMjQzNzExLDEwMDc3NDIyNjEsMTE1NTcxMDA2OCwtMTU1NjY3
-OTQ5MF19
+eyJoaXN0b3J5IjpbLTEzNjQ2OTE3MSwtMzM0Mjg1NDU1LDU3Nz
+I2MzE4MCw1MjMwNTkxOCwtOTA0ODczNjIzLDIxNDI5NDgwMCw3
+NDA1NzI1ODYsLTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mzk2OT
+g0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAs
+MTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC0yMD
+YxNTMzMDQzLDExMDIyNDM3MTEsMTAwNzc0MjI2MSwxMTU1NzEw
+MDY4XX0=
 -->
