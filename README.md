@@ -343,13 +343,15 @@ version: "3.6"
 services:
   db:
     image: postgres:13
-    command: postgres
+    container_name: 'postgres-for-testing'
+    command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
     environment:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=myuserpassword
       - POSTGRES_DB=shop
     ports:
       - "5432:5432"
+    tmpfs: /var/lib/postgresql/data
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -998,7 +1000,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNjQ2OTE3MSwtMzM0Mjg1NDU1LDU3Nz
+eyJoaXN0b3J5IjpbLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3Nz
 I2MzE4MCw1MjMwNTkxOCwtOTA0ODczNjIzLDIxNDI5NDgwMCw3
 NDA1NzI1ODYsLTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mzk2OT
 g0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAs
