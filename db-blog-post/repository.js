@@ -46,6 +46,7 @@ class TransactionManager {
 
         this.external.forEach(e => this.order.hasOne(e, { onDelete: 'CASCADE' }));
 
+        sequelize.sync();
     }
 
     repository() {

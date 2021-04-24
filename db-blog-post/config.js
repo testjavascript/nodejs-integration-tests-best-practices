@@ -1,7 +1,7 @@
 module.exports = {
   username: "myuser",
   password: "myuserpassword",
-  database: "shop",
+  database: "shoppost",
   host: "localhost",
   port: 54310,
   logging: false,
