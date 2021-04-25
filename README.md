@@ -321,7 +321,7 @@ services:
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#performance, #draft`
+🏷&nbsp; **Tags:** `#performance, #draft #Michael`
 
 :white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. 
  - This not only bring noise but also slower.
@@ -1001,11 +1001,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU5MTI0MDY3OCw3MTY5MDIyMTgsLTE4Nj
-Q1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4MCw1MjMwNTkxOCwt
-OTA0ODczNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYsLTY1NTIzMz
-QwOCwxMDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNzYzNzczODYs
-MTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1OSwxMTMxND
-M2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMzMDQzLDExMDIyNDM3
-MTFdfQ==
+eyJoaXN0b3J5IjpbLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MT
+Y5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4
+MCw1MjMwNTkxOCwtOTA0ODczNjIzLDIxNDI5NDgwMCw3NDA1Nz
+I1ODYsLTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mzk2OTg0ODks
+LTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMj
+g2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMz
+MDQzXX0=
 -->
