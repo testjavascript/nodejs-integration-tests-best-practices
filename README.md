@@ -506,7 +506,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. When a call was not explictly defined for interception - the interceptor will throw an exception and make the tests fail.  This is a safety net for outgoing calls that were overlooked and tying to hit a real external server - This will violate the component isolation, trigger flakines, and degregade performance. Remember to exclude calls to the local API under test,  that always should be hit - HTTP calls to your own API should be allowed otherwise the tests themselves will get blocked
+:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. When a call was not explictly defined for interception - the interceptor will throw an exception and make the tests fail.  This is a safety net for outgoing calls that were overlooked and tying to hit a real external server - This will violate the component isolation, trigger flakines, and degregade performance. Remember to exclude calls to the local API under test (i.e. The tests are making calls to the local API and should hit the real server). When the test and remove this restriction once the test suite is done - Other test suites might hold
 
 , protect our borders. The nock.enableNetConnect() command, remember to include localhost + port, remember to clean-up
 
@@ -996,11 +996,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExODEzMzgwODQsMTE2MzU0MTU0OSwxMz
-AxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2
-OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMj
-Y0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMy
-NzIwLDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OC
-w3MTY5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2
-MzE4MF19
+eyJoaXN0b3J5IjpbOTM3NzAyMDE2LDExNjM1NDE1NDksMTMwMT
+Y5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5Njgs
+LTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2ND
+A3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcy
+MCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNz
+E2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMx
+ODBdfQ==
 -->
