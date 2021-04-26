@@ -510,7 +510,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Trust your work, anyway likely to fail, but why  ❌ &nbsp; Periodic report
+👀 &nbsp; **Alternatives:** Trust your familiairty with the code and assume that all network calls were configured for intercerption.   ❌ &nbsp; Periodic report
 
 <br/>
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAyNjM5OTA2LDExNjM1NDE1NDksMTMwMT
-Y5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5Njgs
-LTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2ND
-A3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcy
-MCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNz
-E2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMx
-ODBdfQ==
+eyJoaXN0b3J5IjpbLTgxNzQ3MTQwMSwxMTYzNTQxNTQ5LDEzMD
+E2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsODA0OTMwOTY4
+LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5NjcyLDEyNj
+QwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LDEzMDc2MzI3
+MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkxMjQwNjc4LD
+cxNjkwMjIxOCwtMTg2NDUzMDczLC0zMzQyODU0NTUsNTc3MjYz
+MTgwXX0=
 -->
