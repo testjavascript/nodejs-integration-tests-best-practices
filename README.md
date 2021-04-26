@@ -544,7 +544,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [simple] Tests not only errored responsed with custom but also network-evel anomalies like slow and timed-out responses. Network interceptors allow [why] [spice] 
+:white_check_mark:  **Do:** [simple] Tests not only errored responsed with custom but also network-evel anomalies like slow and timed-out responses. [why] This will prove useful to ensure your code takes the right path after a timeout, th [spice] 
 
 There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. 
 
@@ -996,11 +996,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwMTY5MTA0MCw5MjUzMDAzOTUsMTY2OD
-UyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAx
-NCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OT
-k2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1Njc5
-MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC0xODY0NTMwNzMsLT
-MzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5MTgsLTkwNDg3MzYy
-M119
+eyJoaXN0b3J5IjpbLTEwMTQ2NjAxMzQsMTMwMTY5MTA0MCw5Mj
+UzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4
+MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNj
+A1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEz
+OTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC
+0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5
+MThdfQ==
 -->
