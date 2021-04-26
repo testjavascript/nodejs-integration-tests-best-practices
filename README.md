@@ -325,8 +325,6 @@ services:
 
 :white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the completeness of the integration tests by excluding the DB from the test. Optimized DB is almost fast for example {something}, show numbers,
 
-<br/>
-
 👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
 
 
@@ -359,7 +357,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because
+:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
 
 <br/>
 
@@ -993,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNj
-E1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC0xODY0NTMw
-NzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5MTgsLTkwND
-g3MzYyMywyMTQyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgs
-MTAwNDgzNjQ3MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOT
-g4OTQ2MjgsMjEzNzgzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4
-N119
+eyJoaXN0b3J5IjpbMTE2NzU4NjMwMCwxMzA3NjMyNzIwLDE1OD
+I2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5MDIy
+MTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4MCw1Mj
+MwNTkxOCwtOTA0ODczNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYs
+LTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNz
+YzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1
+OV19
 -->
