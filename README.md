@@ -544,7 +544,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. 
+:white_check_mark:  **Do:** [simple] [why] [] There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. 
 
 <br/>
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI1MzAwMzk1LDE2Njg1MjE3NzIsODA0OT
-MwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5Njcy
-LDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LDEzMD
-c2MzI3MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkxMjQw
-Njc4LDcxNjkwMjIxOCwtMTg2NDUzMDczLC0zMzQyODU0NTUsNT
-c3MjYzMTgwLDUyMzA1OTE4LC05MDQ4NzM2MjMsMjE0Mjk0ODAw
-XX0=
+eyJoaXN0b3J5IjpbLTUwODAwMzU3NSw5MjUzMDAzOTUsMTY2OD
+UyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAx
+NCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OT
+k2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1Njc5
+MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC0xODY0NTMwNzMsLT
+MzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5MTgsLTkwNDg3MzYy
+M119
 -->
