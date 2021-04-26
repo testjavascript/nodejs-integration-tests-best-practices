@@ -506,7 +506,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] Tell network interceptor to not allow real HTTP requests outside [Why] Without this, forgotten calls might hit real servers and violate the component isolation - flakines, performance and non-tested terriroty [Spice] 
+:white_check_mark:  **Do:** [Simple] Tell network interceptor to not allow real HTTP requests outside [Why] Without this, forgotten calls might hit real servers and violate the component isolation - flakines, performance and non-tested terriroty [Spice] One exception must be concluded - HTTP calls to your API
 
 Having all nocks defined doesn't guarantee, protect our borders. The nock.enableNetConnect() command, remember to include localhost + port, remember to clean-up
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Nj
-g3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUz
-NiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNT
-gyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAy
-MjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNT
-IzMDU5MTgsLTkwNDg3MzYyMywyMTQyOTQ4MDAsNzQwNTcyNTg2
-XX0=
+eyJoaXN0b3J5IjpbLTEzNzE2MzM4NTAsMTY2ODUyMTc3Miw4MD
+Q5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2
+NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMT
+MwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEy
+NDA2NzgsNzE2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NS
+w1NzcyNjMxODAsNTIzMDU5MTgsLTkwNDg3MzYyMywyMTQyOTQ4
+MDBdfQ==
 -->
