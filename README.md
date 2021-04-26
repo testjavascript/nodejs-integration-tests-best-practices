@@ -510,7 +510,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Trust your familiairty with the code and assume that all network calls were configured for intercerption. This dictates that any developer that will put HTTP call in the code will remember to update the testing configuration - Isn't this a fragile assumption?   ❌ &nbsp; Periodic report
+👀 &nbsp; **Alternatives:** Trust your familiairty with the code and assume that all network calls were configured for intercerption. This dictates that any developer that will put HTTP call in the code will remember to update the testing configuration - Isn't this a fragile assumption?   ❌ &nbsp; Some interceptor tools allow recording and inspecting the traffic - This is a good information (see bullet) to review periodically but not an ongoing guard ❌
 
 <br/>
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODQzMDcyNjcsMTE2MzU0MTU0OSwxMz
-AxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2
-OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMj
-Y0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMy
-NzIwLDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OC
-w3MTY5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2
-MzE4MF19
+eyJoaXN0b3J5IjpbLTc0NTQxMDc1LDExNjM1NDE1NDksMTMwMT
+Y5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5Njgs
+LTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2ND
+A3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcy
+MCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNz
+E2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMx
+ODBdfQ==
 -->
