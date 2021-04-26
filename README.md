@@ -368,19 +368,17 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
 ```
+//docker-compose file
 version: "3.6"
 services:
   db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+    image: postgres:13
+    container_name: 'postgres-for-testing'
+    tmpfs: /var/lib/postgresql/data
+    ...
+```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
 )
@@ -993,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LDEzMD
-c2MzI3MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkxMjQw
-Njc4LDcxNjkwMjIxOCwtMTg2NDUzMDczLC0zMzQyODU0NTUsNT
-c3MjYzMTgwLDUyMzA1OTE4LC05MDQ4NzM2MjMsMjE0Mjk0ODAw
-LDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEwMDQ4MzY0NzAsLTkzOT
-Y5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4ODk0NjI4LDIxMzc4MzU3
-MF19
+eyJoaXN0b3J5IjpbLTE0NjY2MjY2NjcsLTYwNTQ4NTk5LC0xND
+k5Njg1MzA5LDEzMDc2MzI3MjAsMTU4MjYxMzkxNCwtMTYxNTY3
+OTEwMCwtNTkxMjQwNjc4LDcxNjkwMjIxOCwtMTg2NDUzMDczLC
+0zMzQyODU0NTUsNTc3MjYzMTgwLDUyMzA1OTE4LC05MDQ4NzM2
+MjMsMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEwMD
+Q4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4ODk0
+NjI4XX0=
 -->
