@@ -550,7 +550,7 @@ There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial r
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Avoid testing this will result in unneccessary failures  ❌ &nbsp; ; 
+👀 &nbsp; **Alternatives:** Given a gene  ❌ &nbsp; ; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -996,7 +996,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDE5NDQ1ODIsMTMwMTY5MTA0MCw5Mj
+eyJoaXN0b3J5IjpbLTE1ODQ5NDg3MzAsMTMwMTY5MTA0MCw5Mj
 UzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4
 MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNj
 A1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEz
