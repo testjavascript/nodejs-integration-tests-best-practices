@@ -544,9 +544,9 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [simple] Tests not only errored responsed with custom but also network-evel anomalies like slow and timed-out responses. [why] This will prove useful to ensure your code takes the right path after a timeout, that a circuit breaker is configured well, no race conditions, [spice] 
+:white_check_mark:  **Do:** [simple] Tests not only errored responsed with custom but also network-evel anomalies like slow and timed-out responses. [why] This will prove useful to ensure your code takes the right path after a timeout, that a circuit breaker is configured well, no race conditions, [spice] Tools like nock are smart enough to realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
 
-There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. 
+There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. Resiiliencey;
 
 <br/>
 
@@ -996,11 +996,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2NDI2ODUzLDEzMDE2OTEwNDAsOTI1Mz
-AwMzk1LDE2Njg1MjE3NzIsODA0OTMwOTY4LC0xOTY4NzM3ODE1
-LDEyMjU4MzgwMTQsMTIwNDQ5NjcyLDEyNjQwNzY1MzYsLTYwNT
-Q4NTk5LC0xNDk5Njg1MzA5LDEzMDc2MzI3MjAsMTU4MjYxMzkx
-NCwtMTYxNTY3OTEwMCwtNTkxMjQwNjc4LDcxNjkwMjIxOCwtMT
-g2NDUzMDczLC0zMzQyODU0NTUsNTc3MjYzMTgwLDUyMzA1OTE4
-XX0=
+eyJoaXN0b3J5IjpbLTE1MDE5NDQ1ODIsMTMwMTY5MTA0MCw5Mj
+UzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4
+MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNj
+A1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEz
+OTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC
+0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5
+MThdfQ==
 -->
