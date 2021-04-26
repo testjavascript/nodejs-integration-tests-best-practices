@@ -550,7 +550,7 @@ There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial r
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Given a gene  ❌ &nbsp; ; 
+👀 &nbsp; **Alternatives:** Given a generic HTTP client utility - This can be tetsed only once  ❌ &nbsp; ; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -996,11 +996,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODQ5NDg3MzAsMTMwMTY5MTA0MCw5Mj
-UzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4
-MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNj
-A1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEz
-OTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC
-0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5
-MThdfQ==
+eyJoaXN0b3J5IjpbMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNT
+MwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMTk2ODczNzgx
+NSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2NTM2LC02MD
+U0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLDE1ODI2MTM5
+MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5MDIyMTgsLT
+E4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4MCw1MjMwNTkx
+OF19
 -->
