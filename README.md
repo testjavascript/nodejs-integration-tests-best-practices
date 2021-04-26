@@ -321,10 +321,9 @@ services:
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#performance, #draft #Michael`
+🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
 
 :white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. 
- - This not only bring noise but also slower.
 
 Avoid fake DBs, it brings noise, loosen the DB durability settings to gain performance boost, for example {something}, show numbers,
 
@@ -346,13 +345,8 @@ services:
     image: postgres:13
     container_name: 'postgres-for-testing'
     command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
     tmpfs: /var/lib/postgresql/data
+    ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1001,11 +995,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MT
-Y5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4
-MCw1MjMwNTkxOCwtOTA0ODczNjIzLDIxNDI5NDgwMCw3NDA1Nz
-I1ODYsLTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mzk2OTg0ODks
-LTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMj
-g2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQwNTc2LC0yMDYxNTMz
-MDQzXX0=
+eyJoaXN0b3J5IjpbLTk5MDc3ODExNSwtMTYxNTY3OTEwMCwtNT
+kxMjQwNjc4LDcxNjkwMjIxOCwtMTg2NDUzMDczLC0zMzQyODU0
+NTUsNTc3MjYzMTgwLDUyMzA1OTE4LC05MDQ4NzM2MjMsMjE0Mj
+k0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEwMDQ4MzY0NzAs
+LTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4ODk0NjI4LDIxMz
+c4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1
+NzZdfQ==
 -->
