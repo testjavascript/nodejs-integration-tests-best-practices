@@ -506,7 +506,9 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] [Why] [Spice]Having all nocks defined doesn't guarantee, protect our borders. The nock.enableNetConnect() command, remember to include localhost + port, remember to clean-up
+:white_check_mark:  **Do:** [Simple] Tell network interceptor to not allow real HTTP requests outside.  [Why] [Spice] 
+
+Having all nocks defined doesn't guarantee, protect our borders. The nock.enableNetConnect() command, remember to include localhost + port, remember to clean-up
 
 <br/>
 
@@ -992,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4NzU1MTIzNCw4MDQ5MzA5NjgsLTE5Nj
-g3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUz
-NiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNT
-gyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAy
-MjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNT
-IzMDU5MTgsLTkwNDg3MzYyMywyMTQyOTQ4MDAsNzQwNTcyNTg2
-XX0=
+eyJoaXN0b3J5IjpbLTE3NDA2OTE5MTYsODA0OTMwOTY4LC0xOT
+Y4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5NjcyLDEyNjQwNzY1
+MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LDEzMDc2MzI3MjAsMT
+U4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkxMjQwNjc4LDcxNjkw
+MjIxOCwtMTg2NDUzMDczLC0zMzQyODU0NTUsNTc3MjYzMTgwLD
+UyMzA1OTE4LC05MDQ4NzM2MjMsMjE0Mjk0ODAwLDc0MDU3MjU4
+Nl19
 -->
