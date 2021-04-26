@@ -325,6 +325,8 @@ services:
 
 :white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the completeness of the integration tests by excluding the DB from the test. Optimized DB is almost fast for example {something}, show numbers,
 
+<br/>
+
 👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
 
 
@@ -991,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE2NzU4NjMwMCwxMzA3NjMyNzIwLDE1OD
-I2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5MDIy
-MTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4MCw1Mj
-MwNTkxOCwtOTA0ODczNjIzLDIxNDI5NDgwMCw3NDA1NzI1ODYs
-LTY1NTIzMzQwOCwxMDA0ODM2NDcwLC05Mzk2OTg0ODksLTEzNz
-YzNzczODYsMTA5ODg5NDYyOCwyMTM3ODM1NzAsMTAwMjg2MTY1
-OV19
+eyJoaXN0b3J5IjpbLTE0OTk2ODUzMDksMTMwNzYzMjcyMCwxNT
+gyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNzE2OTAy
+MjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMxODAsNT
+IzMDU5MTgsLTkwNDg3MzYyMywyMTQyOTQ4MDAsNzQwNTcyNTg2
+LC02NTUyMzM0MDgsMTAwNDgzNjQ3MCwtOTM5Njk4NDg5LC0xMz
+c2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNzgzNTcwLDEwMDI4NjE2
+NTldfQ==
 -->
