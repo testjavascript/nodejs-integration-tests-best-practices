@@ -506,7 +506,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. Whenf that address was not explictly defined for interception - A failure is in order.  [Why] Without this, forgotten calls might hit real servers and violate the component isolation - flakines, performance and non-tested terriroty [Spice] One exception must be concluded - HTTP calls to your own API should be allowed otherwise the tests themselves will get blocked
+:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. When a call was not explictly defined for interception - the interceptor will throw an exception and make the tests fail.  This is a safety net for outgoing calls that were overlooked and tying to hit a real external server.  calls might hit real servers and violate the component isolation - flakines, performance and non-tested terriroty [Spice] One exception must be concluded - HTTP calls to your own API should be allowed otherwise the tests themselves will get blocked
 
 , protect our borders. The nock.enableNetConnect() command, remember to include localhost + port, remember to clean-up
 
@@ -996,11 +996,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5MzUyODgsMTE2MzU0MTU0OSwxMzAxNj
-kxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwt
-MTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MD
-c2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIw
-LDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MT
-Y5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2MzE4
-MF19
+eyJoaXN0b3J5IjpbMTU4MjE3OTc2LDExNjM1NDE1NDksMTMwMT
+Y5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5Njgs
+LTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2ND
+A3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcy
+MCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNz
+E2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMx
+ODBdfQ==
 -->
