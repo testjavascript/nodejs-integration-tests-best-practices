@@ -297,7 +297,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers` machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers' machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
 
 <br/>
 
@@ -993,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNT
-kxMjQwNjc4LDcxNjkwMjIxOCwtMTg2NDUzMDczLC0zMzQyODU0
-NTUsNTc3MjYzMTgwLDUyMzA1OTE4LC05MDQ4NzM2MjMsMjE0Mj
-k0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4LDEwMDQ4MzY0NzAs
-LTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMDk4ODk0NjI4LDIxMz
-c4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYwODcsLTE3NTk3NDA1
-NzZdfQ==
+eyJoaXN0b3J5IjpbLTEyMzc5NTkzMDksMTU4MjYxMzkxNCwtMT
+YxNTY3OTEwMCwtNTkxMjQwNjc4LDcxNjkwMjIxOCwtMTg2NDUz
+MDczLC0zMzQyODU0NTUsNTc3MjYzMTgwLDUyMzA1OTE4LC05MD
+Q4NzM2MjMsMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1MjMzNDA4
+LDEwMDQ4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4NiwxMD
+k4ODk0NjI4LDIxMzc4MzU3MCwxMDAyODYxNjU5LDExMzE0MzYw
+ODddfQ==
 -->
