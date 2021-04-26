@@ -323,7 +323,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
 
-:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the , for example {something}, show numbers,
+:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the completeness of the integration tests by excluding the db from the test, for example {something}, show numbers,
 
 <br/>
 
@@ -993,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1OTI2Nzc3MjcsLTE2MTU2NzkxMDAsLT
-U5MTI0MDY3OCw3MTY5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1
-NDU1LDU3NzI2MzE4MCw1MjMwNTkxOCwtOTA0ODczNjIzLDIxND
-I5NDgwMCw3NDA1NzI1ODYsLTY1NTIzMzQwOCwxMDA0ODM2NDcw
-LC05Mzk2OTg0ODksLTEzNzYzNzczODYsMTA5ODg5NDYyOCwyMT
-M3ODM1NzAsMTAwMjg2MTY1OSwxMTMxNDM2MDg3LC0xNzU5NzQw
-NTc2XX0=
+eyJoaXN0b3J5IjpbLTg0MDk2NjE0LC0xNjE1Njc5MTAwLC01OT
+EyNDA2NzgsNzE2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1
+NSw1NzcyNjMxODAsNTIzMDU5MTgsLTkwNDg3MzYyMywyMTQyOT
+Q4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwNDgzNjQ3MCwt
+OTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2MjgsMjEzNz
+gzNTcwLDEwMDI4NjE2NTksMTEzMTQzNjA4NywtMTc1OTc0MDU3
+Nl19
 -->
