@@ -510,7 +510,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Trust your familiairty with the code and assume that all network calls were configured for intercerption.   ❌ &nbsp; Periodic report
+👀 &nbsp; **Alternatives:** Trust your familiairty with the code and assume that all network calls were configured for intercerption. This dictates that any developer that will put HTTP call in the code will remember to update the testing configuration - Isn't this a fragile assumption?   ❌ &nbsp; Periodic report
 
 <br/>
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgxNzQ3MTQwMSwxMTYzNTQxNTQ5LDEzMD
-E2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsODA0OTMwOTY4
-LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5NjcyLDEyNj
-QwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LDEzMDc2MzI3
-MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkxMjQwNjc4LD
-cxNjkwMjIxOCwtMTg2NDUzMDczLC0zMzQyODU0NTUsNTc3MjYz
-MTgwXX0=
+eyJoaXN0b3J5IjpbLTIwODQzMDcyNjcsMTE2MzU0MTU0OSwxMz
+AxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2
+OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMj
+Y0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMy
+NzIwLDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OC
+w3MTY5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1NDU1LDU3NzI2
+MzE4MF19
 -->
