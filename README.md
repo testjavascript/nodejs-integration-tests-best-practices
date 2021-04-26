@@ -323,7 +323,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
 
-:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the completeness of the tests by excluding the DB from the test. Optimized DB is fast enough for testing and you can run  example {something}, show numbers,
+:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the completeness of the tests by excluding the DB from the test. Optimized DB is fast enough for testing and you can run hundrands of tests in a seconds example {something}, show numbers,
 
 <br/>
 
@@ -991,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OT
-k2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1Njc5
-MTAwLC01OTEyNDA2NzgsNzE2OTAyMjE4LC0xODY0NTMwNzMsLT
-MzNDI4NTQ1NSw1NzcyNjMxODAsNTIzMDU5MTgsLTkwNDg3MzYy
-MywyMTQyOTQ4MDAsNzQwNTcyNTg2LC02NTUyMzM0MDgsMTAwND
-gzNjQ3MCwtOTM5Njk4NDg5LC0xMzc2Mzc3Mzg2LDEwOTg4OTQ2
-MjhdfQ==
+eyJoaXN0b3J5IjpbMTIwNDQ5NjcyLDEyNjQwNzY1MzYsLTYwNT
+Q4NTk5LC0xNDk5Njg1MzA5LDEzMDc2MzI3MjAsMTU4MjYxMzkx
+NCwtMTYxNTY3OTEwMCwtNTkxMjQwNjc4LDcxNjkwMjIxOCwtMT
+g2NDUzMDczLC0zMzQyODU0NTUsNTc3MjYzMTgwLDUyMzA1OTE4
+LC05MDQ4NzM2MjMsMjE0Mjk0ODAwLDc0MDU3MjU4NiwtNjU1Mj
+MzNDA4LDEwMDQ4MzY0NzAsLTkzOTY5ODQ4OSwtMTM3NjM3NzM4
+Nl19
 -->
