@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
+:white_check_mark:  **Do:** When checking that HTTP requests were issued, check not only whether a cal intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
 
 <br/>
 
@@ -991,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyOD
-c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
-NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1NDksMT
-MwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5
-NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMT
-I2NDA3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYz
-MjcyMF19
+eyJoaXN0b3J5IjpbMzEzOTAwNjIwLDU5NDE4MTQ3MywtMjMyMz
+U5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1Mjky
+OSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMT
+YzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3
+NzIsODA0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMT
+IwNDQ5NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1
+MzA5XX0=
 -->
