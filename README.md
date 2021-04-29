@@ -542,9 +542,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:**  Go beyond happy and sad path. Check not only errored responses (e.g. HTTP 500 error) but also network-evel anomalies like slow and timed-out responses. This will prove that the code is resillient and can handle various network scenarios like taking the right path after a timeout,  has no fragile race conditions and has a circuit breaker for retries. 
-
-[spice] Tools like nock are smart enough to realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
+:white_check_mark:  **Do:**  Go beyond happy and sad path. Check not only errored responses (e.g. HTTP 500 error) but also network-evel anomalies like slow and timed-out responses. This will prove that the code is resillient and can handle various network scenarios like taking the right path after a timeout,  has no fragile race conditions and has a circuit breaker for retries. Tools like nock can easily simulate various network behaviours like hectic service that sometimes occasionaly fail. It can even realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
 
 There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. Resiiliencey;
 
@@ -996,7 +994,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTc1MjQ3NTAxLC0yMDEzNjUyOTI5LC0yMT
+eyJoaXN0b3J5IjpbOTY1NzMzMzM4LC0yMDEzNjUyOTI5LC0yMT
 QyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1
 NDksMTMwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MD
 Q5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2
