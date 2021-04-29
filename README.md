@@ -545,7 +545,7 @@ services:
 :white_check_mark:  **Do:** Go beyond the happy and sad paths. Check not only errored responses (e.g., HTTP 500 error) but also network-level anomalies like slow and timed-out responses. This will prove that the code is resilient and can handle various network scenarios like taking the right path after a timeout,  has no fragile race conditions, and contains a circuit breaker for retries. Reputable interceptor tools can easily simulate various network behaviors like hectic service that occasionally fail. It can even realize when the default HTTP client timeout value is longer than the simulated response time and throw a timeout exception right away without waiting
 <br/>
 
-👀 &nbsp; **Alternatives:** For   ❌ &nbsp; ; 
+👀 &nbsp; **Alternatives:** Checking only response is sensible for non-critical integrations ✅ &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -991,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNzY0MDcxNiwtMjAxMzY1MjkyOSwtMj
-E0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQx
-NTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsOD
-A0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5
-NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LD
-EzMDc2MzI3MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkx
-MjQwNjc4XX0=
+eyJoaXN0b3J5IjpbLTEwODM0MDcwMzAsLTIwMTM2NTI5MjksLT
+IxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0
+MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLD
+gwNDkzMDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0
+OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOS
+wxMzA3NjMyNzIwLDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5
+MTI0MDY3OF19
 -->
