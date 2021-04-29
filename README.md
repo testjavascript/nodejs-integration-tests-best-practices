@@ -578,13 +578,11 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] 
-
-One mitigation, is to detail the request properties and body. Example: mail without title. Don't be too specific. It's not white-box
+:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. Won't catch changes, 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Catch-all and rely on E2E test, too late to discover bugs  ❌ &nbsp; ; Run PACT tests as well - Good approach ✅&nbsp;;
+👀 &nbsp; **Alternatives:** Catch-all and rely on E2E test, too late to discover bugs  ❌ &nbsp; Run PACT tests as well - Good approach ✅&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -993,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDkzNDc2MDksLTIzMjM1OTYyNiw2MT
-I4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1
-NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OS
-wxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkz
-MDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3Mi
-wxMjY0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3
-NjMyNzIwXX0=
+eyJoaXN0b3J5IjpbMjc2MTgwNDg1LC0yMzIzNTk2MjYsNjEyOD
+c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
+NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1NDksMT
+MwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5
+NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMT
+I2NDA3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYz
+MjcyMF19
 -->
