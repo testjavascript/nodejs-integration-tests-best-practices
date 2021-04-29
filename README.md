@@ -578,13 +578,11 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** When checking that HTTP requests were issued, check also the request validity. For example, when checking that an email was sent, verify also that the body contains the neccessary fields like email address and mail subject. By doing so, one more layer of bugs is covered - Wrong integration behaviour. This can done by storing the outgoing request as local variable and asserting that its schema, sometimes even data, are as expected. Why is this important? When isolating a component by intercepting network requests, the reality is being sugar-coated. Many bugs are being hidden. No matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and will come into play only in production. The minimum act to mitigate this line of risks is to assert the correctness of the request. This is a good start but it won't cover all the intergation risks - If a collaborator service was changed and the tests were not updated, this will get discovered only in production - M
+:white_check_mark:  **Do:** When checking that HTTP requests were issued, check also the request validity. For example, when checking that an email was sent, verify also that the body contains the neccessary fields like email address and mail subject. By doing so, one more layer of bugs is covered - Wrong integration behaviour. This can done by storing the outgoing request as local variable and asserting that its schema, sometimes even data, are as expected. Why is this important? When isolating a component by intercepting network requests, the reality is being sugar-coated. Many bugs are being hidden. No matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and will come into play only in production. The minimum act to mitigate this line of risks is to assert the correctness of the request. This is a good start but it won't cover all the intergation risks - If a collaborator service was changed and the tests were not updated, this will get discovered only in production. Therefore, more techniques are needed to cover all the integration risks.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** 
-
-Also the collaborator service might accept different values in the request. These line of risks can only be covered using E2E or contract tests (see dedicated bullet)Catch-all and rely on E2E test, too late to discover bugs  ❌ &nbsp; Run PACT tests as well - Good approach ✅&nbsp;;
+👀 &nbsp; **Alternatives:** Some rely on E2E test to check integration - This layer is valuable and needed as a last chance safety net but it's too cumbersome to serve as an ongoing development testing  ❌ &nbsp; Run PACT tests as well - Good approach ✅&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -993,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTU2NjUzNTk0LDU5NDE4MTQ3MywtMjMyMz
-U5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1Mjky
-OSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMT
-YzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3
-NzIsODA0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMT
-IwNDQ5NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1
-MzA5XX0=
+eyJoaXN0b3J5IjpbMTY1NTk2NTM3MCw1OTQxODE0NzMsLTIzMj
+M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
+MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMT
+E2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIx
+NzcyLDgwNDkzMDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LD
+EyMDQ0OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4
+NTMwOV19
 -->
