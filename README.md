@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. [Why] 
+:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, every req is valid. We hide the 3rd party validation and might discover in production.
 
 When faking collaborators, risk of incorrect interactions, we sugar coat the reality with always valid responses. One mitigation, is to detail the request properties and body. Example: mail without title. Don't be too specific. It's not white-box
 
@@ -993,7 +993,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2MjExNTEyMiw2MTI4NzcwMTMsLTEwOD
+eyJoaXN0b3J5IjpbLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwOD
 M0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1
 Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLD
 kyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMTk2ODcz
