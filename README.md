@@ -578,7 +578,9 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** When checking that HTTP requests were issued, check also the request validity. For example, when checking that an email was sent, verify also that the body contains the neccessary fields like email address and mail subject. By doing so, one more layer of bugs is covered - Wrong integration behaviour. This can done by storing the outgoing request as local variable and asserting that its schema, sometimes even data, are as expected. Why is this important? When isolating a component by intercepting network requests, the reality is being sugar-coated. Many bugs are being hidden. No matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and wi and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
+:white_check_mark:  **Do:** When checking that HTTP requests were issued, check also the request validity. For example, when checking that an email was sent, verify also that the body contains the neccessary fields like email address and mail subject. By doing so, one more layer of bugs is covered - Wrong integration behaviour. This can done by storing the outgoing request as local variable and asserting that its schema, sometimes even data, are as expected. Why is this important? When isolating a component by intercepting network requests, the reality is being sugar-coated. Many bugs are being hidden. No matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and will come into play only in production. The minimum act to mitigate this line of risks is to assert the correctness of the request. This is a good start but it won't cover all the intergation risks - If a collaborator service was changed and the tests were not updated, this will get discovered only
+
+ [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
 
 <br/>
 
@@ -991,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzI4OTIyNzgsNTk0MTgxNDczLC0yMz
-IzNTk2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUy
-OTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LD
-ExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUy
-MTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNC
-wxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OTk2
-ODUzMDldfQ==
+eyJoaXN0b3J5IjpbMTI0MDU1MjA2MSw1OTQxODE0NzMsLTIzMj
+M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
+MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMT
+E2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIx
+NzcyLDgwNDkzMDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LD
+EyMDQ0OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4
+NTMwOV19
 -->
