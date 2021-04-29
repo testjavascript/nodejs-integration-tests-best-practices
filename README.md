@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, every req is valid. We hide the 3rd party validation and might discover in production.
+:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even emptevery req is valid. We hide the 3rd party validation and might discover in production.
 
 When faking collaborators, risk of incorrect interactions, we sugar coat the reality with always valid responses. One mitigation, is to detail the request properties and body. Example: mail without title. Don't be too specific. It's not white-box
 
@@ -993,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwOD
-M0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1
-Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLD
-kyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMTk2ODcz
-NzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2NTM2LC
-02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLDE1ODI2
-MTM5MTRdfQ==
+eyJoaXN0b3J5IjpbLTk4ODE1ODA2NiwtMjMyMzU5NjI2LDYxMj
+g3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3
+NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQxNTQ5LD
+EzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsODA0OTMw
+OTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5NjcyLD
+EyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LDEzMDc2
+MzI3MjBdfQ==
 -->
