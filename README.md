@@ -542,7 +542,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** [simple] Tests not only errored responsed with custom but also network-evel anomalies like slow and timed-out responses. [why] This will prove useful to ensure your code takes the right path after a timeout, that a circuit breaker is configured well, no race conditions, [spice] Tools like nock are smart enough to realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
+:white_check_mark:  **Do:**  Go beyond happy and sad path. Check not only errored responses (e.g. HTTP 500 error) but also network-evel anomalies like slow and timed-out responses. This will prove useful to ensure your code takes the right path after a timeout, that a circuit breaker is configured well, no race conditions, [spice] Tools like nock are smart enough to realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
 
 There is happy path, unhappy paths and true chaos. Cover all. Both non-trivial responses like customer doesn't exist, also no-response (timeout), delayed response. If you have a circuit-breaker than you may test it only and exclude thest tests from every route. Resiiliencey;
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMT
-YzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkx
-MDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMT
-k2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2
-NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLD
-E1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5
-MDIyMThdfQ==
+eyJoaXN0b3J5IjpbLTcxNjc3NzIyMSwtMjAxMzY1MjkyOSwtMj
+E0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQx
+NTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsOD
+A0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5
+NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LD
+EzMDc2MzI3MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkx
+MjQwNjc4XX0=
 -->
