@@ -542,7 +542,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:**  Go beyond happy and sad path. Check not only errored responses (e.g. HTTP 500 error) but also network-evel anomalies like slow and timed-out responses. This will prove that the code can handle various network scenarios like taking the right path after a timeout, put a circuit breaker for retries, has no fragile race conditions. 
+:white_check_mark:  **Do:**  Go beyond happy and sad path. Check not only errored responses (e.g. HTTP 500 error) but also network-evel anomalies like slow and timed-out responses. This will prove that the code is resillient and can handle various network scenarios like taking the right path after a timeout,  has no fragile race conditions and has a circuit breaker for retries. 
 
 [spice] Tools like nock are smart enough to realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
 
@@ -996,11 +996,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3ODg0MTI3MSwtMjAxMzY1MjkyOSwtMj
-E0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQx
-NTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsOD
-A0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5
-NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1MzA5LD
-EzMDc2MzI3MjAsMTU4MjYxMzkxNCwtMTYxNTY3OTEwMCwtNTkx
-MjQwNjc4XX0=
+eyJoaXN0b3J5IjpbNTc1MjQ3NTAxLC0yMDEzNjUyOTI5LC0yMT
+QyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1
+NDksMTMwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MD
+Q5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2
+NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMT
+MwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEy
+NDA2NzhdfQ==
 -->
