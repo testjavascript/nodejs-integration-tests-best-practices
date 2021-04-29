@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** When checking that HTTP requests were issued, check also the request validity. For example, when checking that an email was sent, verify also that the body contains the neccessary fields like email address and mail subject. By doing so, one more layer of bugs is covered - Wrong integration behaviour. This can done by storing the outgoing request as local variable and asserting that its schema, sometimes even data, are as expected. Why is this important? When isolating a component by intercepting network requests, the reality is being sugar-coatedwe sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
+:white_check_mark:  **Do:** When checking that HTTP requests were issued, check also the request validity. For example, when checking that an email was sent, verify also that the body contains the neccessary fields like email address and mail subject. By doing so, one more layer of bugs is covered - Wrong integration behaviour. This can done by storing the outgoing request as local variable and asserting that its schema, sometimes even data, are as expected. Why is this important? When isolating a component by intercepting network requests, the reality is being sugar-coated. Many bugs are being hidden. No matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and wi and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
 
 <br/>
 
@@ -991,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgxMzI1MTA1LDU5NDE4MTQ3MywtMjMyMz
-U5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1Mjky
-OSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMT
-YzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3
-NzIsODA0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMT
-IwNDQ5NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC0xNDk5Njg1
-MzA5XX0=
+eyJoaXN0b3J5IjpbLTE4NzI4OTIyNzgsNTk0MTgxNDczLC0yMz
+IzNTk2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUy
+OTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LD
+ExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUy
+MTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgzODAxNC
+wxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLTE0OTk2
+ODUzMDldfQ==
 -->
