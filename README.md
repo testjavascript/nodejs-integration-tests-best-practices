@@ -582,7 +582,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some rely on E2E test to check integration - This layer is valuable and needed as a last chance safety net but it's too cumbersome to serve as an ongoing development testing  ❌ &nbsp; Run PACT tests as well - Good approach ✅&nbsp;;
+👀 &nbsp; **Alternatives:** Some rely on E2E test to check integration - This layer is valuable and needed as a last chance safety net. However, due its flakines, it's should be used sparingly and not as a primary testing tool  ❌ &nbsp; What if there is misaligement on the exact values and requests sequence that we should be made? In this case, consumer-driven contract tests might be ✅&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -991,7 +991,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY1NTk2NTM3MCw1OTQxODE0NzMsLTIzMj
+eyJoaXN0b3J5IjpbLTE5ODk5MjMyNSw1OTQxODE0NzMsLTIzMj
 M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
 MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMT
 E2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIx
