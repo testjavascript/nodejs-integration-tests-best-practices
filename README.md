@@ -574,11 +574,13 @@ services:
 
 <br/><br/>
 
-### ⚪️ 6.  Catch incorrect requests by specifying the request schema
+### ⚪️ 6.  Catch invalid outgoing requests by specifying the request schema
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** When faking collaborators, risk of incorrect interactions, we sugar coat the reality with always valid responses. One mitigation, is to detail the request properties and body. Example: mail without title. Don't be too specific. 
+:white_check_mark:  **Do:** 
+
+When faking collaborators, risk of incorrect interactions, we sugar coat the reality with always valid responses. One mitigation, is to detail the request properties and body. Example: mail without title. Don't be too specific. 
 
 <br/>
 
@@ -991,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ1MzI1OTE5MSwtMTA4MzQwNzAzMCwtMj
-AxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0
-MTA3NSwxMTYzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LD
-E2Njg1MjE3NzIsODA0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4
-MzgwMTQsMTIwNDQ5NjcyLDEyNjQwNzY1MzYsLTYwNTQ4NTk5LC
-0xNDk5Njg1MzA5LDEzMDc2MzI3MjAsMTU4MjYxMzkxNCwtMTYx
-NTY3OTEwMF19
+eyJoaXN0b3J5IjpbNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMD
+EzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQx
+MDc1LDExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAzOTUsMT
+Y2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgz
+ODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLT
+E0OTk2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1
+Njc5MTAwXX0=
 -->
