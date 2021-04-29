@@ -506,7 +506,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. Blocking all calls typically requires no more than one statement `nock.disableNetConnect()`. For any call that was not explictly defined - the interceptor will throw an exception and make the tests fail.  This is a safety net to protect our borders: It might be that some HTTP calls were not considered and trying to hit a real external server - This will violate the component isolation, trigger flakines, and degregade performance. Remember to exclude calls to the local API under test (i.e. The tests are making calls to the local API and should hit the real one). When the test suite is done, remove this restriction so other tests suites who do need to make outgoing calls won't get blocked
+:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. Blocking all calls typically requires no more than one statement `nock.disableNetConnect()`. For any request that was not explicitly defined - the interceptor will throw an exception and make the tests fail.  Why is this needed? To protect the component borders. It might be that some HTTP calls were not considered and trying to hit a real external server. When requests are not intercepted, it violates the component isolation, triggers flakiness, and degrades performance. Remember to exclude calls to the local API under test that should serve the tests` requests. When the test suite is done, remove this restriction to avoid leaving unexpected behaviour to other tests suites.
 
 <br/>
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2Mz
-U0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcy
-LDgwNDkzMDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMD
-Q0OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMw
-OSwxMzA3NjMyNzIwLDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLT
-U5MTI0MDY3OCw3MTY5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1
-NDU1XX0=
+eyJoaXN0b3J5IjpbLTIwMzgxNTcxOTgsMTYzODU1Mjk5OCwtNz
+Q1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5
+NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMTk2ODczNzgxNSwxMj
+I1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5
+OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLDE1ODI2MTM5MTQsLT
+E2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5MDIyMTgsLTE4NjQ1
+MzA3M119
 -->
