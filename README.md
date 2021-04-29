@@ -540,7 +540,7 @@ services:
 
 ### ⚪️ 5.  Simulate network chaos
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
 :white_check_mark:  **Do:** [simple] Tests not only errored responsed with custom but also network-evel anomalies like slow and timed-out responses. [why] This will prove useful to ensure your code takes the right path after a timeout, that a circuit breaker is configured well, no race conditions, [spice] Tools like nock are smart enough to realize when the default HTTP client timeout is longer than the intercepted response time and throw a timeout exception right away
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNz
-Q1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5
-NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMTk2ODczNzgxNSwxMj
-I1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5
-OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLDE1ODI2MTM5MTQsLT
-E2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5MDIyMTgsLTE4NjQ1
-MzA3M119
+eyJoaXN0b3J5IjpbLTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMT
+YzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkx
+MDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMT
+k2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2
+NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLD
+E1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLTU5MTI0MDY3OCw3MTY5
+MDIyMThdfQ==
 -->
