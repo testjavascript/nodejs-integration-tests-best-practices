@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** 
+:white_check_mark:  **Do:** [Simple] 
 
 When faking collaborators, risk of incorrect interactions, we sugar coat the reality with always valid responses. One mitigation, is to detail the request properties and body. Example: mail without title. Don't be too specific. 
 
@@ -993,11 +993,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMD
-EzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQx
-MDc1LDExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAzOTUsMT
-Y2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3Mzc4MTUsMTIyNTgz
-ODAxNCwxMjA0NDk2NzIsMTI2NDA3NjUzNiwtNjA1NDg1OTksLT
-E0OTk2ODUzMDksMTMwNzYzMjcyMCwxNTgyNjEzOTE0LC0xNjE1
-Njc5MTAwXX0=
+eyJoaXN0b3J5IjpbLTg3NzU3NzkyOSw2MTI4NzcwMTMsLTEwOD
+M0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1
+Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLD
+kyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkzMDk2OCwtMTk2ODcz
+NzgxNSwxMjI1ODM4MDE0LDEyMDQ0OTY3MiwxMjY0MDc2NTM2LC
+02MDU0ODU5OSwtMTQ5OTY4NTMwOSwxMzA3NjMyNzIwLDE1ODI2
+MTM5MTRdfQ==
 -->
