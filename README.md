@@ -504,9 +504,9 @@ services:
 
 ### ⚪️ 4. Deny all outgoing requests by default 
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. When a call was not explictly defined - the interceptor will throw an exception and make the tests fail.  This is a safety net to protect our borders: It might be that some HTTP calls were overlooked and tying to hit a real external server - This will violate the component isolation, trigger flakines, and degregade performance. Remember to exclude calls to the local API under test (i.e. The tests are making calls to the local API and should hit the real one). When the test suite is done, remove this restriction so other tests suites who do need to make outgoing calls won't get blocked
+:white_check_mark:  **Do:** Instruct the network interceptor to block and warn on any outgoing HTTP request that is not intercepted. If nock is your preferred tool for example, tha this can be easily achieved with one statement `nock.disableNetConnect()` When a call was not explictly defined - the interceptor will throw an exception and make the tests fail.  This is a safety net to protect our borders: It might be that some HTTP calls were overlooked and tying to hit a real external server - This will violate the component isolation, trigger flakines, and degregade performance. Remember to exclude calls to the local API under test (i.e. The tests are making calls to the local API and should hit the real one). When the test suite is done, remove this restriction so other tests suites who do need to make outgoing calls won't get blocked
 
 <br/>
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc0NTQxMDc1LDExNjM1NDE1NDksMTMwMT
-Y5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5Njgs
-LTE5Njg3Mzc4MTUsMTIyNTgzODAxNCwxMjA0NDk2NzIsMTI2ND
-A3NjUzNiwtNjA1NDg1OTksLTE0OTk2ODUzMDksMTMwNzYzMjcy
-MCwxNTgyNjEzOTE0LC0xNjE1Njc5MTAwLC01OTEyNDA2NzgsNz
-E2OTAyMjE4LC0xODY0NTMwNzMsLTMzNDI4NTQ1NSw1NzcyNjMx
-ODBdfQ==
+eyJoaXN0b3J5IjpbLTM4MjE1ODA4NiwtNzQ1NDEwNzUsMTE2Mz
+U0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcy
+LDgwNDkzMDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMD
+Q0OTY3MiwxMjY0MDc2NTM2LC02MDU0ODU5OSwtMTQ5OTY4NTMw
+OSwxMzA3NjMyNzIwLDE1ODI2MTM5MTQsLTE2MTU2NzkxMDAsLT
+U5MTI0MDY3OCw3MTY5MDIyMTgsLTE4NjQ1MzA3MywtMzM0Mjg1
+NDU1XX0=
 -->
