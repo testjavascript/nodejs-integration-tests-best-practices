@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** When checking that the component did send HTTP requests, also check the request's validity. For example, when checking that an email was sent, it's not enough to ensure that HTTP call was made to the right URL, it's imperative to verify that the body contains the necessary fields like email address and mail subject. By doing so, the tests cover one more layer of bugs:  integration issues. You may achieve this by storing the outgoing request as a local variable and asserting that its schema, sometimes even the data, is as expected. Why is this important? When isolating a component by intercepting network requests, the tests hide bugs and sugarcoat the reality. By default, no matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and will come into play only in production. The minimum act to mitigate this line of risks is to assert the correctness of the request. While a good start, it won't cover all the integration risks - What if a collaborator service was changed and the tests were not updated? This will get discovered only in production. Therefore, more techniques are needed to cover all the integration risks.
+:white_check_mark:  **Do:** When checking that the component did send HTTP requests, also check the request's validity. For example, when checking that an email was sent, it's not enough to ensure that HTTP call was made to the right URL, it's imperative to verify that the body contains the necessary fields like email address and mail subject. By doing so, the tests cover one more layer of bugs:  integration issues. You may achieve this by storing the outgoing request as a local variable and asserting that its schema, sometimes even the data, is as expected. Why is this important? When isolating a component by intercepting network requests, the tests hide bugs and sugarcoat the reality. By default, no matter how a request looks like, the response will be successful. The 3rd party service validation is avoided and will come into play only in production. The minimum act to mitigate this line of risks is to assert the correctness of the request. While a good start, it won't cover all the integration risks - What if a collaborator service was changed and the tests were not updated? This will get discovered only in production. Therefore, more techniques are needed to cover all the integration risks (See below on E2E and contract tests).
 
 <br/>
 
@@ -991,7 +991,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ2MDM3Mjc3NywtMjA3NDc1ODUyNCwxMD
+eyJoaXN0b3J5IjpbMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMD
 I1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAx
 MywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0Ny
 wxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQxNTQ5LDEzMDE2
