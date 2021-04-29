@@ -578,7 +578,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. Won't catch changes, 
+:white_check_mark:  **Do:** [Simple] While intercepting, store the outgoing req and assert on their schema and sometimes even the data. For example, when check email, also how [Why] Downside of interception and isolation, we sugar coat the reality . No matter how bad and even empty a request might be, the response will be successful. We hide the 3rd party validation and might discover in production [Advanced] Don't be too specific, unless the tests checks specific data, the focus should be on a valid schema. Assertion has capabilities. 1st tier Won't catch changes and misalignement
 
 <br/>
 
@@ -991,7 +991,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjc2MTgwNDg1LC0yMzIzNTk2MjYsNjEyOD
+eyJoaXN0b3J5IjpbNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyOD
 c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
 NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1NDksMT
 MwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5
