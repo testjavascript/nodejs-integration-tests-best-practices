@@ -327,7 +327,9 @@ services:
 You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL.
 <br/>
 
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+👀 &nbsp; **Alternatives:** 
+* Use SQLite which is actually slower ❌;  no optimizations.
+* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
 
 
 
@@ -991,7 +993,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTkzNDI4NDgsNjAzNzcyNzk5LDE1MT
+eyJoaXN0b3J5IjpbLTExMTI3MzQ2MjEsNjAzNzcyNzk5LDE1MT
 M2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0
 NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLT
 IwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1
