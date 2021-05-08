@@ -323,8 +323,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #review, #Michael`
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds.  
-You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL.
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test 
 <br/>
 
 👀 &nbsp; **Alternatives:** 
@@ -993,11 +992,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMz
-YxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3
-MywtMjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMj
-AxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0
-MTA3NSwxMTYzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LD
-E2Njg1MjE3NzIsODA0OTMwOTY4LC0xOTY4NzM3ODE1LDEyMjU4
-MzgwMTRdfQ==
+eyJoaXN0b3J5IjpbMjAyODMzMjcxMywtNjMyMzU5NzM2LDYwMz
+c3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4NTI0LDEwMjU0MTA2
+ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyODc3MDEzLC0xMD
+gzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1
+NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1NDksMTMwMTY5MTA0MC
+w5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5NjgsLTE5Njg3
+Mzc4MTVdfQ==
 -->
