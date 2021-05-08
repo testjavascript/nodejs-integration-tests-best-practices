@@ -323,8 +323,8 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #review, #Michael`
 
-:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing by turn off the DB durability settings. Avoid fake DBs, it brings noise and impair the completeness of the tests by excluding the DB from the test. Optimized DB is fast enough for testing and you can run hundrands of tests in a few seconds! 
-
+:white_check_mark:  **Do:** Use the same DB like production and optimize it for testing. Avoid fake DBs, it brings noise and impair the completeness of the tests by excluding the DB from the test. Optimized DB is fast enough for testing and you can run hundrands of tests in a few seconds! 
+You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL.
 <br/>
 
 👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
@@ -991,11 +991,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMD
-I1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAx
-MywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0Ny
-wxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQxNTQ5LDEzMDE2
-OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3NzIsODA0OTMwOTY4LC
-0xOTY4NzM3ODE1LDEyMjU4MzgwMTQsMTIwNDQ5NjcyLDEyNjQw
-NzY1MzZdfQ==
+eyJoaXN0b3J5IjpbNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNz
+Q3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYy
+Niw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5MjksLT
+IxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0
+MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLD
+gwNDkzMDk2OCwtMTk2ODczNzgxNSwxMjI1ODM4MDE0LDEyMDQ0
+OTY3Ml19
 -->
