@@ -321,8 +321,7 @@ services:
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#performance, #draft
-, #Michael`
+🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
 
 :white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
 <br/>
@@ -993,11 +992,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTU4NDQ2NTAsLTkzMjUwNjQ4LC02Mz
-IzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1
-MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYyNiw2MT
-I4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1
-NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMTE2MzU0MTU0OS
-wxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIxNzcyLDgwNDkz
-MDk2OF19
+eyJoaXN0b3J5IjpbLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMz
+U5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4NTI0
+LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyOD
+c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
+NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1NDksMT
+MwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5
+NjhdfQ==
 -->
