@@ -49,7 +49,7 @@ afterAll(async (done) => {
 // ️️️✅ Best Practice: Structure tests
 describe('/api', () => {
   describe('GET /order', () => {
-    test('When asked for an existing order, Then should retrieve it and receive 200 response loo', async () => {
+    test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
