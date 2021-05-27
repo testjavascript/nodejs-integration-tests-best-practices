@@ -1,14 +1,24 @@
 const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const { initializeWebServer, stopWebServer } = require('../api');
 const OrderRepository = require('../data-access/order-repository');
 
-let expressApp;
+// Configuring file-level HTTP client with base URL will allow
+// all the tests to approach with a shortened syntax
+let axiosAPIClient;
+
 
 beforeAll(async (done) => {
-  // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+    // ️️️✅ Best Practice: Place the backend under test within the same process
+    const apiConnection = await initializeWebServer();
+    const axiosConfig = {
+      baseURL: `http://127.0.0.1:${apiConnection.port}`,
+      validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    };
+    axiosAPIClient = axios.create(axiosConfig);
+  
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
@@ -39,7 +49,7 @@ afterAll(async (done) => {
 // ️️️✅ Best Practice: Structure tests
 describe('/api', () => {
   describe('GET /order', () => {
-    test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+    test('When asked for an existing order, Then should retrieve it and receive 200 response loo', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
@@ -47,24 +57,25 @@ describe('/api', () => {
         mode: 'approved',
       };
       const {
-        body: { id: addedOrderId },
-      } = await request(expressApp).post('/order').send(orderToAdd);
+        data: { id: addedOrderId },
+      } = await axiosAPIClient.post(`/order`, orderToAdd);
 
       //Act
-      const getResponse = await request(expressApp).get(
-        `/order/${addedOrderId}`
-      );
+      // ️️️✅ Best Practice: Use generic and reputable HTTP client like Axios or Fetch. Avoid libraries that are coupled to
+      // the web framework or include custom assertion syntax (e.g. Supertest)
+      const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
 
       //Assert
       expect(getResponse).toMatchObject({
         status: 200,
-        body: {
+        data: {
           userId: 1,
           productId: 2,
           mode: 'approved',
         },
       });
     });
+
 
     test('When asked for an non-existing order, Then should receive 404 response', async () => {
       //Arrange

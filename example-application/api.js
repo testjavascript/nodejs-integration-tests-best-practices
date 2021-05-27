@@ -30,7 +30,7 @@ const initializeWebServer = async (customMiddleware) => {
     // ️️️✅ Best Practice: Specify no port for testing, only in production
     const webServerPort = process.env.PORT ? process.env.PORT : null;
     connection = expressApp.listen(webServerPort, () => {
-      resolve(expressApp);
+      resolve(connection.address());
     });
   });
 };
