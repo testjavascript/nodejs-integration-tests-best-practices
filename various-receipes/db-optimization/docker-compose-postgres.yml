@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  database:
+    image: postgres:11
+    command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    container_name: 'postgres-for-testing'
+    ports:
+      - '54320:5432'
+    tmpfs: /var/lib/postgresql/data
