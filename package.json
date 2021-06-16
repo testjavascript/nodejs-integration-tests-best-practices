@@ -6,7 +6,6 @@
     "test": "jest",
     "test:dev": "jest --watch --runInBand",
     "test:nestjs": "jest --config='./various-receipes/nestjs/ts-jest.config.js'",
-    "test:nestjs:dev": "jest --watch --runInBand --config='./various-receipes/nestjs/ts-jest.config.js'",
     "test:dev:verbose": "jest --watch --verbose",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
@@ -30,7 +29,6 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
-    "@nestjs/testing": "^7.6.17",
     "@types/jest": "^26.0.23",
     "docker-compose": "^0.23.1",
     "eslint": "^7.18.0",

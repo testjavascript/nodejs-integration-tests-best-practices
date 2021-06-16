@@ -3,7 +3,7 @@ const config = require('../../jest.config');
 module.exports = {
   ...config,
   testMatch: [
-    '**/various-receipes/nestjs/app/test/basic-tests.test.ts',
+    '**/*.test.ts',
   ],
   preset:  'ts-jest',
   rootDir: '../../',
