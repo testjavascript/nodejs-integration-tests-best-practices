@@ -1,4 +1,4 @@
-const request = require('supertest');
+const axios = require('axios');
 const nock = require('nock');
 const {
   initializeWebServer,
@@ -6,11 +6,16 @@ const {
 } = require('../../../example-application/api');
 const ordersData = require('./orders-data-for-paramterized-test.json');
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   done();
 });
@@ -39,12 +44,9 @@ describe('/api', () => {
       'When adding a new valid order, Then should get back 200 response',
       async (orderToAdd) => {
         //Act
-        const receivedAPIResponse = await request(expressApp)
-          .post('/order')
-          .send(orderToAdd);
-        //Assert
-        const { status } = receivedAPIResponse;
+        const { status } = await axiosAPIClient.post('/order', orderToAdd);
 
+        //Assert
         expect(status).toBe(200);
       }
     );

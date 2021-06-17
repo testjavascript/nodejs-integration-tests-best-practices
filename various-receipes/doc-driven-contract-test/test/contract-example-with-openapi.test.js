@@ -1,6 +1,5 @@
 const path = require('path');
 const axios = require('axios');
-const request = require('supertest');
 const nock = require('nock');
 const jestOpenAPI = require('jest-openapi');
 const {
@@ -10,10 +9,16 @@ const {
 
 jestOpenAPI(path.join(__dirname, '../../../example-application/openapi.json'));
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async () => {
-  expressApp = await initializeWebServer();
+  // ️️️✅ Best Practice: Place the backend under test within the same process
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 });
 
 afterEach(() => {
@@ -38,7 +43,7 @@ describe('Verify openApi (Swagger) spec', () => {
         mode: 'approved',
       };
 
-      const res = await request(expressApp).post('/order').send(orderToAdd);
+      const res = await axiosAPIClient.post('/order', orderToAdd);
 
       // ️️️✅ Best Practice: When testing the API contract/doc
       expect(res).toSatisfyApiSpec();
@@ -54,7 +59,7 @@ describe('Verify openApi (Swagger) spec', () => {
         mode: 'approved',
       };
 
-      const res = await request(expressApp).post('/order').send(orderToAdd);
+      const res = await axiosAPIClient.post('/order', orderToAdd);
 
       expect(res).toSatisfyApiSpec();
     });
@@ -67,7 +72,7 @@ describe('Verify openApi (Swagger) spec', () => {
         mode: 'approved',
       };
 
-      const res = await request(expressApp).post('/order').send(orderToAdd);
+      const res = await axiosAPIClient.post('/order', orderToAdd);
 
       expect(res).toSatisfyApiSpec();
     });

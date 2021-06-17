@@ -1,4 +1,4 @@
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const {
@@ -12,11 +12,17 @@ const {
 const { AppError } = require('../../../example-application/error-handling');
 const logger = require('../../../example-application/libraries/logger');
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
+
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the Api-Under-Test
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
@@ -62,7 +68,7 @@ describe('Error Handling', () => {
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(String));
@@ -83,7 +89,7 @@ describe('Error Handling', () => {
       const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(
@@ -107,7 +113,7 @@ describe('Error Handling', () => {
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(processExitListener.called).toBe(true);
@@ -127,7 +133,7 @@ describe('Error Handling', () => {
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(processExitListener.called).toBe(false);
@@ -174,7 +180,7 @@ describe('Error Handling', () => {
       const consoleErrorDouble = sinon.stub(console, 'error');
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(metricsExporterDouble.called).toBe(true);
