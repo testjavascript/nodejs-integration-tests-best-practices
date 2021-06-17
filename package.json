@@ -40,7 +40,6 @@
     "prettier": "2.2.1",
     "sequelize-cli": "^6.2.0",
     "sinon": "^9.0.1",
-    "supertest": "^4.0.2",
     "umzug": "^2.2.0"
   }
 }
