@@ -10,7 +10,7 @@ export const initializeWebServer = async () => {
   // ➿ Port is required in Nest.js, we can send 0 to get a available dynamic port
   await app.listen(0);
 
-  return app;
+  return app.getHttpServer().address();
 };
 
 export const stopWebServer = async () => {

@@ -8,13 +8,13 @@ let axiosAPIClient: AxiosInstance;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  const app = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
 
   const axiosConfig = {
-    baseURL: `http://127.0.0.1:${app.getHttpServer().address().port}`,
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
