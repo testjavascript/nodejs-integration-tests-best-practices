@@ -13,7 +13,7 @@ let connection;
 const client = axios.create();
 axiosRetry(client, { retries: 3 });
 
-const initializeWebServer = async (customMiddleware) => {
+const initializeWebServer = customMiddleware => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
@@ -35,7 +35,7 @@ const initializeWebServer = async (customMiddleware) => {
   });
 };
 
-const stopWebServer = async () => {
+const stopWebServer = () => {
   return new Promise((resolve, reject) => {
     connection.close(() => {
       resolve();
@@ -43,7 +43,7 @@ const stopWebServer = async () => {
   });
 };
 
-const defineRoutes = (expressApp) => {
+const defineRoutes = expressApp => {
   const router = express.Router();
 
   // add new order
