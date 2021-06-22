@@ -2,18 +2,23 @@
 // the two can run together simultaneously without interfering with each other thanks
 // to the data isolation
 
-const request = require("supertest");
+const axios = require('axios');
 const sinon = require("sinon");
 const nock = require("nock");
 const { initializeWebServer, stopWebServer } = require("../../example-application/api");
 const OrderRepository = require("../../example-application/data-access/order-repository");
 const { getShortUnique } = require("./test-helper");
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   done();
 });
@@ -50,7 +55,7 @@ describe("/api", () => {
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post("/order", orderToAdd);
 
       //Assert
       expect(receivedAPIResponse.status).toBe(200);
@@ -66,10 +71,10 @@ describe("/api", () => {
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp).post("/order").send(orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post("/order", orderToAdd);
 
       //Assert
-      expect(receivedAPIResponse.body.mode).toBe("approved");
+      expect(receivedAPIResponse.data.mode).toBe("approved");
     });
   });
   describe("GET /order", () => {
@@ -81,11 +86,11 @@ describe("/api", () => {
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
       const {
-        body: { id: existingOrderId },
-      } = await request(expressApp).post("/order").send(orderToAdd);
+        data: { id: existingOrderId },
+      } = await axiosAPIClient.post("/order", orderToAdd);
 
       // Act
-      const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+      const receivedResponse = await axiosAPIClient.get(`/order/${existingOrderId}`);
 
       // Assert
       expect(receivedResponse.status).toBe(200);
@@ -100,11 +105,11 @@ describe("/api", () => {
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
       const {
-        body: { id: existingOrderId },
-      } = await request(expressApp).post("/order").send(orderToAdd);
+        data: { id: existingOrderId },
+      } = await axiosAPIClient.post("/order", orderToAdd)
 
       // Act
-      const receivedResponse = await request(expressApp).get(`/order/${existingOrderId}`);
+      const receivedResponse = await axiosAPIClient.get(`/order/${existingOrderId}`);
 
       // Assert
       expect(receivedResponse.status).toBe(200);

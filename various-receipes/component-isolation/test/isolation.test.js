@@ -1,4 +1,4 @@
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const {
@@ -7,10 +7,16 @@ const {
 } = require('../../../example-application/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 
-let expressApp, mailerNock, userServiceNock;
+let axiosAPIClient, mailerNock, userServiceNock;
 
 beforeAll(async (done) => {
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
+
   
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the api
   nock.disableNetConnect();
@@ -71,7 +77,7 @@ describe('/api', () => {
       };
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
@@ -94,9 +100,7 @@ describe('/api', () => {
 
       //Act
       // ➿ Nock intercepts the request for users service as declared in the BeforeAll function
-      const orderAddResult = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(orderAddResult.status).toBe(200);
@@ -118,9 +122,7 @@ describe('/api', () => {
       });
 
       //Act
-      const orderAddResult = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(orderAddResult.status).toBe(404);
@@ -145,7 +147,7 @@ describe('/api', () => {
       };
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately with the right input
@@ -175,7 +177,7 @@ describe('/api', () => {
     };
 
     //Act
-    const response = await request(expressApp).post('/order').send(orderToAdd);
+    const response = await axiosAPIClient.post('/order', orderToAdd);
     
     //Assert
     expect(response.status).toBe(503);
@@ -200,7 +202,7 @@ describe('/api', () => {
     };
 
     //Act
-    const response = await request(expressApp).post('/order').send(orderToAdd);
+    const response = await axiosAPIClient.post('/order', orderToAdd);
 
     //Assert
     expect(response.status).toBe(200);

@@ -1,14 +1,21 @@
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const { initializeWebServer, stopWebServer } = require('../api');
 const OrderRepository = require('../data-access/order-repository');
 
-let expressApp;
+// Configuring file-level HTTP client with base URL will allow
+// all the tests to approach with a shortened syntax
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
@@ -47,18 +54,18 @@ describe('/api', () => {
         mode: 'approved',
       };
       const {
-        body: { id: addedOrderId },
-      } = await request(expressApp).post('/order').send(orderToAdd);
+        data: { id: addedOrderId },
+      } = await axiosAPIClient.post(`/order`, orderToAdd);
 
       //Act
-      const getResponse = await request(expressApp).get(
-        `/order/${addedOrderId}`
-      );
+      // ️️️✅ Best Practice: Use generic and reputable HTTP client like Axios or Fetch. Avoid libraries that are coupled to
+      // the web framework or include custom assertion syntax (e.g. Supertest)
+      const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
 
       //Assert
       expect(getResponse).toMatchObject({
         status: 200,
-        body: {
+        data: {
           userId: 1,
           productId: 2,
           mode: 'approved',
@@ -71,7 +78,7 @@ describe('/api', () => {
       const nonExistingOrderId = -1;
 
       //Act
-      const getResponse = await request(expressApp).get(
+      const getResponse = await axiosAPIClient.get(
         `/order/${nonExistingOrderId}`
       );
 
@@ -91,14 +98,15 @@ describe('/api', () => {
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post(
+        '/order',
+        orderToAdd
+      );
 
       //Assert
       expect(receivedAPIResponse).toMatchObject({
         status: 200,
-        body: {
+        data: {
           mode: 'approved',
         },
       });
@@ -115,20 +123,20 @@ describe('/api', () => {
 
       //Act
       const {
-        body: { id: addedOrderId },
-      } = await request(expressApp).post('/order').send(orderToAdd);
+        data: { id: addedOrderId },
+      } = await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
-      const { body, status } = await request(expressApp).get(
+      const { data, status } = await axiosAPIClient.get(
         `/order/${addedOrderId}`
       );
 
       expect({
-        body,
+        data,
         status,
       }).toMatchObject({
         status: 200,
-        body: {
+        data: {
           id: addedOrderId,
           userId: 1,
           productId: 2,
@@ -155,7 +163,7 @@ describe('/api', () => {
       };
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
@@ -177,9 +185,7 @@ describe('/api', () => {
       };
 
       //Act
-      const orderAddResult = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(orderAddResult.status).toBe(400);
@@ -211,9 +217,7 @@ describe('/api', () => {
       };
 
       //Act
-      const orderAddResult = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(orderAddResult.status).toBe(404);
@@ -239,7 +243,7 @@ describe('/api', () => {
       };
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
