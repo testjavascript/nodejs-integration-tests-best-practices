@@ -4,20 +4,22 @@ const logger = require('./libraries/logger');
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
   handleError: async (errorToHandle) => {
-    logger.error(`Error occured ${errorToHandle}`);
-    metricsExporter.fireMetric('error', {
-      errorName: errorToHandle.name || 'generic-error',
-    });
-    // This is used to simulate sending email to admin when an error occurs
-    // In real world - The right flow is sending alerts from the monitoring system
-    await mailer.send(
-      'Error occured',
-      `Error is ${errorToHandle}`,
-      'admin@our-domain.io'
-    );
+    try {
+      logger.error(`Error occured ${errorToHandle}`);
+      metricsExporter.fireMetric('error', {
+        errorName: errorToHandle.name || 'generic-error',
+      });
+      // This is used to simulate sending email to admin when an error occurs
+      // In real world - The right flow is sending alerts from the monitoring system
+      await mailer.send(
+        'Error occured',
+        `Error is ${errorToHandle}`,
+        'admin@our-domain.io'
+      );
 
-    // A common best practice is to crash when an unknown error (non-trusted) is being thrown
-    decideWhetherToCrash(errorToHandle);
+      // A common best practice is to crash when an unknown error (non-trusted) is being thrown
+      decideWhetherToCrash(errorToHandle);
+    } catch (e) {}
   },
 };
 
