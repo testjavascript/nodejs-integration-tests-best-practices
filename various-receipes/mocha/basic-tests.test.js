@@ -4,8 +4,8 @@ const chaiSubset = require('chai-subset');
 const { after, afterEach, before, beforeEach, describe, it } = require('mocha');
 const sinon = require('sinon');
 const nock = require('nock');
-const { initializeWebServer, stopWebServer } = require('../api');
-const OrderRepository = require('../data-access/order-repository');
+const { initializeWebServer, stopWebServer } = require('../../example-application/api');
+const OrderRepository = require('../../example-application/data-access/order-repository');
 
 // So we can use containSubset
 chai.use(chaiSubset);

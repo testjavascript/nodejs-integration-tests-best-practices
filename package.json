@@ -7,7 +7,7 @@
     "test:dev": "jest --watch --runInBand",
     "test:nestjs": "jest --config='./various-receipes/nestjs/ts-jest.config.js'",
     "test:dev:verbose": "jest --watch --verbose",
-    "test:mocha": "mocha example-application/test/**.test.mocha.js --exit",
+    "test:mocha": "mocha various-receipes/mocha/basic-tests.test.js --exit --require various-receipes/mocha/hooks.js",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
   },
