@@ -5,7 +5,7 @@ const logger = require('./libraries/logger');
 const errorHandler = {
   handleError: async (errorToHandle) => {
     try {
-      logger.error(`Error occured ${errorToHandle}`);
+      logger.error(`Error occurred ${errorToHandle}`);
       metricsExporter.fireMetric('error', {
         errorName: errorToHandle.name || 'generic-error',
       });
@@ -19,7 +19,9 @@ const errorHandler = {
 
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       decideWhetherToCrash(errorToHandle);
-    } catch (e) {}
+    } catch (e) {
+      logger.error(`handleError threw an error ${e}`);
+    }
   },
 };
 
