@@ -20,6 +20,7 @@ const errorHandler = {
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       decideWhetherToCrash(errorToHandle);
     } catch (e) {
+      // Continue the code flow if failed to handle the error
       logger.error(`handleError threw an error ${e}`);
     }
   },
