@@ -616,8 +616,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Various tools and network interceptors (e.g. nock) can tell about the existence and nature of outgoing http requests. Run one of those tools as you plan test cases to realize which end-points and scenarios should get covered. With local interceptor that are made for testing, recording mode should be enabled when the tests run - Then all the network traffic will get captured in local files.
-You might miss end-points or more likely miss some corner scnarios. For example, you were sure that 'GET: /users/:id' returns only HTTP 200 but it also might be that  it returns sometimes 204 with empty body. If this is not tested before production, it will get tested in production. For complex and critical scenarios, watching the **production** network logs can get prooved valuable as it
+:white_check_mark:  **Do:** Various tools and network interceptors (e.g. nock) can tell about the existence and nature of outgoing http requests. Run one of those tools as you plan test cases to realize which end-points and scenarios should get covered. With local interceptor that are made for testing (e.g [nock recording](https://github.com/nock/nock#recording))., recording mode should be enabled when the tests run - Then all the network traffic will get captured in local files. Why is this important? You might miss end-points or more likely miss some corner scnarios. For example, one may be believe that 'GET: /users/:id' returns only HTTP 200 with body, the code rely on this response body, but it actually also returns sometimes HTTP 204 with empty body. If this is not tested before production, it will get tested in production. For complex and critical scenarios, watching the **production** network logs can get prooved valuable as it
 
  - You thought the 
   Before and during watch the reality, look at production network logs, OpenAPI or the easiest the recording of your network interceptor (e.g. nock); Important ensure cover not only paths and providers, but also scenarios. You might believe that /users/:id returns only 200 but it also might be that  it returns sometimes 204 with different body. Without this, the tests might not cover imperative scenarios.
@@ -998,11 +997,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc5MDk2MTQ5OCw5NTI0MjkzOTEsLTkzMj
-UwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwx
-NTEzNjE0MTU5LC0yMDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MT
-gxNDczLC0yMzIzNTk2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMw
-LC0yMDEzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLT
-c0NTQxMDc1LDExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAz
-OTVdfQ==
+eyJoaXN0b3J5IjpbNDI0NjY3MjMwLDk1MjQyOTM5MSwtOTMyNT
+A2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1
+MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxOD
+E0NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAs
+LTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNz
+Q1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5
+NV19
 -->
