@@ -616,7 +616,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** f 
+:white_check_mark:  **Do:** Before and during watch the reality, look at production netowrk ; Important ensure cover not only paths and providers, but also scenarios. You might believe that /users/:id returns only 200 but it also might be that  
 
 Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTI3MzIxNDI5LDk1MjQyOTM5MSwtOTMyNT
-A2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1
-MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxOD
-E0NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAs
-LTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNz
-Q1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5
-NV19
+eyJoaXN0b3J5IjpbMTMwMTQ3NDI5NSw5NTI0MjkzOTEsLTkzMj
+UwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwx
+NTEzNjE0MTU5LC0yMDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MT
+gxNDczLC0yMzIzNTk2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMw
+LC0yMDEzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLT
+c0NTQxMDc1LDExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAz
+OTVdfQ==
 -->
