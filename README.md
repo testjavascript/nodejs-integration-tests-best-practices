@@ -614,13 +614,15 @@ services:
 
 ### ⚪️ 7.  Record real requests for awareness
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
+:white_check_mark:  **Do:** 
+
+Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Rely on memory  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Rely on memory  ❌ &nbsp; ; Manually skin through swagger ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -992,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0MTMxMzc4MCwtOTMyNTA2NDgsLTkzMj
-UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
-LTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMj
-M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
-MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMT
-E2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIx
-NzcyXX0=
+eyJoaXN0b3J5IjpbOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNT
+A2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwt
+MjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMz
+U5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1Mjky
+OSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMT
+YzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAwMzk1LDE2Njg1MjE3
+NzJdfQ==
 -->
