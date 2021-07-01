@@ -620,7 +620,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Rely on your familairity with the code and trust that you didn't miss any network flow  ❌ &nbsp; ; Manually skin through swagger ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Rely on your familairity with the code and trust that you didn't miss any network flow  ❌ &nbsp; Manually skim through API documentation (e.g. OpenAPI)  ✅&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -992,11 +992,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTY4MTA2NjEsOTUyNDI5MzkxLC05Mz
-I1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTks
-MTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5ND
-E4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAz
-MCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC
-03NDU0MTA3NSwxMTYzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAw
-Mzk1XX0=
+eyJoaXN0b3J5IjpbLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNT
+A2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1
+MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxOD
+E0NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAs
+LTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNz
+Q1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5
+NV19
 -->
