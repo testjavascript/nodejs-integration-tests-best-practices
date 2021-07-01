@@ -616,7 +616,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark:  **Do:** Before and during watch the reality, look at production netowrk ; Important ensure cover not only paths and providers, but also scenarios. You might believe that /users/:id returns only 200 but it also might be that  
+:white_check_mark:  **Do:** Before and during watch the reality, look at production network logs, OpenAPI or the easiest the recording of your network interceptor (e.g. nock); Important ensure cover not only paths and providers, but also scenarios. You might believe that /users/:id returns only 200 but it also might be that  it returns sometimes 204 with different body. Without this 
 
 Interception tools include record mode which ...; use this to become aware of the integration it self, but also to its various patterns. Ensure all variations are covered with testing. You may use the recorded file as default; Do this in staging environment; Valuable when there are many integrations.
 
@@ -994,11 +994,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwMTQ3NDI5NSw5NTI0MjkzOTEsLTkzMj
-UwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwx
-NTEzNjE0MTU5LC0yMDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MT
-gxNDczLC0yMzIzNTk2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMw
-LC0yMDEzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5OTgsLT
-c0NTQxMDc1LDExNjM1NDE1NDksMTMwMTY5MTA0MCw5MjUzMDAz
-OTVdfQ==
+eyJoaXN0b3J5IjpbLTEyOTI5NjM0NjYsOTUyNDI5MzkxLC05Mz
+I1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTks
+MTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5ND
+E4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAz
+MCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC
+03NDU0MTA3NSwxMTYzNTQxNTQ5LDEzMDE2OTEwNDAsOTI1MzAw
+Mzk1XX0=
 -->
