@@ -620,7 +620,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Rely on memory  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -992,11 +992,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMz
-U5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4NTI0
-LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyOD
-c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
-NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1NDksMT
-MwMTY5MTA0MCw5MjUzMDAzOTUsMTY2ODUyMTc3Miw4MDQ5MzA5
-NjhdfQ==
+eyJoaXN0b3J5IjpbLTM0MTMxMzc4MCwtOTMyNTA2NDgsLTkzMj
+UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
+LTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMj
+M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
+MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNzQ1NDEwNzUsMT
+E2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5NSwxNjY4NTIx
+NzcyXX0=
 -->
