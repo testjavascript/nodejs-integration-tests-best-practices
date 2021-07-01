@@ -614,9 +614,9 @@ services:
 
 ### ⚪️ 7.  Record real outgoing requests for awareness
 
-🏷&nbsp; **Tags:** `#basic`
+🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** Various tools and network interceptors (e.g. nock) can tell about the existence and nature of outgoing http requests. Run one of those tools as you plan test cases to realize which end-points and scenarios should get covered. With local interceptor that are made for testing (e.g [nock recording](https://github.com/nock/nock#recording))., recording mode should be enabled when the tests run - Then all the network traffic will get captured in local files. Why is this important? You might miss end-points or more likely miss some corner scnarios. For example, one may be believe that 'GET: /users/:id' returns only HTTP 200 with body, the code rely on this response body. In reality, this end-point also returns sometimes HTTP 204 with empty body. If this is not tested before production, it will get tested in production. For complex and critical scenarios, consider also watching the **production** network logs to realize the various potential scnearios.
+:white_check_mark:  **Do:** Various tools and network interceptors (e.g., nock) can tell about the existence and nature of outgoing HTTP requests. Run one of those tools as you plan test cases to realize which end-points and scenarios should get covered. With local interceptors that are made for testing (e.g. [nock recording](https://github.com/nock/nock#recording))., recording mode should be enabled when the tests run - Then all the network traffic will get captured in local files. Why is this important? You might miss end-points or, more likely, miss some corner scenarios. For example, one may believe that 'GET: /users/:id' returns only HTTP 200 with a body, the code relies on this response. In reality, this end-point also sometimes returns HTTP 204 with an empty body. If this is not tested before production, it will get tested in production... For complex and critical scenarios, consider also watching the **production** network logs to realize the various potential scenarios.
 
 <br/>
 
@@ -992,11 +992,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNT
-A2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1
-MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxOD
-E0NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAs
-LTIwMTM2NTI5MjksLTIxNDI1NzQ0NDcsMTYzODU1Mjk5OCwtNz
-Q1NDEwNzUsMTE2MzU0MTU0OSwxMzAxNjkxMDQwLDkyNTMwMDM5
-NV19
+eyJoaXN0b3J5IjpbLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyND
+I5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2
+MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1ND
+EwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAxMywt
+MTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNj
+M4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQxNTQ5LDEzMDE2OTEw
+NDBdfQ==
 -->
