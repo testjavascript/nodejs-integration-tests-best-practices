@@ -766,7 +766,8 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** After invoking the route under test, a new state is likely to exist (e.g. new DB records), check that it is satisfactory using the REST API. When not applicable,
+:white_check_mark:  **Do:** After invoking the route under test, a new state is likely to exist (e.g. new DB records), check that it is satisfactory using the REST API. This allows stretcing the app like the user does. Should we go the other way aroung, and approach the 
+When not applicable, use the most outer layer that does expose this info like service, facade or repository.
 
 <br/>
 
@@ -1066,11 +1067,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjU3ODA2MDgsLTY3MDg2ODg1NCwtOT
-M0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgs
-LTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3ND
-c1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2
-LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMj
-E0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQx
-NTQ5XX0=
+eyJoaXN0b3J5IjpbLTEwMTU0Mjk2NCwtNjcwODY4ODU0LC05Mz
+QzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwt
+NjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0Nz
+U4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYs
+NjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMT
+QyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1
+NDldfQ==
 -->
