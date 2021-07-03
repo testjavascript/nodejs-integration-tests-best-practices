@@ -872,7 +872,7 @@ services:
 
 <br/><br/>
 
-### ⚪️ 6.  Use the same production migration to install the test DB
+### ⚪️ 7.  Install the DB schema using the same technique like production
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -909,7 +909,7 @@ services:
 <br/>
 
 
-### ⚪️ 7.  Test for undesired side effects 
+### ⚪️ 8.  Test for undesired side effects 
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
@@ -1028,11 +1028,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyND
-I5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2
-MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1ND
-EwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAxMywt
-MTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNj
-M4NTUyOTk4LC03NDU0MTA3NSwxMTYzNTQxNTQ5LDEzMDE2OTEw
-NDBdfQ==
+eyJoaXN0b3J5IjpbMTkxMjkyMTI0MSwtNjcwODY4ODU0LC05Mz
+QzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwt
+NjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0Nz
+U4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYs
+NjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMT
+QyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1
+NDldfQ==
 -->
