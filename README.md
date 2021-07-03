@@ -766,8 +766,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** After invoking the route under test, a new state is likely to exist (e.g. new DB records), check that it is satisfactory using the REST API. This allows stretcing the app like the user does. Should we go the other way aroung, and approach the 
-When not applicable, use the most outer layer that does expose this info like service, facade or repository.
+:white_check_mark:  **Do:** After invoking the route under test, a new state is likely to exist (e.g. new DB records), check that it is satisfactory using the REST API. This allows stretcing the app like the user does. Should tests go the other way aroung, and approach the DB directly, not only they dont tell the user flow, they might miss a bug in the API that return the data. Sometimes, such REST API does noteWhen not applicable, use the most outer layer that does expose this info like service, facade or repository.
 
 <br/>
 
@@ -1067,7 +1066,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTU0Mjk2NCwtNjcwODY4ODU0LC05Mz
+eyJoaXN0b3J5IjpbLTI3NTYzNzEyOCwtNjcwODY4ODU0LC05Mz
 QzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwt
 NjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0Nz
 U4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYs
