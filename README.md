@@ -812,15 +812,17 @@ services:
 
 ### ⚪️ 4.  Important: Choose a clear data clean-up strategy: After-all (recommended) or after-each
 
-🏷&nbsp; **Tags:** `#strategic, #draft`
+🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests  vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees clean tables and builds convient testing perks for the developer. No other records exist when the test start, one can have certainty which data is being queried and even count rows during assertion. This comes with severe downsides. When running in a multi-process mode, tests are likely to interfere with each other, while process-1 purges tables, at the very moment process-2 queries for data and fail (because the DB was suddenly deleted by process-1). On top of this, It's harder to troubleshoot failing tests - Visiting the DB will show no records. The second option is to clean-up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes, the tests have to add and act on their own records. Need to check that some record was added? Assume that there are other thousands records and query for this one specifically. Need to check that a record was deleted? Can't assume an empty table, check that this specific record is not there. This technique brings few powerful gains: It works nativelly in multi-process mode, when a developer wishes to understand what happened - the data is there and not deleted. It also increases the chance of finding bugs becuase the DB is full with records and artifically empty. It's not perfect though, since the DB is stuffed with data - Data that goes to unique columns might violate unique columns, when adding 10 records and trying to assert their existence a more sophisiticated query will be needed. All of these challenges have reasonable resolutions (read next bullets, for example unique values can get random suffix). See full comparison table here.
+:white_check_mark:  **Do:** The timing when the tests clean the database determines the way the tests are being written. The two most viable options are cleaning after all the tests vs cleaning after every single test. Choosing the latter option, cleaning after every single test guarantees clean tables and builds convenient testing perks for the developer. No other records exist when the test starts, one can have certainty which data is being queried and even might be tempted to count rows during assertions. This comes with severe downsides: When running in a multi-process mode, tests are likely to interfere with each other. While process-1 purges tables, at the very moment process-2 queries for data and fail (because the DB was suddenly deleted by process-1). On top of this, It's harder to troubleshoot failing tests - Visiting the DB will show no records.
 
-There's no clear winner here, both have their strength but also unpleasant implications. Both can result with great testing solution. Our recommended approach is cleaning up occassionaly and accepting the non-deterministic DB state. This resembles more the production environment, leads to more realistic tests and when done right will not show any flakiness. A bit of more sweat for moe gain. 
+The second option is to clean up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes, the tests must add and act on specific records that they have added. Need to check that some record was added? Assume that there are other thousands of records and query for records that were added explicitly. Need to check that a record was deleted? Can't assume an empty table, check that this specific record is not there. This technique brings few powerful gains: It works natively in multi-process mode, when a developer wishes to understand what happened - the data is there and not deleted. It also increases the chance of finding bugs because the DB is full of records and not artificially empty. It's not perfect, though, since the DB is stuffed with data - Data that goes to unique columns might be duplicated. When adding 10 records and asserting their existence, a more sophisticated query will be needed. All of these challenges have reasonable resolutions (read the next bullets, for example, unique values can get random suffix). See the full comparison table here.
+
+Who wins? There's no clear cut here. Both have their strength but also unpleasant implications. Both can result in great testing solution. Our recommended approach is cleaning up occasionally and accepting the non-deterministic DB state. This resembles more the production environment, leads to more realistic tests and when done right will not show any flakiness. A bit of more sweat for more realism. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Using transactions can also take care to clean-up the DB automtically. The test will pass an open transaction to the code under test and finally abort the transaction. It's not recommended becuase the tests get more coupled to the code internals. It also generates cascading transactions model that complicates if the code already contains transaction. Lastly, it works only with certain DB that have transactions   ❌ &nbsp;  
+👀 &nbsp; **Alternatives:** Using transactions can also take care to clean up the DB automatically. The test will pass an open transaction to the code under test and finally abort the transaction. It's not recommended because the tests get more coupled to the code internals. It also generates cascading transactions model that complicates if the code already contains transactions. Lastly, it works only with particular DB that supports transactions   ❌ &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1076,11 +1078,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nz
-g4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1
-NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOT
-M0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgs
-LTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3ND
-c1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2
-XX0=
+eyJoaXN0b3J5IjpbLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMT
+M3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIx
+NDYsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLT
+Y3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0
+OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMz
+YxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3
+M119
 -->
