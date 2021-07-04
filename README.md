@@ -698,7 +698,7 @@ services:
 In fact, there are 3 types of test data:
 
 - **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with test subject. For example: Currencies list, countries, roles list and similar. This data can get seeded once globally, there is no point in re-adding it per test or file.
-- **Context data** - Records that hold relationship with the subject under test, but are not being test directly and will never get mutated. For example, in a e-commerce ordering flow tests, the User entity, Shop, Business, are parent or sibling of the Order that is being tested, they might affect the test result (e.g. non-existing user) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - It should be added per test
+- **Context data** - Required records that hold relationship with the subject under test, but are not being test directly. For example, in a e-commerce ordering flow tests, the User entity, Shop, Business, are parent or sibling of the Order that is being tested, they might affect the test result (e.g. Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - It should be added per test
 **- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must see what was added to understand the tests results. For this reason, this data is added inside the test. For example, when testing an orderling flow - These are the order themselves
 
 Ideas: Coupling, dominos, for the reader, 3 test types of data, arrange
@@ -1073,7 +1073,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTI4NzY5MzYsLTE0MDY2MjQ1NzksNj
+eyJoaXN0b3J5IjpbLTIwMjg5MDg1OTgsLTE0MDY2MjQ1NzksNj
 c5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5
 NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMj
 M1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUy
