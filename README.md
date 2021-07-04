@@ -814,9 +814,11 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** This is an open discussion in the testing community, when should test data get cleaned out: after each test, each suite, use transactions or just clean in the end. Any options has unpleasant implications, cleaning in the end is the best amont the worst. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. Cleaning in the end scores best in terms of performance but might trigger collission between tests - Overcome this by adding some randomness to your test data. Some randomness is anyway needed for unique columns.
+:white_check_mark:  **Do:** The timing when the tests clean the database, determines the test's 
 
-Include the comparison table, mention transactions, chances of catching bugs
+This is an open discussion in the testing community, when should test data get cleaned out: after each test, each suite, use transactions or just clean in the end. Any options has unpleasant implications, cleaning in the end is the best amont the worst. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. Cleaning in the end scores best in terms of performance but might trigger collission between tests - Overcome this by adding some randomness to your test data. Some randomness is anyway needed for unique columns.
+
+Include the comparison table, mention transactions, chances of catching bugs, randomness
 
 <br/>
 
@@ -1076,7 +1078,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2OTAyNjcwNywtODY0ODE2MzM3LDI2Nj
+eyJoaXN0b3J5IjpbMTA5OTg0MDIzMiwtODY0ODE2MzM3LDI2Nj
 gzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQx
 NiwtNjcwODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMj
 UwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwx
