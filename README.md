@@ -694,7 +694,7 @@ services:
 🏷&nbsp; **Tags:** `#strategic`
 
 :white_check_mark:  **Do:** 
-Any record that might affect the test results should be added at the beginning of the test. Excelemation mark. Doing so will result in short and self-contained test stories that the occasional reader can easily troubleshoot without skimming through the entire file. A common mistake is to seed the whole test data globally - This leads to high coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests before. Each might have mutated the global data. Are you concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the execution time - Absolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests; other types of general data can be seeded before all the tests.
+Any record that might affect the test results should be added at the beginning of the test. Excelemation mark. Doing so will result in short and self-contained test stories that the occasional reader can easily troubleshoot without skimming through the entire file. A common mistake is to seed the whole test data globally - This leads to high coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests before. Each might have mutated the global data. Other undesired side effects: One must run all the tests together in-order - Running a sin, failing to understand the test intent Are you concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the execution time - Absolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests; other types of general data can be seeded before all the tests.
 
 There are 3 types of test data:
 
@@ -1076,7 +1076,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjkxOTgzNjAsMjY2ODMyMTQ2LC0xND
+eyJoaXN0b3J5IjpbLTEwMzIwMzI0NTQsMjY2ODMyMTQ2LC0xND
 A2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4
 NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMj
 UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
