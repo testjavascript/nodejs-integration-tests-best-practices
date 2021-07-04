@@ -816,7 +816,7 @@ services:
 
 :white_check_mark:  **Do:** The timing when the tests clean the database determines the way the tests are being written. The two most viable options are cleaning after all the tests vs cleaning after every single test. Choosing the latter option, cleaning after every single test guarantees clean tables and builds convenient testing perks for the developer. No other records exist when the test starts, one can have certainty which data is being queried and even might be tempted to count rows during assertions. This comes with severe downsides: When running in a multi-process mode, tests are likely to interfere with each other. While process-1 purges tables, at the very moment process-2 queries for data and fail (because the DB was suddenly deleted by process-1). On top of this, It's harder to troubleshoot failing tests - Visiting the DB will show no records.
 
-The second option is to clean up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes, the tests must add and act on specific records that they have added. Need to check that some record was added? Assume that there are other thousands of records and query for records that were added explicitly. Need to check that a record was deleted? Can't assume an empty table, check that this specific record is not there. This technique brings few powerful gains: It works natively in multi-process mode, when a developer wishes to understand what happened - the data is there and not deleted. It also increases the chance of finding bugs because the DB is full of records and not artificially empty. It's not perfect, though, since the DB is stuffed with data - Data that goes to unique columns might be duplicated. When adding 10 records and asserting their existence, a more sophisticated query will be needed. All of these challenges have reasonable resolutions (read the next bullets, for example, unique values can get random suffix). [See the full comparison table here]((/graphics/db-clean-options.png "Choosing the right DB clean up strategy")).
+The second option is to clean up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes, the tests must add and act on specific records that they have added. Need to check that some record was added? Assume that there are other thousands of records and query for records that were added explicitly. Need to check that a record was deleted? Can't assume an empty table, check that this specific record is not there. This technique brings few powerful gains: It works natively in multi-process mode, when a developer wishes to understand what happened - the data is there and not deleted. It also increases the chance of finding bugs because the DB is full of records and not artificially empty. It's not perfect, though, since the DB is stuffed with data - Data that goes to unique columns might be duplicated. When adding 10 records and asserting their existence, a more sophisticated query will be needed. All of these challenges have reasonable resolutions (read the next bullets, for example, unique values can get random suffix). [See the full comparison table here](/graphics/db-clean-options.png "Choosing the right DB clean up strategy").
 
 Who wins? There's no clear cut here. Both have their strength but also unpleasant implications. Both can result in great testing solution. Our recommended approach is cleaning up occasionally and accepting the non-deterministic DB state. This resembles more the production environment, leads to more realistic tests and when done right will not show any flakiness. A bit of more sweat for more realism. 
 
@@ -1078,11 +1078,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzYzNTI1MTc2LC0xOTg2NDY3ODk5LC0yND
-k5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYz
-MzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxND
-A2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1MjQyOTM5
-MSwtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNz
-cyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4
-N119
+eyJoaXN0b3J5IjpbLTE0NTYyNDg4MjUsLTE5ODY0Njc4OTksLT
+I0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgx
+NjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LD
+E0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5
+MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MD
+M3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEw
+Njg3XX0=
 -->
