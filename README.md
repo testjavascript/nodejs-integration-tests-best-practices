@@ -694,7 +694,7 @@ services:
 🏷&nbsp; **Tags:** `#strategic`
 
 :white_check_mark:  **Do:** 
-Any record that might affect the test results should be added at the beginning of the test. Excelemation mark. Doing so will result in short and self-contained test stories that the occasional reader can easily troubleshoot without skimming through the entire file. A common mistake is to seed the whole test data globally - This leads to high coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests before. Each might have mutated the global data. Other undesired side effects: One must run all the tests together in-order - Running a sin, failing to understand the test intent Are you concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the execution time - Absolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests; other types of general data can be seeded before all the tests.
+Any record that might affect the test results should be added at the beginning of the test. Excelemation mark. Doing so will result in short and self-contained test stories that the occasional reader can easily troubleshoot without skimming through the entire file. A common mistake is to seed the whole test data globally - This leads to high coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests before. Each might have mutated the global data. Other undesired side effects: One can't run a single test becuase it depends on data that is gener, failing to understand the test intent ([The mystery guest syndrome](http://xunitpatterns.com/Obscure%20Test.html#Mystery%20Guest)). Are you concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the execution time - Absolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests; other types of general data can be seeded before all the tests.
 
 There are 3 types of test data:
 
@@ -1076,11 +1076,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzIwMzI0NTQsMjY2ODMyMTQ2LC0xND
-A2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4
-NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMj
-UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
-LTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMj
-M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
-MjldfQ==
+eyJoaXN0b3J5IjpbNzM1MDg3OTg2LDI2NjgzMjE0NiwtMTQwNj
+YyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0
+LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MD
+Y0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0y
+MDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNT
+k2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5
+XX0=
 -->
