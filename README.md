@@ -698,8 +698,10 @@ Any record that might affect the test results should be added at the beginning o
 
 There are 3 types of test data:
 
-- **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with the test's subject. For example, currencies list, countries, roles list, and similar. This data can get seeded once globally. There is no point in re-adding it per test or file.
+- **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with the test's subject. For example, currencies list, countries, roles list, and similar. This data can get seeded once globally. There is no point in re-adding it per test or file
+
 - **Context data** - Required records that hold a relationship with the subject under test but are not being tested directly. For example, consider an e-commerce purchase flow tests: The User entity, Shop entity, Business entity are all a parent or sibling of the Order that is being tested. They might affect the test result (e.g., Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - Add the data per test
+
 **- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
 
 [See diagram here](https://temp.com)
@@ -1074,7 +1076,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMjgzNDg3MzIsMjY2ODMyMTQ2LC0xND
+eyJoaXN0b3J5IjpbLTIwNjkxOTgzNjAsMjY2ODMyMTQ2LC0xND
 A2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4
 NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMj
 UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
