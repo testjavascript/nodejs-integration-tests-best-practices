@@ -693,7 +693,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Any record that might affect the test results should be added at the begining of the test. Excelemation mark. Doing so will make the test a short and self-contained story that the occassional reader can easily trubleshoot without skimming through the entire file. A common mistake is to seed the entire test data globally - This leads to high-coupling and complexity. Understanding why test num #27 failed demands reading the 26 tests that come before, each might have  test #38 relies on? Also lead to obscure tests... A test is a standlone story with <7 statements. Based on our benchmarks, this adds ~1 second to the test execution time - Abolutely worth the decreased complexity. There are 3 types of data (metadata vs context vs records model comes here)
+:white_check_mark:  **Do:** Any record that might affect the test results should be added at the begining of the test. Excelemation mark. Doing so will make the test a short and self-contained story that the occassional reader can easily trubleshoot without skimming through the entire file. A common mistake is to seed the entire test data globally - This leads to high-coupling and complexity. Understanding why test num #27 failed demands reading the 26 tests that come before, each might have mutate the global data. Concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the tests execution time - Abolutely worth the decreased complexity. There are 3 types of data (metadata vs context vs records model comes here)
 
 Ideas: Coupling, dominos, for the reader, 3 test types of data, 
 
@@ -1068,11 +1068,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3Njk5ODMwMiw2Nzk0Mzg4MjcsMTQwNj
-c0MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEs
-LTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mj
-c5OSwxNTEzNjE0MTU5LC0yMDc0NzU4NTI0LDEwMjU0MTA2ODcs
-NTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyODc3MDEzLC0xMDgzND
-A3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0NDQ3LDE2Mzg1NTI5
-OThdfQ==
+eyJoaXN0b3J5IjpbLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MD
+Y3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5Mzkx
+LC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3Nz
+I3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3
+LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4Mz
+QwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUy
+OTk4XX0=
 -->
