@@ -697,8 +697,8 @@ services:
 
 In fact, there are 3 types of test data:
 
-- **Metadata** - General purpose lists and lookups that are needed for the app to perform
--
+- **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with test subject. For example: Currencies list, countries, roles list and similar. This data can get seeded once globally, there is no point in re-adding it per test or file.
+- Context data - Records Holds relationship with data under test, but also different
 **- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must see what was added to understand the tests results. For this reason, this data is added inside the test.
 - Test fs
 
@@ -1074,7 +1074,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3OTY1MzA4LC0xNDA2NjI0NTc5LDY3OT
+eyJoaXN0b3J5IjpbNDUzMTE0NTA2LC0xNDA2NjI0NTc5LDY3OT
 QzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5
 LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNT
 k3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1MjQs
