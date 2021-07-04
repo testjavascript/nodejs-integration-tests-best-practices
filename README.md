@@ -693,7 +693,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Any record that might affect the test results should be added at the begining of the test. Excelemation mark. Keeping the 
+:white_check_mark:  **Do:** Any record that might affect the test results should be added at the begining of the test. Excelemation mark. Keeping the test self-contained 
 A common mistake is to seed the entire test data or add one per suite - Leads to coupling between tests. What if test num #37 deletes the entity that test #38 relies on? Also lead to obscure tests... A test is a standlone story with <7 statements. Based on our benchmarks, this adds ~1 second to the test execution time - Abolutely worth the decreased complexity. There are 3 types of data (metadata vs context vs records model comes here)
 
 Ideas: Coupling, dominos, for the reader, 3 test types of data, 
@@ -1069,7 +1069,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzQwOTUzNzcsNjc5NDM4ODI3LDE0MD
+eyJoaXN0b3J5IjpbLTE0MDQ2MTAwOTcsNjc5NDM4ODI3LDE0MD
 Y3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5Mzkx
 LC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3Nz
 I3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3
