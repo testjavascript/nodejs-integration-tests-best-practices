@@ -816,7 +816,7 @@ services:
 
 :white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests  vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees clean tables and builds convient testing perks for the developer. No other records exist when the test start, one can have certainty which data is being queried and even count rows during assertion. This comes with severe downsides. When running in a multi-process mode, tests are likely to interfere with each other, while process-1 purges tables, at the very moment process-2 queries for data and fail (because the DB was suddenly deleted by process-1). On top of this, It's harder to troubleshoot failing tests - Visiting the DB will show no records. The second option is to clean-up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes, the tests have to add and act on their own records. Need to check that some record was added? Assume that there are other thousands records and query for this one specifically. Need to check that a record was deleted? Can't assume an empty table, check that this specific record is not there. This technique brings few powerful gains: It works nativelly in multi-process mode, when a developer wishes to understand what happened - the data is there and not deleted. It also increases the chance of finding bugs becuase the DB is full with records and artifically empty. It's not perfect though, since the DB is stuffed with data - Data that goes to unique columns might violate unique columns, when adding 10 records and trying to assert their existence a more sophisiticated query will be needed. All of these challenges have reasonable resolutions (read next bullets, for example unique values can get random suffix). 
 
-There's no clear winner here, both have their strength but also unpleasant implications. Both can result with great testing solution. Our recommended approach is cleaning up . See full comparison table here.
+There's no clear winner here, both have their strength but also unpleasant implications. Both can result with great testing solution. Our recommended approach is cleaning up occassionaly and accepting the non-deterministic DB state. This resembles more the production environment, leads to more realistic tests and when done right will not show any flakiness. A bit of more sweat for 
 
 This is an open discussion in the testing community, when should test data get cleaned out: after each test, each suite, use transactions or just clean in the end. Any options has , cleaning in the end is the best amont the worst. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. Cleaning in the end scores best in terms of performance but might trigger collission between tests - Overcome this by adding some randomness to your test data. Some randomness is anyway needed for unique columns.
 
@@ -1080,11 +1080,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2OTIzMzUzOSwtMTM3NjEyMTM1MCw4Nz
-g4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1
-NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOT
-M0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgs
-LTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3ND
-c1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2
-XX0=
+eyJoaXN0b3J5IjpbLTE3MzEyMTUwNDEsLTEzNzYxMjEzNTAsOD
+c4ODY5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0
+NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLT
+kzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4
+LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNz
+Q3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYy
+Nl19
 -->
