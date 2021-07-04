@@ -695,6 +695,8 @@ services:
 
 :white_check_mark:  **Do:** Any record that effects the test results should be added at the begining of the test. Excelemation mark. A common mistake is to seed the entire test data or add one per suite - Leads to coupling between tests. What if test num #37 deletes the entity that test #38 relies on? Also lead to obscure tests... A test is a standlone story with <7 statements. Based on our benchmarks, this adds ~1 second to the test execution time - Abolutely worth the decreased complexity. There are 3 types of data (metadata vs context vs records model comes here)
 
+Ideas: Coupling, dominos, for the reader, 3 test types of data, 
+
 
 <br/>
 
@@ -1066,11 +1068,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MD
-g2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwt
-OTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxND
-E1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3Mywt
-MjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMz
-Y1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3
-NV19
+eyJoaXN0b3J5IjpbLTEwNzY2MTE0OTcsNjc5NDM4ODI3LDE0MD
+Y3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5Mzkx
+LC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3Nz
+I3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3
+LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4Mz
+QwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUy
+OTk4XX0=
 -->
