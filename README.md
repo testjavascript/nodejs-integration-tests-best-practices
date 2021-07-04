@@ -814,7 +814,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** The timing when the tests clean the database, determines the test's 
+:white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests (or daily) vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees, sure empty, count. Thi
 
 This is an open discussion in the testing community, when should test data get cleaned out: after each test, each suite, use transactions or just clean in the end. Any options has unpleasant implications, cleaning in the end is the best amont the worst. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. Cleaning in the end scores best in terms of performance but might trigger collission between tests - Overcome this by adding some randomness to your test data. Some randomness is anyway needed for unique columns.
 
@@ -1078,11 +1078,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA5OTg0MDIzMiwtODY0ODE2MzM3LDI2Nj
-gzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQx
-NiwtNjcwODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMj
-UwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwx
-NTEzNjE0MTU5LC0yMDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MT
-gxNDczLC0yMzIzNTk2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMw
-XX0=
+eyJoaXN0b3J5IjpbMjM0NDg5NTQ5LC04NjQ4MTYzMzcsMjY2OD
+MyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2
+LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNT
+A2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1
+MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxOD
+E0NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzBd
+fQ==
 -->
