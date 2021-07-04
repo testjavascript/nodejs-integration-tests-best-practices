@@ -702,7 +702,7 @@ There are 3 types of test data:
 
 - **Context data** - Required records that hold a relationship with the subject under test but are not being tested directly. For example, consider an e-commerce purchase flow tests: The User entity, Shop entity, Business entity are all a parent or sibling of the Order that is being tested. They might affect the test result (e.g., Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - Add the data per test
 
-**- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
+- **Test records** - This is the data that is actually being tested and likely to be mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
 
 [See diagram here](https://temp.com)
 
@@ -1076,11 +1076,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjE4Nzc1ODUsMjY2ODMyMTQ2LC0xND
-A2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4
-NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMj
-UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
-LTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMj
-M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
-MjldfQ==
+eyJoaXN0b3J5IjpbLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MD
+Y2MjQ1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1
+NCwtOTM0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNT
+A2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwt
+MjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMz
+U5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1Mjky
+OV19
 -->
