@@ -814,7 +814,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests  vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees clean tables and builds convient testing perks for the developer. No other records exist when the test start, one can have certainty which data is being queried and even count rows during assertion. This comes with severe downsides. When running in a multi-process mode, tests are likely to interfere with each other, while process-1 purges tables, at the very moment process-2 queries for data and fail (because the DB was suddenly deleted by process-1). On top of this, It's harder to troubleshoot failing tests - Visiting the DB will show no records. The second option is to clean-up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes 
+:white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests  vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees clean tables and builds convient testing perks for the developer. No other records exist when the test start, one can have certainty which data is being queried and even count rows during assertion. This comes with severe downsides. When running in a multi-process mode, tests are likely to interfere with each other, while process-1 purges tables, at the very moment process-2 queries for data and fail (because the DB was suddenly deleted by process-1). On top of this, It's harder to troubleshoot failing tests - Visiting the DB will show no records. The second option is to clean-up after all the test files have finished (or even daily!). This approach means that the same DB with existing records serves all the tests and processes. To avoid stepping on each other's toes, the tests have to add and act on their own records. Need to check that some record was added? Assume that there are other thousands records and query for this one specifically. Need to check that a record was deleted? Can't assume an empty table, check that this specific record is not there. This technique brings few poerful 
 
  tests take care not to inferre with each other by... There are multiple gains that come: Work in multi-process, can troubleshoot, more chances of finding bugs because the DB is full with records and not always empty. It also comes with strings - Since the DB not clean, unique columns might get duplicated data, also it might be hard sometimes to locate the exact records that were added. All of these challenges have reasonable resolutions (read next bullets, for example unique values can get random suffix). No clear winner here, both have their strength and unpleasant implications, both can end with good, however our recommended approach is. See full comparison table here.
 
@@ -1080,11 +1080,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04Nj
-Q4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgy
-NywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1Mj
-QyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYs
-NjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1MjQsMTAyNT
-QxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYyNiw2MTI4NzcwMTNd
-fQ==
+eyJoaXN0b3J5IjpbLTM3ODk3MDkzMiwtMTM3NjEyMTM1MCw4Nz
+g4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1
+NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOT
+M0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgs
+LTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3ND
+c1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2
+XX0=
 -->
