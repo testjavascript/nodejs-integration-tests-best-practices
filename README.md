@@ -689,9 +689,9 @@ services:
 <br/>
 
 
-### ⚪️ 1.  Each test should act on its own records only
+### ⚪️ 1.  Important: Each test should act on its own records only
 
-🏷&nbsp; **Tags:** `#strategic, #draft`
+🏷&nbsp; **Tags:** `#strategic`
 
 :white_check_mark:  **Do:** 
 Any record that might affect the test results should be added at the beginning of the test. Excelemation mark. Doing so will result in short and self-contained test stories that the occasional reader can easily troubleshoot without skimming through the entire file. A common mistake is to seed the whole test data globally - This leads to high coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests before. Each might have mutated the global data. Are you concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the execution time - Absolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests; other types of general data can be seeded before all the tests.
@@ -704,7 +704,7 @@ There are 3 types of test data:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Seed globally  ❌ &nbsp; ; Seed per suite ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Seed data before all the tests - This will end in spaghetti dependencies between all the tests  **files** ❌ &nbsp; ; Seed at the beginining  ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1072,7 +1072,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjkyMjgxNDk1LDI2NjgzMjE0NiwtMTQwNj
+eyJoaXN0b3J5IjpbMTA4Mzg5ODE3LDI2NjgzMjE0NiwtMTQwNj
 YyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0
 LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MD
 Y0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0y
