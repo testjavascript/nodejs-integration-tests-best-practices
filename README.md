@@ -698,7 +698,7 @@ services:
 In fact, there are 3 types of test data:
 
 - **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with test subject. For example: Currencies list, countries, roles list and similar. This data can get seeded once globally, there is no point in re-adding it per test or file.
-- **Context data** - Records that hold relationship with the subject under test, but are not being test directly and will never get mutated. For example, in a e-commerce ordering flow tests, the User entity, Shop, Business, are parent or sibling of the Order that is being tested, they might affec
+- **Context data** - Records that hold relationship with the subject under test, but are not being test directly and will never get mutated. For example, in a e-commerce ordering flow tests, the User entity, Shop, Business, are parent or sibling of the Order that is being tested, they might affect the test result (e.g. non-existing user) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results directly - It should be added per test
 **- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must see what was added to understand the tests results. For this reason, this data is added inside the test.
 - Test fs
 
@@ -1074,11 +1074,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMTA5NzgwMzIsLTE0MDY2MjQ1NzksNj
-c5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5
-NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMj
-M1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUy
-NCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMj
-g3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3
-NDQ0N119
+eyJoaXN0b3J5IjpbLTk1NzQ2NDY5MSwtMTQwNjYyNDU3OSw2Nz
+k0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3
+OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMz
+U5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4NTI0
+LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyOD
+c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
+NDQ3XX0=
 -->
