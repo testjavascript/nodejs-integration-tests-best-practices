@@ -814,11 +814,11 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests (or daily) vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees, sure empty, count. This comes with severe: Running with multiple processes end interfer, process-1 vs 2. It's also harder to troubleshoot. The seco
+:white_check_mark:  **Do:** The timing when the tests clean the database, determines the way the tests are being written. The two most viable options are cleaning after all the tests (or daily) vs cleaning after each single test. Choosing the later option, cleaning after every single test, guarantees, sure empty, count. This comes with severe: Running with multiple processes end interfer, process-1 vs 2. It's also harder to troubleshoot. The second option is to, the same DB with existing records serves all the tests and proce
 
 This is an open discussion in the testing community, when should test data get cleaned out: after each test, each suite, use transactions or just clean in the end. Any options has unpleasant implications, cleaning in the end is the best amont the worst. Any option but clean in the end will lead to a significant implication. In multi-process runner, trying to clean-out after each test or test suite (i.e. file) might result in deleting data to other executing process. Cleaning in the end scores best in terms of performance but might trigger collission between tests - Overcome this by adding some randomness to your test data. Some randomness is anyway needed for unique columns.
 
-Include the comparison table, mention transactions, chances of catching bugs, randomness
+Include the comparison table, mention transactions, chances of catching bugs, randomness, out preferred
 
 <br/>
 
@@ -1078,7 +1078,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDg3ODYzNTk1LC04NjQ4MTYzMzcsMjY2OD
+eyJoaXN0b3J5IjpbMjI2NTY2NjMxLC04NjQ4MTYzMzcsMjY2OD
 MyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2
 LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNT
 A2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1
