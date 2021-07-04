@@ -693,13 +693,14 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Any record that might affect the test results should be added at the begining of the test. Excelemation mark. Doing so will make the test a short and self-contained story that the occassional reader can easily trubleshoot without skimming through the entire file. A common mistake is to seed the entire test data globally - This leads to high-coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests that come before. Each might have mutate the global data. Concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the tests execution time - Abolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests, other types of general data can be seeded before all the tests.
+:white_check_mark:  **Do:** 
+Any record that might affect the test results should be added at the beginning of the test. Excelemation mark. Doing so will result in short and self-contained test stories that the occasional reader can easily troubleshoot without skimming through the entire file. A common mistake is to seed the whole test data globally - This leads to high coupling and complexity. Specifically, failing to keep the tests self-contained will lead to the Domino effect: Understanding why test num #27 failed demands reading the 26 tests before. Each might have mutated the global data. Are you concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the execution time - Absolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests; other types of general data can be seeded before all the tests.
 
-In fact, there are 3 types of test data:
+There are 3 types of test data:
 
-- **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with test subject. For example: Currencies list, countries, roles list and similar. This data can get seeded once globally, there is no point in re-adding it per test or file.
-- **Context data** - Required records that hold relationship with the subject under test, but are not being test directly. For example, in a e-commerce ordering flow tests, the User entity, Shop, Business, are parent or sibling of the Order that is being tested, they might affect the test result (e.g. Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - It should be added per test
-**- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must see what was added to understand the tests results. For this reason, this data is added inside the test. For example, when testing an orderling flow - These are the ordera themselves
+- **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with the test's subject. For example, currencies list, countries, roles list, and similar. This data can get seeded once globally. There is no point in re-adding it per test or file.
+- **Context data** - Required records that hold a relationship with the subject under test but are not being tested directly. For example, consider an e-commerce purchase flow tests: The User entity, Shop entity, Business entity are all a parent or sibling of the Order that is being tested. They might affect the test result (e.g., Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - Add the data per test
+**- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
 
 <br/>
 
@@ -1071,11 +1072,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OT
-QzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5
-LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNT
-k3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1MjQs
-MTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYyNiw2MTI4Nz
-cwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1NzQ0
-NDddfQ==
+eyJoaXN0b3J5IjpbMjkyMjgxNDk1LDI2NjgzMjE0NiwtMTQwNj
+YyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0
+LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MD
+Y0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0y
+MDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNT
+k2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5
+XX0=
 -->
