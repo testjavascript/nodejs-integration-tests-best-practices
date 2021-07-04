@@ -695,9 +695,12 @@ services:
 
 :white_check_mark:  **Do:** Any record that might affect the test results should be added at the begining of the test. Excelemation mark. Doing so will make the test a short and self-contained story that the occassional reader can easily trubleshoot without skimming through the entire file. A common mistake is to seed the entire test data globally - This leads to high-coupling and complexity. Understanding why test num #27 failed demands reading the 26 tests that come before, each might have mutate the global data. Concerned with performance? Based on our benchmarks, adding relevant data at the beginning of each test add ~1 second to the tests execution time - Abolutely worth the decreased complexity. This advice is valuable only to records that are the subject of the tests, other types of general data can be seeded before all the tests.
 
-In face, there are 3 types of test data
+In fact, there are 3 types of test data:
 
-Ideas: Coupling, dominos, for the reader, 3 test types of data, 
+**- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must see what was added to understand the tests results. For this reason, this data is added inside the test.
+- 
+
+Ideas: Coupling, dominos, for the reader, 3 test types of data, arrange
 
 <br/>
 
@@ -1069,11 +1072,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODc5OTUyNDUsLTE0MDY2MjQ1NzksNj
-c5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5
-NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMj
-M1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUy
-NCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMj
-g3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3
-NDQ0N119
+eyJoaXN0b3J5IjpbMTQ5MDE4NDA4OSwtMTQwNjYyNDU3OSw2Nz
+k0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3
+OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMz
+U5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4NTI0
+LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYsNjEyOD
+c3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMTQyNTc0
+NDQ3XX0=
 -->
