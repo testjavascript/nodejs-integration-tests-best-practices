@@ -698,7 +698,7 @@ services:
 In fact, there are 3 types of test data:
 
 - **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with test subject. For example: Currencies list, countries, roles list and similar. This data can get seeded once globally, there is no point in re-adding it per test or file.
-- Context data - Records Holds relationship with data under test, but also different
+- **Context data** - Records that hold relationship with the subject under test, but are not being test directly and will never be mutated. For example, a User entity, Shop, Business, 
 **- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must see what was added to understand the tests results. For this reason, this data is added inside the test.
 - Test fs
 
@@ -1074,11 +1074,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDUzMTE0NTA2LC0xNDA2NjI0NTc5LDY3OT
-QzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5
-LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNT
-k3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1MjQs
-MTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYyNiw2MTI4Nz
-cwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5MjksLTIxNDI1NzQ0
-NDddfQ==
+eyJoaXN0b3J5IjpbLTEyNTA2NDg5MDcsLTE0MDY2MjQ1NzksNj
+c5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5
+NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMj
+M1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1ODUy
+NCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2LDYxMj
+g3NzAxMywtMTA4MzQwNzAzMCwtMjAxMzY1MjkyOSwtMjE0MjU3
+NDQ0N119
 -->
