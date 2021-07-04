@@ -691,7 +691,7 @@ services:
 
 ### ⚪️ 1.  Each test should act on its own records only
 
-🏷&nbsp; **Tags:** `#strategic, #advanced, #draft`
+🏷&nbsp; **Tags:** `#strategic, #draft`
 
 :white_check_mark:  **Do:** Any record that effects the test results should be added at the begining of the test. Excelemation mark. A common mistake is to seed the entire test data or add one per suite - Leads to coupling between tests. What if test num #37 deletes the entity that test #38 relies on? Also lead to obscure tests... A test is a standlone story with <7 statements. Based on our benchmarks, this adds ~1 second to the test execution time - Abolutely worth the decreased complexity. There are 3 types of data (metadata vs context vs records model comes here)
 
@@ -1066,11 +1066,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05Mz
-QzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwt
-NjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0Nz
-U4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNTk2MjYs
-NjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5LC0yMT
-QyNTc0NDQ3LDE2Mzg1NTI5OTgsLTc0NTQxMDc1LDExNjM1NDE1
-NDldfQ==
+eyJoaXN0b3J5IjpbNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MD
+g2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwt
+OTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxND
+E1OSwtMjA3NDc1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3Mywt
+MjMyMzU5NjI2LDYxMjg3NzAxMywtMTA4MzQwNzAzMCwtMjAxMz
+Y1MjkyOSwtMjE0MjU3NDQ0NywxNjM4NTUyOTk4LC03NDU0MTA3
+NV19
 -->
