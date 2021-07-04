@@ -702,9 +702,11 @@ There are 3 types of test data:
 - **Context data** - Required records that hold a relationship with the subject under test but are not being tested directly. For example, consider an e-commerce purchase flow tests: The User entity, Shop entity, Business entity are all a parent or sibling of the Order that is being tested. They might affect the test result (e.g., Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - Add the data per test
 **- Test records -** This is the data that is actually being tested and likely to be mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
 
+[See diagram here](https://temp.com)
+
 <br/>
 
-👀 &nbsp; **Alternatives:** Seed data before all the tests - This will end in spaghetti dependencies between all the tests  **files** ❌ &nbsp; ; Seed at the beginining  ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Seed data before all the tests - This will end in spaghetti dependencies between all the tests  **files** ❌ &nbsp; ; Seed at the beginining of each file - Same spaghetti, only smaller  ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1072,11 +1074,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4Mzg5ODE3LDI2NjgzMjE0NiwtMTQwNj
-YyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0
-LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MD
-Y0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0y
-MDc0NzU4NTI0LDEwMjU0MTA2ODcsNTk0MTgxNDczLC0yMzIzNT
-k2MjYsNjEyODc3MDEzLC0xMDgzNDA3MDMwLC0yMDEzNjUyOTI5
-XX0=
+eyJoaXN0b3J5IjpbLTIxMjgzNDg3MzIsMjY2ODMyMTQ2LC0xND
+A2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4
+NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMj
+UwNjQ4LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTks
+LTIwNzQ3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMj
+M1OTYyNiw2MTI4NzcwMTMsLTEwODM0MDcwMzAsLTIwMTM2NTI5
+MjldfQ==
 -->
