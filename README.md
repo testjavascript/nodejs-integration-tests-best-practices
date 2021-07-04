@@ -820,7 +820,7 @@ There's no clear winner here, both have their strength but also unpleasant impli
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Using transactions can also take care to clean-up the DB automtically. The test will pass an open transaction to the code under test and finally abort the transaction. It's not recommended becuase the tests get more coupled to the code internals. It also generates cascading transactions model that complicates, no need to clean-up, but leads to cascading transaction, won't work in noSQL DB and harder to debug since the data does not persist  ❌ &nbsp; ; After every test - Not only bad performance, will fail in multi-process runner ❌&nbsp;; 
+👀 &nbsp; **Alternatives:** Using transactions can also take care to clean-up the DB automtically. The test will pass an open transaction to the code under test and finally abort the transaction. It's not recommended becuase the tests get more coupled to the code internals. It also generates cascading transactions model that complicates if the code already contains transaction. Lastly, it works only with certain DB that have transactions   ❌ &nbsp;  
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1076,11 +1076,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjg4OTQzNTIsLTEzNzYxMjEzNTAsOD
-c4ODY5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0
-NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLT
-kzNDMxOTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4
-LC02MzIzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNz
-Q3NTg1MjQsMTAyNTQxMDY4Nyw1OTQxODE0NzMsLTIzMjM1OTYy
-Nl19
+eyJoaXN0b3J5IjpbLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nz
+g4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1
+NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOT
+M0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgs
+LTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3ND
+c1ODUyNCwxMDI1NDEwNjg3LDU5NDE4MTQ3MywtMjMyMzU5NjI2
+XX0=
 -->
