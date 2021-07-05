@@ -855,7 +855,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names
+:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better not use
 
 some DB columns Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
 
@@ -1083,11 +1083,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIzMzgwMTc5NCwtODA0NTIzOTczLC0xND
-gzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2MzM4
-NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OT
-ksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2
-NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1NzksNjc5NDM4OD
-I3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUy
-NDI5MzkxXX0=
+eyJoaXN0b3J5IjpbLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMT
+Q4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMz
+ODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3OD
+k5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04
+NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzOD
+gyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1
+MjQyOTM5MV19
 -->
