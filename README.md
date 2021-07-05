@@ -855,11 +855,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful, the test reader will surely understand the flow data better with this option {resident: 'Washinton avenue 17st {unique-23-554}' comparing with this one {resident: 'unique-23-553'}. The first option can save as a great documentation, the later 
-
-some DB columns Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
-
-Only if not cleaning, also if cleaning cleaning, don't ruin the data 'Joe Stallone {883-322}'
+:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful, the test reader will surely understand the flow data better with this option {resident: 'Washinton avenue 17st {unique-23-554}' comparing with this one {resident: 'unique-23-553'}. Only the first option will serve as documentation for the reader.
 
 <br/>
 
@@ -1083,11 +1079,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwNzcxNjg4MiwtMjEyMjI2NTQ3MiwtOD
-A0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYx
-MDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4Mj
-UsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4
-Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2Mj
-Q1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwt
-OTM0MzE5NzldfQ==
+eyJoaXN0b3J5IjpbLTIxMzg0NDQ5MTQsLTIxMjIyNjU0NzIsLT
+gwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2
+MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4OD
+I1LC0xOTg2NDY3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAs
+ODc4ODY5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2Nj
+I0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQs
+LTkzNDMxOTc5XX0=
 -->
