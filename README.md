@@ -775,7 +775,9 @@ services:
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g. new records) -  Assert that the new state daya it is satisfactory **using the REST API** if applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes thronot only they dont tell the user flow, they might miss a bug in the API that return the data. Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
+:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g. new records) -  Assert that the new state daya it is satisfactory **using the REST API** if applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, the test might miss a bug in the API that return the data (i.e. DB data is right, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like controller, service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
+
+This design decision comes
 
 <br/>
 
@@ -1077,11 +1079,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc4ODMyNDcwMSwxNjk0NjMzODU1LC0xNT
-MyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0yNDk5
-Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYzMz
-csMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2
-NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1MjQyOTM5MS
-wtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcy
-Nzk5XX0=
+eyJoaXN0b3J5IjpbLTEwNTIxMjUyNTQsMTY5NDYzMzg1NSwtMT
+UzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5
+OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2Mz
+M3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQw
+Njc0MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOT
+EsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3
+Mjc5OV19
 -->
