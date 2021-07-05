@@ -730,9 +730,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Some data is not related to the tests flow. The test reader can understand and troubleshoot the test easily without being aware of it, also the data is never mutated. For example, look-up table of all the currencies or countries in the world. This type of data is called metadata. There is no benefit in filling this tables again and again in every test file, it make more sense to seed it globally once. 
-
-More specificallyThere are 3 types of test data:
+:white_check_mark:  **Do:** Some data is not related to the tests flow. The test reader can understand and troubleshoot the test easily without being aware of it. For example, look-up table of all the currencies or countries in the world. There is no benefit in filling this tables again and again in every test file. How do we make the differentiation? Let's define more specifically 3 types of test data:
 
 - **Metadata** - General purpose lists and lookups that are needed for the app to perform but are not related at all with the test's subject. For example, currencies list, countries, roles list, and similar. This data can get seeded once globally. There is no point in re-adding it per test or file
 
@@ -1079,11 +1077,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTgwNjY1NzAsLTE0NTYyNDg4MjUsLT
-E5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4
-Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1Nz
-ksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0
-MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLT
-YzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1
-ODUyNF19
+eyJoaXN0b3J5IjpbMjA3MDYwOTAwMSwtMTQ1NjI0ODgyNSwtMT
+k4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2
+OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OS
+w2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05MzQz
+MTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNj
+MyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4
+NTI0XX0=
 -->
