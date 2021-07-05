@@ -855,7 +855,12 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
+:white_check_mark:  **Do:** 
+
+
+Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
+
+Only if, 
 
 <br/>
 
@@ -1079,11 +1084,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5ND
-YzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2
-Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMy
-wtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0
-Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3OS
-w5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMzU5
-NzM2XX0=
+eyJoaXN0b3J5IjpbLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMz
+Q0NjEwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0
+ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMz
+UwLDg3ODg2OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQw
+NjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4OD
+U0LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1
+MDY0OF19
 -->
