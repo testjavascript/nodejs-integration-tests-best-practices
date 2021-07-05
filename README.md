@@ -855,11 +855,11 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'} (last option has timestamp only). Only the first option will serve as a documentation for the reader.
+:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'} (last option has timestamp only). Testa are great example-based documentation, the 2nd option above kills this opprtunity. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Clean the DB after each test - Read above about some caveat that are attached with this option  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1079,11 +1079,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjk0MTUzMjYyLC0yMTIyMjY1NDcyLC04MD
-Q1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEw
-MjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNS
-wtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3
-ODg2OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQwNjYyND
-U3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05
-MzQzMTk3OV19
+eyJoaXN0b3J5IjpbLTM4OTgzMzg4NSwtMjEyMjI2NTQ3MiwtOD
+A0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYx
+MDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4Mj
+UsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4
+Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2Mj
+Q1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwt
+OTM0MzE5NzldfQ==
 -->
