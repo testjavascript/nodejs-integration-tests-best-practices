@@ -892,7 +892,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** When it is not possible to assert for specific data, at least check for the field existence and types. Sometime the response contains important fields with dynamic data that can't get predicted when writing the test, like dates and incrementing number. If the API contract promises that these fields won't be null and hold the right type, it's imperative to test it. All assertion libraries support checking types. If the response is small, check the return data and types together within the same assertion (see code example). Another option which is to verify the entire response against an OpenAPI doc (if exists). Most test runners have community extensions that validate API responses against their documentation.
+:white_check_mark:  **Do:** When it is not possible to assert for specific data, at least check for mandatory field existence and types. Sometime the response contains important fields with dynamic data that can't get predicted when writing the test, like dates and incrementing number. If the API contract promises that these fields won't be null and hold the right type, it's imperative to test it. Most assertion libraries support checking types. If the response is small, check the return data and types together within the same assertion (see code example). Another option which is to verify the entire response against an OpenAPI doc (if exists). Most test runners have community extensions that validate API responses against their documentation.
 
 <br/>
 
@@ -1080,7 +1080,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc1Mzk2MjI2NiwyMDM1ODQyNzM3LDE3MT
+eyJoaXN0b3J5IjpbLTMxNDIxMjQxNiwyMDM1ODQyNzM3LDE3MT
 Y2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1
 NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC
 0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0y
