@@ -892,7 +892,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`gg
 
-:white_check_mark:  **Do:** When it is not possible to assert for specific data, at least check for the field existence and types. Sometime the response contains important fields with dynamic data that can't get predicted when writing the test, like dates and incrementing number. If the API contract promises that these fields won't be null and hold the right type, it's imperative to test it. All assertion libraries support checking types. If the response is small, check the return data and types together within the same assertion (See code example). 
+:white_check_mark:  **Do:** When it is not possible to assert for specific data, at least check for the field existence and types. Sometime the response contains important fields with dynamic data that can't get predicted when writing the test, like dates and incrementing number. If the API contract promises that these fields won't be null and hold the right type, it's imperative to test it. All assertion libraries support checking types. If the response is small, check the return data and types together within the same assertion (see code example). Another option which is to verify the entire response against an OpenAPI doc (if exis, is to verify the response  
 
 The caller of this API rely on these fields, should they be null or conatain the wrong data type - It will break. 
 
@@ -1086,11 +1086,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjM0MTg3ODAsMjAzNTg0MjczNywxNzE2Nj
-E1MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNTQ0
-OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5NDYzMzg1NSwtMT
-UzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5
-OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2Mz
-M3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQw
-Njc0MDQxNl19
+eyJoaXN0b3J5IjpbMTc3ODkyMTM1MCwyMDM1ODQyNzM3LDE3MT
+Y2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1
+NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC
+0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0y
+NDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MT
+YzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywx
+NDA2NzQwNDE2XX0=
 -->
