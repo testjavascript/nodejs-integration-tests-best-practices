@@ -855,7 +855,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** Commonly the test will need to add records to a table with unique columns. Since multiple tests ae 
+:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. 
 
 some DB columns Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
 
@@ -1083,7 +1083,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2NjMwNDE1MCwtODA0NTIzOTczLC0xND
+eyJoaXN0b3J5IjpbMTc0NzM5NTM3OCwtODA0NTIzOTczLC0xND
 gzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2MzM4
 NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OT
 ksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2
