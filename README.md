@@ -736,7 +736,7 @@ services:
 
 - **Context data** - Required records that hold a relationship with the subject under test but are not being tested directly. For example, consider an e-commerce purchase flow tests: The User entity, Shop entity, Business entity are all a parent or sibling of the Order that is being tested. They might affect the test result (e.g., Trying to order goods when the user was deleted) but are not the direct subject of the test. To keep the tests short and focused, this data can be added per file, if they affect the test results  - Add the data per test
 
-- **Test records** - This is the data that is actually being tested and likely to be mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
+- **Test records** - This is the data that is actually being tested and likely to be added or mutated. The reader must directly see what data exists to understand the results of the test. For this reason, explicitly define and add this information inside the test. Going with the same e-commerce site example, when testing the purchase flow, add the order records within the test
 
 [See diagram here](https://temp.com)
 
@@ -1077,11 +1077,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3MDYwOTAwMSwtMTQ1NjI0ODgyNSwtMT
-k4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2
-OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OS
-w2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05MzQz
-MTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNj
-MyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0MTU5LC0yMDc0NzU4
-NTI0XX0=
+eyJoaXN0b3J5IjpbLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLT
+E5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4
+Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1Nz
+ksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0
+MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLT
+YzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1
+ODUyNF19
 -->
