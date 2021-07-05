@@ -775,13 +775,13 @@ services:
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g. new records) -  Assert that the new state daya it is satisfactory **using the REST API** if applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, the test might miss a bug in the API that return the data (i.e. DB data is right, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like controller, service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
+:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g., new records) -  Assert that the new state data is satisfactory **using the REST API** when applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, but also the test might miss a bug in the API that returns the data (i.e., DB data is correct, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outermost layer that does expose this info like controller, service, facade, or repository. The more external this layer is, the more bugs are caught, and the coupling to the internals` noise is minimized.
 
-This design decision does not come without caveat. The test invokes much more code than needed, tests might fail because of failures in code that is being directly tested. Our philosophy is to stick to user flows under realistic conditions at the cost of slight increase in developer's sweat. 
+This design decision does not come without a caveat. The test invokes much more code than needed: Tests might fail because of failures in code not being directly tested. Our philosophy is to stick to user flows under realistic conditions at the cost of a slight increase in developer's sweat. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Approach the DB directly - Miss bug in the query code, higher exposure to internal refactoring  ❌ &nbsp; Approach the ORM - Not ideal for the same reasons like the option above ❌&nbsp; Approach the service layer - Better than approaching the DB directly as it will be less sensitive to DB schema changes and resemble more the user flow ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Approach the DB directly - Miss bug in the query code, higher exposure to internal refactoring  ❌ &nbsp; Approach the ORM - Not ideal for the same reasons like the option above ❌&nbsp; Approach the service layer - Better than approaching the DB directly as it will be less sensitive to DB schema changes and resemble more the user flow &nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1079,11 +1079,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQ0NjEwMjEsMTY5NDYzMzg1NSwtMTUzMj
-YyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3
-ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2MzM3LD
-I2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0
-MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEsLT
-kzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5
-OV19
+eyJoaXN0b3J5IjpbLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5ND
+YzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2
+Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMy
+wtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0
+Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3OS
+w5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMzU5
+NzM2XX0=
 -->
