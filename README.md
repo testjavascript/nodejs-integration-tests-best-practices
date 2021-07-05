@@ -859,7 +859,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Clean the DB after each test - Read above about some caveat that are attached with this option  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Clean the DB after each test - Read above about some caveat that are attached with this option (See bullet: Choose a clear data clean-up strategy)  ❌ &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1079,7 +1079,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM4OTgzMzg4NSwtMjEyMjI2NTQ3MiwtOD
+eyJoaXN0b3J5IjpbMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtOD
 A0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYx
 MDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4Mj
 UsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4
