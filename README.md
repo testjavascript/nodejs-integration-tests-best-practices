@@ -775,7 +775,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g. new records) -  Assert that the new state daya it is satisfactory **using the REST API** if applicable. By approaching like the users do, This allows stretcing the app like the user does. Should tests go the other way aroung, and approach the DB directly, not only they dont tell the user flow, they might miss a bug in the API that return the data. Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
+:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g. new records) -  Assert that the new state daya it is satisfactory **using the REST API** if applicable. By approaching through the API, the test simulates the most important flow: The user flow. Should one approach the other way around, and approach the DB directly, not only they dont tell the user flow, they might miss a bug in the API that return the data. Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
 
 <br/>
 
@@ -1077,11 +1077,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEwOTUxNjM2OSwxNjk0NjMzODU1LC0xNT
-MyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0yNDk5
-Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYzMz
-csMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2
-NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1MjQyOTM5MS
-wtOTMyNTA2NDgsLTkzMjUwNjQ4LC02MzIzNTk3MzYsNjAzNzcy
-Nzk5XX0=
+eyJoaXN0b3J5IjpbMTYzNjQ0OTc5LDE2OTQ2MzM4NTUsLTE1Mz
+I2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3
+Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNy
+wyNjY4MzIxNDYsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MDY3
+NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC
+05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3
+OTldfQ==
 -->
