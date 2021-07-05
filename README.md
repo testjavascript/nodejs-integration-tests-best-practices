@@ -728,7 +728,7 @@ services:
 
 ### ⚪️ 2.  Only metadata and context data should get pre-seeded to the database
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `None`
 
 :white_check_mark:  **Do:** Some data is not related to the tests flow. The test reader can understand and troubleshoot the test easily without being aware of it. For example, look-up table of all the currencies or countries in the world. There is no benefit in filling this tables again and again in every test file. How do we make the differentiation? Let's define more specifically 3 types of test data:
 
@@ -1077,11 +1077,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MTAxMjc3NTEsLTE1MzI2MjAxODIsLT
-E0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3
-NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxND
-YsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3
-MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OC
-wtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYx
-NDE1OV19
+eyJoaXN0b3J5IjpbLTQ3MzMwOTY5OCwtMTUzMjYyMDE4MiwtMT
+Q1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2
+MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0Ni
+wtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcw
+ODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC
+05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0
+MTU5XX0=
 -->
