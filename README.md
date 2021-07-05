@@ -777,11 +777,11 @@ services:
 
 :white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g. new records) -  Assert that the new state daya it is satisfactory **using the REST API** if applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, the test might miss a bug in the API that return the data (i.e. DB data is right, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like controller, service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
 
-This design decision does not come without caveat. The root cause analysis of failures 
+This design decision does not come without caveat. The test invokes much more code than needed, tests might fail because of failures in code that is being directly tested. Our philosophy is to stick to user flows in production-like environment at the cost of slight increase in developer's sweat.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Per-suite, expensive  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Appo  ❌ &nbsp; ; In every test ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1079,7 +1079,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE2Njg5MDc2MywxNjk0NjMzODU1LC0xNT
+eyJoaXN0b3J5IjpbLTM2MDk3NjQ0NCwxNjk0NjMzODU1LC0xNT
 MyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0yNDk5
 Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYzMz
 csMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2
