@@ -896,7 +896,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** When app contains JSON Schema documents of common   ❌ &nbsp; 
+👀 &nbsp; **Alternatives:** When app maintains JSON Schemas of common payloads, most test runners can validate a JSON object (i.e. the API response) against JSON Schema ✅ &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1080,7 +1080,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUwODc1MTc0MywyMDM1ODQyNzM3LDE3MT
+eyJoaXN0b3J5IjpbLTc1Mzk2MjI2NiwyMDM1ODQyNzM3LDE3MT
 Y2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1
 NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC
 0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0y
