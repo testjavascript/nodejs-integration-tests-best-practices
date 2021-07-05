@@ -860,7 +860,7 @@ services:
 
 Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
 
-Only if not cleaning, also if cleaning cleaning, don't ruin the data 'Joe Stallone {883-322}
+Only if not cleaning, also if cleaning cleaning, don't ruin the data 'Joe Stallone {883-322}'
 
 <br/>
 
@@ -1084,7 +1084,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3ODA2OTQ2NiwtMTQ4MzE1NDQ5MSwtMT
+eyJoaXN0b3J5IjpbLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMT
 AyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIw
 MTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0yNDk5Nzc4OD
 UsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYzMzcsMjY2
