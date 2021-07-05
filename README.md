@@ -730,7 +730,7 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`
 
-:white_check_mark:  **Do:** Some data is 
+:white_check_mark:  **Do:** Some data is not related to the tests flow. The test reader can understand and troubleshoot the test easily without being aware of it. This data is also never mutated by the tests. 
 
  Data that never changes based on the test interactions is called "metadata", for example - currencies, countries, etc. This type of data makes no impact on the tests result but is needed for the app to work. One can understand and maintain a test without being aware of this data. Since it never mutated, it can be seeded globally to the DB in the migration phase. Otherwise performance
 There are 3 types of test data:
@@ -1080,11 +1080,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMjg3MTI2MTQsLTE0NTYyNDg4MjUsLT
-E5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4
-Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1Nz
-ksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3MDg2ODg1NCwtOTM0
-MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OCwtOTMyNTA2NDgsLT
-YzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYxNDE1OSwtMjA3NDc1
-ODUyNF19
+eyJoaXN0b3J5IjpbMTM0MjM5OTk5LC0xNDU2MjQ4ODI1LC0xOT
+g2NDY3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5
+OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LD
+Y3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQsLTkzNDMx
+OTc5LDk1MjQyOTM5MSwtOTMyNTA2NDgsLTkzMjUwNjQ4LC02Mz
+IzNTk3MzYsNjAzNzcyNzk5LDE1MTM2MTQxNTksLTIwNzQ3NTg1
+MjRdfQ==
 -->
