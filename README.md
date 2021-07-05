@@ -855,7 +855,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
-:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful, the test reader will surely understand the flow data better with this option {resident: 'Washinton avenue 17st {unique-23-554}' comparing with this one {resident: 'unique-23-553'}. Only the first option will serve as documentation for the reader.
+:white_check_mark:  **Do:** Commonly the test will need to add records to columns with unique constraints. Since multiple tests ae likely to add the same value, add tiny random value as a suffix to keep the records unique. Collissions between tests are more likely to occur if the DB is not cleaning-up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass and the 2nd will fail due to unique constrain violation. However this is a good practice also when the tables are being cleaned after each test - Otherwise a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'} (last option has timestamp only). Only the first option will serve as a documentation for the reader.
 
 <br/>
 
@@ -1079,11 +1079,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzg0NDQ5MTQsLTIxMjIyNjU0NzIsLT
-gwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2
-MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4OD
-I1LC0xOTg2NDY3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAs
-ODc4ODY5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2Nj
-I0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02NzA4Njg4NTQs
-LTkzNDMxOTc5XX0=
+eyJoaXN0b3J5IjpbMjk0MTUzMjYyLC0yMTIyMjY1NDcyLC04MD
+Q1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEw
+MjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNS
+wtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3
+ODg2OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQwNjYyND
+U3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4ODU0LC05
+MzQzMTk3OV19
 -->
