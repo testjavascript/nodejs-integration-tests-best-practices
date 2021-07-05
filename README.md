@@ -892,7 +892,9 @@ services:
 
 🏷&nbsp; **Tags:** `#basic, #draft`gg
 
-:white_check_mark:  **Do:** When it is not possible to assert for specific data, at least check for the field existence and types. Sometime the response contains important fields with dynamic data that can't get predicted when writing the test, like dates and incrementing number. Can't check specific value but still it's important to ensure that the right thing was returned - Check not only that the field is not null rather have the right type. Jest and Sinon allows checking entire objects schema.
+:white_check_mark:  **Do:** When it is not possible to assert for specific data, at least check for the field existence and types. Sometime the response contains important fields with dynamic data that can't get predicted when writing the test, like dates and incrementing number. The caller of this API rely on these fields, should they be null or conatain the wrong data type - It will break. 
+
+Can't check specific value but still it's important to ensure that the right thing was returned - Check not only that the field is not null rather have the right type. Jest and Sinon allows checking entire objects schema.
 
 OpenAPI, rely-on, null
 
@@ -1082,11 +1084,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTEzNzY5MDI4LDIwMzU4NDI3MzcsMTcxNj
-YxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC0xNDgzMTU0
-NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2MzM4NTUsLT
-E1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0
-OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNj
-MzNywyNjY4MzIxNDYsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0
-MDY3NDA0MTZdfQ==
+eyJoaXN0b3J5IjpbLTE3ODMxMDg5MCwyMDM1ODQyNzM3LDE3MT
+Y2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1
+NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC
+0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0y
+NDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MT
+YzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywx
+NDA2NzQwNDE2XX0=
 -->
