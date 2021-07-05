@@ -781,7 +781,7 @@ This design decision does not come without caveat. The test invokes much more co
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Approach the DB directly - Miss bug in the query code, higher exposure to internal refactoring  ❌ &nbsp; Approach the  ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Approach the DB directly - Miss bug in the query code, higher exposure to internal refactoring  ❌ &nbsp; Approach the ORM - Not ideal for the same reasons like the option above ❌&nbsp; Approach the service layer - Better than approaching the DB directly as it will be less sensitive to DB schema changes and resemble more the user flow ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1079,11 +1079,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA2MzM5ODM2LDE2OTQ2MzM4NTUsLTE1Mz
-I2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3
-Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNy
-wyNjY4MzIxNDYsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MDY3
-NDA0MTYsLTY3MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC
-05MzI1MDY0OCwtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3
-OTldfQ==
+eyJoaXN0b3J5IjpbMzQ0NjEwMjEsMTY5NDYzMzg1NSwtMTUzMj
+YyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3
+ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2MzM3LD
+I2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0
+MDQxNiwtNjcwODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEsLT
+kzMjUwNjQ4LC05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5
+OV19
 -->
