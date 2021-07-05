@@ -894,6 +894,8 @@ services:
 
 :white_check_mark:  **Do:** Sometime the response contains important fields with dynamic data, like a date or incrementing number. Can't check specific value but still it's important to ensure that the right thing was returned - Check not only that the field is not null rather have the right type. Jest and Sinon allows checking entire objects schema.
 
+OpenAPI, 
+
 <br/>
 
 👀 &nbsp; **Alternatives:** Not null  ❌ &nbsp; 
@@ -1080,7 +1082,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzMDI3ODIxNywyMDM1ODQyNzM3LDE3MT
+eyJoaXN0b3J5IjpbLTI1Mjg0MjY0NywyMDM1ODQyNzM3LDE3MT
 Y2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1
 NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC
 0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0y
