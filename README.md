@@ -856,7 +856,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #draft`
 
 
-:white_check_mark:  **Do:** Commonly, tests will need to add records to columns with unique constraints. Since multiple tests are likely to add the same value, add a tiny random value as a suffix. Collisions between tests are more likely to occur if the DB is not cleaning up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass but the 2nd will fail due to a unique constrain violation. Adding randomness is a good practice also when the tables are being cleaned after each test - Without it, a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'}. Tests are great example-based documentation, sadly the 2nd option above kills this opportunity. 
+:white_check_mark:  **Do:** Commonly, tests will need to add records to columns with unique constraints. Since multiple tests are likely to add the same value, add a tiny random value as a suffix. Collisions between tests are more likely to occur if the DB is not cleaning up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass but the 2nd will fail due to a unique constrain violation. Adding randomness is a good practice also when the tables are being cleaned after each test - Without it, a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'}. Tests are great example-based documentation, sadly the 2nd option above kills this opportunity. Keep the random
 
 <br/>
 
@@ -1080,11 +1080,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjI3MzIwNDA1LDE3MTY2MTUxNTAsLTIxMj
-IyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4
-MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIwMTgyLC
-0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0yNDk5Nzc4ODUsLTEz
-NzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMT
-Q2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwNDE2LC02
-NzA4Njg4NTRdfQ==
+eyJoaXN0b3J5IjpbLTE2OTkxNTExODIsMTcxNjYxNTE1MCwtMj
+EyMjI2NTQ3MiwtODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIw
+MDgwMDMyLDM0NDYxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxOD
+IsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwt
+MTM3NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4Mz
+IxNDYsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYs
+LTY3MDg2ODg1NF19
 -->
