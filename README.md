@@ -773,7 +773,7 @@ services:
 
 ### ⚪️ 3.  Assert the new data state using the public API
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basics`
 
 :white_check_mark:  **Do:** After invoking the route under test, a new state is likely to exist (e.g. new DB records), check that it is satisfactory using the REST API. This allows stretcing the app like the user does. Should tests go the other way aroung, and approach the DB directly, not only they dont tell the user flow, they might miss a bug in the API that return the data. Sometimes, such REST API does not exist - In this case, use the outer most layer that does expose this info like service, facade or repository. The more external this layer is, more bugs are caught and the coupling the internals is minimized.
 
@@ -1077,11 +1077,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3MzMwOTY5OCwtMTUzMjYyMDE4MiwtMT
-Q1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2
-MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0Ni
-wtMTQwNjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcw
-ODY4ODU0LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC
-05MzI1MDY0OCwtNjMyMzU5NzM2LDYwMzc3Mjc5OSwxNTEzNjE0
-MTU5XX0=
+eyJoaXN0b3J5IjpbLTExNzkyNzIyNDksLTE1MzI2MjAxODIsLT
+E0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3
+NjEyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxND
+YsLTE0MDY2MjQ1NzksNjc5NDM4ODI3LDE0MDY3NDA0MTYsLTY3
+MDg2ODg1NCwtOTM0MzE5NzksOTUyNDI5MzkxLC05MzI1MDY0OC
+wtOTMyNTA2NDgsLTYzMjM1OTczNiw2MDM3NzI3OTksMTUxMzYx
+NDE1OV19
 -->
