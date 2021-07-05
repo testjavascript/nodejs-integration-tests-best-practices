@@ -860,7 +860,7 @@ services:
 
 Given information that must be unique like username or email, the test should combine meaningul data with some randomness to avoid collission with other tests. A test should assume nothing on other tests neither should the writer read previous tests implementation. Rosie or timestamp. Don't use data format that is too different from production, just add time-stamps, tests are also documentation
 
-Only if, 
+Only if not cleaning, also if cleaning cleaning, don't ruin the data 'Joe Stallone {883-322}
 
 <br/>
 
@@ -1084,11 +1084,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMz
-Q0NjEwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0
-ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMz
-UwLDg3ODg2OTkyMywtODY0ODE2MzM3LDI2NjgzMjE0NiwtMTQw
-NjYyNDU3OSw2Nzk0Mzg4MjcsMTQwNjc0MDQxNiwtNjcwODY4OD
-U0LC05MzQzMTk3OSw5NTI0MjkzOTEsLTkzMjUwNjQ4LC05MzI1
-MDY0OF19
+eyJoaXN0b3J5IjpbMTU3ODA2OTQ2NiwtMTQ4MzE1NDQ5MSwtMT
+AyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIw
+MTgyLC0xNDU2MjQ4ODI1LC0xOTg2NDY3ODk5LC0yNDk5Nzc4OD
+UsLTEzNzYxMjEzNTAsODc4ODY5OTIzLC04NjQ4MTYzMzcsMjY2
+ODMyMTQ2LC0xNDA2NjI0NTc5LDY3OTQzODgyNywxNDA2NzQwND
+E2LC02NzA4Njg4NTQsLTkzNDMxOTc5LDk1MjQyOTM5MSwtOTMy
+NTA2NDhdfQ==
 -->
