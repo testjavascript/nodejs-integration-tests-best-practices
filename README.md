@@ -929,11 +929,11 @@ services:
 
 🏷&nbsp; **Tags:** 
 
-:white_check_mark:  **Do:** In testing, use the same mechanism and code that installs the DB tables in production. Typically this will be migration command (i.e. ORM) or .sql files invoked by a bash command. Any production element that can be copied to testing is a bless - It covers another layer of bugs. Should you mistakenly re-ceate an existing table or rename a non-existing column, this glitch will get caught during coding long before deployment. A recommended place to invoke the installation is within the global test setup (see section 'Infrastructure Setup')
+:white_check_mark:  **Do:** In testing, use the same mechanism and code that installs the DB tables in production. Typically this will be migration command (i.e. ORM) or .sql files invoked by a bash command. Any production element that can be copied to testing is a bless - It covers another layer of bugs. Should you mistakenly re-ceate an existing table or rename a non-existing column, this glitch will get caught during coding long before deployment. A recommended place to invoke the installation is within the global test setup (see section 'Infrastructure Setup') - This way there is no way to run the tests without the pre-requisities
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Seed the data using custom code  ❌ &nbsp;  ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1081,11 +1081,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMT
-YzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1
-MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNTQ0OT
-EsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5NDYzMzg1NSwtMTUz
-MjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwtMjQ5OT
-c3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMywtODY0ODE2MzM3
-LDI2NjgzMjE0Nl19
+eyJoaXN0b3J5IjpbLTE0MjQ0NTcxNTAsLTM5NjgwNjgyMSwtNj
+g0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0
+MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5Nz
+MsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5
+NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4Nj
+Q2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTky
+MywtODY0ODE2MzM3XX0=
 -->
