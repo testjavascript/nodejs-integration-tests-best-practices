@@ -37,10 +37,7 @@ This repo provides the following benefits and assets:
 
 # 6 min explainer video
 
-
-https://user-images.githubusercontent.com/8571500/115119222-ef6e2b80-9faf-11eb-8fd9-60c58bbcac59.mp4
-
-
+https://user-images.githubusercontent.com/8571500/124645598-4a6f3a80-de9c-11eb-9d17-725a6f9b57a7.mp4
 
 
 <br/><br/><br/>
