@@ -893,7 +893,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced`
 
 
-When it is impossible to assert for specific data, check for mandatory field existence and types. Sometimes, the response contains important fields with dynamic data that can't be predicted when writing the test, like dates and incrementing numbers. If the API contract promises that these fields won't be null and hold the right type, it's imperative to test it. Most assertion libraries support checking types. If the response is small, check the return data and type together within the same assertion (see code example). One more option is to verify the entire response against an OpenAPI doc (Swagger). Most test runners have community extensions that validate API responses against their documentation.
+When it is impossible to assert for specific data, check for mandatory field existence and types. Sometimes, the response contains important fields with dynamic data that can't be predicted when writing the test, like dates and incrementing numbers. If the API contract promises that these fields won't be null and hold the right types, it's imperative to test it. Most assertion libraries support checking types. If the response is small, check the return data and type together within the same assertion (see code example). One more option is to verify the entire response against an OpenAPI doc (Swagger). Most test runners have community extensions that validate API responses against their documentation.
 
 <br/>
 
@@ -927,7 +927,7 @@ services:
 
 ### ⚪️ 7.  Install the DB schema using the same technique like production
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
 :white_check_mark:  **Do:** When using the same migration files like production, another layer of bugs are covered. Should you mistakenly re-ceate an existing table or rename a non-existing column - This mistake will get caught during code long before deployment. 
 
@@ -1081,11 +1081,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNz
-E2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5NzMsLTE0ODMx
-NTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5NDYzMzg1NS
-wtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4NjQ2Nzg5OSwt
-MjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTkyMywtODY0OD
-E2MzM3LDI2NjgzMjE0NiwtMTQwNjYyNDU3OSw2Nzk0Mzg4Mjcs
-MTQwNjc0MDQxNl19
+eyJoaXN0b3J5IjpbMTMxNDc4MjgxLC0xMDE0Mjc0MzMwLDIwMz
+U4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIz
+OTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLD
+E2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5
+ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Nj
+k5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1Nzks
+Njc5NDM4ODI3XX0=
 -->
