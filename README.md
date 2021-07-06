@@ -929,11 +929,12 @@ services:
 
 🏷&nbsp; **Tags:** 
 
-:white_check_mark:  **Do:** In testing, use the same mechanism and code that installs the DB tables in production. Typically this will be migration command (i.e. ORM) or .sql files invoked by a bash command. Any production element that can be copied to testing is a bless - It covers another layer of bugs. Should you mistakenly re-ceate an existing table or rename a non-existing column, this glitch will get caught during coding long before deployment. A recommended place to invoke the installation is within the global test setup (see section 'Infrastructure Setup') - This way there is no way to run the tests without the pre-requisities
+
+:white_check_mark:  **Do:** In testing, use the same mechanism and code that installs the DB tables in production. Typically this will be a migration command (i.e., ORM) or .sql files invoked by a bash command. In principle, any production element that can be copied to testing is a blessing - It covers another layer of bugs. Should you mistakenly re-ceate an existing table or rename a non-existing column, this glitch will get caught during coding long before deployment. A recommended place to invoke the installation is within the global test setup - This way, there is no way to run the tests without its pre-requisites (see more in the section 'Infrastructure Setup') 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Automate a custom testing installation command (e.g. Docker with pre-defined tables, custom code) - Same caveats like previous paragraph ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Automate a custom testing installation command (e.g., Docker with pre-defined tables, custom code) - Same caveats like previous paragraph ❌&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1081,7 +1082,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzc4OTExMzc3LC0zOTY4MDY4MjEsLTY4ND
+eyJoaXN0b3J5IjpbNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4ND
 QzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3
 MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC
 0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2
