@@ -967,11 +967,11 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard - At the begining of a test, add the records that should be mutated. Nothing unusual thus far. Only now, add more records than needed. At the end, assert that the records that were planned to be mutated are indeed mutated, but the rest are not. For example, when testing that the DELETE route works, add 2 records (!), try to delete one, ensure that it is gone and while the second one is still there (Credit: @gil
+:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard - At the begining of a test, add the records that should be mutated. Nothing unusual thus far. Only now, add more records than needed. At the end, assert that the records that were planned to be mutated are indeed mutated, but the rest are not. For example, when testing that the DELETE route works, add 2 records (!), try to delete one, ensure that it is gone and while the second one is still there (Credit: @giltayar)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist  ❌ &nbsp; ; In every test ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Persist ❌ &nbsp; In every test ❌&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1082,11 +1082,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE2OTE4ODU3Myw0NjQ5MDA3NjksLTM5Nj
-gwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQz
-MzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC
-04MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0
-NjEwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0OD
-gyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUw
-LDg3ODg2OTkyM119
+eyJoaXN0b3J5IjpbLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOT
+Y4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0
+MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3Mi
+wtODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0
+NDYxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyND
+g4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1
+MCw4Nzg4Njk5MjNdfQ==
 -->
