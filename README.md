@@ -933,7 +933,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Run  ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Automate some custom testing installation  ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1081,7 +1081,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1OTM0MTY3MCwtMzk2ODA2ODIxLC02OD
+eyJoaXN0b3J5IjpbMTMzODU2NTMwMCwtMzk2ODA2ODIxLC02OD
 Q0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQy
 NzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3My
 wtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0
