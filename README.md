@@ -933,7 +933,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Manually copy a DB dump - Seed the data using custom code  ❌ &nbsp;  ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Run  ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1081,11 +1081,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwOTA4NzYzNzYsLTM5NjgwNjgyMSwtNj
-g0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0
-MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5Nz
-MsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5
-NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgyNSwtMTk4Nj
-Q2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUwLDg3ODg2OTky
-MywtODY0ODE2MzM3XX0=
+eyJoaXN0b3J5IjpbMjA1OTM0MTY3MCwtMzk2ODA2ODIxLC02OD
+Q0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQy
+NzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3My
+wtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0
+NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2ND
+Y3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIz
+LC04NjQ4MTYzMzddfQ==
 -->
