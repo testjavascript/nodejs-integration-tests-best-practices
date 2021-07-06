@@ -967,7 +967,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** Check that the code under test doesn't accidentally modifying more data that it intended to,. For example a delete record flow, accidentally might delete all the records. Since most test assert only the outcome of a specific flow, it's very easy to miss 
+:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss the unplanned side effects.
 
 like deleting all records where it planned to delete one. 
 
@@ -1088,7 +1088,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDMwOTg4NTIsNDY0OTAwNzY5LC0zOT
+eyJoaXN0b3J5IjpbLTEzOTU4OTE5OTIsNDY0OTAwNzY5LC0zOT
 Y4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0
 MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3Mi
 wtODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0
