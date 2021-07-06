@@ -967,11 +967,8 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss the unplanned side effects.
+:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss these unplanned side effects. Testing this is not hard
 
-like deleting all records where it planned to delete one. 
-
- apart from satisfying the expectations for specific records (e.g. user id=1 deleted) accidentally affected many other records that should not have been touched (e.g. all user deleted!). Also called 'overdoing'. 
 
 Tests focus on scoped flow, put something in the box, get it back. 
 
@@ -1088,11 +1085,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzOTU4OTE5OTIsNDY0OTAwNzY5LC0zOT
-Y4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0
-MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3Mi
-wtODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0
-NDYxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyND
-g4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1
-MCw4Nzg4Njk5MjNdfQ==
+eyJoaXN0b3J5IjpbMTY5MzI4MTc3Nyw0NjQ5MDA3NjksLTM5Nj
+gwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQz
+MzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC
+04MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0
+NjEwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0OD
+gyNSwtMTk4NjQ2Nzg5OSwtMjQ5OTc3ODg1LC0xMzc2MTIxMzUw
+LDg3ODg2OTkyM119
 -->
