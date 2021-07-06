@@ -933,7 +933,7 @@ services:
 
 When using the same migration files like production, another layer of bugs are covered. Should you mistakenly re-ceate an existing table or rename a non-existing column - This mistake will get caught during code long before deployment. 
 
-When, npm command
+When, npm command, what to seed
 
 <br/>
 
@@ -1085,11 +1085,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMD
-M1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUy
-Mzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMS
-wxNjk0NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0x
-OTg2NDY3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4OD
-Y5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5
-LDY3OTQzODgyN119
+eyJoaXN0b3J5IjpbLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMD
+E0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2
+NTQ3MiwtODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMD
+MyLDM0NDYxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0
+NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3Nj
+EyMTM1MCw4Nzg4Njk5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYs
+LTE0MDY2MjQ1NzldfQ==
 -->
