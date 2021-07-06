@@ -933,7 +933,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Automate some custom testing installation  ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Manually copy a DB dump - This is a great way to find installation issues only in production and also complicate the developer testing experience  ❌ &nbsp; Automate a custom testing installation command (e.g. Docker with pre-defined tables, custom code) - Same caveats like previous paragraph ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1081,11 +1081,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzODU2NTMwMCwtMzk2ODA2ODIxLC02OD
-Q0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQy
-NzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3My
-wtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0
-NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0xOTg2ND
-Y3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4ODY5OTIz
-LC04NjQ4MTYzMzddfQ==
+eyJoaXN0b3J5IjpbMzc4OTExMzc3LC0zOTY4MDY4MjEsLTY4ND
+QzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3
+MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC
+0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2
+MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Nj
+c4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMs
+LTg2NDgxNjMzN119
 -->
