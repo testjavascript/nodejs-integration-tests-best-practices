@@ -965,9 +965,11 @@ services:
 
 ### ⚪️ 8.  Test for undesired side effects 
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#ad, #draft`
 
 :white_check_mark:  **Do:** Check the the code under test apart from satisfying the expectations for specific records (e.g. user id=1 deleted) accidentally affected many other records that should not have been touched (e.g. all user deleted!). Also called 'overdoing'.
+
+Tests focus on scoped flow, put something in the box, get it back. 
 
 <br/>
 
@@ -1082,11 +1084,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4ND
-QzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3
-MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC
-0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2
-MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Nj
-c4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Njk5MjMs
-LTg2NDgxNjMzN119
+eyJoaXN0b3J5IjpbNDQwNjI1MzE2LDQ2NDkwMDc2OSwtMzk2OD
+A2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMz
+MCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLT
+gwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2
+MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4OD
+I1LC0xOTg2NDY3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAs
+ODc4ODY5OTIzXX0=
 -->
