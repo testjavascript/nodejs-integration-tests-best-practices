@@ -927,9 +927,13 @@ services:
 
 ### ⚪️ 7.  Install the DB schema using the same technique like production
 
-🏷&nbsp; **Tags:** `#basic`
+🏷&nbsp; **Tags:** 
 
-:white_check_mark:  **Do:** When using the same migration files like production, another layer of bugs are covered. Should you mistakenly re-ceate an existing table or rename a non-existing column - This mistake will get caught during code long before deployment. 
+:white_check_mark:  **Do:** Use the same mechanism and code that installs the DB tables in production.
+
+When using the same migration files like production, another layer of bugs are covered. Should you mistakenly re-ceate an existing table or rename a non-existing column - This mistake will get caught during code long before deployment. 
+
+When, npm command
 
 <br/>
 
@@ -1081,11 +1085,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMxNDc4MjgxLC0xMDE0Mjc0MzMwLDIwMz
-U4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIz
-OTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLD
-E2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5
-ODY0Njc4OTksLTI0OTk3Nzg4NSwtMTM3NjEyMTM1MCw4Nzg4Nj
-k5MjMsLTg2NDgxNjMzNywyNjY4MzIxNDYsLTE0MDY2MjQ1Nzks
-Njc5NDM4ODI3XX0=
+eyJoaXN0b3J5IjpbMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMD
+M1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUy
+Mzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMS
+wxNjk0NjMzODU1LC0xNTMyNjIwMTgyLC0xNDU2MjQ4ODI1LC0x
+OTg2NDY3ODk5LC0yNDk5Nzc4ODUsLTEzNzYxMjEzNTAsODc4OD
+Y5OTIzLC04NjQ4MTYzMzcsMjY2ODMyMTQ2LC0xNDA2NjI0NTc5
+LDY3OTQzODgyN119
 -->
