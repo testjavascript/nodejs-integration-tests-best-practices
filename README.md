@@ -967,7 +967,7 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss these unplanned side effects. Testing this is not hard
+:white_check_mark:  **Do:** Check that the code under test doesn't accidentally overdoing, modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard - At the begining of a test, add the records that should be mutated. Nothing unusual thus far. Only now, add more records than needed
 
 
 Tests focus on scoped flow, put something in the box, get it back. 
@@ -1085,7 +1085,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5MzI4MTc3Nyw0NjQ5MDA3NjksLTM5Nj
+eyJoaXN0b3J5IjpbLTE2MTg5MTY0Miw0NjQ5MDA3NjksLTM5Nj
 gwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQz
 MzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC
 04MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0
