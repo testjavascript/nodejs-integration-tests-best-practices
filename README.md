@@ -967,11 +967,12 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced`
 
-:white_check_mark:  **Do:** Check that the code under test doesn't accidentally ״overdoing״ -  modifying more data that it intended to. For example a delete record flow, accidentally might delete all the records. Since most tests assert only the outcome of specific records, it's very easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard - At the begining of a test, add the records that should be mutated. Nothing unusual thus far. Only now, add more records than needed. At the end, assert that the records that were planned to be mutated are indeed mutated, but the rest are not. For example, when testing that the DELETE route works, add 2 records (!), try to delete one, ensure that it is gone and while the second one is still there (Credit: @giltayar)
+
+:white_check_mark:  **Do:** Check that the code under test doesn't accidentally ״overdoing״ -  modifying more data than it is intended to. For example, a code that is supposed to delete one record, might accidentally delete all the records. Since most tests assert only the outcome of specific records, it's easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard. At the beginning of a test, add the records that should be mutated—nothing unusual thus far. On top of this, add few more records than needed. In the end, assert that the records that were planned to be mutated are indeed mutated, but the rest are not. For example, when testing that the DELETE route works, add 2 records (!), try to delete one, ensure that it is gone, now also check that the second one is still there so the test deleted only what should be deleted (Credit: @giltayar)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Persist ❌ &nbsp; In every test ❌&nbsp;
+👀 &nbsp; **Alternatives:** Some apply Repository/ORM level protection that ensures that one tenant is not accessing another tenant's records. This is valuable but doesn't cover all the scenarios ✅  &nbsp; Writes integration tests that include the data access layer and a real DB - Check that the number of affected records (i.e., commonly returned by DB operations) is as expected. Writing tests against the entire DAL demands more effort thus should be considered based a specific project's risk level ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1082,11 +1083,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsND
-Y0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3
-NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MC
-wtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC0xNDgzMTU0NDkxLC0x
-MDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2Mj
-AxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4OTksLTI0OTk3Nzg4
-NSwtMTM3NjEyMTM1MF19
+eyJoaXN0b3J5IjpbLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLT
+IxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQz
+NTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3Mz
+csMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC0x
+NDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2Mz
+M4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4
+OTksLTI0OTk3Nzg4NV19
 -->
