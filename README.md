@@ -933,7 +933,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Seed the data using custom code  ❌ &nbsp;  ❌&nbsp;;
+👀 &nbsp; **Alternatives:** Manually copy a DB dump - Seed the data using custom code  ❌ &nbsp;  ❌&nbsp;;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1081,7 +1081,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MjQ0NTcxNTAsLTM5NjgwNjgyMSwtNj
+eyJoaXN0b3J5IjpbLTIwOTA4NzYzNzYsLTM5NjgwNjgyMSwtNj
 g0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0
 MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5Nz
 MsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5
