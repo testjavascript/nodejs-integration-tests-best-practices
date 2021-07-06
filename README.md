@@ -929,11 +929,7 @@ services:
 
 🏷&nbsp; **Tags:** 
 
-:white_check_mark:  **Do:** In testing, use the same mechanism and code that installs the DB tables in production. Typically this will be migration command (i.e. ORM) or .sql files invoked by a bash command. Any production element that can be copied to testing is a bless - It covers another layer of bugs. Should you mistakenly re-ceate an existing table or rename a non-existing column, this glitch will get caught during coding long before deployment
-
-When using the same migration files like production, another layer of bugs are covered.  - . 
-
-When, npm command, what to seed, the overarcching principle
+:white_check_mark:  **Do:** In testing, use the same mechanism and code that installs the DB tables in production. Typically this will be migration command (i.e. ORM) or .sql files invoked by a bash command. Any production element that can be copied to testing is a bless - It covers another layer of bugs. Should you mistakenly re-ceate an existing table or rename a non-existing column, this glitch will get caught during coding long before deployment. A recommended place to invoke the installation is within the global test setup (see section 'Infrastructure Setup')
 
 <br/>
 
@@ -1085,7 +1081,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3NjczNDgwOCwtNjg0NDM1MTcwLDIxMT
+eyJoaXN0b3J5IjpbLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMT
 YzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1
 MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNTQ0OT
 EsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5NDYzMzg1NSwtMTUz
