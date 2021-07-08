@@ -1005,13 +1005,13 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one 
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
 
 Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
 
 There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
 
-Ideas: Why isn't this like DB, 
+Ideas: Why isn't this like DB, layers, 
 
 <br/>
 
@@ -1128,11 +1128,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMz
-E1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkw
-MDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNi
-wtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIx
-MjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMD
-A4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1LC0xNTMyNjIwMTgy
-LC0xNDU2MjQ4ODI1XX0=
+eyJoaXN0b3J5IjpbLTE5NjkwMDEyMTgsNDk3MzU2NTgzLC0xMj
+c2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3
+NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNz
+AsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3
+MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3MywtMTQ4Mz
+E1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwxNjk0NjMzODU1
+LC0xNTMyNjIwMTgyXX0=
 -->
