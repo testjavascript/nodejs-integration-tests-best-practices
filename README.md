@@ -1244,7 +1244,7 @@ services:
 
 :white_check_mark:  **Do:** Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
 
-Ideas: Metrics, retry, 
+Ideas: Metrics, retry, process.exit, stub or fake URL, test custom disconnect
 
 <br/>
 
@@ -1276,7 +1276,7 @@ services:
 
 <br/>
 
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 8.  Test the queues resilliency
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
@@ -1619,11 +1619,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4NDUzNjk1LDk0NjI0ODU2NCwtMTE3ND
-cxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMw
-LC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNz
-Y4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2
-MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MC
-wyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcx
-NjYxNTE1MF19
+eyJoaXN0b3J5IjpbMTM1ODMzODA4MSw5NDYyNDg1NjQsLTExNz
+Q3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMz
+MCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMj
+c2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3
+NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNz
+AsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3
+MTY2MTUxNTBdfQ==
 -->
