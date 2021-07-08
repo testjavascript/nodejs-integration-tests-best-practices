@@ -1119,18 +1119,12 @@ services:
 
 <br/>
 
-### ⚪️ 4.  Test for ideompotency
+### ⚪️ 4.  Test for idempotency
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
+🏷&nbsp; **Tags:** `#draft`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+:white_check_mark:  **Do:** Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
 
 <br/>
 
@@ -1548,11 +1542,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyNTcyOTkxOCwtMTE3NDcxNjAzMiw0Mj
-EzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQw
-NDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLT
-EzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0
-OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NT
-E2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwt
-MjEyMjI2NTQ3Ml19
+eyJoaXN0b3J5IjpbLTEyODAzNTM4MDAsLTExNzQ3MTYwMzIsND
+IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
+MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC
+0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2
+NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNz
+UxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAs
+LTIxMjIyNjU0NzJdfQ==
 -->
