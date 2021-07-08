@@ -1276,7 +1276,49 @@ services:
 
 <br/>
 
-### ⚪️ 8.  Test retries and dead-letter queues
+### ⚪️ 8.  Few E2E tests are a must
+
+🏷&nbsp; **Tags:** `#strategic, #draft`
+
+
+:white_check_mark:  **Do:** Run few, just a few, 
+
+Ideas: Test is different because not related to your own code, requies real infra, better done on production, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+
+<br/>
+
+### ⚪️ 9.  Test retries and dead-letter queues
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
@@ -1615,11 +1657,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMT
-c0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUz
-MzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMT
-I3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEy
-NzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MT
-cwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywx
-NzE2NjE1MTUwXX0=
+eyJoaXN0b3J5IjpbMTcwOTQ4MDE0MSwtMTg5NzY1MzA2NSw5ND
+YyNDg1NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3
+OTQsMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsND
+k3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2
+NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2OD
+IxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwy
+MDM1ODQyNzM3XX0=
 -->
