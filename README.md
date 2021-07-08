@@ -1015,7 +1015,437 @@ Ideas: Why isn't this like DB, layers, purge, Real can test more features and ne
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some apply Repository/ORM level protection that ensures that one tenant is not accessing another tenant's records. This is valuable but doesn't cover all the scenarios ✅  &nbsp; Writes integration tests that include the data access layer and a real DB - Check that the number of affected records (i.e., commonly returned by DB operations) is as expected. Writing tests against the entire DAL demands more effort thus should be considered based a specific project's risk level ✅&nbsp;
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 2.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1128,11 +1558,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1MDQ4NTkxLDE0ODc0MzQ2Nyw0OTczNT
-Y1ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4
-MjIsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLT
-Y4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4
-NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOT
-czLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2
-OTQ2MzM4NTVdfQ==
+eyJoaXN0b3J5IjpbLTE0MDIyMDg1MDksMTQ4NzQzNDY3LDQ5Nz
+M1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcw
+NjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMS
+wtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAz
+NTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1Mj
+M5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEs
+MTY5NDYzMzg1NV19
 -->
