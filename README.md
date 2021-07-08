@@ -1043,16 +1043,12 @@ services:
 
 <br/>
 
-### ⚪️ 2.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 2.  Test a scenario of message batch
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
+🏷&nbsp; **Tags:** ``
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+:white_check_mark:  **Do:** 
 
 Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
 
@@ -1558,11 +1554,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MDIyMDg1MDksMTQ4NzQzNDY3LDQ5Nz
-M1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcw
-NjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMS
-wtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAz
-NTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1Mj
-M5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEs
-MTY5NDYzMzg1NV19
+eyJoaXN0b3J5IjpbLTIxMzI3MTczNiwxNDg3NDM0NjcsNDk3Mz
+U2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2
+ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC
+02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1
+ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMz
+k3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAzMiwzNDQ2MTAyMSwx
+Njk0NjMzODU1XX0=
 -->
