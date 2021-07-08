@@ -1119,7 +1119,7 @@ services:
 
 <br/>
 
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 4.  Test for ideompotency
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
@@ -1548,11 +1548,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00OD
-EyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0
-NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC
-0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2
-ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3ND
-MzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIs
-LTgwNDUyMzk3M119
+eyJoaXN0b3J5IjpbLTUyNTcyOTkxOCwtMTE3NDcxNjAzMiw0Mj
+EzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQw
+NDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLT
+EzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0
+OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NT
+E2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwt
+MjEyMjI2NTQ3Ml19
 -->
