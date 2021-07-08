@@ -1047,11 +1047,9 @@ services:
 
 🏷&nbsp; **Tags:** `draft`
 
+:white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch (rabbit config key, sqs). Different than single message, why (re-fetch fails..., some message didn't finish).  
 
-
--+-:white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch. Different than single message, why (re-fetch fails..., some message didn't finish).  
-
-Ideas: Ths sub-case of a single failure which might not trigger bringing more
+Ideas: Ths sub-case of a single failure which might not trigger bringing more, assert that the last messages are also processed
 
 <br/>
 
@@ -1555,11 +1553,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5Nz
-M1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcw
-NjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMS
-wtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAz
-NTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1Mj
-M5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEs
-MTY5NDYzMzg1NV19
+eyJoaXN0b3J5IjpbMjA0MTczMzIzNywtMTc1OTc0MDQ1MCwxND
+g3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1Njgz
+NzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OS
+wtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAx
+NDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNj
+U0NzIsLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAz
+MiwzNDQ2MTAyMV19
 -->
