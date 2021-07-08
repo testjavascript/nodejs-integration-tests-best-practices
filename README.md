@@ -1087,13 +1087,9 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. a new Order was saved) but also that the message was acknowledged or deleted (depends). Going with t
+:white_check_mark:  **Do:** This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. a new Order was saved) but also that the message was acknowledged or deleted (depends). In the same spirit test for the opposite
 
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+Ideas: Critical becuase error handling, metrics, 
 
 <br/>
 
@@ -1126,7 +1122,7 @@ services:
 <br/>
 
 
-### ⚪️ 2.  Test a scenario of message batch
+### ⚪️ 4.  Test a scenario of message batch
 
 🏷&nbsp; **Tags:** `draft`
 
@@ -1164,7 +1160,7 @@ services:
 
 <br/>
 
-### ⚪️ 3.  Test for 'poisoned' messages
+### ⚪️ 5.  Test for 'poisoned' messages
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
@@ -1202,7 +1198,7 @@ services:
 
 <br/>
 
-### ⚪️ 4.  Test for idempotency
+### ⚪️ 6.  Test for idempotency
 
 🏷&nbsp; **Tags:** `#draft`
 
@@ -1627,11 +1623,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI5MDE4NzcwMSwtMTE3NDcxNjAzMiw0Mj
-EzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQw
-NDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLT
-EzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0
-OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NT
-E2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwt
-MjEyMjI2NTQ3Ml19
+eyJoaXN0b3J5IjpbOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMT
+MwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLTE3NTk3NDA0
+NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMT
+MxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5
+MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MT
+YsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0y
+MTIyMjY1NDcyXX0=
 -->
