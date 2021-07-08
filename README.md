@@ -1011,7 +1011,7 @@ Sometimes the message queues are just on obstacle to overcome, for exmaple when 
 
 There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
 
-Ideas: Why isn't this like DB, layers, purge, 
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
 
 <br/>
 
@@ -1128,11 +1128,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Nj
-g2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYz
-MTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLD
-IxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNzE2
-NjE1MTUwLC0yMTIyMjY1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNT
-Q0OTEsLTEwMjAwODAwMzIsMzQ0NjEwMjEsMTY5NDYzMzg1NSwt
-MTUzMjYyMDE4Ml19
+eyJoaXN0b3J5IjpbMjA1MDQ4NTkxLDE0ODc0MzQ2Nyw0OTczNT
+Y1ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4
+MjIsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLT
+Y4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4
+NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOT
+czLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2
+OTQ2MzM4NTVdfQ==
 -->
