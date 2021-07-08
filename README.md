@@ -1005,7 +1005,13 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Check that the code under test doesn't accidentally ״overdoing״ -  modifying more data than it is intended to. For example, a code that is supposed to delete one record, might accidentally delete all the records. Since most tests assert only the outcome of specific records, it's easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard. At the beginning of a test, add the records that should be mutated—nothing unusual thus far. On top of this, add few more records than needed. In the end, assert that the records that were planned to be mutated are indeed mutated, but the rest are not. For example, when testing that the DELETE route works, add 2 records (!), try to delete one, ensure that it is gone, now also check that the second one is still there so the test deleted only what should be deleted (Credit: @giltayar)
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for more sweat
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: DB
 
 <br/>
 
@@ -1122,11 +1128,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLT
-ExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4
-MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0Mz
-MwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3Miwt
-ODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0ND
-YxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4
-MjUsLTE5ODY0Njc4OTldfQ==
+eyJoaXN0b3J5IjpbMTk3NzE0OTAzOCwtMTI3Njg2NDIxOCwtMT
+MxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5
+MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MT
+YsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0y
+MTIyMjY1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMj
+AwODAwMzIsMzQ0NjEwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4
+MiwtMTQ1NjI0ODgyNV19
 -->
