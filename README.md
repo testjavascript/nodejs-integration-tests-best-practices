@@ -681,7 +681,8 @@ services:
 
 <br/><br/>
 
-## **Dealing with data**
+## **Section: Dealing with data**
+
 
 <br/>
 
@@ -995,8 +996,10 @@ services:
 
 </details>
 
-<br/>
-## **Section: Testing Our Contracts With Others
+<br/><br/>
+
+## **Section: Message queues**
+
 
 <br/>
 
@@ -1080,11 +1083,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLT
-IxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQz
-NTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3Mz
-csMTcxNjYxNTE1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC0x
-NDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0NDYxMDIxLDE2OTQ2Mz
-M4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4MjUsLTE5ODY0Njc4
-OTksLTI0OTk3Nzg4NV19
+eyJoaXN0b3J5IjpbMTUzNzcwNjY1MywtMTMxNTY4Mzc1OSwtMT
+EwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5Njgw
+NjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMz
+AsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04
+MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0Nj
+EwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgy
+NSwtMTk4NjQ2Nzg5OV19
 -->
