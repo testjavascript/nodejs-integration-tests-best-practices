@@ -1086,7 +1086,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Make
+:white_check_mark:  **Do:** Put an invalid message in the queue, assert that...
 
 Ideas: Why isn't
 
@@ -1549,11 +1549,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxND
-g3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1Njgz
-NzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OS
-wtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAx
-NDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNj
-U0NzIsLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAz
-MiwzNDQ2MTAyMV19
+eyJoaXN0b3J5IjpbLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNz
+U5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQy
+MTgsLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4OD
+MsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2
+MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNT
+E1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC0xNDgzMTU0NDkx
+LC0xMDIwMDgwMDMyXX0=
 -->
