@@ -1283,7 +1283,7 @@ services:
 
 :white_check_mark:  **Do:** Reject messages and ensure that they arrive again multiple times and they are moved to your expected location like a dead-letter queue
 
-Ideas: Test is different because not related to your own code, requies real infra, bet
+Ideas: Test is different because not related to your own code, requies real infra, better done on production, 
 
 <br/>
 
@@ -1615,11 +1615,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjU2NTk3OCw5NDYyNDg1NjQsLTExNz
-Q3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMz
-MCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMj
-c2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3
-NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNz
-AsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3
-MTY2MTUxNTBdfQ==
+eyJoaXN0b3J5IjpbLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMT
+c0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUz
+MzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMT
+I3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEy
+NzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MT
+cwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywx
+NzE2NjE1MTUwXX0=
 -->
