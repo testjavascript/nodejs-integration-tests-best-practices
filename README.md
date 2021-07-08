@@ -1281,9 +1281,9 @@ services:
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
 
-:white_check_mark:  **Do:** Run few, just a few, 
+:white_check_mark:  **Do:** Run few, just a few, MQ tests with the same infrastructure and configuration like production to reveal installation and configuration issues
 
-Ideas: Test is different because not related to your own code, requies real infra, better done on production, 
+Ideas: Queue names are wrong maybe, some things can get checked only using the real product, some things are too slow, 
 
 <br/>
 
@@ -1657,7 +1657,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcwOTQ4MDE0MSwtMTg5NzY1MzA2NSw5ND
+eyJoaXN0b3J5IjpbLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5ND
 YyNDg1NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3
 OTQsMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsND
 k3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2
