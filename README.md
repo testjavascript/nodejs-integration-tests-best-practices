@@ -1081,14 +1081,13 @@ services:
 
 <br/>
 
-### ⚪️ 3.  Test how the app deals with 'poisoned' messages
+### ⚪️ 3.  Test for 'poisoned' messages
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
-
+🏷&nbsp; **Tags:** `#strategic, #draft`
 
 :white_check_mark:  **Do:** Put an invalid message in the queue, assert that...
 
-Ideas: Why isn't
+Ideas: Assert keep fetching more + Nack
 
 <br/>
 
@@ -1549,11 +1548,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNz
-U5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQy
-MTgsLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4OD
-MsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2
-MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNT
-E1MCwtMjEyMjI2NTQ3MiwtODA0NTIzOTczLC0xNDgzMTU0NDkx
-LC0xMDIwMDgwMDMyXX0=
+eyJoaXN0b3J5IjpbNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMD
+YzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgz
+LC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC
+0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0
+MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNz
+M3LDE3MTY2MTUxNTAsLTIxMjIyNjU0NzIsLTgwNDUyMzk3Mywt
+MTQ4MzE1NDQ5MV19
 -->
