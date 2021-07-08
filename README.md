@@ -703,21 +703,20 @@ Any record that might affect the test results should be added at the beginning o
 //docker-compose file
 
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+      //Arrange - Create a record so we can later query for it and assert for is existence
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
+      await axiosAPIClient.post(`/order`, orderToAdd);
+      
+    //Next -> Invoke the route under test and asssert for something
+    });
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L49-L74)
   
 
 </details>
@@ -773,7 +772,8 @@ services:
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g., new records) -  Assert that the new state data is satisfactory **using the REST API** when applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, but also the test might miss a bug in the API that returns the data (i.e., DB data is correct, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outermost layer that does expose this info like controller, service, facade, or repository. The more external this layer is, the more bugs are caught, and the coupling to the internals` noise is minimized.
+:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g., new records) -  Assert that the new state data is satisf
+ory **using the REST API** when applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, but also the test might miss a bug in the API that returns the data (i.e., DB data is correct, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outermost layer that does expose this info like controller, service, facade, or repository. The more external this layer is, the more bugs are caught, and the coupling to the internals` noise is minimized.
 
 This design decision does not come without a caveat. The test invokes much more code than needed: Tests might fail because of failures in code not being directly tested. Our philosophy is to stick to user flows under realistic conditions at the cost of a slight increase in developer's sweat. 
 
