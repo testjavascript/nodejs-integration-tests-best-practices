@@ -1126,7 +1126,7 @@ services:
 
 :white_check_mark:  **Do:** Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
 
-Ideas: The withdraw money example, 
+Ideas: The withdraw money example, simply run the same message multiple times and ensure that the state is similar
 
 <br/>
 
@@ -1544,11 +1544,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NDI4ODE2NzMsLTExNzQ3MTYwMzIsND
-IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
-MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC
-0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2
-NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNz
-UxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAs
-LTIxMjIyNjU0NzJdfQ==
+eyJoaXN0b3J5IjpbMTk3NTM1NDA1MywtMTE3NDcxNjAzMiw0Mj
+EzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQw
+NDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLT
+EzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0
+OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NT
+E2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwt
+MjEyMjI2NTQ3Ml19
 -->
