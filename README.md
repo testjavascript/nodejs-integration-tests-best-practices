@@ -1048,9 +1048,9 @@ services:
 🏷&nbsp; **Tags:** ``
 
 
-:white_check_mark:  **Do:** 
+:white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch. Different than single message, why (re-fetch fails... 
 
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+Ideas: 
 
 <br/>
 
@@ -1554,7 +1554,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzI3MTczNiwxNDg3NDM0NjcsNDk3Mz
+eyJoaXN0b3J5IjpbMTI2MDk0MTQwOSwxNDg3NDM0NjcsNDk3Mz
 U2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2
 ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC
 02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1
