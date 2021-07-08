@@ -1237,18 +1237,14 @@ services:
 
 <br/>
 
-### ⚪️ 7.  Test subscription failures
+### ⚪️ 7.  Avoid a zombie process by testing subscription failures
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+:white_check_mark:  **Do:** Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
 
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+Ideas: Metrics, retry, 
 
 <br/>
 
@@ -1623,7 +1619,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3MDAzNDc2LDk0NjI0ODU2NCwtMTE3ND
+eyJoaXN0b3J5IjpbMTY4NDUzNjk1LDk0NjI0ODU2NCwtMTE3ND
 cxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMw
 LC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNz
 Y4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2
