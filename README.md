@@ -1276,18 +1276,14 @@ services:
 
 <br/>
 
-### ⚪️ 8.  Test the queues resilliency
+### ⚪️ 8.  Test retries and dead-letter queues
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
+🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+:white_check_mark:  **Do:** Reject messages and ensure that they arrive again multiple times and they are moved to your expected location like a dead-letter queue
 
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+Ideas: Test is different because not related to your own code, requies real infra, bet
 
 <br/>
 
@@ -1619,7 +1615,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1ODMzODA4MSw5NDYyNDg1NjQsLTExNz
+eyJoaXN0b3J5IjpbLTE4NjU2NTk3OCw5NDYyNDg1NjQsLTExNz
 Q3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMz
 MCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMj
 c2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3
