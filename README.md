@@ -1002,7 +1002,7 @@ services:
 
 ### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
+🏷&nbsp; **Tags:** `#advanced, #strategic #draft`
 
 
 :white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
@@ -1045,12 +1045,12 @@ services:
 
 ### ⚪️ 2.  Test a scenario of message batch
 
-🏷&nbsp; **Tags:** ``
+🏷&nbsp; **Tags:** `draft`
 
 
-:white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch. Different than single message, why (re-fetch fails... 
+:white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch. Different than single message, why (re-fetch fails..., some message didn't finish).  
 
-Ideas: 
+Ideas: Ths sub-case of a single failure which might not trigger bringing more
 
 <br/>
 
@@ -1554,7 +1554,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MDk0MTQwOSwxNDg3NDM0NjcsNDk3Mz
+eyJoaXN0b3J5IjpbMTYyOTEwNTk5NSwxNDg3NDM0NjcsNDk3Mz
 U2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2
 ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC
 02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwyMDM1
