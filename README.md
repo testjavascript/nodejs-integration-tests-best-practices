@@ -1053,7 +1053,7 @@ Ideas: Ths sub-case of a single failure which might not trigger bringing more, a
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** No relevant options here &nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1553,11 +1553,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA0MTczMzIzNywtMTc1OTc0MDQ1MCwxND
-g3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1Njgz
-NzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OS
-wtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAx
-NDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNj
-U0NzIsLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAz
-MiwzNDQ2MTAyMV19
+eyJoaXN0b3J5IjpbLTE0NzczNDA5NjIsLTE3NTk3NDA0NTAsMT
+Q4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4
+Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3Nj
+ksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEw
+MTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMj
+Y1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAw
+MzIsMzQ0NjEwMjFdfQ==
 -->
