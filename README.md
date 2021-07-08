@@ -1043,12 +1043,57 @@ services:
 
 <br/>
 
-### ⚪️ 2.  The b
+### ⚪️ 2.  Flatten the test, avoid event emitters and callbacks
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+:white_check_mark:  **Do:** The
+
+Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
+
+There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
+
+Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+
+
+### ⚪️ 3.  Test message acknowledgement or deletion
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** The
 
 Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
 
@@ -1588,11 +1633,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTYxMDA3MjgsLTExNzQ3MTYwMzIsND
-IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
-MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC
-0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2
-NDkwMDc2OSwtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNz
-UxNiwtMTAxNDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAs
-LTIxMjIyNjU0NzJdfQ==
+eyJoaXN0b3J5IjpbMTQ2NTk5ODkyMywtMTE3NDcxNjAzMiw0Mj
+EzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQw
+NDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLT
+EzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0
+OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NT
+E2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwt
+MjEyMjI2NTQ3Ml19
 -->
