@@ -1237,9 +1237,9 @@ services:
 
 <br/>
 
-### ⚪️ 5.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 7.  Test subscription failures
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
+🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
 :white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
@@ -1623,11 +1623,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMT
-MwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLTE3NTk3NDA0
-NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMT
-MxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5
-MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MT
-YsLTEwMTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0y
-MTIyMjY1NDcyXX0=
+eyJoaXN0b3J5IjpbMjA3MDAzNDc2LDk0NjI0ODU2NCwtMTE3ND
+cxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMw
+LC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNz
+Y4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2
+MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MC
+wyMTE2MzM3NTE2LC0xMDE0Mjc0MzMwLDIwMzU4NDI3MzcsMTcx
+NjYxNTE1MF19
 -->
