@@ -1081,18 +1081,14 @@ services:
 
 <br/>
 
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 3.  Test how the app deals with 'poisoned' messages
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+:white_check_mark:  **Do:** Make
 
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+Ideas: Why isn't
 
 <br/>
 
@@ -1553,11 +1549,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NzczNDA5NjIsLTE3NTk3NDA0NTAsMT
-Q4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4
-Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3Nj
-ksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEw
-MTQyNzQzMzAsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMj
-Y1NDcyLC04MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAw
-MzIsMzQ0NjEwMjFdfQ==
+eyJoaXN0b3J5IjpbMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxND
+g3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1Njgz
+NzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OS
+wtMzk2ODA2ODIxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAx
+NDI3NDMzMCwyMDM1ODQyNzM3LDE3MTY2MTUxNTAsLTIxMjIyNj
+U0NzIsLTgwNDUyMzk3MywtMTQ4MzE1NDQ5MSwtMTAyMDA4MDAz
+MiwzNDQ2MTAyMV19
 -->
