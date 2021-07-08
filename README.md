@@ -1000,6 +1000,45 @@ services:
 
 ## **Section: Message queues**
 
+### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
+
+
+:white_check_mark:  **Do:** Check that the code under test doesn't accidentally ״overdoing״ -  modifying more data than it is intended to. For example, a code that is supposed to delete one record, might accidentally delete all the records. Since most tests assert only the outcome of specific records, it's easy to miss these unplanned side effects. Testing this is a bit tricky but not too hard. At the beginning of a test, add the records that should be mutated—nothing unusual thus far. On top of this, add few more records than needed. In the end, assert that the records that were planned to be mutated are indeed mutated, but the rest are not. For example, when testing that the DELETE route works, add 2 records (!), try to delete one, ensure that it is gone, now also check that the second one is still there so the test deleted only what should be deleted (Credit: @giltayar)
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Some apply Repository/ORM level protection that ensures that one tenant is not accessing another tenant's records. This is valuable but doesn't cover all the scenarios ✅  &nbsp; Writes integration tests that include the data access layer and a real DB - Check that the number of affected records (i.e., commonly returned by DB operations) is as expected. Writing tests against the entire DAL demands more effort thus should be considered based a specific project's risk level ✅&nbsp;
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/>
+
+## **Section: The test anatomy**
+
 
 <br/>
 
@@ -1083,11 +1122,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUzNzcwNjY1MywtMTMxNTY4Mzc1OSwtMT
-EwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5Njgw
-NjgyMSwtNjg0NDM1MTcwLDIxMTYzMzc1MTYsLTEwMTQyNzQzMz
-AsMjAzNTg0MjczNywxNzE2NjE1MTUwLC0yMTIyMjY1NDcyLC04
-MDQ1MjM5NzMsLTE0ODMxNTQ0OTEsLTEwMjAwODAwMzIsMzQ0Nj
-EwMjEsMTY5NDYzMzg1NSwtMTUzMjYyMDE4MiwtMTQ1NjI0ODgy
-NSwtMTk4NjQ2Nzg5OV19
+eyJoaXN0b3J5IjpbLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLT
+ExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4
+MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0xMDE0Mjc0Mz
+MwLDIwMzU4NDI3MzcsMTcxNjYxNTE1MCwtMjEyMjI2NTQ3Miwt
+ODA0NTIzOTczLC0xNDgzMTU0NDkxLC0xMDIwMDgwMDMyLDM0ND
+YxMDIxLDE2OTQ2MzM4NTUsLTE1MzI2MjAxODIsLTE0NTYyNDg4
+MjUsLTE5ODY0Njc4OTldfQ==
 -->
