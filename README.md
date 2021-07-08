@@ -701,7 +701,6 @@ Any record that might affect the test results should be added at the beginning o
 
 <details><summary>✏ <b>Code Examples</b></summary>
 ```javascript
-
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
       //Arrange - Create a record so we can later query for it and assert for is existence
       const orderToAdd = {
