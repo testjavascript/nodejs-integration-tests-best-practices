@@ -744,29 +744,49 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-Metadata:
-
 ```javascript
+// Adding metadata globally. Done once regardless of the amount of tests
 module.exports = async () => {
   console.time('global-setup');
   ...
-  await npmCommandAsPromise(['db:seed']);
+  await npmCommandAsPromise(['db:seed']); // Will create a countries (metadata) list. This is not related to the tests subject
   ...
   // 👍🏼 We're ready
   console.timeEnd('global-setup');
 ```
 
-➡️ [Full code here]()
-
-Context data:
-TODO
-```javascript
-
-```
-
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L32)
-  
-Test records:
+
+<hr>
+
+```javascript
+describe('/api', () => {
+  let user;
+
+  beforeAll(async (done) => {
+    // Create context data once before all tests in the suite
+    user = createUser();
+
+    done();
+  });
+
+  describe('GET /order', () => {
+    test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: user.id, // Must provide a real user id but we don't care which user creates the order
+        productId: 2,
+        mode: 'approved',
+      };
+      const {
+        data: { id: addedOrderId },
+      } = await axiosAPIClient.post(`/order`, orderToAdd);
+      ...
+    });
+  });
+});
+```
+<hr>
 
 ```javascript
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
