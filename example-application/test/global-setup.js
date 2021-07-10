@@ -29,6 +29,7 @@ module.exports = async () => {
     await npmLoadAsPromise();
     const npmCommandAsPromise = util.promisify(npm.commands.run);
     await npmCommandAsPromise(['db:migrate']);
+    await npmCommandAsPromise(['db:seed']);
   }
 
   // 👍🏼 We're ready

@@ -1,22 +1,21 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     //Configuration ✅
-    queryInterface.bulkInsert('Countries', [{
+    await queryInterface.bulkInsert('Countries', [{
       name: 'Italy',
       name: 'USA',
       name: 'India'
-    }], {})
+    }], {});
 
     //Test data ❌ 
-    queryInterface.bulkInsert('Order', [{
+    const now = new Date();
+    await queryInterface.bulkInsert('Orders', [{
       id: 1,
-      price: 55,
       userId: 5,
-    }], {})
-
-
-  }
-
+      createdAt: now,
+      updatedAt: now,
+    }], {});
+  },
   down: (queryInterface, Sequelize) => {
     /*
       Add reverting commands here.

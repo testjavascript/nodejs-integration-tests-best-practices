@@ -703,16 +703,16 @@ Any record that might affect the test results should be added at the beginning o
 
 ```javascript
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
-      //Arrange - Create a record so we can later query for it and assert for is existence
-      const orderToAdd = {
+    //Arrange - Create a record so we can later query for it and assert for is existence
+    const orderToAdd = {
         userId: 1,
         productId: 2,
         mode: 'approved',
-      };
-      await axiosAPIClient.post(`/order`, orderToAdd);
-      
+    };
+    await axiosAPIClient.post(`/order`, orderToAdd);
+
     //Next -> Invoke the route under test and asssert for something
-    });
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L49-L74)
@@ -743,26 +743,45 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+Metadata:
+
+```javascript
+module.exports = async () => {
+  console.time('global-setup');
+  ...
+  await npmCommandAsPromise(['db:seed']);
+  ...
+  // 👍🏼 We're ready
+  console.timeEnd('global-setup');
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here]()
+
+Context data:
+TODO
+```javascript
+
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L32)
   
+Test records:
 
+```javascript
+test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+    //Arrange - Create a record so we can later query for it and assert for is existence
+    const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+    };
+    await axiosAPIClient.post(`/order`, orderToAdd);
+
+    //Next -> Invoke the route under test and asssert for something
+});
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L49-L74)
 </details>
 
 <br/><br/>
