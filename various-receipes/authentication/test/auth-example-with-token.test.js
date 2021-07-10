@@ -1,5 +1,4 @@
-const request = require("supertest");
-const sinon = require("sinon");
+const axios = require('axios');
 const {
     initializeWebServer,
     stopWebServer
@@ -10,18 +9,18 @@ const {
     signExpiredTokenSynchronously
 } = require("./helper");
 
-let expressApp;
-let sinonSandbox;
-let defaultValidToken;
+let axiosAPIClient, defaultValidToken;
 
 beforeAll(async (done) => {
     defaultValidToken = signTokenSynchronously('test-user', 'user');
 
     // ️️️✅ Best Practice: Place the backend under test within the same process
-    expressApp = await initializeWebServer();
-
-    // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-    sinonSandbox = sinon.createSandbox();
+    const apiConnection = await initializeWebServer();
+    const axiosConfig = {
+      baseURL: `http://127.0.0.1:${apiConnection.port}`,
+      validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    };
+    axiosAPIClient = axios.create(axiosConfig);
 
     done();
 });
@@ -32,17 +31,10 @@ afterAll(async (done) => {
     done();
 });
 
-beforeEach(() => {
-    if (sinonSandbox) {
-        sinonSandbox.restore();
-    }
-});
-
 // ️️️✅ Best Practice: Structure tests 
 describe("/api", () => {
     describe("POST /orders", () => {
         test("When token expired , Then get back 401", async () => {
-
             //Arrange
             const orderToAdd = {
                 userId: 1,
@@ -52,14 +44,17 @@ describe("/api", () => {
             const expiredToken = signExpiredTokenSynchronously('test-user', 'user');
 
             //Act
-            const receivedAPIResponse = await request(expressApp).post("/order").set('authorization', expiredToken).send(orderToAdd);
+            const { status } = await axiosAPIClient.post("/order", orderToAdd, {
+              headers: {
+                authorization: expiredToken,
+              }
+            });
 
             //Assert
-            expect(receivedAPIResponse.status).toBe(401);
+            expect(status).toBe(401);
         })
 
         test("When adding a new valid order , Then should get back 200 response", async () => {
-
             //Arrange
             const orderToAdd = {
                 userId: 1,
@@ -72,20 +67,19 @@ describe("/api", () => {
             });
 
             //Act
-            const receivedAPIResponse = await request(expressApp).post("/order").set('authorization', defaultValidToken).send(orderToAdd);
+            const { status, data } = await axiosAPIClient.post("/order", orderToAdd, {
+              headers: {
+                authorization: defaultValidToken,
+              }
+            });
 
             //Assert
-            const {
-                status,
-                body
-            } = receivedAPIResponse;
-
             expect({
                 status,
-                body,
+                data,
             }).toMatchObject({
                 status: 200,
-                body: {
+                data: {
                     mode: "approved",
                 },
             });
