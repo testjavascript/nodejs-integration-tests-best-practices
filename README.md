@@ -750,7 +750,7 @@ Metadata:
 module.exports = async () => {
   console.time('global-setup');
   ...
-  await npmCommandAsPromise(['db:seed']);
+  await npmCommandAsPromise(['db:seed']); // Will create a countries (metadata) list. This is not related to the tests subject
   ...
   // 👍🏼 We're ready
   console.timeEnd('global-setup');
