@@ -744,9 +744,8 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-Metadata:
-
 ```javascript
+//Adding metadata globally. Done once regardless of the amount of tests
 module.exports = async () => {
   console.time('global-setup');
   ...
