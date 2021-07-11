@@ -1090,7 +1090,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. an order was deleted) but also that the message was acknowledged or deleted (depends)
+:white_check_mark:  **Do:** This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. an order was deleted, assuming that this was the message implies) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic if like testing against API without checking the HTTP status
 
 This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. a new Order was saved) but also that the message was acknowledged or deleted (depends). In the same spirit test for the opposite
 
@@ -1662,7 +1662,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3MTg4MTIwMiwtMTU2ODMyMTA2LC0xMT
+eyJoaXN0b3J5IjpbLTgzOTE5NTcyNywtMTU2ODMyMTA2LC0xMT
 AzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2
 MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLT
 E3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2
