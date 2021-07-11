@@ -1167,11 +1167,13 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 <br/>
 
 
-### ⚪️ 4.  Test processing of messag batch of messages
+### ⚪️ 4.  Test processing of messages batch
 
 🏷&nbsp; **Tags:** `draft`
 
-:white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch (rabbit config key, sqs). Different than single message, why (re-fetch fails..., some message didn't finish).  
+:white_check_mark:  **Do:** Test how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch, multiple
+
+ specifically a number that is bigger than a single fetch (rabbit config key, sqs). Different than single message, why (re-fetch fails..., some message didn't finish).  
 
 Ideas: Ths sub-case of a single failure which might not trigger bringing more, assert that the last messages are also processed, streaming
 
@@ -1704,7 +1706,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ2OTUyMzQwNiwtMjUxNTU1ODAxLDIzMz
+eyJoaXN0b3J5IjpbLTI4NTkxMjUyNywtMjUxNTU1ODAxLDIzMz
 kwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMyMDk5
 MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3MTYwMzIsND
 IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
