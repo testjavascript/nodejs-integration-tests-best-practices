@@ -1207,7 +1207,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Put an invalid message in the queue, assert that hell does not break loose. More specifically, check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Poisoned messages are a known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when wrong messages schema is stored in a queues and the consumer is not ready for this schema. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume 
+:white_check_mark:  **Do:** Put an invalid message in the queue, and assert that hell does not break loose. More specifically, check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Poisoned messages are a known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume 
 
 Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast, paralyze apps, 
 
@@ -1700,7 +1700,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwNjE2OTAxMSw1MDMyMDAxNDksMTY2OT
+eyJoaXN0b3J5IjpbMTU1MjQzNTcwNiw1MDMyMDAxNDksMTY2OT
 A0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0
 Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0MjUsLT
 E1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0
