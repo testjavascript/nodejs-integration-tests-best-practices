@@ -1171,7 +1171,7 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 🏷&nbsp; **Tags:** `draft`
 
-:white_check_mark:  **Do:** Test how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch, multiple
+:white_check_mark:  **Do:** Test how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch - last messages also processed, granular acknowlgement (sub case), 
 
  specifically a number that is bigger than a single fetch (rabbit config key, sqs). Different than single message, why (re-fetch fails..., some message didn't finish).  
 
@@ -1706,7 +1706,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4NTkxMjUyNywtMjUxNTU1ODAxLDIzMz
+eyJoaXN0b3J5IjpbLTc0MTEyNTM1OSwtMjUxNTU1ODAxLDIzMz
 kwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMyMDk5
 MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3MTYwMzIsND
 IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
