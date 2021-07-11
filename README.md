@@ -230,7 +230,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can't be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers
+:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers.
 
 
 <br/>
@@ -240,24 +240,24 @@ beforeAll(async (done) => {
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
+```javascript
+    await dockerCompose.upAll({
+      cwd: path.join(__dirname),
+      log: true,
+    });
+
+    await dockerCompose.exec(
+      'database',
+      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
+      {
+        cwd: path.join(__dirname),
+      }
+    );
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L11-L32)
   
-
 </details>
 
 <br/><br/>
@@ -276,13 +276,16 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-```
-//Put global setup code here
+
+```javascript
+  // jest.config.js
+  globalSetup: './example-application/test/global-setup.js'
+
+  // global-setup.js
+  await dockerCompose.upAll();
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/jest.config.js#L17)
   
 
 </details>
@@ -304,12 +307,14 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
+```javascript
+  if (isCI) {
+    dockerCompose.down();
+  }
 ```
-// Put teardown code that shows how we check for CI
-```
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L5-L8)
   
 
 </details>
@@ -399,14 +404,12 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
+```javascript
+  await npmCommandAsPromise(['db:migrate']);
 ```
-// Show global-setup conditional migration command
-//Show npm script
-```
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L30)
 
 </details>
 
@@ -1171,11 +1174,13 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 🏷&nbsp; **Tags:** `draft`
 
-:white_check_mark:  **Do:** Feed the test queue with a batch of messages, and simulate failures in specific messages. In the realm of these failures, assert that some messages do succeed and the consumer survives to re-fetch more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch processing will crash, although only specific messages are invalid (others should have been processed successfully). The test expects the client code to recover and fetch more despite the failures, did it? . In streaming applications, a failure in a single message might lead to dis-acknowledgment of the entire sequence or to acknowledge the last (ignore the error). Whatever your strategy is, a test is needed. When using real-queues, the number of messages that are being put should be bigger than a single fetch size (e.g., prefetch in Rabbit, MaxNumberOfMessages in SQS) - Check that although the batch contains errors, the 2nd page is also being fetched and handled.
+:white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages. Test granularly that some succeeded and the consumer survived and is re-fetching more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch will fail although only specific messages are invalid, others should have been processed successfully. The client code should recover and fetch more inspite of the failures, did it? Only tests can tell. In streaming applications, a failure in a single message should lead to dis-acknowldgement of the entire sequence or to acknowledge the last (ignore the error). Whatever your strategy is, a test is needed. When using real-queues, the number of messages that are being put should be bigger than the fetch size (e.g., prefetch in Rabbit, MaxNumberOfMessages in SQS) - Check that although the batch contains error, the 2nd page is also being fetched and handled.
+
+being able to handle errors and keep fetching
 
 <br/>
 
-👀 &nbsp; **Alternatives:** One might assume that correct handling of a failure proves that the consumer is resilient - In reality, it might be that the consumer code stops when a single message fails and won't re-connect to fetch more &nbsp;
+👀 &nbsp; **Alternatives:** One might assume that a failure in a single message proves the consumer... - In reality, it might that the consumer code stops when a single message fails and won't re-connect to fetch more &nbsp;
 	<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1207,7 +1212,9 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Put an invalid message in the queue, and assert that hell does not break loose. More specifically, check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Poisoned messages are a known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume a perfect queue content rather embrace a resillient approach - The consuming code should validate each incoming message schema and stop early in case of failures. On the broker/server side, retry limit should be defined and once exceeded the message should get redirected to the dead-letter queue (see dedicated bullet)
+:white_check_mark:  **Do:** Put an invalid message in the queue, assert that...
+
+Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast
 
 <br/>
 
@@ -1698,11 +1705,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2Nj
-kwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1
-NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC
-0xNTY4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYy
-NDg1NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OT
-QsMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3
-MzU2NTgzXX0=
+eyJoaXN0b3J5IjpbLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMj
+UxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIx
+MDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLT
+ExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYz
+NTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC
+0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0y
+MTI3NjMxODgzXX0=
 -->
