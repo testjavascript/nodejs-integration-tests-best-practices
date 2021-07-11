@@ -1042,12 +1042,16 @@ services:
 
 <br/>
 
-### ⚪️ 2.  Flatten the test, avoid inde and callbacks
+### ⚪️ 2.  Flatten the test, avoid indentation and callbacks
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Naturally, message queue client emits events to a callback method. Promisify it
+:white_check_mark:  **Do:** 
+
+Naturally, message queue client emits events to a callback method. Promisify it
+
+Ideas: toPromise, unlike API, 
 
 <br/>
 
@@ -1656,7 +1660,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzNTc4Nzg1NCwtMTEwMzIwOTkyLC0xOD
+eyJoaXN0b3J5IjpbMTM2OTI1NDA0NywtMTEwMzIwOTkyLC0xOD
 k3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcx
 NTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLD
 E0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEzMTU2
