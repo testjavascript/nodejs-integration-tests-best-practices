@@ -1090,7 +1090,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. an order was deleted) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged (some MQ products demand explicit reject) so it will get back to the queue. These tests will stretch the efficienty of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not.
+:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Act by putting a message in the queue, assert that it triggered the right behaviour (e.g. somethi) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged (some MQ products demand explicit reject) so it will get back to the queue. These tests will stretch the efficienty of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not.
 
 <br/>
 
@@ -1658,11 +1658,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMT
-AzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2
-MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLT
-E3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2
-NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMT
-g4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIx
-MTYzMzc1MTZdfQ==
+eyJoaXN0b3J5IjpbNjgwNTQ1MjYyLC0zNTE2OTU0MjUsLTE1Nj
+gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
+NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
+EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
+ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
+IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
+NDQzNTE3MF19
 -->
