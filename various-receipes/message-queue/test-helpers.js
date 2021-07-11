@@ -15,8 +15,8 @@ module.exports.startFakeMessageQueue = async () => {
   return fakeMessageQueue;
 };
 
-// The fake message queue emits events which can make the test syntax cumbersome and based on callbacks
-// This method returns a promise and will fire event from the MQ or a timeout
+// A typical message queue emits events ("callbacks") which can make the test syntax cumbersome and based on callbacks
+// This method sugar coats the syntax by returning a promise and will fire event from the MQ or a timeout
 module.exports.getNextMQConfirmation = async (
   fakeMessageQueue,
   timeoutInMS = 500,

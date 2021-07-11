@@ -3,17 +3,18 @@ const util = require('util');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const axiosRetry = require('axios-retry');
-const mailer = require('./libraries/mailer');
-const OrderRepository = require('./data-access/order-repository');
-const errorHandler = require('./error-handling').errorHandler;
-const { AppError } = require('./error-handling');
+const mailer = require('../libraries/mailer');
+const OrderRepository = require('../data-access/order-repository');
+const errorHandler = require('../error-handling').errorHandler;
+const { AppError } = require('../error-handling');
+const MessageQueueClient = require('../libraries/message-queue-client');
 
 let connection;
 
 const client = axios.create();
 axiosRetry(client, { retries: 3 });
 
-const initializeWebServer = customMiddleware => {
+const initializeWebServer = (customMiddleware) => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
@@ -43,7 +44,7 @@ const stopWebServer = () => {
   });
 };
 
-const defineRoutes = expressApp => {
+const defineRoutes = (expressApp) => {
   const router = express.Router();
 
   // add new order
@@ -65,7 +66,7 @@ const defineRoutes = expressApp => {
         const user = await getUserFromUsersService(req.body.userId);
       } catch (error) {
         const { response } = error;
-    
+
         if (response && response.status === 404) {
           res.status(404).end();
           return;
@@ -73,14 +74,12 @@ const defineRoutes = expressApp => {
 
         if (error?.code === 'ECONNABORTED') {
           throw new AppError(error.code, {
-            status: 503
+            status: 503,
           });
         }
 
         throw error;
       }
-
-      
 
       // save to DB (Caution: simplistic code without layers and validation)
       const DBResponse = await new OrderRepository().addOrder(req.body);
@@ -92,6 +91,9 @@ const defineRoutes = expressApp => {
           'admin@app.com'
         );
       }
+
+      // We should notify others that a new order was added - Let's put a message in a queue
+      new MessageQueueClient().sendMessage('new-order', req.body);
 
       res.json(DBResponse);
     } catch (error) {
@@ -141,12 +143,9 @@ process.on('unhandledRejection', (reason) => {
 });
 
 async function getUserFromUsersService(userId) {
-  return await client.get(
-    `http://localhost/user/${userId}`,
-    {
-      timeout: 2000,
-    }
-  );
+  return await client.get(`http://localhost/user/${userId}`, {
+    timeout: 2000,
+  });
 }
 
 module.exports = {

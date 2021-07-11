@@ -1,4 +1,4 @@
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const { once } = require('events');
@@ -15,15 +15,20 @@ const {
   stopWebServer,
 } = require('../../example-application/entry-points/api');
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   done();
 });
@@ -57,18 +62,18 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
     productId: 2,
     mode: 'approved',
   };
-  const addedOrderId = (
-    await request(expressApp).post('/order').send(orderToAdd)
-  ).body.id;
+  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
+    .id;
   const fakeMessageQueue = await startFakeMessageQueue();
-  const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue);
+  const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue); //Store the MQ actions in a promise
 
   // Act
   fakeMessageQueue.pushMessageToQueue('deleted-user', { id: addedOrderId });
 
   // Assert
-  await getNextMQEvent;
-  const aQueryForDeletedOrder = await request(expressApp).get(
+  const eventFromMessageQueue = await getNextMQEvent;
+  expect(eventFromMessageQueue).toEqual([{ event: 'message-acknowledged' }]);
+  const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
   expect(aQueryForDeletedOrder.status).toBe(404);
@@ -83,7 +88,7 @@ test('When a poisoned message arrives, then it is being rejected back', async ()
   // Act
   fakeMessageQueue.pushMessageToQueue('deleted-user', messageWithInvalidSchema);
 
-      // Assert
+  // Assert
   const eventFromMessageQueue = await getNextMQEvent;
   expect(eventFromMessageQueue).toEqual([{ event: 'message-rejected' }]);
 });
@@ -102,11 +107,11 @@ test('When a valid order is added, then a message is emitted to the new-order qu
   );
 
   //Act
-  await request(expressApp).post('/order').send(orderToAdd);
+  await axiosAPIClient.post('/order', orderToAdd);
 
   // Assert
   expect(spyOnSendMessage.called).toBe(true);
-  expect(spyOnSendMessage.lastCall.args).toMatchObject({}); //TODO
+  expect(spyOnSendMessage.lastCall.args).toMatchObject({}); //TODO - Be more explicit here
 });
 
 test.todo('When an error occurs, then the message is not acknowledged');
