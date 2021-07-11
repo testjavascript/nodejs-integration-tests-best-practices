@@ -1,7 +1,7 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
-const { initializeWebServer, stopWebServer } = require('../api');
+const { initializeWebServer, stopWebServer } = require('../entry-points/api');
 const OrderRepository = require('../data-access/order-repository');
 
 // Configuring file-level HTTP client with base URL will allow

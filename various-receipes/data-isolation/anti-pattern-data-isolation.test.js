@@ -5,7 +5,7 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../example-application/api');
+} = require('../../example-application/entry-points/api');
 const { getShortUnique } = require('./test-helper');
 
 let axiosAPIClient, existingOrderId;
@@ -21,8 +21,7 @@ beforeAll(async (done) => {
 
   // ❌ Anti-Pattern: Adding global records which are mutated by the tests. This will lead to high coupling and flakiness
   existingOrderId = (
-    await axiosAPIClient
-      .post('/order', { userId: 1, mode: 'approved' })
+    await axiosAPIClient.post('/order', { userId: 1, mode: 'approved' })
   ).body.id;
 
   done();
@@ -62,7 +61,10 @@ describe('/api', () => {
       };
 
       //Act
-      const receivedAPIResponse = await axiosAPIClient.post('/order', orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post(
+        '/order',
+        orderToAdd
+      );
       existingOrderId = receivedAPIResponse.body.id;
 
       //Assert
@@ -79,7 +81,10 @@ describe('/api', () => {
         mode: 'approved',
         externalIdentifier: `some-external-${getShortUnique()}`, //unique value
       };
-      const receivedAPIResponse = await axiosAPIClient.post('/order', orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post(
+        '/order',
+        orderToAdd
+      );
 
       //Act
       // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
