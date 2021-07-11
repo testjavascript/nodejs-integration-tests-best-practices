@@ -1209,7 +1209,7 @@ services:
 
 :white_check_mark:  **Do:** Put an invalid message in the queue, assert that...
 
-Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast, parall
+Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast, paralyze apps, 
 
 <br/>
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTM1MTAzODQ4LC0xMjU2MjY5ODkyLC05Mz
-gzNjMzMDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0
-ODgsLTM1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLT
-E4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMTMw
-NzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLTE3NTk3NDA0NT
-AsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMTMx
-NTY4Mzc1OV19
+eyJoaXN0b3J5IjpbMTY2OTA0NjkwNiwtMTI1NjI2OTg5MiwtOT
+M4MzYzMzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4MDEsMjMzOTA3
+NDg4LC0zNTE2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC
+0xODk3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEz
+MDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwND
+UwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEz
+MTU2ODM3NTldfQ==
 -->
