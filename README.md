@@ -1090,11 +1090,11 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Act by putting a message in the queue, assert that it triggered the right behaviour (e.g. somethi) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged (some MQ products demand explicit reject) so it will get back to the queue. These tests will stretch the efficienty of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not.
+:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Act by putting a message in the queue, assert that it triggered the right behaviour (e.g. a record was added or deleted) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged so it will get back to the queue. These tests will stretch the efficienty of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Migh ✅  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1658,11 +1658,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjgwNTQ1MjYyLC0zNTE2OTU0MjUsLTE1Nj
-gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
-NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
-EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
-ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
-IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
-NDQzNTE3MF19
+eyJoaXN0b3J5IjpbLTE4OTgzMDM0NDEsLTM1MTY5NTQyNSwtMT
+U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
+NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LD
+E2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1
+NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNj
+gyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwt
+Njg0NDM1MTcwXX0=
 -->
