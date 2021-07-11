@@ -1207,7 +1207,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Put an invalid message in the queue, and assert that hell does not break loose. More specifically, check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Poisoned messages are a known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume 
+:white_check_mark:  **Do:** Put an invalid message in the queue, and assert that hell does not break loose. More specifically, check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Poisoned messages are a known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume a perfect queue content rather embrace a resillient approach - The consuming code should validate each incoming message schema and stop early in case of failures. On the broker/server side, retry limit should be li
 
 Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast, paralyze apps, 
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU1MjQzNTcwNiw1MDMyMDAxNDksMTY2OT
-A0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0
-Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0MjUsLT
-E1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0
-ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NC
-wxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTcz
-NTY1ODNdfQ==
+eyJoaXN0b3J5IjpbNzI2MzY1OTI2LDUwMzIwMDE0OSwxNjY5MD
+Q2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2
+ODUsLTI1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMT
+U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
+NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LD
+E2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1
+NjU4M119
 -->
