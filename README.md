@@ -1167,13 +1167,15 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 <br/>
 
 
-### ⚪️ 4.  Test a scenario of message batch
+### ⚪️ 4.  Test processing of messag batch of messages
 
 🏷&nbsp; **Tags:** `draft`
 
 :white_check_mark:  **Do:** Test how the system process a batch of messages, specifically a number that is bigger than a single fetch (rabbit config key, sqs). Different than single message, why (re-fetch fails..., some message didn't finish).  
 
-Ideas: Ths sub-case of a single failure which might not trigger bringing more, assert that the last messages are also processed
+Ideas: Ths sub-case of a single failure which might not trigger bringing more, assert that the last messages are also processed, streaming
+
+
 
 <br/>
 
@@ -1702,11 +1704,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MT
-Y5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMw
-NjUsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtND
-gxMjE1Nzk0LDE2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQz
-NDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OS
-wtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5
-NjgwNjgyMV19
+eyJoaXN0b3J5IjpbLTQ2OTUyMzQwNiwtMjUxNTU1ODAxLDIzMz
+kwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMyMDk5
+MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3MTYwMzIsND
+IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
+MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC
+0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2
+NDkwMDc2OV19
 -->
