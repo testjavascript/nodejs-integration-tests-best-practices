@@ -969,7 +969,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some apply Repository/ORM level protection that ensures that one tenant is not accessing another tenant's records. This is valuable but doesn't cover all the scenarios ✅  &nbsp; Writes integration tests that include the data access layer and a real DB - Check that the number of affected records (i.e., commonly returned by DB operations) is as expected. Writing tests against the entire DAL demands more effort thus should be considered based a specific project's risk level ✅&nbsp;
+👀 &nbsp; **Alternatives:** Some apply Repository/ORM level protection that ensures that one tenant is not accessing another tenant's records. This is valuable but doesn't cover all the scenarios ❌  &nbsp; Writes integration tests that include the data access layer and a real DB - Check that the number of affected records (i.e., commonly returned by DB operations) is as expected. Writing tests against the entire DAL demands more effort thus should be considered based a specific project's risk level ❌&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1094,7 +1094,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Migh ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might lead to messages re-processed again and again ❌ &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1658,11 +1658,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4OTgzMDM0NDEsLTM1MTY5NTQyNSwtMT
-U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
-NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LD
-E2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1
-NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNj
-gyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwt
-Njg0NDM1MTcwXX0=
+eyJoaXN0b3J5IjpbNTYzODM0NTYwLC0zNTE2OTU0MjUsLTE1Nj
+gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
+NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
+EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
+ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
+IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
+NDQzNTE3MF19
 -->
