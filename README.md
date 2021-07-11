@@ -1094,7 +1094,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might miss scnearios where the MQ is not being informed and messages are re-processed again and again ❌ &nbsp; Test that the ✅&nbsp;
+👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might miss scnearios where the MQ is not being informed and messages are re-processed again and again ❌ &nbsp; Test that only u ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1658,7 +1658,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkxNjE4MDMyNSwtMzUxNjk1NDI1LC0xNT
+eyJoaXN0b3J5IjpbLTIzNTg0NTIzNSwtMzUxNjk1NDI1LC0xNT
 Y4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1
 NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMT
 YxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2
