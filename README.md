@@ -1171,7 +1171,7 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 🏷&nbsp; **Tags:** `draft`
 
-:white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages. Test granularly that some succeeded and the consumer survived and is re-fetching more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch will fail although only specific messages are invalid, others should have been processed successfully. The client code should recover and fetch more inspite of the failures, did it? Only tests can tell. In streaming applications, a failure in a single 
+:white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages. Test granularly that some succeeded and the consumer survived and is re-fetching more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch will fail although only specific messages are invalid, others should have been processed successfully. The client code should recover and fetch more inspite of the failures, did it? Only tests can tell. In streaming applications, a failure in a single message should lead to dis-acknowldgement of the entire sequence or to acknowledge the last (ignore the error). Whatever your strategy is, a test is needed. When using real-queues, the number of messages that are being put
 
   how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch - last messages also processed, granular acknowlgement (sub case), streaming. Different than single message, why (re-fetch fails..., some message didn't finish)
 
@@ -1708,7 +1708,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzNDEwNjcyOSwtMjAwNDk1NDY4NSwtMj
+eyJoaXN0b3J5IjpbMTA4ODgzNjgwMCwtMjAwNDk1NDY4NSwtMj
 UxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIx
 MDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLT
 ExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYz
