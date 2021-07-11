@@ -1094,24 +1094,14 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might miss scnearios where the MQ is not being informed and messages are re-processed again and again ❌ &nbsp; Test this only using E2E tests using a real queue by asserting the amount of messages - It's very hard to trigger various errors (e.g. data access layer is throwing an exception) from E2E level ❌  ✅&nbsp;
+👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might miss scnearios where the MQ is not being informed and messages are re-processed again and again ❌ &nbsp; Test this only using E2E tests using a real queue by asserting the amount of messages - It's very hard to trigger various errors (e.g. data access layer is throwing an exception) from E2E level ❌ &nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+//Putting a delete-order message, checking the the app processed this correctly AND acknowledged
+
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1658,11 +1648,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNTMyODM2NjEsLTM1MTY5NTQyNSwtMT
-U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
-NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LD
-E2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1
-NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNj
-gyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwt
-Njg0NDM1MTcwXX0=
+eyJoaXN0b3J5IjpbNDUzNDgwMjE2LC0zNTE2OTU0MjUsLTE1Nj
+gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
+NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
+EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
+ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
+IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
+NDQzNTE3MF19
 -->
