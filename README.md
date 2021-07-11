@@ -1090,9 +1090,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. an order was deleted, assuming that this was the message implies) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged (some MQ products demand explicit reject) so it will get back to the queue. These tests
-
-Ideas: Critical becuase error handling, metrics, like HTTP !==200
+:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. an order was deleted) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged (some MQ products demand explicit reject) so it will get back to the queue. These tests will stretch the efficienty of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not.
 
 <br/>
 
@@ -1660,7 +1658,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg5NDU4MzM3NiwtMTU2ODMyMTA2LC0xMT
+eyJoaXN0b3J5IjpbLTM1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMT
 AzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2
 MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLT
 E3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2
