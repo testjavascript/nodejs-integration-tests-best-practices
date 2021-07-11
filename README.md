@@ -1171,7 +1171,9 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 🏷&nbsp; **Tags:** `draft`
 
-:white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages, and test granularly that at le how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch - last messages also processed, granular acknowlgement (sub case), streaming. Different than single message, why (re-fetch fails..., some message didn't finish)
+:white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages. Test granularly that some succeeded and the consumer survived and is re-fetching more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch will fail although only speci
+
+  how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch - last messages also processed, granular acknowlgement (sub case), streaming. Different than single message, why (re-fetch fails..., some message didn't finish)
 
  specifically a number that is bigger than a single fetch (rabbit config key, sqs). 
 
@@ -1706,11 +1708,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODMxOTA2ODcxLC0yMDA0OTU0Njg1LC0yNT
-E1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0MjUsLTE1NjgzMjEw
-NiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2NCwtMT
-E3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1
-MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLT
-EyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4MjIsLTIx
-Mjc2MzE4ODNdfQ==
+eyJoaXN0b3J5IjpbLTIwNDc4NjA0MiwtMjAwNDk1NDY4NSwtMj
+UxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIx
+MDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLT
+ExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYz
+NTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC
+0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0y
+MTI3NjMxODgzXX0=
 -->
