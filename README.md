@@ -1085,7 +1085,7 @@ services:
 
 
 
-### ⚪️ 3.  Test message acknowledgement and 'nack-nowledgement'
+### ⚪️ 3.  Test message acknowledgment and 'nack-cknowledgment'
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
@@ -1663,11 +1663,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTM5OTkwMTcsMjMzOTA3NDg4LC0zNT
-E2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUz
-MDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLT
-Q4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0
-MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NT
-ksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0z
-OTY4MDY4MjFdfQ==
+eyJoaXN0b3J5IjpbLTI1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MT
+Y5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMw
+NjUsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtND
+gxMjE1Nzk0LDE2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQz
+NDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OS
+wtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5
+NjgwNjgyMV19
 -->
