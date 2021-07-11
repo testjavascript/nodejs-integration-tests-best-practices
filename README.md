@@ -1104,18 +1104,17 @@ services:
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
 // Arrange
-// Add test record - A new order using the API
+// Add here a test record - A new order  of a specific user using the API
 
 const  fakeMessageQueue = await  startFakeMessageQueue();
 const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
 
 // Act
-
 fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
 
 // Assert
 const  eventFromMessageQueue = await  getNextMQEvent;
-// Check the user orders were deleted
+// Check here that the user's orders were deleted
 expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 });
 ```
@@ -1664,11 +1663,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwNTY2Nzc3MSwtMzUxNjk1NDI1LC0xNT
-Y4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1
-NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMT
-YxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2
-NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2OD
-IyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC02
-ODQ0MzUxNzBdfQ==
+eyJoaXN0b3J5IjpbMjMzOTA3NDg4LC0zNTE2OTU0MjUsLTE1Nj
+gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
+NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
+EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
+ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
+IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
+NDQzNTE3MF19
 -->
