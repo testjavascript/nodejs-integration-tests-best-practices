@@ -1051,7 +1051,7 @@ services:
 
 Naturally, message queue client emits events to a callback method. Promisify it
 
-Ideas: toPromise, unlike API, 
+Ideas: toPromise, unlike API, subscribe, a simple test, 
 
 <br/>
 
@@ -1660,7 +1660,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2OTI1NDA0NywtMTEwMzIwOTkyLC0xOD
+eyJoaXN0b3J5IjpbLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xOD
 k3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcx
 NTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLD
 E0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEzMTU2
