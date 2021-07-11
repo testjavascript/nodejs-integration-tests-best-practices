@@ -1173,10 +1173,12 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 :white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages. Test granularly that some succeeded and the consumer survived and is re-fetching more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch will fail although only specific messages are invalid, others should have been processed successfully. The client code should recover and fetch more inspite of the failures, did it? Only tests can tell. In streaming applications, a failure in a single message should lead to dis-acknowldgement of the entire sequence or to acknowledge the last (ignore the error). Whatever your strategy is, a test is needed. When using real-queues, the number of messages that are being put should be bigger than the fetch size (e.g., prefetch in Rabbit, MaxNumberOfMessages in SQS) - Check that although the batch contains error, the 2nd page is also being fetched and handled.
 
+bei
+
 <br/>
 
 👀 &nbsp; **Alternatives:** No relevant options here &nbsp;
-<br/>
+	<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 //docker-compose file
@@ -1700,11 +1702,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwMDg2MTQyOSwtMjAwNDk1NDY4NSwtMj
-UxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIx
-MDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLT
-ExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYz
-NTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC
-0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0y
-MTI3NjMxODgzXX0=
+eyJoaXN0b3J5IjpbLTExNjcwMzQxOTEsLTIwMDQ5NTQ2ODUsLT
+I1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMTU2ODMy
+MTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC
+0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2
+MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4My
+wtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwt
+MjEyNzYzMTg4M119
 -->
