@@ -1171,11 +1171,11 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 🏷&nbsp; **Tags:** `draft`
 
-:white_check_mark:  **Do:** Test how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch - last messages also processed, granular acknowlgement (sub case), 
+:white_check_mark:  **Do:** Test how the system process a batch of messages, both logic and acknowledements. Batch might cover other risks comparing a single message. Re-fetch - last messages also processed, granular acknowlgement (sub case), streaming. Different than single message, why (re-fetch fails..., some message didn't finish)
 
- specifically a number that is bigger than a single fetch (rabbit config key, sqs). Different than single message, why (re-fetch fails..., some message didn't finish).  
+ specifically a number that is bigger than a single fetch (rabbit config key, sqs). 
 
-Ideas: Ths sub-case of a single failure which might not trigger bringing more, assert that the last messages are also processed, streaming
+Ideas: Ths sub-case of a single failure which might not trigger bringing more, assert that the last messages are also processed, 
 
 
 
@@ -1706,11 +1706,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc0MTEyNTM1OSwtMjUxNTU1ODAxLDIzMz
-kwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMyMDk5
-MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3MTYwMzIsND
-IxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0
-MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMjc2ODY0MjE4LC
-0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0yMTI3NjMxODgzLDQ2
-NDkwMDc2OV19
+eyJoaXN0b3J5IjpbLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMz
+M5MDc0ODgsLTM1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5
+OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLD
+QyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLTE3NTk3
+NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2NDIxOC
+wtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMTg4Myw0
+NjQ5MDA3NjldfQ==
 -->
