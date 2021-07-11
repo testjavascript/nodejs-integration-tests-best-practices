@@ -1101,7 +1101,22 @@ services:
 
 ```javascript
 //Putting a delete-order message, checking the the app processed this correctly AND acknowledged
+test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
+// Arrange
+// Add test record - A new order using the API
+
+const  fakeMessageQueue = await  startFakeMessageQueue();
+const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
+
+// Act
+
+fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
+
+// Assert
+await  getNextMQEvent;
+// Check the user orders were d
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1648,11 +1663,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDUzNDgwMjE2LC0zNTE2OTU0MjUsLTE1Nj
-gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
-NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
-EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
-ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
-IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
-NDQzNTE3MF19
+eyJoaXN0b3J5IjpbLTE1NDEwNjk1NTUsLTM1MTY5NTQyNSwtMT
+U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
+NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LD
+E2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1
+NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNj
+gyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwt
+Njg0NDM1MTcwXX0=
 -->
