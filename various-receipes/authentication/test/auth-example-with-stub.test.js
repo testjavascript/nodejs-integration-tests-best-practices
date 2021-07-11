@@ -1,81 +1,80 @@
-const request = require("supertest");
-const sinon = require("sinon");
-const nock = require("nock");
-const {
-    initializeWebServer,
-    stopWebServer
-} = require("../api-extension");
-const authenticationMiddleware = require("../authentication-middleware");
+const axios = require('axios');
+const sinon = require('sinon');
+const nock = require('nock');
+const { initializeWebServer, stopWebServer } = require('../api-extension');
+const authenticationMiddleware = require('../authentication-middleware');
 
-let expressApp;
-let sinonSandbox;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
-    sinon.stub(authenticationMiddleware, "authenticationMiddleware").callsFake((req, res, next) => {
-        if (req.headers['authorization'] === 'special-back-door') {
-            next();
-        } else {
-            res.status(401).end();
-            return;
-        }
+  sinon
+    .stub(authenticationMiddleware, 'authenticationMiddleware')
+    .callsFake((req, res, next) => {
+      if (req.headers['authorization'] === 'special-back-door') {
+        next();
+      } else {
+        res.status(401).end();
+        return;
+      }
     });
 
-    nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-    }).persist();
+  nock('http://localhost/user/')
+    .get(`/1`)
+    .reply(200, {
+      id: 1,
+      name: 'John',
+    })
+    .persist();
 
-    // ️️️✅ Best Practice: Place the backend under test within the same process
-    expressApp = await initializeWebServer();
+  // ️️️✅ Best Practice: Place the backend under test within the same process
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
-    // ️️️✅ Best Practice: use a sandbox for test doubles for proper clean-up between tests
-    sinonSandbox = sinon.createSandbox();
-
-    done();
+  done();
 });
 
 afterAll(async (done) => {
-    // ️️️✅ Best Practice: Clean-up resources after each run
-    await stopWebServer();
-    done();
+  // ️️️✅ Best Practice: Clean-up resources after each run
+  await stopWebServer();
+  sinon.restore();
+  nock.cleanAll();
+  done();
 });
 
-beforeEach(() => {
-    if (sinonSandbox) {
-        sinonSandbox.restore();
-    }
-});
+// ️️️✅ Best Practice: Structure tests
+describe('/api', () => {
+  describe('POST /orders', () => {
+    test('When adding a new valid order, Then should get back 200 response', async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
 
-// ️️️✅ Best Practice: Structure tests 
-describe("/api", () => {
-    describe("POST /orders", () => {
-        test("When adding a new valid order, Then should get back 200 response", async () => {
+      //Act
+      const receivedAPIResponse = await axiosAPIClient.post('/order', orderToAdd, {
+        headers: {
+          authorization: 'special-back-door',
+        }
+      });
 
-            //Arrange
-            const orderToAdd = {
-                userId: 1,
-                productId: 2,
-                mode: "approved",
-            };
+      //Assert
+      const { status, data } = receivedAPIResponse;
 
-            //Act
-            const receivedAPIResponse = await request(expressApp).post("/order").set('authorization', 'special-back-door').send(orderToAdd);
-
-            //Assert
-            const {
-                status,
-                body
-            } = receivedAPIResponse;
-
-            expect({
-                status,
-                body,
-            }).toMatchObject({
-                status: 200,
-                body: {
-                    mode: "approved",
-                },
-            });
-        });
+      expect({
+        status,
+        data,
+      }).toMatchObject({
+        status: 200,
+        data: {
+          mode: 'approved',
+        },
+      });
     });
+  });
 });
