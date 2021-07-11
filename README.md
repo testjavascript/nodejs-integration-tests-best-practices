@@ -1207,7 +1207,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic, #draft`
 
-:white_check_mark:  **Do:** Put an invalid message in the queue, assert that...
+:white_check_mark:  **Do:** Put an invalid message in the queue, assert that hell does not break loose. Better also check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Posioned messages are a known MQ phenomena
 
 Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast, paralyze apps, 
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2OTA0NjkwNiwtMTI1NjI2OTg5MiwtOT
-M4MzYzMzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4MDEsMjMzOTA3
-NDg4LC0zNTE2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC
-0xODk3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEz
-MDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwND
-UwLDE0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEz
-MTU2ODM3NTldfQ==
+eyJoaXN0b3J5IjpbNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNT
+YyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1
+ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLT
+ExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3
+MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYzNTMzMC
+wtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC0xMjc2
+ODY0MjE4XX0=
 -->
