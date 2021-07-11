@@ -1090,9 +1090,11 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. a new Order was saved) but also that the message was acknowledged or deleted (depends). In the same spirit test for the opposite
+:white_check_mark:  **Do:** This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. an order was deleted) but also that the message was acknowledged or deleted (depends)
 
-Ideas: Critical becuase error handling, metrics, 
+This the bread and butter test of message queue flow: Put a message in the queue, assert that the new state is satisactory (e.g. a new Order was saved) but also that the message was acknowledged or deleted (depends). In the same spirit test for the opposite
+
+Ideas: Critical becuase error handling, metrics, like HTTP !==200
 
 <br/>
 
@@ -1660,11 +1662,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xOD
-k3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcx
-NTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLD
-E0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEzMTU2
-ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0OTAwNz
-Y5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0x
-MDE0Mjc0MzMwXX0=
+eyJoaXN0b3J5IjpbMTU3MTg4MTIwMiwtMTU2ODMyMTA2LC0xMT
+AzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2
+MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2MzUzMzAsLT
+E3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1NjU4MywtMTI3Njg2
+NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNjgyMiwtMjEyNzYzMT
+g4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwtNjg0NDM1MTcwLDIx
+MTYzMzc1MTZdfQ==
 -->
