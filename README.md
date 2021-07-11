@@ -1042,7 +1042,7 @@ services:
 
 <br/>
 
-### ⚪️ 2.  Flatten the test, avoid event emitters and callbacks
+### ⚪️ 2.  Flatten the test, avoid inde and callbacks
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
@@ -1656,11 +1656,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5ND
-YyNDg1NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3
-OTQsMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsND
-k3MzU2NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2
-NzA2ODIyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2OD
-IxLC02ODQ0MzUxNzAsMjExNjMzNzUxNiwtMTAxNDI3NDMzMCwy
-MDM1ODQyNzM3XX0=
+eyJoaXN0b3J5IjpbLTkzNTc4Nzg1NCwtMTEwMzIwOTkyLC0xOD
+k3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcx
+NTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLD
+E0ODc0MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEzMTU2
+ODM3NTksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0OTAwNz
+Y5LC0zOTY4MDY4MjEsLTY4NDQzNTE3MCwyMTE2MzM3NTE2LC0x
+MDE0Mjc0MzMwXX0=
 -->
