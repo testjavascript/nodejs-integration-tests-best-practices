@@ -1114,8 +1114,9 @@ const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
 fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
 
 // Assert
-await  getNextMQEvent;
-// Check the user orders were d
+const  eventFromMessageQueue = await  getNextMQEvent;
+// Check the user orders were deleted
+expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 });
 ```
 
@@ -1663,11 +1664,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDEwNjk1NTUsLTM1MTY5NTQyNSwtMT
-U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
-NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LD
-E2MTA2MzUzMzAsLTE3NTk3NDA0NTAsMTQ4NzQzNDY3LDQ5NzM1
-NjU4MywtMTI3Njg2NDIxOCwtMTMxNTY4Mzc1OSwtMTEwNjcwNj
-gyMiwtMjEyNzYzMTg4Myw0NjQ5MDA3NjksLTM5NjgwNjgyMSwt
-Njg0NDM1MTcwXX0=
+eyJoaXN0b3J5IjpbMTIwNTY2Nzc3MSwtMzUxNjk1NDI1LC0xNT
+Y4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1
+NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMT
+YxMDYzNTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2
+NTgzLC0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2OD
+IyLC0yMTI3NjMxODgzLDQ2NDkwMDc2OSwtMzk2ODA2ODIxLC02
+ODQ0MzUxNzBdfQ==
 -->
