@@ -1089,12 +1089,12 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
-
-:white_check_mark:  **Do:** This is the bread and butter test of message queue flow: Act by putting a message in the queue, assert that it triggered the right behaviour (e.g. a record was added or deleted) then assert that the message was acknowledged or deleted (depends on the message queue product that is being used). Checking only the app logic is like testing against API without checking the HTTP response status. In the same spirit, check also for the opposite - Once a failure occurs, the message is not being acknowledged so it will get back to the queue. These tests will stretch the efficienty of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not
+:white_check_mark:  **Do:** This bullet is about the bread and butter of message queue testing. Act by putting a message in the queue, assert that it triggered the correct behavior (e.g., a record was added or deleted), then assert that the message was acknowledged or deleted (depends on the specific MQ product). Checking only the app logic, without reporting back to the MQ, is like testing against API without checking the HTTP response status. In the same spirit, also check for the opposite - Once a failure occurs, the message is not being acknowledged, so it will get back to the queue. These tests will stretch the efficiency of the app error handler - Any kind of exception should get caught and result in an adequate response to the MQ: Acknowledge or not
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might miss scnearios where the MQ is not being informed and messages are re-processed again and again ❌ &nbsp; Test this only using E2E tests using a real queue by asserting the amount of messages - It's very hard to trigger various errors (e.g. data access layer is throwing an exception) from E2E level ❌ &nbsp;
+👀 &nbsp; **Alternatives:** Focus only on the app logic and state - Might miss scenarios where the MQ is not being informed and messages are re-processed again and again ❌ &nbsp; Test this only using E2E tests using a real queue by asserting the number of messages - It's harder to trigger various errors (e.g., data access layer is throwing an exception) from E2E level ❌ &nbsp;
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1663,11 +1663,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjMzOTA3NDg4LC0zNTE2OTU0MjUsLTE1Nj
-gzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2
-NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNj
-EwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0MzQ2Nyw0OTczNTY1
-ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NTksLTExMDY3MDY4Mj
-IsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0zOTY4MDY4MjEsLTY4
-NDQzNTE3MF19
+eyJoaXN0b3J5IjpbLTIwMTM5OTkwMTcsMjMzOTA3NDg4LC0zNT
+E2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUz
+MDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLT
+Q4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLDE0ODc0
+MzQ2Nyw0OTczNTY1ODMsLTEyNzY4NjQyMTgsLTEzMTU2ODM3NT
+ksLTExMDY3MDY4MjIsLTIxMjc2MzE4ODMsNDY0OTAwNzY5LC0z
+OTY4MDY4MjFdfQ==
 -->
