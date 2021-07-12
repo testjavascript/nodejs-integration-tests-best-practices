@@ -1249,7 +1249,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Some MQ products can guarantee extactly-once delivery (usually demands sacrifying other factors like performance), this a viable option under some scenarios ✅  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1697,11 +1697,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzk5NzU4MjU5LC02ODQzMDczMjksMjUyMz
-MzMDgsMTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDks
-MTY2OTA0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMD
-A0OTU0Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0
-MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LD
-k0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIx
-NTc5NF19
+eyJoaXN0b3J5IjpbLTYwNzYxNzE4OCwzOTk3NTgyNTksLTY4ND
+MwNzMyOSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2
+LDUwMzIwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05Mz
+gzNjMzMDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0
+ODgsLTM1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLT
+E4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMTMw
+NzE1Nl19
 -->
