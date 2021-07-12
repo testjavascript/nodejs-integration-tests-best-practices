@@ -1098,13 +1098,14 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-// The MQ client/wrapper is throwing an event when the message handler confirmed/acknowledged the message
+// The MQ client/wrapper is throwing an event when the message handler is done
 async  consume(queueName, onMessageCallback) {
-await this.channel.consume(queueName, async  (theNewMessage)  => {
-onMessageCallback(theNewMessage.content.toString())//Call the message handler
-.then(()  => {
-this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg 
-this.emit('message-acknowledged', eventDescription); // Let the tests know that all over
+	await this.channel.consume(queueName, async  (theNewMessage)  => {
+	onMessageCallback(theNewMessage.content.toString())//Call the message handler
+	.then(()  => {
+	this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg 
+	this.emit('message-acknowledged', eventDescription); // Let the tests know that all over
+	})
 })
 ```
 
@@ -1710,7 +1711,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NzIzNTQyNSwxNjYyODIzNDYxLDI5ND
+eyJoaXN0b3J5IjpbMTE4NTcxMTA4MSwxNjYyODIzNDYxLDI5ND
 M4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5
 MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMj
 AzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5Nzgy
