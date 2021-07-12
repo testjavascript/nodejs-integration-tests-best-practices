@@ -9,7 +9,9 @@
 
 # Intro
 
-🚦Seat belt on, deep breat  This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
+🚦Seat belt on, deep breath. Strategic backend content lies in front of you. Better block sometimes to walk-through.
+
+This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
@@ -1709,11 +1711,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI5ODA2ODAsMTkxMDE5MDU1OCwxNjYyOD
-IzNDYxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMs
-LTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2Mz
-czNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMwNTAx
-OSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MDA4MDkyMzcsLTg4NT
-I5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3ODcsMTc2NDAzOTY3
-OF19
+eyJoaXN0b3J5IjpbMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2Nj
+I4MjM0NjEsMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4MjA4Njcx
+MywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLTc1MjkwNjQ1NCwtMj
+YzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYyMjE4ODIsLTE3MzA1
+MDE5LDg0Njk3ODIzMiwxMzEyODAxNDIxLDUwMDgwOTIzNywtOD
+g1Mjk1MDI1LDE2OTczNDcyNTUsLTE0OTkwMTc4NywxNzY0MDM5
+Njc4XX0=
 -->
