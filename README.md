@@ -1283,7 +1283,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it cras
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstandi
 
 Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzI5MTg5MzksMTc2NDAzOTY3OCwtODgwMT
-gyMTg5LDM5OTc1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEw
-OTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwND
-Y5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4
-NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNT
-Y4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1
-NjRdfQ==
+eyJoaXN0b3J5IjpbMzIxNTc5NTk0LDE3NjQwMzk2NzgsLTg4MD
+E4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwx
+MDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MD
+Q2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2
+ODUsLTI1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMT
+U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
+NTY0XX0=
 -->
