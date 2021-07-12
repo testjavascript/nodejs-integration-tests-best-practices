@@ -1315,14 +1315,16 @@ services:
 
 <br/>
 
-### ⚪️ 8.  Few E2E tests are a must
+### ⚪️ 8.  On top of development testing, write a few E2E tests
 
-🏷&nbsp; **Tags:** `#strategic, #draft`
+🏷&nbsp; **Tags:** `#intermediate`
 
 
-:white_check_mark:  **Do:** Run few, just a few, MQ tests with the same infrastructure and configuration like production to reveal installation and configuration issues
+:white_check_mark:  **Do:** 
 
-Ideas: Queue names are wrong maybe, some things can get checked only using the real product, some things are too slow, 
+Run few, just a few, MQ tests with the same infrastructure and configuration like production to reveal installation and configuration issues
+
+Ideas: Queue names are wrong maybe, some things can get checked only using the real product, some things are too slow, we tested our code and the lib - not the production configuration
 
 <br/>
 
@@ -1696,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMxMjgwMTQyMSw1MDA4MDkyMzcsLTg4NT
-I5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3ODcsMTc2NDAzOTY3
-OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNjg0MzA3MzI5LDI1Mj
-MzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5
-LDE2NjkwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMj
-AwNDk1NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1
-NDI1XX0=
+eyJoaXN0b3J5IjpbLTE3MzE2NDAzOTEsMTMxMjgwMTQyMSw1MD
+A4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3
+ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNj
+g0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2
+NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNTYyNjk4OTIsLT
+kzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1ODAxLDIzMzkw
+NzQ4OF19
 -->
