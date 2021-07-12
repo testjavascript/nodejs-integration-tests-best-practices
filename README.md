@@ -1207,11 +1207,12 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark:  **Do:** Put an invalid message in the queue, and assert that hell does not break loose. More specifically, check that a proper monitoring metric is fired, the message is rejected and the queue consumer stays alive. Poisoned messages are a known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume a perfect queue content rather embrace a resillient approach - The consuming code should validate each incoming message schema and stop early in case of failures. On the broker/server side, retry limit should be defined and once exceeded the message should get redirected to the dead-letter queue (see dedicated bullet)
+
+:white_check_mark:  **Do:** Put an invalid message in a queue and assert that hell does not break loose. More specifically, check that the consumer rejects the message, it stays alive, and a proper monitoring metric is fired. Poisoned messages are known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume a perfect queue content rather embrace a resilient approach - The consuming code should validate each incoming message schema and stop early in case of failures. On the broker/server-side, retry limit should be explictly defined. When the limit is passed, messages should get redirected to the dead-letter queue (see dedicated bullet)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Share Schemas between publishers and consumers so there are less conflicts - In a distributed architecture that is built by different teams it's not practical to count on a sanitized environment ❌
+👀 &nbsp; **Alternatives:** Share Schemas between publishers and consumers so there are fewer conflicts - In a distributed architecture that is built by different teams, it's not practical to count on a sanitized environment ❌
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1698,11 +1699,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MD
-MyMDAxNDksMTY2OTA0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYz
-MzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC
-0zNTE2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3
-NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNT
-YsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLDE0
-ODc0MzQ2N119
+eyJoaXN0b3J5IjpbMjUyMzMzMDgsMTA5NDcyMjA2MSwtMTgyOD
+MzNzY1Niw1MDMyMDAxNDksMTY2OTA0NjkwNiwtMTI1NjI2OTg5
+MiwtOTM4MzYzMzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4MDEsMj
+MzOTA3NDg4LC0zNTE2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIw
+OTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMi
+w0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5
+NzQwNDUwXX0=
 -->
