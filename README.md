@@ -1082,7 +1082,7 @@ services:
 
 ### ⚪️ 2.  Promisify and simplify the test. Avoid polling, indentation and callbacks
 
-🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
+🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
 :white_check_mark:  **Do:** 
@@ -1693,11 +1693,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNj
-M3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUw
-MTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04OD
-UyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2
-NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNT
-IzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0
-OV19
+eyJoaXN0b3J5IjpbMTExNjgwMzc0NCwxOTEyNzk2NjU4LC03NT
+I5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIx
+ODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MD
+A4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3
+ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNj
+g0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2
+NTZdfQ==
 -->
