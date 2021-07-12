@@ -1080,14 +1080,14 @@ services:
 
 <br/>
 
-### ⚪️ 2.  Flatten the test, avoid indentation and callbacks
+### ⚪️ 2.  Promisify the test. Avoid polling, indentation and callbacks
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
 :white_check_mark:  **Do:** 
 
-Naturally, message queue client emits events to a callback method. Promisify it
+Naturally, message queue client emits events to a callback method. Promisify it. Inherit problems
 
 Ideas: toPromise, unlike API, subscribe, a simple test, 
 
@@ -1693,11 +1693,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMD
-M3ODA5OTE2LDIwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIz
-MiwxMzEyODAxNDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OT
-czNDcyNTUsLTE0OTkwMTc4NywxNzY0MDM5Njc4LC04ODAxODIx
-ODksMzk5NzU4MjU5LC02ODQzMDczMjksMjUyMzMzMDgsMTA5ND
-cyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDksMTY2OTA0Njkw
-Nl19
+eyJoaXN0b3J5IjpbMTM5MDgwOTgyNiwtNzUyOTA2NDU0LC0yNj
+M3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUw
+MTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04OD
+UyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2
+NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNT
+IzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0
+OV19
 -->
