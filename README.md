@@ -1211,7 +1211,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Share Schemas between publishers and consumers so there are less conflicts - In a distributed ✅ 
+👀 &nbsp; **Alternatives:** Share Schemas between publishers and consumers so there are less conflicts - In a distributed architecture that is built by different teams it's not practical to count on a sanitized environment ❌
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDczODcxNTcsLTE4MjgzMzc2NTYsNT
-AzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2
-MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OC
-wtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMyMDk5MiwtMTg5
-NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3MTYwMzIsNDIxMzA3MT
-U2LC00ODEyMTU3OTQsMTYxMDYzNTMzMCwtMTc1OTc0MDQ1MCwx
-NDg3NDM0NjddfQ==
+eyJoaXN0b3J5IjpbMTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MD
+MyMDAxNDksMTY2OTA0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYz
+MzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC
+0zNTE2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3
+NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNT
+YsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5NzQwNDUwLDE0
+ODc0MzQ2N119
 -->
