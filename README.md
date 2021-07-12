@@ -1287,7 +1287,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Put a try-catch, log, and test the logs ❌  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Put a try-catch, log the error, then test the logs - If the connection failed for x times, it will keep failing. All the consumer processes will be alive, using resources for no reason instead of being moved and restarted by the infrastructure ❌  &nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1696,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xND
-k5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1
-OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4Mj
-gzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNTYyNjk4
-OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1ODAxLD
-IzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMy
-MDk5Ml19
+eyJoaXN0b3J5IjpbNTAwODA5MjM3LC04ODUyOTUwMjUsMTY5Nz
+M0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4MjE4
+OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwxMDk0Nz
+IyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MDQ2OTA2
+LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2ODUsLT
+I1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMTU2ODMy
+MTA2XX0=
 -->
