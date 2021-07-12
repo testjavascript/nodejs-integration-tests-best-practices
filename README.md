@@ -1080,12 +1080,12 @@ services:
 
 <br/>
 
-### ⚪️ 2.  Promisify and simplify the test. Avoid polling, indentation and callbacks
+### ⚪️ 2.  Promisify the test. Avoid polling, indentation and callbacks
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Design message queue client/wrapper an eve
+:white_check_mark:  **Do:** Design the message queue client/wrapper to throw events after every message that is being handled, this will let the test know when the operations is over and the assertion can start. 
 
 Naturally, message queue client emits events to a callback method. Promisify it. Inherit problems
 
@@ -1693,11 +1693,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzczNjU3MDE2LDE5MTI3OTY2NTgsLTc1Mj
-kwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYyMjE4
-ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAxNDIxLDUwMD
-gwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLTE0OTkwMTc4
-NywxNzY0MDM5Njc4LC04ODAxODIxODksMzk5NzU4MjU5LC02OD
-QzMDczMjksMjUyMzMzMDgsMTA5NDcyMjA2MSwtMTgyODMzNzY1
-Nl19
+eyJoaXN0b3J5IjpbLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NT
+I5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIx
+ODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MD
+A4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3
+ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNj
+g0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2
+NTZdfQ==
 -->
