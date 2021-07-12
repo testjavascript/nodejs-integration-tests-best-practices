@@ -1089,7 +1089,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Poll until the new desired state (e.g. new DB record) is met - This isn't horrible using the right helpers, just a bit slower and more complicated to write ❌  &nbsp; Subscribe for events from the MQ itself, once a message was conf  ✅&nbsp;
+👀 &nbsp; **Alternatives:** Poll until the new desired state (e.g. new DB record) is met - This isn't horrible using the right helpers, just a bit slower and more complicated to write ❌  &nbsp; Subscribe for events from the MQ itself, once a message was confirmed it's the right time to assert - Not supported by all MQ products and also much slower ❌&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1689,7 +1689,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4NTA2NDAzMCwtMjEwOTM0MjkwLDE5MT
+eyJoaXN0b3J5IjpbMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MT
 I3OTY2NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5
 OTE2LDIwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMz
 EyODAxNDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcy
