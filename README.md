@@ -1319,11 +1319,12 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. There are many other configurations that affect the message flow like whether acknowledgement are needed, how many time to retry and more. Beyond configuration, some MQ functionality demands simulating an entire flow like message failing multiple times - These tests are slower by nature and better be separated from the core set of tests. Practically, create a dedicated file for these tests so they can be executed occassionally (e.g. during deployment smoke testing)
+:white_check_mark:  **Do:** Write a few, no more than a few, tests against a production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. There are many other configurations that affect the message flow like whether acknowledgement are needed and how many time to retry. Beyond configuration, some MQ functionality demands simulating an entire flow like message failing multiple times - These tests are slower by nature and better get separated from the core set of tests. Practically, create a dedicated file for these tests so they can be executed occasionally (e.g., during deployment smoke testing)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Manual testing during deployment - The value of automation is probably clear at this point ❌  
+👀 &nbsp; **Alternatives:** Manual testing during deployment - The value of automation is probably evident at this point ❌  
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1693,11 +1694,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyNjIyMTg4MiwtMTczMDUwMTksODQ2OT
-c4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04ODUyOTUwMjUs
-MTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MD
-E4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwx
-MDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MD
-Q2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2
-ODVdfQ==
+eyJoaXN0b3J5IjpbLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMT
+czMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3
+LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3Nj
+QwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMy
+OSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMz
+IwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMz
+MDddfQ==
 -->
