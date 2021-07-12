@@ -1242,14 +1242,14 @@ services:
 
 ### ⚪️ 6.  Test for idempotency
 
-🏷&nbsp; **Tags:** `#draft`
+🏷&nbsp; **Tags:** `#intermediate`
 
 
 :white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly', and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery' which means that the same message might arrive more than one time. Running the same operation multiple times can be unbearable for some business flows - Consider a Payment flow where some fees are withdrawn from user account more than once. Write a test that put some state, then put the same message twice and check that the final state is satisfactory (e.g., the user was charged only once)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some MQ products can guarantee extactly-once delivery (usually demands sacrifying other factors like performance), this a viable option under some scenarios ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Some MQ products can guarantee extactly-once delivery (usually demands sacrifying other factors like performance), this a viable option under some scenarios ✅  &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1697,7 +1697,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwNzYxNzE4OCwzOTk3NTgyNTksLTY4ND
+eyJoaXN0b3J5IjpbLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4ND
 MwNzMyOSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2
 LDUwMzIwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05Mz
 gzNjMzMDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0
