@@ -1080,7 +1080,7 @@ services:
 
 <br/>
 
-### ⚪️ 2.  Promisify the test. Avoid polling, indentation and callbacks
+### ⚪️ 2.  Promisify and simplify the test. Avoid polling, indentation and callbacks
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
@@ -1693,7 +1693,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM5MDgwOTgyNiwtNzUyOTA2NDU0LC0yNj
+eyJoaXN0b3J5IjpbMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNj
 M3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUw
 MTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04OD
 UyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2
