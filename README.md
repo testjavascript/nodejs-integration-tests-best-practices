@@ -1096,20 +1096,54 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+// The MQ client/wrapper is throwing an event when the message handler confi 
+test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
+
+// Arrange
+
+const  orderToAdd = {
+
+userId:  1,
+
+productId:  2,
+
+mode:  'approved',
+
+};
+
+const  addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
+
+.id;
+
+const  fakeMessageQueue = await  startFakeMessageQueue();
+
+const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue); //Store the MQ actions in a promise
+
+  
+
+// Act
+
+fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
+
+  
+
+// Assert
+
+const  eventFromMessageQueue = await  getNextMQEvent;
+
+expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
+
+const  aQueryForDeletedOrder = await  axiosAPIClient.get(
+
+`/order/${addedOrderId}`
+
+);
+
+expect(aQueryForDeletedOrder.status).toBe(404);
+
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1692,11 +1726,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMT
-A5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNjM3MzQ1
-NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUwMTksOD
-Q2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04ODUyOTUw
-MjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2NzgsLT
-g4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMw
-OF19
+eyJoaXN0b3J5IjpbMTM5NDc5MzksLTYyOTYwNTc2OSwyMDgyMD
+g2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0
+LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMT
+czMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3
+LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3Nj
+QwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMy
+OV19
 -->
