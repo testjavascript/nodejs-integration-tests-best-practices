@@ -1098,7 +1098,9 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-// The MQ client/wrapper is throwing an event when the message handler confi 
+// The MQ client/wrapper is throwing an event when the message handler confirmed/acknoledged the message
+
+// The test listen to the acknowledge/confirm message and knows when the operation is done 
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
 // Arrange
@@ -1726,11 +1728,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM5NDc5MzksLTYyOTYwNTc2OSwyMDgyMD
-g2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0
-LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMT
-czMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3
-LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3Nj
-QwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMy
-OV19
+eyJoaXN0b3J5IjpbMTcxMjI1Nzk1OCwtNjI5NjA1NzY5LDIwOD
+IwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5MDY0
+NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIxODgyLC
+0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MDA4MDky
+MzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3ODcsMT
+c2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNjg0MzA3
+MzI5XX0=
 -->
