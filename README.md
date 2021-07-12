@@ -1116,9 +1116,7 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
 
 // 👉🏼 HERE WE SHOULD add new orders to the system
 
-const  fakeMessageQueue = await  startFakeMessageQueue();
-
-const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue); //Store the MQ actions in a promise
+const  getNextMQEvent =  once(MQClient, "); // Once (part of Node) promisifies an event
 
   
 
@@ -1725,11 +1723,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExOTA1MzA3OTYsMjk0MzgxMjg0LC02Mj
-k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
-NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LD
-IwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAx
-NDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLT
-E0OTkwMTc4NywxNzY0MDM5Njc4LC04ODAxODIxODksMzk5NzU4
-MjU5XX0=
+eyJoaXN0b3J5IjpbLTM4MDg4OTc2NiwyOTQzODEyODQsLTYyOT
+YwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1
+OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMj
+AyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0
+MjEsNTAwODA5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMT
+Q5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgy
+NTldfQ==
 -->
