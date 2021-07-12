@@ -1283,11 +1283,11 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally, if things don't get better, it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, which like anything else happens only if you test it. To achieve this test flow, simulate a connection failure using a stub or wrong MQ URL. You can also set a one-time failure (e.g., The 'MQ.subscribe' method fails only once) to ensure that the connecion retries and succeeds finally. 
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries, and finally, it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternatively, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure (.e.g, Kubernetes) can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, which like anything else, happens in reality if you test it. To achieve this test flow, simulate a connection failure using a stub or wrong MQ URL. You can also set a one-time failure (e.g., The 'MQ.subscribe' method fails only once) to ensure that the connection retries and succeeds finally. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Put a try-catch, log the error, then test the logs - If the connection failed for x times, it will keep failing. All the consumer processes will be alive, using resources for no reason instead of being moved and restarted by the infrastructure ❌  &nbsp;
+👀 &nbsp; **Alternatives:** Put a try-catch, log the error, then test the logs - If the connection failed x times, it would keep failing. All the consumer processes will be alive, using resources for no reason instead of being moved and restarted by the infrastructure ❌  &nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1696,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTAwODA5MjM3LC04ODUyOTUwMjUsMTY5Nz
-M0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4MjE4
-OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwxMDk0Nz
-IyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MDQ2OTA2
-LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2ODUsLT
-I1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMTU2ODMy
-MTA2XX0=
+eyJoaXN0b3J5IjpbMTMxMjgwMTQyMSw1MDA4MDkyMzcsLTg4NT
+I5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3ODcsMTc2NDAzOTY3
+OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNjg0MzA3MzI5LDI1Mj
+MzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5
+LDE2NjkwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMj
+AwNDk1NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1
+NDI1XX0=
 -->
