@@ -1283,7 +1283,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process. This is sad 
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process crashes after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure relocate failing processes to different machines or zones which might auto-heal the
 
 Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTg2MzA5NDM0LDE3NjQwMzk2NzgsLTg4MD
-E4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwx
-MDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MD
-Q2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2
-ODUsLTI1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMT
-U2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4
-NTY0XX0=
+eyJoaXN0b3J5IjpbLTIwMjcxNTA0MTEsMTc2NDAzOTY3OCwtOD
+gwMTgyMTg5LDM5OTc1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4
+LDEwOTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2Nj
+kwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1
+NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC
+0xNTY4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYy
+NDg1NjRdfQ==
 -->
