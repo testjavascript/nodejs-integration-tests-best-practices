@@ -1103,8 +1103,8 @@ async  consume(queueName, onMessageCallback) {
 await this.channel.consume(queueName, async  (theNewMessage)  => {
 onMessageCallback(theNewMessage.content.toString())//Call the message handler
 .then(()  => {
-this.emit('message-acknowledged', eventDescription);// Handling is done, acknowledge the msg and let the tests know that all over
-this.channel.ack(theNewMessage);
+this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg and let the tests know that all over
+this.emit('message-acknowledged', eventDescription);
 })
 
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
@@ -1735,11 +1735,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTkxNDg3MDIsLTYyOTYwNTc2OSwyMD
-gyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2
-NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4Mi
-wtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5
-MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LD
-E3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMw
-NzMyOV19
+eyJoaXN0b3J5IjpbMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4Mj
+A4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLTc1MjkwNjQ1
+NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYyMjE4ODIsLT
+E3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAxNDIxLDUwMDgwOTIz
+NywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLTE0OTkwMTc4NywxNz
+Y0MDM5Njc4LC04ODAxODIxODksMzk5NzU4MjU5LC02ODQzMDcz
+MjldfQ==
 -->
