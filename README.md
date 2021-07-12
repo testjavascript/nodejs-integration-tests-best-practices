@@ -1107,6 +1107,7 @@ this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg and let
 this.emit('message-acknowledged', eventDescription);
 })
 
+
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
@@ -1735,11 +1736,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4Mj
-A4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLTc1MjkwNjQ1
-NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYyMjE4ODIsLT
-E3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAxNDIxLDUwMDgwOTIz
-NywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLTE0OTkwMTc4NywxNz
-Y0MDM5Njc4LC04ODAxODIxODksMzk5NzU4MjU5LC02ODQzMDcz
-MjldfQ==
+eyJoaXN0b3J5IjpbNzQxNjc1NzMwLDI5NDM4MTI4NCwtNjI5Nj
+A1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4
+LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMD
+I2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQy
+MSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xND
+k5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1
+OV19
 -->
