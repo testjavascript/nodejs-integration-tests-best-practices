@@ -1085,7 +1085,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Design the message queue client/wrapper to throw events after every message that is being handled, this will let the test know when the operations is over and the assertion can start. 
+:white_check_mark:  **Do:** Design the message queue client/wrapper to throw events after every message that is being handled, this will let the test know when the operations is over and the assertion can start. Unlike API, message queue flows are hard to track. A typical test puts a message in the queue, some flow starts, and then at some unknown point in time it ends. The test must be informed
 
 Naturally, message queue client emits events to a callback method. Promisify it. Inherit problems
 
@@ -1693,11 +1693,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NT
-I5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIx
-ODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MD
-A4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3
-ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNj
-g0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2
-NTZdfQ==
+eyJoaXN0b3J5IjpbMjA5ODg1MDI4LC0yMTA5MzQyOTAsMTkxMj
+c5NjY1OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5
+MTYsMjAyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMT
+I4MDE0MjEsNTAwODA5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1
+NSwtMTQ5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOT
+k3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwxMDk0NzIyMDYx
+XX0=
 -->
