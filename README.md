@@ -1087,12 +1087,12 @@ services:
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
-:white_check_mark: **Do:** Design the message queue client/wrapper to throw events after every message handling, this will let the test know when the operation is over and the assertion can start. Unlike API, message queue flows are hard to track. A typical test puts a message in the queue, some flow starts, and then at some _unknown_ point in time, it ends. The test is left hanging, not knowing when it can check for the new state. Some overcome this by polling the DB for the desired changes (slower and flaky). The first step in making this better, is taking advantage of the fact that after every flow the handling code is acknowledging the message. The test can tap on this event. Implementation-wise, the MQ client should throw an event when it gets confirmation/rejection. The test will subscribe and be informed. One more enhancement is left : Events by nature are implemented with callbacks (e.g., EventEmitter, EventTarget). Callbacks will put an indentation in the test and complicates the flow (i.e., subscribe and handle first, then act and put a message in a queue). A simple solution is to promisify the event to achieve a super simple and flat test! See code example below
+
+:white_check_mark: **Do:** Design the message queue client/wrapper to throw events after every message handling. These events will let the test know when the operation is done, and the assertion part can start. Unlike API, message queue flows are hard to track. A typical test puts a message in the queue, some flow starts, and then at some _unknown_ point in time, it ends. The test is left hanging, not knowing when it can check for the new state. Some overcome this by polling the DB for the desired changes (slower and flaky). The first step in making this better is taking advantage of the fact that after every flow, the handling code is acknowledging the message. The test can tap on this event. Implementation-wise, the MQ client should throw an event when it gets confirmation/rejection. The test will subscribe and be informed. One more enhancement is left: Events by nature are implemented with callbacks (e.g., EventEmitter, EventTarget). Callbacks will put an indentation in the test and complicates the flow (i.e., subscribe and handle first, then act and put a message in a queue). A simple solution is to _promisify_ the event to achieve a super simple and flat test! See a code example below
 
 <br/>
 
 👀 &nbsp; **Alternatives:** Poll until the new desired state (e.g. new DB record) is met - This isn't horrible using the right helpers, just a bit slower and more complicated to write ❌ &nbsp; Subscribe for events from the MQ itself, once a message was confirmed it's the right time to assert - Not supported by all MQ products and also much slower ❌&nbsp;
-
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1710,11 +1710,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOT
-YwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1
-OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMj
-AyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0
-MjEsNTAwODA5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMT
-Q5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgy
-NTldfQ==
+eyJoaXN0b3J5IjpbLTE0NzIzNTQyNSwxNjYyODIzNDYxLDI5ND
+M4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5
+MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMj
+AzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5Nzgy
+MzIsMTMxMjgwMTQyMSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNj
+k3MzQ3MjU1LC0xNDk5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgy
+MTg5XX0=
 -->
