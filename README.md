@@ -1320,9 +1320,7 @@ services:
 🏷&nbsp; **Tags:** `#intermediate`
 
 
-:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. 
-
-Ideas: Queue names are wrong maybe, some things can get checked only using the real product, some things are too slow, we tested our code and the lib - not the production configuration, how, sanity
+:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. There many other configurations that affect the message flow like whether acknowledgement are needed, how many time to retry and more. Beyond configuration, 
 
 <br/>
 
@@ -1696,11 +1694,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwOD
-A5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3
-LDE3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4ND
-MwNzMyOSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2
-LDUwMzIwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05Mz
-gzNjMzMDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0
-ODhdfQ==
+eyJoaXN0b3J5IjpbLTcwNTg4MDE4Niw4NDY5NzgyMzIsMTMxMj
+gwMTQyMSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1
+LC0xNDk5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OT
+c1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEs
+LTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNT
+YyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1
+ODAxXX0=
 -->
