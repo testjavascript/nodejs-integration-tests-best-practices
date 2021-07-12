@@ -1098,29 +1098,28 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-// The MQ client/wrapper is throwing an event when the message handler is done
+// message-queue-client.js. The MQ client/wrapper is throwing an event when the message handler is done
 async  consume(queueName, onMessageCallback) {
 	await this.channel.consume(queueName, async  (theNewMessage)  => {
-	onMessageCallback(theNewMessage.content.toString())//Call the message handler
-	.then(()  => {
-	this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg 
-	this.emit('message-acknowledged', eventDescription); // Let the tests know that all over
-	})
+	onMessageCallback(theNewMessage) //Call the message handler
+		.then(()  => {
+		this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg 
+		this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
+		})
 })
 ```
 
 ```javascript
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
-test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
+test('Whenever a user deletion message arrive, then this user orders are also deleted', async  ()  => {
 
 // Arrange
 
 // 👉🏼 HERE WE SHOULD add new orders to the system
 
-const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event
+const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event from EventEmitter
 
 // Act
-
 fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
 
 // Assert
@@ -1711,7 +1710,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE4NTcxMTA4MSwxNjYyODIzNDYxLDI5ND
+eyJoaXN0b3J5IjpbMTY2ODk5MDAxNSwxNjYyODIzNDYxLDI5ND
 M4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5
 MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMj
 AzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5Nzgy
