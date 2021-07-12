@@ -1123,8 +1123,7 @@ const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once functio
 fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
 
 // Assert
-
-const  eventFromMessageQueue = await  getNextMQEvent;
+const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resolve once a confirmation message is thrown
 
 // Now we're certain that the operations is done and can start asserting for the results 👇 
 });
@@ -1710,11 +1709,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2ODk5MDAxNSwxNjYyODIzNDYxLDI5ND
-M4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5
-MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMj
-AzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5Nzgy
-MzIsMTMxMjgwMTQyMSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNj
-k3MzQ3MjU1LC0xNDk5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgy
-MTg5XX0=
+eyJoaXN0b3J5IjpbLTIwMzA0ODM1NzQsMTY2MjgyMzQ2MSwyOT
+QzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQy
+OTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLT
+IwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4
+MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04ODUyOTUwMjUsMT
+Y5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4
+MjE4OV19
 -->
