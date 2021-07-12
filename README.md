@@ -1278,14 +1278,16 @@ services:
 
 <br/>
 
-### ⚪️ 7.  Avoid a zombie process by testing subscription failures
+### ⚪️ 7.  Avoid a zombie process by testing connection failures
 
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it cras
 
-Ideas: Metrics, retry, process.exit, stub or fake URL, test custom disconnect
+Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
+
+Ideas: Metrics, retry, process.exit, stub or fake URL, test custom disconnect, we love try catch
 
 <br/>
 
@@ -1698,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OT
-c1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEs
-LTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNT
-YyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1
-ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLT
-ExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3
-MTYwMzJdfQ==
+eyJoaXN0b3J5IjpbNzI5MTg5MzksMTc2NDAzOTY3OCwtODgwMT
+gyMTg5LDM5OTc1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEw
+OTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwND
+Y5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4
+NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNT
+Y4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1
+NjRdfQ==
 -->
