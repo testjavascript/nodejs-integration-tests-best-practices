@@ -1283,7 +1283,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process crashes after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure relocate failing processes to different machines or zones which might auto-heal the
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, 
 
 Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMjcxNTA0MTEsMTc2NDAzOTY3OCwtOD
-gwMTgyMTg5LDM5OTc1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4
-LDEwOTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2Nj
-kwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1
-NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC
-0xNTY4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYy
-NDg1NjRdfQ==
+eyJoaXN0b3J5IjpbLTgxNTg4Mzg5OCwxNzY0MDM5Njc4LC04OD
+AxODIxODksMzk5NzU4MjU5LC02ODQzMDczMjksMjUyMzMzMDgs
+MTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDksMTY2OT
+A0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0
+Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0MjUsLT
+E1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0
+ODU2NF19
 -->
