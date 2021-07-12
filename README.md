@@ -1283,7 +1283,7 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
 
 
-:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstandi
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process. This is sad 
 
 Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
 
@@ -1700,7 +1700,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzIxNTc5NTk0LDE3NjQwMzk2NzgsLTg4MD
+eyJoaXN0b3J5IjpbNTg2MzA5NDM0LDE3NjQwMzk2NzgsLTg4MD
 E4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMyOSwyNTIzMzMwOCwx
 MDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MD
 Q2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2
