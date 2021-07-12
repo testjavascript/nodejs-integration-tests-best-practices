@@ -1245,7 +1245,9 @@ services:
 🏷&nbsp; **Tags:** `#draft`
 
 
-:white_check_mark:  **Do:** Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
+:white_check_mark:  **Do:** Test a scenario where the same message arrives twice mistakenly, assert that it doesn't 
+
+Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
 
 Ideas: The withdraw money example, simply run the same message multiple times and ensure that the state is similar to one execution
 
@@ -1699,11 +1701,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUyMzMzMDgsMTA5NDcyMjA2MSwtMTgyOD
-MzNzY1Niw1MDMyMDAxNDksMTY2OTA0NjkwNiwtMTI1NjI2OTg5
-MiwtOTM4MzYzMzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4MDEsMj
-MzOTA3NDg4LC0zNTE2OTU0MjUsLTE1NjgzMjEwNiwtMTEwMzIw
-OTkyLC0xODk3NjUzMDY1LDk0NjI0ODU2NCwtMTE3NDcxNjAzMi
-w0MjEzMDcxNTYsLTQ4MTIxNTc5NCwxNjEwNjM1MzMwLC0xNzU5
-NzQwNDUwXX0=
+eyJoaXN0b3J5IjpbLTY4NDMwNzMyOSwyNTIzMzMwOCwxMDk0Nz
+IyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MDQ2OTA2
+LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2ODUsLT
+I1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMTU2ODMy
+MTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC
+0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2
+MzUzMzBdfQ==
 -->
