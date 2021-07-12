@@ -1126,8 +1126,7 @@ fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
 
 const  eventFromMessageQueue = await  getNextMQEvent;
 
-// 👇 Now we're certain that the operations is done and can start asserting for the results
-
+// Now we're certain that the operations is done and can start asserting for the results 👇 
 });
 ```
 
@@ -1711,11 +1710,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MDI5ODExMzUsMjk0MzgxMjg0LC02Mj
-k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
-NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LD
-IwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAx
-NDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLT
-E0OTkwMTc4NywxNzY0MDM5Njc4LC04ODAxODIxODksMzk5NzU4
-MjU5XX0=
+eyJoaXN0b3J5IjpbMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOT
+YwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1
+OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMj
+AyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0
+MjEsNTAwODA5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMT
+Q5OTAxNzg3LDE3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgy
+NTldfQ==
 -->
