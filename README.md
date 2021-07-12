@@ -1245,7 +1245,7 @@ services:
 🏷&nbsp; **Tags:** `#draft`
 
 
-:white_check_mark:  **Do:** Test a scenario where the same message arrives twice mistakenly, assert that it doesn't 
+:white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly', and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery' which means that the same message might arrive more than one time. In some busi
 
 Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
 
@@ -1701,11 +1701,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY4NDMwNzMyOSwyNTIzMzMwOCwxMDk0Nz
-IyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0OSwxNjY5MDQ2OTA2
-LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLTIwMDQ5NTQ2ODUsLT
-I1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5NTQyNSwtMTU2ODMy
-MTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNjUsOTQ2MjQ4NTY0LC
-0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgxMjE1Nzk0LDE2MTA2
-MzUzMzBdfQ==
+eyJoaXN0b3J5IjpbMjAwOTM0Nzc0NiwtNjg0MzA3MzI5LDI1Mj
+MzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2NTYsNTAzMjAwMTQ5
+LDE2NjkwNDY5MDYsLTEyNTYyNjk4OTIsLTkzODM2MzMwNywtMj
+AwNDk1NDY4NSwtMjUxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1
+NDI1LC0xNTY4MzIxMDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NS
+w5NDYyNDg1NjQsLTExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEy
+MTU3OTRdfQ==
 -->
