@@ -1085,15 +1085,11 @@ services:
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Design the message queue client/wrapper to throw events after every message that is being handled, this will let the test know when the operations is over and the assertion can start. Unlike API, message queue flows are hard to track. A typical test puts a message in the queue, some flow starts, and then at some unknown point in time it ends. The test is left hanging not knowing when it can check the new state - Some overcome this by polling (slow and flaky). The first step in making this better, is taking advantage of the fact that after every flow - The MQ handler is acknolweding or rejecting the message. The test can tap on this event - The MQ client should throw event when it get confirmation/rejection, the test will subscribe and be informed. One more enhancement left to be done - Events by nature are implemented with callbacks, this will put indentation in the test and complicates the flow (i.e. subscribe anbd ha
-
-Naturally, message queue client emits events to a callback method. Promisify it. Inherit problems
-
-Ideas: toPromise, unlike API, subscribe, a simple test, 
+:white_check_mark:  **Do:** Design the message queue client/wrapper to throw events after every message that is being handled, this will let the test know when the operations is over and the assertion can start. Unlike API, message queue flows are hard to track. A typical test puts a message in the queue, some flow starts, and then at some unknown point in time it ends. The test is left hanging not knowing when it can check the new state - Some overcome this by polling (slow and flaky). The first step in making this better, is taking advantage of the fact that after every flow - The MQ handler is acknolweding or rejecting the message. The test can tap on this event - The MQ client should throw event when it get confirmation/rejection, the test will subscribe and be informed. One more enhancement left to be done - Events by nature are implemented with callbacks, this will put indentation in the test and complicates the flow (i.e. subscribe and handle first, then act and put a message in queue). A simple solution is to promisify the event to achieve a super simple and flat test! See code example below
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Poll until the new desired state is  ✅  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1693,11 +1689,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzU3NTQ0NTMsLTIxMDkzNDI5MCwxOT
-EyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgw
-OTkxNiwyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMT
-MxMjgwMTQyMSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3
-MjU1LC0xNDk5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LD
-M5OTc1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIw
-NjFdfQ==
+eyJoaXN0b3J5IjpbLTI5NDA4OTE0NSwtMjEwOTM0MjkwLDE5MT
+I3OTY2NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5
+OTE2LDIwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMz
+EyODAxNDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcy
+NTUsLTE0OTkwMTc4NywxNzY0MDM5Njc4LC04ODAxODIxODksMz
+k5NzU4MjU5LC02ODQzMDczMjksMjUyMzMzMDgsMTA5NDcyMjA2
+MV19
 -->
