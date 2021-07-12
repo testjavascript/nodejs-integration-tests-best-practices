@@ -1285,7 +1285,6 @@ services:
 
 :white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally, if things don't get better, it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, which like anything else happens only if you test it. To achieve this test flow, simulate a connection failure using a stub or wrong MQ URL. You can also set a one-time failure (e.g., The 'MQ.subscribe' method fails only once) to ensure that the connecion retries and succeeds finally. 
 
-
 <br/>
 
 👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
@@ -1697,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0OTkwMTc4NywxNzY0MDM5Njc4LC04OD
-AxODIxODksMzk5NzU4MjU5LC02ODQzMDczMjksMjUyMzMzMDgs
-MTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDksMTY2OT
-A0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0
-Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0MjUsLT
-E1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LDk0NjI0
-ODU2NF19
+eyJoaXN0b3J5IjpbMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3Nj
+QwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMy
+OSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMz
+IwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMz
+MDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0ODgsLT
+M1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2
+NTMwNjVdfQ==
 -->
