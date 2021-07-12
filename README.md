@@ -1320,7 +1320,7 @@ services:
 🏷&nbsp; **Tags:** `#intermediate`
 
 
-:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. There many other configurations that affect the message flow like whether acknowledgement are needed, how many time to retry and more. Beyond configuration, some MQ functionality demands simulating an entire flow like message failing multiple times - These tests are slower by nature and better be separated from the core set of tests. How?
+:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. There are many other configurations that affect the message flow like whether acknowledgement are needed, how many time to retry and more. Beyond configuration, some MQ functionality demands simulating an entire flow like message failing multiple times - These tests are slower by nature and better be separated from the core set of tests. Practically, create a dedicated file for these tests and ru
 
 <br/>
 
@@ -1694,11 +1694,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyOD
-AxNDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcyNTUs
-LTE0OTkwMTc4NywxNzY0MDM5Njc4LC04ODAxODIxODksMzk5Nz
-U4MjU5LC02ODQzMDczMjksMjUyMzMzMDgsMTA5NDcyMjA2MSwt
-MTgyODMzNzY1Niw1MDMyMDAxNDksMTY2OTA0NjkwNiwtMTI1Nj
-I2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0Njg1LC0yNTE1NTU4
-MDFdfQ==
+eyJoaXN0b3J5IjpbLTE3ODU5ODE4NzUsLTE3MzA1MDE5LDg0Nj
+k3ODIzMiwxMzEyODAxNDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1
+LDE2OTczNDcyNTUsLTE0OTkwMTc4NywxNzY0MDM5Njc4LC04OD
+AxODIxODksMzk5NzU4MjU5LC02ODQzMDczMjksMjUyMzMzMDgs
+MTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDksMTY2OT
+A0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0
+Njg1XX0=
 -->
