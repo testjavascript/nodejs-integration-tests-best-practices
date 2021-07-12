@@ -1320,7 +1320,7 @@ services:
 🏷&nbsp; **Tags:** `#intermediate`
 
 
-:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the
+:white_check_mark:  **Do:** Write a few, no more than a few, tests against production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual, that the code seems fine, but production issues are triggered by MQ installation and configuration.
 
 Ideas: Queue names are wrong maybe, some things can get checked only using the real product, some things are too slow, we tested our code and the lib - not the production configuration, how, sanity
 
@@ -1696,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMzcyOTM3MzEsMTMxMjgwMTQyMSw1MD
-A4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3
-ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNj
-g0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4MjgzMzc2
-NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNTYyNjk4OTIsLT
-kzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1ODAxLDIzMzkw
-NzQ4OF19
+eyJoaXN0b3J5IjpbLTQ0NjYzMjA0LDEzMTI4MDE0MjEsNTAwOD
+A5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3
+LDE3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4ND
+MwNzMyOSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2
+LDUwMzIwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05Mz
+gzNjMzMDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0
+ODhdfQ==
 -->
