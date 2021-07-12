@@ -1098,34 +1098,23 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-// The MQ client/wrapper is throwing an event when the message handler confirmed/acknoledged the message
+// The MQ client/wrapper is throwing an event when the message handler confirmed/acknowledged the message
 async  consume(queueName, onMessageCallback) {
 await this.channel.consume(queueName, async  (theNewMessage)  => {
 onMessageCallback(theNewMessage.content.toString())//Call the message handler
 .then(()  => {
-this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg and let the tests know that all over
-this.emit('message-acknowledged', eventDescription);
+this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg 
+this.emit('message-acknowledged', eventDescription); // Let the tests know that all over
 })
+```
 
-
+```javascript
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
 // Arrange
 
-const  orderToAdd = {
-
-userId:  1,
-
-productId:  2,
-
-mode:  'approved',
-
-};
-
-const  addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
-
-.id;
+// 👉🏼 HERE WE SHOULD add new orders to the system
 
 const  fakeMessageQueue = await  startFakeMessageQueue();
 
@@ -1736,11 +1725,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzQxNjc1NzMwLDI5NDM4MTI4NCwtNjI5Nj
-A1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4
-LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMD
-I2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQy
-MSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xND
-k5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1
-OV19
+eyJoaXN0b3J5IjpbLTExOTA1MzA3OTYsMjk0MzgxMjg0LC02Mj
+k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
+NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LD
+IwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAx
+NDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLT
+E0OTkwMTc4NywxNzY0MDM5Njc4LC04ODAxODIxODksMzk5NzU4
+MjU5XX0=
 -->
