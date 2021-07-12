@@ -1242,14 +1242,15 @@ services:
 
 ### ⚪️ 6.  Test for idempotency
 
+
 🏷&nbsp; **Tags:** `#intermediate`
 
 
-:white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly', and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery' which means that the same message might arrive more than one time. Running the same operation multiple times can be unbearable for some business flows - Consider a Payment flow where some fees are withdrawn from user account more than once. Write a test that put some state, then put the same message twice and check that the final state is satisfactory (e.g., the user was charged only once)
+:white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly,' and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery', which means that the same message might arrive more than one time. Running the same operation multiple times can be unbearable for some business flows - Consider a Payment flow where some fees are withdrawn from the user account more than once. Write a test that put some state, then put the same message twice and check that the final state is satisfactory (e.g., the app charged only once).
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some MQ products can guarantee extactly-once delivery (usually demands sacrifying other factors like performance), this a viable option under some scenarios ✅  &nbsp; 
+👀 &nbsp; **Alternatives:** Some MQ products can guarantee exactly-once delivery (usually demands sacrificing other factors like performance), this a viable option under some scenarios ✅  &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1697,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4ND
-MwNzMyOSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2
-LDUwMzIwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05Mz
-gzNjMzMDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0
-ODgsLTM1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLT
-E4OTc2NTMwNjUsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMTMw
-NzE1Nl19
+eyJoaXN0b3J5IjpbMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OT
+c1ODI1OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEs
+LTE4MjgzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNT
+YyNjk4OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1
+ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLT
+ExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLTExNzQ3
+MTYwMzJdfQ==
 -->
