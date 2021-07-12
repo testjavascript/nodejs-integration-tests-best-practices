@@ -1040,10 +1040,9 @@ services:
 
 ### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
 
-🏷&nbsp; **Tags:** `#advanced, #strategic #draft`
+🏷&nbsp; **Tags:** `#intermediate, #strategic`
 
-
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
+:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
 Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
 
@@ -1694,11 +1693,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMT
-czMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3
-LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3Nj
-QwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMy
-OSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMz
-IwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMz
-MDddfQ==
+eyJoaXN0b3J5IjpbLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMD
+I2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQy
+MSw1MDA4MDkyMzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xND
+k5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1
+OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4Mj
+gzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNTYyNjk4
+OTJdfQ==
 -->
