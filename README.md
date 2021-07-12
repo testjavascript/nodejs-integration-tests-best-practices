@@ -1287,7 +1287,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Put a try-catch, log, and test the logs ❌  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1696,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LDE3Nj
-QwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMwNzMy
-OSwyNTIzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMz
-IwMDE0OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMz
-MDcsLTIwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0ODgsLT
-M1MTY5NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2
-NTMwNjVdfQ==
+eyJoaXN0b3J5IjpbLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xND
+k5MDE3ODcsMTc2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1
+OSwtNjg0MzA3MzI5LDI1MjMzMzA4LDEwOTQ3MjIwNjEsLTE4Mj
+gzMzc2NTYsNTAzMjAwMTQ5LDE2NjkwNDY5MDYsLTEyNTYyNjk4
+OTIsLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMjUxNTU1ODAxLD
+IzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIxMDYsLTExMDMy
+MDk5Ml19
 -->
