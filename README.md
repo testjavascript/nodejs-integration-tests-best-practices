@@ -1099,6 +1099,13 @@ services:
 
 ```javascript
 // The MQ client/wrapper is throwing an event when the message handler confirmed/acknoledged the message
+async  consume(queueName, onMessageCallback) {
+await this.channel.consume(queueName, async  (theNewMessage)  => {
+onMessageCallback(theNewMessage.content.toString())//Call the message handler
+.then(()  => {
+this.emit('message-acknowledged', eventDescription);// Handling is done, acknowledge the msg and let the tests know that all over
+this.channel.ack(theNewMessage);
+})
 
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
@@ -1728,11 +1735,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxMjI1Nzk1OCwtNjI5NjA1NzY5LDIwOD
-IwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5MDY0
-NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIxODgyLC
-0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MDA4MDky
-MzcsLTg4NTI5NTAyNSwxNjk3MzQ3MjU1LC0xNDk5MDE3ODcsMT
-c2NDAzOTY3OCwtODgwMTgyMTg5LDM5OTc1ODI1OSwtNjg0MzA3
-MzI5XX0=
+eyJoaXN0b3J5IjpbLTExNTkxNDg3MDIsLTYyOTYwNTc2OSwyMD
+gyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2
+NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4Mi
+wtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5
+MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAxNzg3LD
+E3NjQwMzk2NzgsLTg4MDE4MjE4OSwzOTk3NTgyNTksLTY4NDMw
+NzMyOV19
 -->
