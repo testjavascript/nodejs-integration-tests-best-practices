@@ -1280,14 +1280,11 @@ services:
 
 ### ⚪️ 7.  Avoid a zombie process by testing connection failures
 
-🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
+🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally if things don't get better it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, which like anything else happens only if you test it. To achieve this test flow, simulate a connection failure using a stub or wrong MQ URL. You can also set a one-time failure (e.g., The co to ensure that the connecion retries and succeeds finally. 
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries and finally, if things don't get better, it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternativelly, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, which like anything else happens only if you test it. To achieve this test flow, simulate a connection failure using a stub or wrong MQ URL. You can also set a one-time failure (e.g., The 'MQ.subscribe' method fails only once) to ensure that the connecion retries and succeeds finally. 
 
-Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
-
-Ideas: Metrics, retry, process.exit, stub or fake URL, test custom disconnect, we love try catch
 
 <br/>
 
@@ -1700,7 +1697,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0Njk0NDc3NCwxNzY0MDM5Njc4LC04OD
+eyJoaXN0b3J5IjpbLTE0OTkwMTc4NywxNzY0MDM5Njc4LC04OD
 AxODIxODksMzk5NzU4MjU5LC02ODQzMDczMjksMjUyMzMzMDgs
 MTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDksMTY2OT
 A0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMDA0OTU0
