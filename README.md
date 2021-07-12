@@ -1245,9 +1245,7 @@ services:
 🏷&nbsp; **Tags:** `#draft`
 
 
-:white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly', and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery' which means that the same message might arrive more than one time. Running the same operation can be 
-
-Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
+:white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly', and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery' which means that the same message might arrive more than one time. Running the same operation multiple times can be unbearable for some business flows - Consider a Payment flow where some fees are withdrawn from user account more than once. Write a test that 
 
 Ideas: The withdraw money example, simply run the same message multiple times and ensure that the state is similar to one execution
 
@@ -1701,11 +1699,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDgyMTQ3MDIsLTY4NDMwNzMyOSwyNT
-IzMzMwOCwxMDk0NzIyMDYxLC0xODI4MzM3NjU2LDUwMzIwMDE0
-OSwxNjY5MDQ2OTA2LC0xMjU2MjY5ODkyLC05MzgzNjMzMDcsLT
-IwMDQ5NTQ2ODUsLTI1MTU1NTgwMSwyMzM5MDc0ODgsLTM1MTY5
-NTQyNSwtMTU2ODMyMTA2LC0xMTAzMjA5OTIsLTE4OTc2NTMwNj
-UsOTQ2MjQ4NTY0LC0xMTc0NzE2MDMyLDQyMTMwNzE1NiwtNDgx
-MjE1Nzk0XX0=
+eyJoaXN0b3J5IjpbNTYwODUyOTkyLC02ODQzMDczMjksMjUyMz
+MzMDgsMTA5NDcyMjA2MSwtMTgyODMzNzY1Niw1MDMyMDAxNDks
+MTY2OTA0NjkwNiwtMTI1NjI2OTg5MiwtOTM4MzYzMzA3LC0yMD
+A0OTU0Njg1LC0yNTE1NTU4MDEsMjMzOTA3NDg4LC0zNTE2OTU0
+MjUsLTE1NjgzMjEwNiwtMTEwMzIwOTkyLC0xODk3NjUzMDY1LD
+k0NjI0ODU2NCwtMTE3NDcxNjAzMiw0MjEzMDcxNTYsLTQ4MTIx
+NTc5NF19
 -->
