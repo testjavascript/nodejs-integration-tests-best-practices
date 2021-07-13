@@ -1046,7 +1046,7 @@ services:
 
 :white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. Real message-queue is needed to test full flows and advanced features (e.g, retries) but is not convenient enough to serve as the primary technique during coding.
 
-A better alternagtive is to use a simplistic fake that does nothing more accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. See code example here and below. This is done in-memory with simple flow and super-fast performance
+A better alternagtive is to use a simplistic fake that does nothing more accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. See code example here and below. This is done in-memory with simple flow and super-fast performance. Writing a fake like this should not last more than few hours. The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries and others. Since these specific tests are slow by nature, they anyway should be executed rarely with a real MQ. 
 
 Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
@@ -1715,11 +1715,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDE0MzE3NzI5LC05MDg0MzYwODEsMTY4MD
-UxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1
-LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOT
-YwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1
-OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMj
-AyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0
-MjFdfQ==
+eyJoaXN0b3J5IjpbLTEzMDA4NTQxNTgsLTkwODQzNjA4MSwxNj
+gwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5
+NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNj
+I5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2
+NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNi
+wyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgw
+MTQyMV19
 -->
