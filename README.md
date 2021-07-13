@@ -1043,14 +1043,22 @@ services:
 ### ⚪️ 1.  Important: Use a fake MQ for the majority of testing
 
 🏷&nbsp; **Tags:** `#intermediate, #strategic`
+  
 
-:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production - a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. Real message-queue is needed to test full flows and advanced features (e.g, retries) but is not convenient enough to serve as the primary technique during coding.
+:white_check_mark: **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production - a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ is a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise, test2 will fetch test1 message). Purging a queue is slow and not deterministic. When the purge/delete command arrives, some messages are in transit and the queue will not delete those until it get acknowledgment. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakiness but at the same time will kill the performance. Real message queue is needed to test full flows and advanced features (e.g., retries) but is not convenient enough to serve as the primary technique during coding.
 
-A better alternagtive is to use a simplistic fake that does nothing more accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. This will allow the tests to publish messages in-memory and subscribe to events to realize when interesting things happened (e.g. a message was acknowledged). Anyway, the main mission statetement of the tests is to check how the app behaves and not the well-trusted MQ product. This is done in-memory with simple flow and super-fast performance. Writing a fake like this should not last more than few hours (See code example here and below). The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries, the production configuration and others. Since these specific tests are slow by nature, they anyway should be executed rarely. Given all of this background, a recommended MQ testing strategy is to use simplistic-fake for the majority of the tests, mostly the tests that cover the app flows. Then to cover other risks, write just a few E2E tests over a production-like environment with a real message queue system.
+  
+
+A better alternative is to use a simplistic fake that does nothing more than accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. This fake will allow the tests to publish messages in-memory and subscribe to events to realize when interesting things happened (e.g., a message was acknowledged). Anyway, the primary mission statetement of the tests is to check how the _app_ behaves and not the well-trusted MQ product. With a fake, all is stored in-memory with simple flows and super-fast performance. Writing a fake like this should not last more than few hours (See code example here and below). The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries, and the production configurations. Since these specific tests are slow by nature, they anyway should be executed rarely. Given all of this background, a recommended MQ testing strategy is to use simplistic-fake for the majority of the tests, mostly the tests that cover the app flows. Then to cover other risks, write just a few E2E tests over a production-like environment with a real message queue system.
+
+  
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Stub the message queue listener, the code that subscribes to the queue - Within the test, Mock the code to emit a new fake MQ messages. While doable, this is not recommended. This layer is responsible to catch errors and map the result to some MQ action like acknoledgement or rejection. Leave this layer within the test scope  ❌ &nbsp; Stub... ✅&nbsp;
+  
+
+👀 &nbsp; **Alternatives:** Stub the message queue listener (the code that subscribes to the queue). Within the test, Mock this listener code to emit new fake MQ messages. While doable, this is not recommended. The listener layer is responsible for catching errors and mapping the result to some MQ action like acknowledgment or rejection. Leave this layer within the test scope ❌ &nbsp;
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1707,11 +1715,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2OD
-A1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1
-NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mj
-k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
-NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LD
-IwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAx
-NDIxXX0=
+eyJoaXN0b3J5IjpbLTYyOTE1OTQ4OCwxNjA3NTk0OTcyLC05MD
+g0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0
+NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOT
+QzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQy
+OTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLT
+IwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4
+MjMyXX0=
 -->
