@@ -1044,7 +1044,7 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate, #strategic`
 
-:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, 
+:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will prevent any flakines
 
 Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
@@ -1713,11 +1713,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMD
-E2Nzk1NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0
-LC02Mjk2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MT
-I3OTY2NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5
-OTE2LDIwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMz
-EyODAxNDIxLDUwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcy
-NTVdfQ==
+eyJoaXN0b3J5IjpbLTgyNTc4MjczMiwzNzQ4OTE1OTAsLTc2Mz
+EyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2
+MSwyOTQzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMT
+A5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNjM3MzQ1
+NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTczMDUwMTksOD
+Q2OTc4MjMyLDEzMTI4MDE0MjEsNTAwODA5MjM3LC04ODUyOTUw
+MjVdfQ==
 -->
