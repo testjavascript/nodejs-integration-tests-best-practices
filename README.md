@@ -1050,7 +1050,7 @@ A better alternagtive is to use a simplistic fake that does nothing more accepti
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Stub the message queue listener, the code that subscribes to the queue - Within the test, Mock the code to emit a new fake MQ messages. While doable, this is not recommended. This layer is responsible to catch errors and map the result to some MQ action like acknoledgement or rejection. Leave this layer  within the test scope and not get stubbed (i.e. replaced)  ❌ &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Stub the message queue listener, the code that subscribes to the queue - Within the test, Mock the code to emit a new fake MQ messages. While doable, this is not recommended. This layer is responsible to catch errors and map the result to some MQ action like acknoledgement or rejection. Leave this layer within the test scope  ❌ &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1707,7 +1707,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA4NjkyNDIxMCwtOTA4NDM2MDgxLDE2OD
+eyJoaXN0b3J5IjpbMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2OD
 A1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1
 NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mj
 k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
