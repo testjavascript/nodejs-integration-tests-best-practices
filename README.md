@@ -1044,11 +1044,10 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate, #strategic`
 
-:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. Real message-queue is needed to test full flows and advanced features (e.g, retries) but is not convenient enough to serve as the primary technique during coding.
+:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production - a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. Real message-queue is needed to test full flows and advanced features (e.g, retries) but is not convenient enough to serve as the primary technique during coding.
 
-A better alternagtive is to use a simplistic fake that does nothing more accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. See code example here and below. This is done in-memory with simple flow and super-fast performance. Writing a fake like this should not last more than few hours. The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries and others. Since these specific tests are slow by nature, they anyway should be executed rarely with a real MQ. Given all of this background, a recommended MQ testing strategy is to use simplistic-fake for the majority of the tests, mostly the tests that 
+A better alternagtive is to use a simplistic fake that does nothing more accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. See code example here and below. This is done in-memory with simple flow and super-fast performance. Writing a fake like this should not last more than few hours. The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries and others. Since these specific tests are slow by nature, they anyway should be executed rarely with a real MQ. Given all of this background, a recommended MQ testing strategy is to use simplistic-fake for the majority of the tests, mostly the tests that aim to cover the app flows. Then write just a few E2E tests over a production-like environment with a real message queue system.
 
-Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
 Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
 
@@ -1715,7 +1714,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI5ODMyNDE5NCwtOTA4NDM2MDgxLDE2OD
+eyJoaXN0b3J5IjpbLTM0MjUxODU4MCwtOTA4NDM2MDgxLDE2OD
 A1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1
 NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mj
 k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
