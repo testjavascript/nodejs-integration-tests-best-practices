@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  database:
+    image: mongo:4
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=myuser
+      - MONGO_INITDB_ROOT_PASSWORD=myuserpassword
+      # You still need to create the db with initdb file (https://hub.docker.com/_/mongo)
+      - MONGO_INITDB_DATABASE=shop
+    container_name: 'mongo-for-testing'
+    ports:
+      - '27017:27017'
+    tmpfs: /data/db
