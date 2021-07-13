@@ -1044,7 +1044,7 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate, #strategic`
 
-:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit
+:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. One might get temt
 
 Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
@@ -1713,7 +1713,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3NjU3OTQ3NCwtNzYzMTI4NTQ2LDEyMj
+eyJoaXN0b3J5IjpbLTY3MzU3MjQwNSwtNzYzMTI4NTQ2LDEyMj
 AxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4
 NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOT
 EyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgw
