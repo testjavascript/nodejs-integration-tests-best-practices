@@ -891,7 +891,7 @@ services:
 
 ### ⚪️ 5.  Add some randomness to unique fields
 
-🏷&nbsp; **Tags:** `#advanced, #draft`
+🏷&nbsp; **Tags:** `#intermediate`
 
 
 :white_check_mark:  **Do:** Commonly, tests will need to add records to columns with unique constraints. Since multiple tests are likely to add the same value, add a tiny random value as a suffix. Collisions between tests are more likely to occur if the DB is not cleaning up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass but the 2nd will fail due to a unique constrain violation. Adding randomness is a good practice also when the tables are being cleaned after each test - Without it, a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'}. Tests are great example-based documentation, sadly the 2nd option above kills this opportunity. Keep the random suffix short, a combination of process id and the current time seconds is likely go be good enough.
@@ -1195,7 +1195,7 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 ### ⚪️ 4.  Test processing of messages batch
 
-🏷&nbsp; **Tags:** `draft`
+🏷&nbsp; **Tags:** `intermediate`
 
 :white_check_mark:  **Do:** Feed the test queue with a batch of messages, and simulate failures in specific messages. In the realm of these failures, assert that some messages do succeed and the consumer survives to re-fetch more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch processing will crash, although only specific messages are invalid (others should have been processed successfully). The test expects the client code to recover and fetch more despite the failures, did it? . In streaming applications, a failure in a single message might lead to dis-acknowledgment of the entire sequence or to acknowledge the last (ignore the error). Whatever your strategy is, a test is needed. When using real-queues, the number of messages that are being put should be bigger than a single fetch size (e.g., prefetch in Rabbit, MaxNumberOfMessages in SQS) - Check that although the batch contains errors, the 2nd page is also being fetched and handled.
 
@@ -1468,11 +1468,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOT
-YwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1
-OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOS
-wzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAx
-OTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2OS
-wyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUy
-OTA2NDU0XX0=
+eyJoaXN0b3J5IjpbLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNT
+Q3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5
+MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwOD
+EsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIw
+MTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyOD
+QsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkx
+Mjc5NjY1OF19
 -->
