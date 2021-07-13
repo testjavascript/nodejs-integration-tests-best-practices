@@ -1058,7 +1058,6 @@ A better alternative is to use a simplistic fake that does nothing more than acc
 
 ```javascript
 // fake-mq.js, Simplistic implementation of MQ client for testing purposes
-
 // Note: This is code is even more simplified, see full example in the example application
 
 class  FakeMessageQueueProvider  extends  EventEmitter {
@@ -1068,8 +1067,6 @@ async  ack() {
 this.emit('message-acknowledged', { event:  'message-acknowledged' }); //Let the test know that this happened
 
 }
-
-  
 
 async  sendToQueue(queueName, message) {
 
@@ -1737,11 +1734,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyOTQxOTUzMSwtMTA5OTE2ODI4LC02Mj
-kxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMw
-MDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOT
-EwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mjk2MDU3
-NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLT
-c1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYy
-MjE4ODJdfQ==
+eyJoaXN0b3J5IjpbOTAzNjk3NzcxLC0xMDk5MTY4MjgsLTYyOT
+E1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAw
+OSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MT
+AxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2
+OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNz
+UyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIy
+MTg4Ml19
 -->
