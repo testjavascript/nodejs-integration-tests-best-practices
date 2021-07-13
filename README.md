@@ -1050,7 +1050,7 @@ A better alternative is to use a simplistic fake that does nothing more than acc
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Stub the message queue listener (the code that subscribes to the queue). Within the test, Mock this listener code to emit new fake MQ messages. While doable, this is not recommended. The listener layer is responsible for catching errors and mapping the result to some MQ action like acknowledgment or rejection. Leave this layer within the test scope ❌ &nbsp;
+👀 &nbsp; **Alternatives:** Stub the message queue listener (the code that subscribes to the queue). Within the test, Mock this listener code to emit new fake MQ messages. While doable, this is not recommended. The listener layer is responsible for catching errors and mapping the result to some MQ action like acknowledgment or rejection. Leave this layer within the test scope ❌ &nbsp; Use a message queue in the cloud - This alternative will suffer from the same issues like real MQ, only it will be even slower ❌ &nbsp;
 
 <br/>
 
@@ -1708,11 +1708,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2ODY4MzY3OTAsLTYyOTE1OTQ4OCwxNj
-A3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1
-OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMT
-Y2MjgyMzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2
-NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC
-0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIyMTg4MiwtMTcz
-MDUwMTldfQ==
+eyJoaXN0b3J5IjpbLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MD
+c1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5
+MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNj
+YyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3
+MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLT
+I2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMw
+NTAxOV19
 -->
