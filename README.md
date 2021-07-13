@@ -1050,7 +1050,7 @@ A better alternagtive is to use a simplistic fake that does nothing more accepti
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Stub the message queue listener, the code that subscribes to the queue - Just tell it ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Stub the message queue listener, the code that subscribes to the queue - Just 'mock' within the test to emit new fake MQ messages - This layer is responsible to catch errors and map the result to some MQ action like acknoledgement or rejection. This layer should stay within the test scope and not get stubbed (i.e. replaced)  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1707,11 +1707,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjg0ODQ4MTA3LC05MDg0MzYwODEsMTY4MD
-UxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1
-LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOT
-YwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1
-OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMj
-AyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0
-MjFdfQ==
+eyJoaXN0b3J5IjpbLTE1MDM5NjQ2NjMsLTkwODQzNjA4MSwxNj
+gwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5
+NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNj
+I5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2
+NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNi
+wyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgw
+MTQyMV19
 -->
