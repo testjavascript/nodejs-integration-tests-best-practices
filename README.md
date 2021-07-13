@@ -1381,43 +1381,6 @@ services:
 
 <br/>
 
-### ⚪️ 9.  Test retries and dead-letter queues
-
-🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
-
-
-:white_check_mark:  **Do:** Reject messages and ensure that they arrive again multiple times and they are moved to your expected location like a dead-letter queue
-
-Ideas: Test is different because not related to your own code, requies real infra, better done on production, 
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
-
 <br/>
 
 ### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
@@ -1720,11 +1683,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xOD
-E4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0
-OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLT
-c2MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2Mjgy
-MzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC
-0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNjM3
-MzQ1NjZdfQ==
+eyJoaXN0b3J5IjpbMTUyMzYwODA4MCw1NDc1MDQ1ODEsLTE5Nj
+A3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5
+NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LD
+M3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5
+MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LD
+IwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5
+MDY0NTRdfQ==
 -->
