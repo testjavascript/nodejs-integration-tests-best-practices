@@ -1044,7 +1044,7 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate, #strategic`
 
-:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. 
+:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. Real message-queue is needed for full-
 
 Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
@@ -1713,11 +1713,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3ND
-g5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1
-OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIwOD
-IwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5MDY0
-NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIxODgyLC
-0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQyMSw1MDA4MDky
-MzddfQ==
+eyJoaXN0b3J5IjpbLTE5OTI3ODgzNDksLTkwODQzNjA4MSwxNj
+gwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5
+NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNj
+I5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2
+NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNi
+wyMDI2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgw
+MTQyMV19
 -->
