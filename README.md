@@ -1107,14 +1107,15 @@ class FakeMessageQueueProvider extends EventEmitter {
 
 ```javascript
 // message-queue-client.js. The MQ client/wrapper is throwing an event when the message handler is done
-async  consume(queueName, onMessageCallback) {
-	await this.channel.consume(queueName, async  (theNewMessage)  => {
-	onMessageCallback(theNewMessage) //Call the message handler
-		.then(()  => {
-		this.channel.ack(theNewMessage);// Handling is done, acknowledge the msg 
-		this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
-		})
-})
+  async consume(queueName, onMessageCallback) {
+    await this.channel.consume(queueName, async (theNewMessage) => {
+      await onMessageCallback(theNewMessage);
+      await this.ack(theNewMessage); // Handling is done, acknowledge the msg
+      this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
+    });
+  }
+
+
 ```
 
 ```javascript
@@ -1717,11 +1718,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNj
-I5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEz
-MDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMT
-kxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1
-NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC
-03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2
-MjIxODgyXX0=
+eyJoaXN0b3J5IjpbLTE5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLT
+EwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQz
+NjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LD
+EyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4
+MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MC
+wxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAz
+NzgwOTkxNl19
 -->
