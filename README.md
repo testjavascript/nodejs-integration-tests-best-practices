@@ -1048,6 +1048,8 @@ services:
 
 A better alternative is to use a simplistic fake that does nothing more than accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. This fake will allow the tests to publish messages in-memory and subscribe to events to realize when interesting things happened (e.g., a message was acknowledged). Anyway, the primary mission statetement of the tests is to check how the _app_ behaves and not the well-trusted MQ product. With a fake, all is stored in-memory with simple flows and super-fast performance. Writing a fake like this should not last more than few hours (See code example here and below). The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries, and the production configurations. Since these specific tests are slow by nature, they anyway should be executed rarely. Given all of this background, a recommended MQ testing strategy is to use simplistic-fake for the majority of the tests, mostly the tests that cover the app flows. Then to cover other risks, write just a few E2E tests over a production-like environment with a real message queue system.
 
+[See comparison diagram here](/graphics/mq-comparison.png "Which MQ to use for testing").
+
 <br/>
 
 👀 &nbsp; **Alternatives:** Stub the message queue listener (the code that subscribes to the queue). Within the test, Mock this listener code to emit new fake MQ messages. While doable, this is not recommended. The listener layer is responsible for catching errors and mapping the result to some MQ action like acknowledgment or rejection. Leave this layer within the test scope ❌ &nbsp; Use a message queue in the cloud - This alternative will suffer from the same issues like real MQ, only it will be even slower ❌ &nbsp;
@@ -1718,11 +1720,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLT
-EwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQz
-NjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LD
-EyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4
-MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MC
-wxOTEyNzk2NjU4LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAz
-NzgwOTkxNl19
+eyJoaXN0b3J5IjpbNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xOD
+E4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0
+OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLT
+c2MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2Mjgy
+MzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC
+0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNzUyOTA2NDU0LC0yNjM3
+MzQ1NjZdfQ==
 -->
