@@ -1,10 +1,10 @@
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../../example-application/api');
+} = require('../../../example-application/entry-points/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 const {
   metricsExporter,
@@ -12,11 +12,17 @@ const {
 const { AppError } = require('../../../example-application/error-handling');
 const logger = require('../../../example-application/libraries/logger');
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
+
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the Api-Under-Test
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
@@ -62,7 +68,7 @@ describe('Error Handling', () => {
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(String));
@@ -76,14 +82,17 @@ describe('Error Handling', () => {
         mode: 'approved',
       };
 
-      const errorToThrow = new AppError('example-error', { isTrusted: true, name: 'example-error-name' });
+      const errorToThrow = new AppError('example-error', {
+        isTrusted: true,
+        name: 'example-error-name',
+      });
 
       // Arbitrarily choose an object that throws an error
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
       const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(
@@ -103,11 +112,13 @@ describe('Error Handling', () => {
       sinon.restore();
       const processExitListener = sinon.stub(process, 'exit');
       // Arbitrarily choose an object that throws an error
-      const errorToThrow = new AppError('example-error-name', { isTrusted: false });
+      const errorToThrow = new AppError('example-error-name', {
+        isTrusted: false,
+      });
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(processExitListener.called).toBe(true);
@@ -127,7 +138,7 @@ describe('Error Handling', () => {
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(processExitListener.called).toBe(false);
@@ -161,24 +172,27 @@ describe('Error Handling', () => {
       ${{}}                          | ${'Object as error'}
       ${new Error('JS basic error')} | ${'JS error'}
       ${new AppError('error-name')}  | ${'AppError'}
-    `(`When throwing $errorTypeDescription, Then it's handled correctly`, async ({ errorInstance }) => {
-      //Arrange
-      const orderToAdd = {
-        userId: 1,
-        productId: 2,
-        mode: 'approved',
-      };
+    `(
+      `When throwing $errorTypeDescription, Then it's handled correctly`,
+      async ({ errorInstance }) => {
+        //Arrange
+        const orderToAdd = {
+          userId: 1,
+          productId: 2,
+          mode: 'approved',
+        };
 
-      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
-      const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
-      const consoleErrorDouble = sinon.stub(console, 'error');
+        sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
+        const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
+        const consoleErrorDouble = sinon.stub(console, 'error');
 
-      //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+        //Act
+        await axiosAPIClient.post('/order', orderToAdd);
 
-      //Assert
-      expect(metricsExporterDouble.called).toBe(true);
-      expect(consoleErrorDouble.called).toBe(true);
-    });
+        //Assert
+        expect(metricsExporterDouble.called).toBe(true);
+        expect(consoleErrorDouble.called).toBe(true);
+      }
+    );
   });
 });

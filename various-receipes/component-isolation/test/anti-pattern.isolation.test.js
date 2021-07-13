@@ -1,17 +1,21 @@
 // ❌ Anti-Pattern file: This code contains bad practices for educational purposes
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../../example-application/api');
-const OrderRepository = require('../../../example-application/data-access/order-repository');
+} = require('../../../example-application/entry-points/api');
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   // ❌ Anti-Pattern: By default, we allow outgoing network calls -
   // If some unknown code locations will issue HTTP request - It will passthrough out
@@ -58,7 +62,7 @@ describe('/api', () => {
       };
 
       //Act
-      await request(expressApp).post('/order').send(orderToAdd);
+      await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
       expect(emailHTTPCall.isDone()).toBe(true);

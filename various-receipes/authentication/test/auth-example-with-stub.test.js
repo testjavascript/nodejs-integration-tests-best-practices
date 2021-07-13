@@ -1,10 +1,10 @@
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const { initializeWebServer, stopWebServer } = require('../api-extension');
 const authenticationMiddleware = require('../authentication-middleware');
 
-let expressApp;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   sinon
@@ -27,7 +27,12 @@ beforeAll(async (done) => {
     .persist();
 
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   done();
 });
@@ -52,20 +57,21 @@ describe('/api', () => {
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp)
-        .post('/order')
-        .set('authorization', 'special-back-door')
-        .send(orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post('/order', orderToAdd, {
+        headers: {
+          authorization: 'special-back-door',
+        }
+      });
 
       //Assert
-      const { status, body } = receivedAPIResponse;
+      const { status, data } = receivedAPIResponse;
 
       expect({
         status,
-        body,
+        data,
       }).toMatchObject({
         status: 200,
-        body: {
+        data: {
           mode: 'approved',
         },
       });

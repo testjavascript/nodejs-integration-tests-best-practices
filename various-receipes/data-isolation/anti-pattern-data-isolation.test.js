@@ -1,25 +1,27 @@
 // ❌ Anti-Pattern file: This code contains bad practices for educational purposes
-const request = require('supertest');
+const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../example-application/api');
-const OrderRepository = require('../../example-application/data-access/order-repository');
+} = require('../../example-application/entry-points/api');
 const { getShortUnique } = require('./test-helper');
 
-let expressApp, existingOrderId;
+let axiosAPIClient, existingOrderId;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  expressApp = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   // ❌ Anti-Pattern: Adding global records which are mutated by the tests. This will lead to high coupling and flakiness
   existingOrderId = (
-    await request(expressApp)
-      .post('/order')
-      .send({ userId: 1, mode: 'approved' })
+    await axiosAPIClient.post('/order', { userId: 1, mode: 'approved' })
   ).body.id;
 
   done();
@@ -59,9 +61,10 @@ describe('/api', () => {
       };
 
       //Act
-      const receivedAPIResponse = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post(
+        '/order',
+        orderToAdd
+      );
       existingOrderId = receivedAPIResponse.body.id;
 
       //Assert
@@ -78,13 +81,14 @@ describe('/api', () => {
         mode: 'approved',
         externalIdentifier: `some-external-${getShortUnique()}`, //unique value
       };
-      const receivedAPIResponse = await request(expressApp)
-        .post('/order')
-        .send(orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post(
+        '/order',
+        orderToAdd
+      );
 
       //Act
       // ❌ Anti-Pattern: This test relies on previous tests records and will fail when get executed alone
-      const receivedResponse = await request(expressApp).get(
+      const receivedResponse = await axiosAPIClient.get(
         `/order/${receivedAPIResponse.body.id}`
       );
 
