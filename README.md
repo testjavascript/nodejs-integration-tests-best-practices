@@ -1055,20 +1055,75 @@ A better alternative is to use a simplistic fake that does nothing more than acc
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+class  FakeMessageQueueProvider  extends  EventEmitter {
+
+async  ack() {
+
+const  eventDescription = { event:  'message-acknowledged' };
+
+this.emit('message-acknowledged', eventDescription);
+
+this.emit('message-handled', eventDescription);
+
+}
+
+  
+
+async  sendToQueue(queueName, message) {
+
+this.emit('message-sent', message);
+
+}
+
+  
+
+async  assertQueue() {}
+
+  
+
+async  consume(queueName, messageHandler) {
+
+// We just save the callback (handler) locally, whenever a message will put into this queue
+
+// we will fire this handler
+
+this.messageHandler =  messageHandler;
+
+}
+
+  
+
+// This is the only method that does not exist in the MQ client library
+
+// It allows us to fake like there is a new message in the queue and start a flow
+
+async  pushMessageToQueue(queue, newMessage) {
+
+if (this.messageHandler) {
+
+const  wrappedMessage = {
+
+content:  Buffer.from(JSON.stringify(newMessage)),
+
+};
+
+this.messageHandler(wrappedMessage);
+
+} else {
+
+// Just warning and no exception because the test might want to simulate that
+
+console.error(
+
+'A new message put into the fake queue but no handlers exist'
+
+);
+
+}
+
+}
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1708,11 +1763,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MD
-c1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5
-MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNj
-YyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3
-MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC03NTI5MDY0NTQsLT
-I2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2MjIxODgyLC0xNzMw
-NTAxOV19
+eyJoaXN0b3J5IjpbLTc4MjMzODUwOCwtMTA5OTE2ODI4LC02Mj
+kxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMw
+MDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOT
+EwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mjk2MDU3
+NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLT
+c1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYy
+MjE4ODJdfQ==
 -->
