@@ -1077,25 +1077,7 @@ this.messageHandler =  messageHandler;
   
 async  pushMessageToQueue(queue, newMessage) {
 
-if (this.messageHandler) {
-
-const  wrappedMessage = {
-
-content:  Buffer.from(JSON.stringify(newMessage)),
-
-};
-
-this.messageHandler(wrappedMessage);
-
-} else {
-
-// Just warning and no exception because the test might want to simulate that
-
-console.error(
-
-'A new message put into the fake queue but no handlers exist'
-
-);
+this.messageHandler(newMessage);
 
 }
 
@@ -1739,11 +1721,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzU3OTQ5OTc4LC0xMDk5MTY4MjgsLTYyOT
-E1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAw
-OSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MT
-AxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2
-OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNz
-UyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIy
-MTg4Ml19
+eyJoaXN0b3J5IjpbLTE2MzIyMzgyMTgsLTEwOTkxNjgyOCwtNj
+I5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEz
+MDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMT
+kxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1
+NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC
+03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2
+MjIxODgyXX0=
 -->
