@@ -1056,25 +1056,41 @@ A better alternative is to use a simplistic fake that does nothing more than acc
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```javascript
+// fake-mq.js, Simplistic implementation of MQ client for testing purposes
+
+// Note: This is code is even more simplified, see full example in the example application
+
 class  FakeMessageQueueProvider  extends  EventEmitter {
 
 async  ack() {
-this.emit('message-acknowledged', { event:  'message-acknowledged' });//Let the test know that this happened
-}
 
-async  sendToQueue(queueName, message) {
-this.emit('message-sent', message);
-}
+this.emit('message-acknowledged', { event:  'message-acknowledged' }); //Let the test know that this happened
 
-async  consume(queueName, messageHandler) {
-// We just save the callback (handler) locally, whenever a message will put into this queue
-// we will fire this handler
-
-this.messageHandler =  messageHandler;
 }
 
   
+
+async  sendToQueue(queueName, message) {
+
+this.emit('message-sent', message);
+
+}
+
+  
+
+async  consume(queueName, messageHandler) {
+
+// We just save the callback (handler) locally, whenever a message will put into this queue
+
+// we will fire this handler
+
+this.messageHandler =  messageHandler;
+
+}
+
+  
+
 async  pushMessageToQueue(queue, newMessage) {
 
 this.messageHandler(newMessage);
@@ -1721,11 +1737,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzIyMzgyMTgsLTEwOTkxNjgyOCwtNj
-I5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEz
-MDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMT
-kxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1
-NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4LC
-03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMDI2
-MjIxODgyXX0=
+eyJoaXN0b3J5IjpbLTQyOTQxOTUzMSwtMTA5OTE2ODI4LC02Mj
+kxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMw
+MDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOT
+EwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mjk2MDU3
+NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLT
+c1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYy
+MjE4ODJdfQ==
 -->
