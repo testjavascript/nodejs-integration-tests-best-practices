@@ -1050,7 +1050,7 @@ A better alternagtive is to use a simplistic fake that does nothing more accepti
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Stub the message queue listener, the code that subscribes to the queue - Just tell it ✅  &nbsp; Stub... ✅&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1707,11 +1707,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0MzMxMjA3NywtOTA4NDM2MDgxLDE2OD
-A1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1
-NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mj
-k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
-NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LD
-IwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAx
-NDIxXX0=
+eyJoaXN0b3J5IjpbNjg0ODQ4MTA3LC05MDg0MzYwODEsMTY4MD
+UxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1
+LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOT
+YwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1
+OCwtNzUyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMj
+AyNjIyMTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0
+MjFdfQ==
 -->
