@@ -10,7 +10,7 @@ module.exports = {
   testEnvironment: 'node',
   globals: {
     'ts-jest': {
-      tsconfig: 'various-receipes/nestjs/tsconfig.json'
+      tsconfig: 'recipes/nestjs/tsconfig.json'
     }
   }
 };
