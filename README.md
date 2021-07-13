@@ -1044,7 +1044,7 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate, #strategic`
 
-:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unforu
+:white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, like being done with the database. Unfortunately, 
 
 Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
@@ -1713,11 +1713,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NTA0Njk4MjksMTIyMDE2Nzk1NSwxOT
-EwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mjk2MDU3
-NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2NTgsLT
-c1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LDIwMjYy
-MjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAxNDIxLD
-UwMDgwOTIzNywtODg1Mjk1MDI1LDE2OTczNDcyNTUsLTE0OTkw
-MTc4N119
+eyJoaXN0b3J5IjpbLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MT
+AxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyODQsLTYyOTYwNTc2
+OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkxMjc5NjY1OCwtNz
+UyOTA2NDU0LC0yNjM3MzQ1NjYsLTIwMzc4MDk5MTYsMjAyNjIy
+MTg4MiwtMTczMDUwMTksODQ2OTc4MjMyLDEzMTI4MDE0MjEsNT
+AwODA5MjM3LC04ODUyOTUwMjUsMTY5NzM0NzI1NSwtMTQ5OTAx
+Nzg3XX0=
 -->
