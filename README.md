@@ -1046,7 +1046,7 @@ services:
 
 :white_check_mark:  **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production, a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ are a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise test2 will fetch test1 message). Purging a queue is slow and not determnistic, when the purge/delete command arrives, some messages are in-transit and queue will not delete those until it get acknowldgement. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakines but at the same time will kill the performance. Real message-queue is needed to test full flows and advanced features (e.g, retries) but is not convenient enough to serve as the primary technique during coding.
 
-A better alternagtive is to use a simplistic fake that does 3 
+A better alternagtive is to use a simplistic fake that does 3 things 
 
 Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both but canonical
 
@@ -1715,11 +1715,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQ4ODQxNDQsLTkwODQzNjA4MSwxNjgwNT
-EzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUs
-MTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5Nj
-A1NzY5LDIwODIwODY3MTMsLTIxMDkzNDI5MCwxOTEyNzk2NjU4
-LC03NTI5MDY0NTQsLTI2MzczNDU2NiwtMjAzNzgwOTkxNiwyMD
-I2MjIxODgyLC0xNzMwNTAxOSw4NDY5NzgyMzIsMTMxMjgwMTQy
-MV19
+eyJoaXN0b3J5IjpbLTk1MTA2MDc5MSwtOTA4NDM2MDgxLDE2OD
+A1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1
+NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02Mj
+k2MDU3NjksMjA4MjA4NjcxMywtMjEwOTM0MjkwLDE5MTI3OTY2
+NTgsLTc1MjkwNjQ1NCwtMjYzNzM0NTY2LC0yMDM3ODA5OTE2LD
+IwMjYyMjE4ODIsLTE3MzA1MDE5LDg0Njk3ODIzMiwxMzEyODAx
+NDIxXX0=
 -->
