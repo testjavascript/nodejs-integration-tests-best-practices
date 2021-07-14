@@ -301,7 +301,7 @@ beforeAll(async (done) => {
     ...
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/jest.config.js#L17)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)
   
 
 </details>
@@ -333,6 +333,7 @@ beforeAll(async (done) => {
   const dockerCompose = require('docker-compose');
 
   module.exports = async () => {
+    // Check if running CI environment
     if (isCI) {
       dockerCompose.down();
     }
@@ -441,11 +442,11 @@ services:
   module.exports = async () => {
     ...
     const npmCommandAsPromise = util.promisify(npm.commands.run);
-    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using an npm script before running any tests.
+    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
     ...
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L30)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L29-L30)
 
 </details>
 
