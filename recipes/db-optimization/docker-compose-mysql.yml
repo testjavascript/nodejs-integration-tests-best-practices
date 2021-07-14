@@ -2,7 +2,7 @@ version: '3.6'
 services:
   database:
     image: mysql:8
-    command: --default-authentication-plugin=mysql_native_password --innodb_flush_log_at_trx_commit=2 --sync-binlog=0
+    command: --default-authentication-plugin=mysql_native_password --innodb_flush_log_at_trx_commit=0 --sync-binlog=0
     environment:
       - MYSQL_ROOT_PASSWORD=example
       - MYSQL_USER=myuser
