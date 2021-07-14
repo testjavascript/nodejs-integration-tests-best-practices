@@ -241,22 +241,24 @@ beforeAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```javascript
-    await dockerCompose.upAll({
-      cwd: path.join(__dirname),
-      log: true,
-    });
-
-    await dockerCompose.exec(
-      'database',
-      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
-      {
-        cwd: path.join(__dirname),
-      }
-    );
+```yaml
+  # docker-compose.yml
+  version: '3.6'
+  services:
+    database:
+      image: postgres:11
+      command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
+      environment:
+        - POSTGRES_USER=myuser
+        - POSTGRES_PASSWORD=myuserpassword
+        - POSTGRES_DB=shop
+      container_name: 'postgres-for-testing'
+      ports:
+        - '54310:5432'
+      tmpfs: /var/lib/postgresql/data
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L11-L32)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/docker-compose.yml)
   
 </details>
 
@@ -266,7 +268,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures)  using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
+:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures) using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
 
 <br/>
 
@@ -282,7 +284,21 @@ beforeAll(async (done) => {
   globalSetup: './example-application/test/global-setup.js'
 
   // global-setup.js
-  await dockerCompose.upAll();
+  const dockerCompose = require('docker-compose');
+
+  module.exports = async () => {
+    ...
+    await dockerCompose.upAll({
+      cwd: path.join(__dirname),
+      log: true,
+    });
+
+    await dockerCompose.exec(
+      'database',
+      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
+      { cwd: path.join(__dirname) }
+    );
+    ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/jest.config.js#L17)
@@ -309,8 +325,17 @@ beforeAll(async (done) => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-  if (isCI) {
-    dockerCompose.down();
+  // jest.config.js
+  globalTeardown: './example-application/test/global-teardown.js',
+
+  // global-teardown.js - clean-up after all tests
+  const isCI = require('is-ci');
+  const dockerCompose = require('docker-compose');
+
+  module.exports = async () => {
+    if (isCI) {
+      dockerCompose.down();
+    }
   }
 ```
 
@@ -406,7 +431,18 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-  await npmCommandAsPromise(['db:migrate']);
+  // jest.config.js
+  globalSetup: './example-application/test/global-setup.js'
+
+  // global-setup.js
+  const npm = require('npm');
+  const util = require('util');
+
+  module.exports = async () => {
+    ...
+    const npmCommandAsPromise = util.promisify(npm.commands.run);
+    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using an npm script before running any tests.
+    ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L30)
