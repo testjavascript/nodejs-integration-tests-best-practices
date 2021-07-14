@@ -9,6 +9,8 @@
 
 # Intro
 
+🚦Seat belt on, deep breath. Strategic backend content lies in front of you. Better block sometimes to walk-through.
+
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
@@ -929,7 +931,7 @@ services:
 
 ### ⚪️ 5.  Add some randomness to unique fields
 
-🏷&nbsp; **Tags:** `#advanced, #draft`
+🏷&nbsp; **Tags:** `#intermediate`
 
 
 :white_check_mark:  **Do:** Commonly, tests will need to add records to columns with unique constraints. Since multiple tests are likely to add the same value, add a tiny random value as a suffix. Collisions between tests are more likely to occur if the DB is not cleaning up after each test (See bullet: Choose a clear data clean-up strategy). When the data is retained, the 1st tests execution will pass but the 2nd will fail due to a unique constrain violation. Adding randomness is a good practice also when the tables are being cleaned after each test - Without it, a test writer must read all the previous tests to ensure no similar names were chosen. When adding a random value, it's better to keep the data descriptive and meaningful with a minor suffix. The test reader will surely learn more about the system this option {resident: 'Washinton avenue 17st NY {23-554}' comparing with this one {resident: '23-553'}. Tests are great example-based documentation, sadly the 2nd option above kills this opportunity. Keep the random suffix short, a combination of process id and the current time seconds is likely go be good enough.
@@ -1078,39 +1080,46 @@ services:
 
 ## **Section: Message queues**
 
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 1.  Important: Use a fake MQ for the majority of testing
 
-🏷&nbsp; **Tags:** `#advanced, #strategic #draft`
+🏷&nbsp; **Tags:** `#intermediate, #strategic`
+  
+:white_check_mark: **Do:** Create your own simplistic MQ fake and use it for the majority of testing. Real message queues are hard to purge between tests and will lead to flakiness. In principle, one should strive to use the same infrastructure like production - a real message queue container within a docker-compose (like done with the database). Unfortunately, MQ is a beast that is harder to tame. Queues must get cleaned between tests, (e.g., otherwise, test2 will fetch test1 message). Purging a queue is slow and not deterministic. When the purge/delete command arrives, some messages are in transit and the queue will not delete those until it get acknowledgment. Not only this, in a multi-process mode different processes will step on each others toes. A potential resolution is to create a dedicated queue per test, doing so will kill flakiness but at the same time will kill the performance. Real message queue is needed to test full flows and advanced features (e.g., retries) but is not convenient enough to serve as the primary technique during coding.
 
+A better alternative is to use a simplistic fake that does nothing more than accepting messages, passing them to subscribers/consumers and emitting events when ack/delete happens. This fake will allow the tests to publish messages in-memory and subscribe to events to realize when interesting things happened (e.g., a message was acknowledged). Anyway, the primary mission statetement of the tests is to check how the _app_ behaves and not the well-trusted MQ product. With a fake, all is stored in-memory with simple flows and super-fast performance. Writing a fake like this should not last more than few hours (See code example here and below). The only downside is that it is not suitable to check multi-legs flow like dead-letter queues, retries, and the production configurations. Since these specific tests are slow by nature, they anyway should be executed rarely. Given all of this background, a recommended MQ testing strategy is to use simplistic-fake for the majority of the tests, mostly the tests that cover the app flows. Then to cover other risks, write just a few E2E tests over a production-like environment with a real message queue system.
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+[See comparison diagram here](/graphics/mq-comparison.png "Which MQ to use for testing").
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Stub the message queue listener (the code that subscribes to the queue). Within the test, Mock this listener code to emit new fake MQ messages. While doable, this is not recommended. The listener layer is responsible for catching errors and mapping the result to some MQ action like acknowledgment or rejection. Leave this layer within the test scope ❌ &nbsp; Use a message queue in the cloud - This alternative will suffer from the same issues like real MQ, only it will be even slower ❌ &nbsp;
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+// fake-mq.js, Simplistic implementation of MQ client for testing purposes
+// Note: This is code is even more simplified, see full example in the example application
+class FakeMessageQueueProvider extends EventEmitter {
+  async ack() {
+    this.emit('message-acknowledged', { event: 'message-acknowledged' }); //Let the test know that this happened
+  }
+
+  async sendToQueue(queueName, message) {
+    this.emit('message-sent', message);
+  }
+
+  async consume(queueName, messageHandler) {
+    // We just save the callback (handler) locally, whenever a message will put into this queue
+    // we will fire this handler
+    this.messageHandler = messageHandler;
+  }
+
+  async pushMessageToQueue(queue, newMessage) {
+    this.messageHandler(newMessage);
+  }
+}
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1120,38 +1129,55 @@ services:
 </details>
 
 <br/>
+  
 
-### ⚪️ 2.  Flatten the test, avoid indentation and callbacks
+### ⚪️ 2. Promisify the test. Avoid polling, indentation, and callbacks
 
-🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
+  
+
+🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** 
-
-Naturally, message queue client emits events to a callback method. Promisify it
-
-Ideas: toPromise, unlike API, subscribe, a simple test, 
+:white_check_mark: **Do:** Design the message queue client/wrapper to throw events after every message handling. These events will let the test know when the operation is done, and the assertion part can start. Unlike API, message queue flows are hard to track. A typical test puts a message in the queue, some flow starts, and then at some _unknown_ point in time, it ends. The test is left hanging, not knowing when it can check for the new state. Some overcome this by polling the DB for the desired changes (slower and flaky). The first step in making this better is taking advantage of the fact that after every flow, the handling code is acknowledging the message. The test can tap on this event. Implementation-wise, the MQ client should throw an event when it gets confirmation/rejection. The test will subscribe and be informed. One more enhancement is left: Events by nature are implemented with callbacks (e.g., EventEmitter, EventTarget). Callbacks will put an indentation in the test and complicates the flow (i.e., subscribe and handle first, then act and put a message in a queue). A simple solution is to _promisify_ the event to achieve a super simple and flat test! See a code example below
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Poll until the new desired state (e.g. new DB record) is met - This isn't horrible using the right helpers, just a bit slower and more complicated to write ❌ &nbsp; Subscribe for events from the MQ itself, once a message was confirmed it's the right time to assert - Not supported by all MQ products and also much slower ❌&nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
+```javascript
+// message-queue-client.js. The MQ client/wrapper is throwing an event when the message handler is done
+  async consume(queueName, onMessageCallback) {
+    await this.channel.consume(queueName, async (theNewMessage) => {
+      await onMessageCallback(theNewMessage);
+      await this.ack(theNewMessage); // Handling is done, acknowledge the msg
+      this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
+    });
+  }
+
 
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+
+```javascript
+// The test listen to the acknowledge/confirm message and knows when the operation is done 
+test('Whenever a user deletion message arrive, then this user orders are also deleted', async  ()  => {
+
+// Arrange
+
+// 👉🏼 HERE WE SHOULD add new orders to the system
+
+const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event from EventEmitter
+
+// Act
+fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
+
+// Assert
+const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resolve once the message handling is done
+
+// Now we're certain that the operations is done and can start asserting for the results 👇 
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -1209,7 +1235,7 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 ### ⚪️ 4.  Test processing of messages batch
 
-🏷&nbsp; **Tags:** `draft`
+🏷&nbsp; **Tags:** `intermediate`
 
 :white_check_mark:  **Do:** Feed the test queue with a batch of messages, including failures in specific messages. Test granularly that some succeeded and the consumer survived and is re-fetching more messages. A batch of messages will trigger different risks than a single message - It might be that the entire batch will fail although only specific messages are invalid, others should have been processed successfully. The client code should recover and fetch more inspite of the failures, did it? Only tests can tell. In streaming applications, a failure in a single message should lead to dis-acknowldgement of the entire sequence or to acknowledge the last (ignore the error). Whatever your strategy is, a test is needed. When using real-queues, the number of messages that are being put should be bigger than the fetch size (e.g., prefetch in Rabbit, MaxNumberOfMessages in SQS) - Check that although the batch contains error, the 2nd page is also being fetched and handled.
 
@@ -1247,15 +1273,14 @@ services:
 
 ### ⚪️ 5.  Test for 'poisoned' messages
 
-🏷&nbsp; **Tags:** `#strategic, #draft`
+🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark:  **Do:** Put an invalid message in the queue, assert that...
 
-Ideas: Assert keep fetching more + Nack, see DLQ bullet, metric, fail fast
+:white_check_mark:  **Do:** Put an invalid message in a queue and assert that hell does not break loose. More specifically, check that the consumer rejects the message, it stays alive, and a proper monitoring metric is fired. Poisoned messages are known MQ phenomena where some invalid/old messages in the queue cause the handler to crash. For example, when due to sender fault a wrong messages schema is stored in a queues and the consumer is not ready for this. Since the consumer crashes, the messages are being served again and again and can paralyze an app. One should not assume a perfect queue content rather embrace a resilient approach - The consuming code should validate each incoming message schema and stop early in case of failures. On the broker/server-side, retry limit should be explictly defined. When the limit is passed, messages should get redirected to the dead-letter queue (see dedicated bullet)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Share Schemas between publishers and consumers so there are fewer conflicts - In a distributed architecture that is built by different teams, it's not practical to count on a sanitized environment ❌
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1285,55 +1310,15 @@ services:
 
 ### ⚪️ 6.  Test for idempotency
 
-🏷&nbsp; **Tags:** `#draft`
+
+🏷&nbsp; **Tags:** `#intermediate`
 
 
-:white_check_mark:  **Do:** Since most message-queue by design can send the same message at least once (=== many times), check that your business flow can run multiple times without undesired side effects
-
-Ideas: The withdraw money example, simply run the same message multiple times and ensure that the state is similar to one execution
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
+:white_check_mark:  **Do:** Simulate a scenario where the same message arrives twice 'mistakenly,' and assert that it doesn't trigger an undesired state like the same operation done twice. A known limitation of most MQ is 'at least once delivery', which means that the same message might arrive more than one time. Running the same operation multiple times can be unbearable for some business flows - Consider a Payment flow where some fees are withdrawn from the user account more than once. Write a test that put some state, then put the same message twice and check that the final state is satisfactory (e.g., the app charged only once).
 
 <br/>
 
-### ⚪️ 7.  Avoid a zombie process by testing subscription failures
-
-🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
-
-
-:white_check_mark:  **Do:** Test that errors on the initial phase where the connection is being made are handled correctly, otherwise you be left with a zombie process that does nothing. For example,...
-
-Ideas: Metrics, retry, process.exit, stub or fake URL, test custom disconnect
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Some MQ products can guarantee exactly-once delivery (usually demands sacrificing other factors like performance), this a viable option under some scenarios ✅  &nbsp; 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1361,103 +1346,16 @@ services:
 
 <br/>
 
-### ⚪️ 8.  Few E2E tests are a must
-
-🏷&nbsp; **Tags:** `#strategic, #draft`
-
-
-:white_check_mark:  **Do:** Run few, just a few, MQ tests with the same infrastructure and configuration like production to reveal installation and configuration issues
-
-Ideas: Queue names are wrong maybe, some things can get checked only using the real product, some things are too slow, 
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
-
-<br/>
-
-
-<br/>
-
-### ⚪️ 9.  Test retries and dead-letter queues
-
-🏷&nbsp; **Tags:** `#advanced, #strategic, #draft`
-
-
-:white_check_mark:  **Do:** Reject messages and ensure that they arrive again multiple times and they are moved to your expected location like a dead-letter queue
-
-Ideas: Test is different because not related to your own code, requies real infra, better done on production, 
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
-
-<br/>
-
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 7.  Avoid a zombie process by testing connection failures
 
 🏷&nbsp; **Tags:** `#advanced, #strategic`
 
 
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+:white_check_mark:  **Do:** Fake a connection/subscription error and ensure that the client retries, and finally, it crashes. This specific failure is outstanding - If the code crashes at this phase, the process won't consume any message and do nothing. You just got a zombie process, sad. Alternatively, should the process fire a metric and crash after few retries, it will increase the chances of the monitoring system realizing the anomaly. Some runtime infrastructure (.e.g, Kubernetes) can auto-heal this scenario by relocating failing processes to different machines or zones. This better treatment will happen only if the code exits, which like anything else, happens in reality if you test it. To achieve this test flow, simulate a connection failure using a stub or wrong MQ URL. You can also set a one-time failure (e.g., The 'MQ.subscribe' method fails only once) to ensure that the connection retries and succeeds finally. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Put a try-catch, log the error, then test the logs - If the connection failed x times, it would keep failing. All the consumer processes will be alive, using resources for no reason instead of being moved and restarted by the infrastructure ❌  &nbsp;
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1485,22 +1383,16 @@ services:
 
 <br/>
 
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
+### ⚪️ 8.  On top of development testing, write a few E2E tests
 
-🏷&nbsp; **Tags:** `#advanced, #strategic`
+🏷&nbsp; **Tags:** `#intermediate`
 
-
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
+:white_check_mark:  **Do:** Write a few, no more than a few, tests against a production-like environment to realize configuration mismatches. All the tests that were described thus far are concerned with the app code. It is not unusual that the code seems fine, but production issues are triggered by MQ installation and configuration. For example, the code might expect a different queue/topic name than what was defined in production. There are many other configurations that affect the message flow like whether acknowledgement are needed and how many time to retry. Beyond configuration, some MQ functionality demands simulating an entire flow like message failing multiple times - These tests are slower by nature and better get separated from the core set of tests. Practically, create a dedicated file for these tests so they can be executed occasionally (e.g., during deployment smoke testing)
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
+👀 &nbsp; **Alternatives:** Manual testing during deployment - The value of automation is probably evident at this point ❌  
+
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
@@ -1528,132 +1420,8 @@ services:
 
 <br/>
 
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
-
-🏷&nbsp; **Tags:** `#advanced, #strategic`
-
-
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
 
 <br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
-
-<br/>
-
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
-
-🏷&nbsp; **Tags:** `#advanced, #strategic`
-
-
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
-
-<br/>
-
-### ⚪️ 1.  Important: Make thoughtful decision whether to use real, fake or a stub
-
-🏷&nbsp; **Tags:** `#advanced, #strategic`
-
-
-:white_check_mark:  **Do:** Make a call, which type of message queue for testing... The real one will gain more confidence for lesser dev perks, a fake one will... You can do both. 
-
-Sometimes the message queues are just on obstacle to overcome, for exmaple when one wishes to focus on the flow that starts with a message from a queue. In other cases, the MQ behaviour is the focus of the test like when trying to ensure that too much failures will put the message in a queue
-
-There are three fundamentally different ways to approach this, by stubbing the message queue client or by using a real/fake message queue server in Docker:
-
-Ideas: Why isn't this like DB, layers, purge, Real can test more features and needed anyway, comparison table, 
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Cloud... ✅  &nbsp; Stub... ✅&nbsp;
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
 
 <br/>
 
@@ -1742,11 +1510,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzODM2MzMwNywtMjAwNDk1NDY4NSwtMj
-UxNTU1ODAxLDIzMzkwNzQ4OCwtMzUxNjk1NDI1LC0xNTY4MzIx
-MDYsLTExMDMyMDk5MiwtMTg5NzY1MzA2NSw5NDYyNDg1NjQsLT
-ExNzQ3MTYwMzIsNDIxMzA3MTU2LC00ODEyMTU3OTQsMTYxMDYz
-NTMzMCwtMTc1OTc0MDQ1MCwxNDg3NDM0NjcsNDk3MzU2NTgzLC
-0xMjc2ODY0MjE4LC0xMzE1NjgzNzU5LC0xMTA2NzA2ODIyLC0y
-MTI3NjMxODgzXX0=
+eyJoaXN0b3J5IjpbLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNT
+Q3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5
+MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwOD
+EsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIw
+MTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyOD
+QsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkx
+Mjc5NjY1OF19
 -->
