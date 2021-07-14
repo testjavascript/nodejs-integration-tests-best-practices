@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "test:dev": "node --inspect=9229 node_modules/.bin/jest --watch --runInBand",
-    "test:nestjs": "jest --config='./various-receipes/nestjs/ts-jest.config.js'",
+    "test:nestjs": "jest --config='./recipes/nestjs/ts-jest.config.js'",
     "test:dev:verbose": "jest --watch --verbose",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
