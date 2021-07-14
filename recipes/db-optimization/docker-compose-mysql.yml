@@ -13,3 +13,6 @@ services:
       - '33060:3306'
     # Do not use Memory engine, use RAM folder (tmpfs) instead (https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437)
     tmpfs: /var/lib/mysql
+    volumes:
+      - ./mysql-init-scripts:/docker-entrypoint-initdb.d
+      
