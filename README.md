@@ -1241,7 +1241,7 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 
 <br/>
 
-👀 &nbsp; **Alternatives:** &nbsp; **Alternatives:** One might assume that correct handling of a failure proves that the consumer is resilient - In reality, it might be that the consumer code stops when a single message fails and won't re-connect to fetch more &nbsp;
+👀 &nbsp; **Alternatives:** One might assume that correct handling of a failure proves that the consumer is resilient - In reality, it might be that the consumer code stops when a single message fails and won't re-connect to fetch more &nbsp;
 	<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
