@@ -382,9 +382,9 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** 
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. 
 
-Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, 
+Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, fast, DX
 
 <br/>
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MTA0NDkxNDksNTc3NzIxNTE2LC0xOT
-MwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIx
-MTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MS
-wtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02
-MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MT
-MwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwx
-OTEwMTkwNTU4XX0=
+eyJoaXN0b3J5IjpbLTQ1Nzg2MDY5Miw1Nzc3MjE1MTYsLTE5Mz
+A3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjEx
+OTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC
+0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYy
+OTE1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMz
+AwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5
+MTAxOTA1NThdfQ==
 -->
