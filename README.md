@@ -547,6 +547,88 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
+### ⚪️ 5. Assert on the HTTP response object status and body
+
+🏷&nbsp; **Tags:** `#basics`
+
+:white_check_mark: &nbsp; **Do:** Do
+
+Both status and body, single assert, specific header, inline snapshots, see dealing with data
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Single assert per field ❌; snapshots ❌; 
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
+
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
+
+</details>
+
+<br/>
+### ⚪️ 4. Assert on the HTTP response object status and body
+
+🏷&nbsp; **Tags:** `#basics`
+
+:white_check_mark: &nbsp; **Do:** Do
+
+Both status and body, single assert, specific header, inline snapshots, see dealing with data
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Single assert per field ❌; snapshots ❌; 
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
+
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
+
+</details>
+
+<br/>
 
 <br/><br/>
 
@@ -1604,7 +1686,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzYyMTE2Nzk5LC0xOTMwNzE2NTUsMTE1Nz
+eyJoaXN0b3J5IjpbMzYwMTMwNjg2LC0xOTMwNzE2NTUsMTE1Nz
 M3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMDI5Mjcy
 NDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNS
 wtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYw
