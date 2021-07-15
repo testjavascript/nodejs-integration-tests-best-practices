@@ -594,7 +594,7 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
-### ⚪️ 4. Assert on the HTTP response object status and body
+### ⚪️ 6. Test (at least) the 6 common integration scenarios
 
 🏷&nbsp; **Tags:** `#basics`
 
@@ -1692,11 +1692,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1Nz
-M3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMDI5Mjcy
-NDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNS
-wtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYw
-NzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNT
-kwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2
-NjI4MjM0NjFdfQ==
+eyJoaXN0b3J5IjpbLTIwMDg4NzMwNTUsNTc3NzIxNTE2LC0xOT
+MwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIx
+MTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MS
+wtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02
+MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MT
+MwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwx
+OTEwMTkwNTU4XX0=
 -->
