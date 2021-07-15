@@ -409,7 +409,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Use reputable HTTP client to call the API like Axios (not supertest)
+### ⚪️ 2. Approach the API under test using a HTTP client (e.g. axios, not supertest)
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
@@ -1560,11 +1560,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMT
-AyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3
-ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5ND
-g4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3
-NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MD
-U1OCwxNjYyODIzNDYxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIw
-ODIwODY3MTNdfQ==
+eyJoaXN0b3J5IjpbMTM1MzQ1ODM1MywtMTkyNzU4OTE4NSwtMj
+c1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUw
+NDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2OD
+I4LC02MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2
+ODA1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nz
+k1NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02
+Mjk2MDU3NjldfQ==
 -->
