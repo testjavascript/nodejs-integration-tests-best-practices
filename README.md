@@ -595,7 +595,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common flow's output. When your test approaches the API or any other door, six different type of things might happen. In all of these categories, the aim is to check the outcome of the component and not the internals. For most of these categories, we have written a dedicated section below. Here are the 6 testing categories
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common flow's output. When your test is triggering some action (e.g.API call), a reaction is happening, something meaningful occurs and calls for testing. Note that our focus is on outcomes, In all of these categories, the aim is to check the outcome of the component and not the internals. For most of these categories, we have written a dedicated section below. Here are the 6 testing categories
 
 **• Response -** The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
 **• Forbidden request -** The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
@@ -1695,11 +1695,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NTgxMTgyODQsLTEyMTU2MDI3OTMsNj
-E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
-MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
-YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
-LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMj
-c1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUw
-NDU4MV19
+eyJoaXN0b3J5IjpbLTQ3Mzg2ODY1OCwtMTIxNTYwMjc5Myw2MT
+gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
+OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
+A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
+LTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNz
+U0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0
+NTgxXX0=
 -->
