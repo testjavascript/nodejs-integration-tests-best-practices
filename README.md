@@ -466,11 +466,11 @@ afterAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 3. Provide real credentials or token, avoid security back doors
+### ⚪️ 3. Provide real credentials or token. If possible, avoid security back doors
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Do
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production 
 
 Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3Nz
-IxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4
-NSwtMjc1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LD
-U0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5
-OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MD
-gxLDE2ODA1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIy
-MDE2Nzk1NV19
+eyJoaXN0b3J5IjpbLTE2NDQ4NDg4NiwtMTEyOTE1MTY4LDUwMD
+kxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1
+LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0NTEsLT
+E3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4
+NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OT
+cyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2
+MzEyODU0Nl19
 -->
