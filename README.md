@@ -603,7 +603,7 @@ beforeAll(async (done) => {
 **• External calls -** After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it  the 📗 section 'Testing integrations' below
 **• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. Like anything that goes outside to the user, whether directly or not, we should write a test. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
 **• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This goes directly to an important user - The ops user (i.e. production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some error should lead to process crash and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
-• Logic  - 
+**• Logic  -** 
 
 <br/>
 
@@ -1695,11 +1695,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzAzNDcyNTk5LDYxODAwNzA0LC0xODEyMT
-Q1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5Mzcs
-MTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MT
-UxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDEx
-NTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOT
-I3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcw
-MzVdfQ==
+eyJoaXN0b3J5IjpbLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MT
+IxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0Nzkz
+NywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMj
+kxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUs
+MTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMD
+I5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4
+NzAzNV19
 -->
