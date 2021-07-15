@@ -600,7 +600,7 @@ beforeAll(async (done) => {
 • Response - The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
 • Forbidden request - The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
 • A new state - After invoking some action, some data was probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are covered below in the 📗 section 'Dealing with data' 
-• External calls - After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements - 
+• External calls - After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it in the  the 📗 section 'Dealing
 • Logic  
 • MQ  
 
@@ -1696,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjk4MjI1ODExLDYxODAwNzA0LC0xODEyMT
-Q1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5Mzcs
-MTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MT
-UxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDEx
-NTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOT
-I3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcw
-MzVdfQ==
+eyJoaXN0b3J5IjpbLTEwMTUxMjg2NjksNjE4MDA3MDQsLTE4MT
+IxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0Nzkz
+NywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMj
+kxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUs
+MTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMD
+I5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4
+NzAzNV19
 -->
