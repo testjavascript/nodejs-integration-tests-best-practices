@@ -591,11 +591,11 @@ beforeAll(async (done) => {
 
 <br/>
 
-### ⚪️ 6. Test (at least) the six common integration scenarios
+### ⚪️ 6. Test (at least) the six common integration outcomes
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-:white_check_mark: &nbsp; **Do:** When planning your tests, consider all the six common scenario categories. When your test approaches the API or message queue, six different type of things might happen and might be an opprtunity for a valuable test. In all of these categories, the aim is to check the outcome of the component and not the internals. For most of these categories, we have written a dedicated section below. Here are the 6 testing categories
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common scenario categories. When your test approaches the API or message queue, six different type of things might happen and might be an opprtunity for a valuable test. In all of these categories, the aim is to check the outcome of the component and not the internals. For most of these categories, we have written a dedicated section below. Here are the 6 testing categories
 
 **• Response -** The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
 **• Forbidden request -** The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
@@ -1695,11 +1695,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MT
-IxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0Nzkz
-NywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMj
-kxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUs
-MTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMD
-I5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4
-NzAzNV19
+eyJoaXN0b3J5IjpbMTQ2NzMxNzE2MSwtMTIxNTYwMjc5Myw2MT
+gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
+OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
+A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
+LTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNz
+U0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0
+NTgxXX0=
 -->
