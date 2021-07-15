@@ -514,6 +514,8 @@ beforeAll(async (done) => {
 
 Both status and body, single assert, specific header, inline snapshots, see dealing with data
 
+expect({a:  1}).to.deep.equal({a:  1});, toMatchObject
+
 <br/>
 
 👀 &nbsp; **Alternatives:** Single assert per field ❌; snapshots ❌; 
@@ -1698,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOT
-E1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwx
-MTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMj
-kyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3
-MDM1LC0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OC
-wxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4
-OTE1OTBdfQ==
+eyJoaXN0b3J5IjpbMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MD
+gyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwt
+MTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NT
+QyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1
+ODEsLTE5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOC
+wtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgw
+NTEzMDA5XX0=
 -->
