@@ -378,15 +378,17 @@ beforeAll(async (done) => {
 
 <br/>
 
-### ⚪️ 1. The test and the backend should live within the same process
+### ⚪️ 1. Stick to unit testing best practices
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** The tests should start the webserver within the same process, not in a remote environment or container. Failing to do so will result in lose of critical features: A test won't be able to simulate various important events using test doubles (e.g. make some component throw an exception), customize environment variables, and make configuration changes. Also, the complexity of measuring code coverage and intercepting network calls will highly increase
+:white_check_mark: &nbsp; **Do:** 
+
+Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** one might spin the backend in Docker container or just a separate Node process. This configuration better resembles the production but it will lack critical testing features as mentioned above ❌; Some teams run integration tests against production-like cloud envrionment (see bullet 'Reuse tests against production-like environment), this is a valid technique for extra validation but will get too slow and limiting to rely on during develoment ❌; 
+👀 &nbsp; **Alternatives:** Big flows, reality ta ❌;  ❌; 
 
 <br/>
 
@@ -1556,11 +1558,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDU3NDA5ODcyLC0xMDI5MjcyNDUxLC0xNz
-QyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0
-NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3Mi
-wtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNTkwLC03NjMx
-Mjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2NjI4MjM0Nj
-EsMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4MjA4NjcxMywtMjEw
-OTM0MjkwXX0=
+eyJoaXN0b3J5IjpbLTE1Njk0NjM4ODYsLTEwMjkyNzI0NTEsLT
+E3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4
+NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OT
+cyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2
+MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMz
+Q2MSwyOTQzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0y
+MTA5MzQyOTBdfQ==
 -->
