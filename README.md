@@ -506,7 +506,7 @@ beforeAll(async (done) => {
 
 </details>
 
-### ⚪️ 4. Assert on the HTTP response object status and body
+### ⚪️ 4. Assert on the entire HTTP response object, not on every field
 
 🏷&nbsp; **Tags:** `#basics`
 
@@ -1698,7 +1698,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQ4MjY2MzQ3LDk1NjA4Mjg5MCwtMTEyOT
+eyJoaXN0b3J5IjpbOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOT
 E1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwx
 MTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMj
 kyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3
