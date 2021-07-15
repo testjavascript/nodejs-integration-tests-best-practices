@@ -549,6 +549,7 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
+
 ### ⚪️ 5. Structure tests by routes and stories
 
 🏷&nbsp; **Tags:** `#basics`
@@ -589,11 +590,12 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
+
 ### ⚪️ 6. Test (at least) the six common integration scenarios
 
-🏷&nbsp; **Tags:** `#basics`
+🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-:white_check_mark: &nbsp; **Do:** Consider at least, 
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider all the six common scenario categories. When your APO
 
 • Response
 • Error/metric  
@@ -1693,11 +1695,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
-M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
-MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3Nz
-IxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4
-NSwtMjc1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LD
-U0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5
-OTE2ODI4XX0=
+eyJoaXN0b3J5IjpbLTU2NzUzMTUxNywtMTgxMjE0NTYxMywxOT
+g3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEw
+NTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMD
+kxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1
+LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0NTEsLT
+E3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4
+NDQ2NjczXX0=
 -->
