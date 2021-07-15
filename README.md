@@ -510,7 +510,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Do
+:white_check_mark: &nbsp; **Do:** When testing API responses, compare all the relevant parts of the response object  (e.g. status, some body fields, with the expected payload
 
 Both status and body, single assert, specific header, inline snapshots, see dealing with data
 
@@ -1664,11 +1664,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2NzExNTcyMSwtMTMxODUwMjIzNywxMT
-g1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNjE4MDA3
-MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMT
-M0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4
-OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOT
-MwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIx
-MTk4XX0=
+eyJoaXN0b3J5IjpbLTEzMTEyNDk5NzQsMTA2NzExNTcyMSwtMT
+MxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2
+MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LD
+EyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUx
+NjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNT
+c3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4
+OTE4NV19
 -->
