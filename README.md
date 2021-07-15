@@ -472,7 +472,7 @@ afterAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** Do
 
-Ideas - JWT, user pass, user microservice verification, 
+Ideas - JWT, user pass, user microservice verification, login per file, 
 
 <br/>
 
@@ -1562,11 +1562,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxNzkyMzY3LDExNTczNzMwNjUsLTE5Mj
-c1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0Mjkw
-ODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0NDY2Nz
-MsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkw
-ODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NT
-Q2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5
-NDM4MTI4NF19
+eyJoaXN0b3J5IjpbLTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOT
+I3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5
+MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4NDQ2Nj
+czLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OTcyLC05
+MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyOD
+U0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwy
+OTQzODEyODRdfQ==
 -->
