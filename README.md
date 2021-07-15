@@ -601,10 +601,12 @@ beforeAll(async (done) => {
 
 **• A new state -** After invoking an action, some data is probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are greatly covered below in the 📗 section 'Dealing with data' 
 
-**• External calls -** After invoking an action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it  the 📗 section 'Testing integrations' below
+**• External calls -** After invoking an action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic which is broadly discussed in the 📗 section 'Testing integrations' below
 
-**• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. Like anything that goes outside to the user, whether directly or not, we should write a test. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
+**• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
+
 **• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This goes directly to an important user - The ops user (i.e. production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some error should lead to process crash and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
+
 **• Logic  -** 
 
 <br/>
@@ -1697,11 +1699,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzOTQ2OTQ3MiwtMTIxNTYwMjc5Myw2MT
-gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
-OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
-A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
-LTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNz
-U0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0
-NTgxXX0=
+eyJoaXN0b3J5IjpbMTMzOTczMTkxLC0xMjE1NjAyNzkzLDYxOD
+AwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4
+LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MD
+gyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwt
+MTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NT
+QyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1
+ODFdfQ==
 -->
