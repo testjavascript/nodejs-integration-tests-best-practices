@@ -595,10 +595,12 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common flow's output. When your test is triggering some action (e.g.API call), a reaction is happening, something meaningful occurs and calls for testing. Note that our focus is on outcomes, In all of these categories, the aim is to check the outcome of the component and not the internals. For most of these categories, we have written a dedicated section below. Here are the 6 testing categories
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common flow's output. When your test is triggering some action (e.g.API call), a reaction is happening, something meaningful occurs and calls for testing. Note that our focus is on outcomes, things that are noticable from outside and might affect the user. This is not about checking the internals. These outcomes/reactions can be put in 6 categories:
 
 **• Response -** The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
+
 **• Forbidden request -** The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
+
 **• A new state -** After invoking some action, some data was probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are covered below in the 📗 section 'Dealing with data' 
 **• External calls -** After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it  the 📗 section 'Testing integrations' below
 **• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. Like anything that goes outside to the user, whether directly or not, we should write a test. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
@@ -1695,7 +1697,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3Mzg2ODY1OCwtMTIxNTYwMjc5Myw2MT
+eyJoaXN0b3J5IjpbMTQ4NTIxMDExNCwtMTIxNTYwMjc5Myw2MT
 gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
 OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
 A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
