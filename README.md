@@ -415,7 +415,7 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** The
 
-Ideas: Popular, not bounded, like production, get instance, 
+Ideas: Popular, not bounded, like production, get instance, eco-system, 
 
 <br/>
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTk3MzQ4NzksNTAwOTE3MDkzLDU3NzcyMT
-UxNiwtMTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUs
-LTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1ND
-c1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkx
-NjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MS
-wxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAx
-Njc5NTVdfQ==
+eyJoaXN0b3J5IjpbLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3Nz
+IxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4
+NSwtMjc1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LD
+U0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5
+OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MD
+gxLDE2ODA1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIy
+MDE2Nzk1NV19
 -->
