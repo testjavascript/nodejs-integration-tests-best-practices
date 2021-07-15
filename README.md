@@ -470,7 +470,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, 
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: 
 
 Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTU2MDgyODkwLC0xMTI5MTUxNjgsNTAwOT
-E3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMwNjUs
-LTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMT
-c0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0
-NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5Nz
-IsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYz
-MTI4NTQ2XX0=
+eyJoaXN0b3J5IjpbLTY0Mjg0MTYwOSw5NTYwODI4OTAsLTExMj
+kxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUs
+MTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMD
+I5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4
+NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0OD
+gsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0
+ODkxNTkwXX0=
 -->
