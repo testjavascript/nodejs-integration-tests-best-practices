@@ -384,7 +384,7 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. By definition, the developer-experience is a 
 
-Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, fast, DX. Adoption, 10 seconds
+Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, fast, DX. Adoption, 10 seconds. The whole idea is not to loose perks (almost), 
 
 <br/>
 
@@ -411,7 +411,7 @@ beforeAll(async (done) => {
 
 ### ⚪️ 2. Approach the API under test using a library that is solely HTTP client (e.g. axios, not supertest)
 
-🏷&nbsp; **Tags:** `#basic, #strategic`
+🏷&nbsp; **Tags:** `#basic`
 
 :white_check_mark: &nbsp; **Do:** The
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMD
-cxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5
-OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLT
-E5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5
-MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMD
-A5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkx
-MDE5MDU1OF19
+eyJoaXN0b3J5IjpbOTk3MzQ4NzksNTAwOTE3MDkzLDU3NzcyMT
+UxNiwtMTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUs
+LTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1ND
+c1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkx
+NjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MS
+wxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAx
+Njc5NTVdfQ==
 -->
