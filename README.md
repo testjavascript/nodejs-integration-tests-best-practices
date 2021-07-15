@@ -470,7 +470,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production 
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means signing a token and/or stubbing the claim provider to authorize the request. In any design decision
 
 Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
@@ -1698,7 +1698,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NDQ4NDg4NiwtMTEyOTE1MTY4LDUwMD
+eyJoaXN0b3J5IjpbLTg0OTEzOTczNCwtMTEyOTE1MTY4LDUwMD
 kxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1
 LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0NTEsLT
 E3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4
