@@ -409,7 +409,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Let the tests control when the server should start and shutoff
+### ⚪️ 2. Use reputable HTTP client to call the API, not 
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
@@ -1558,11 +1558,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NDk4NjUyMDQsLTEwMjkyNzI0NTEsLT
-E3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4
-NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OT
-cyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2
-MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMz
-Q2MSwyOTQzODEyODQsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0y
-MTA5MzQyOTBdfQ==
+eyJoaXN0b3J5IjpbOTc4ODA2MTc0LC0xMDI5MjcyNDUxLC0xNz
+QyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0
+NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3Mi
+wtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNTkwLC03NjMx
+Mjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2NjI4MjM0Nj
+EsMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4MjA4NjcxMywtMjEw
+OTM0MjkwXX0=
 -->
