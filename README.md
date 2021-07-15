@@ -591,11 +591,11 @@ beforeAll(async (done) => {
 
 <br/>
 
-### ⚪️ 6. Test (at least) the five common integration outcomes
+### ⚪️ 6. Test the five potential outcomes
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common flow's output. When your test is triggering some action (e.g.API call), a reaction is happening, something meaningful occurs and calls for testing. Note that our focus is on outcomes, things that are noticable from outside and might affect the user. This is not about checking the internals. These outcomes/reactions can be put in 6 categories:
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the five common flow's output. When your test is triggering some action (e.g., API call), a reaction is happening, something meaningful occurs and calls for testing. Note that our focus is on outcomes, things that are noticable from outside and might affect the user. This is not about checking the internals. These outcomes/reactions can be put in 6 categories:
 
 **• Response -** The test invokes an action (e.g. via API) and gets a response. It's now concerned with checking the response data correctness, schema and HTTP status
 
@@ -1697,11 +1697,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4ODQxNDMyNCwtMTIxNTYwMjc5Myw2MT
-gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
-OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
-A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
-LTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNz
-U0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0
-NTgxXX0=
+eyJoaXN0b3J5IjpbMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMj
+E1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAz
+NiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5ND
+g1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkz
+LDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mj
+c1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0Mjkw
+ODI0Nl19
 -->
