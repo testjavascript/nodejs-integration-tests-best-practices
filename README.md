@@ -409,11 +409,13 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Use reputable HTTP client to call the API, not 
+### ⚪️ 2. Use reputable HTTP client to call the API like Axios (not supertest)
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initializtion logic and the test should control the timing
+:white_check_mark: &nbsp; **Do:** The
+
+Ideas: Popular, not bounded, like production, 
 
 <br/>
 
@@ -1558,11 +1560,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTc4ODA2MTc0LC0xMDI5MjcyNDUxLC0xNz
-QyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0
-NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3Mi
-wtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNTkwLC03NjMx
-Mjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2NjI4MjM0Nj
-EsMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4MjA4NjcxMywtMjEw
-OTM0MjkwXX0=
+eyJoaXN0b3J5IjpbLTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMT
+c0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0
+NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5Nz
+IsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYz
+MTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzND
+YxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIx
+MDkzNDI5MF19
 -->
