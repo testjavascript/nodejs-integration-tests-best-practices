@@ -409,7 +409,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Approach the API under test using a HTTP client (e.g. axios, not supertest)
+### ⚪️ 2. Approach the API under test using a library that is solely HTTP client (e.g. axios, not supertest)
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
@@ -419,7 +419,7 @@ Ideas: Popular, not bounded, like production, get instance,
 
 <br/>
 
-👀 &nbsp; **Alternatives:** The web server initializtion code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternativelly, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
+👀 &nbsp; **Alternatives:** Supertest ❌; Fetch, etc ❌
 
 <br/>
 
@@ -466,7 +466,7 @@ afterAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 3. Specify a port in production, randomize in testing
+### ⚪️ 3. Provide real credentials or token, avoid security back doors
 
 🏷&nbsp; **Tags:** `#intermediate`
 
@@ -1560,7 +1560,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1MzQ1ODM1MywtMTkyNzU4OTE4NSwtMj
+eyJoaXN0b3J5IjpbMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMj
 c1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUw
 NDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2OD
 I4LC02MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2
