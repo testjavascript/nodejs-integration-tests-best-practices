@@ -547,7 +547,7 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
-### ⚪️ 5. Assert on the HTTP response object status and body
+### ⚪️ 5. Strructure 
 
 🏷&nbsp; **Tags:** `#basics`
 
@@ -1686,11 +1686,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzYwMTMwNjg2LC0xOTMwNzE2NTUsMTE1Nz
-M3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMDI5Mjcy
-NDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNS
-wtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYw
-NzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNT
-kwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2
-NjI4MjM0NjFdfQ==
+eyJoaXN0b3J5IjpbLTUzNzM3ODc1MiwtMTkzMDcxNjU1LDExNT
+czNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3
+MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMz
+UsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2
+MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MT
+U5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwx
+NjYyODIzNDYxXX0=
 -->
