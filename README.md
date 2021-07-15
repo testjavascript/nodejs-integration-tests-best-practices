@@ -472,7 +472,7 @@ afterAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** Do
 
-Ideas - JWT, user pass, user microservice verification, login per file, 
+Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
 <br/>
 
@@ -505,6 +505,48 @@ beforeAll(async (done) => {
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
 </details>
+
+### ⚪️ 4. Provide real credentials or token, avoid security back doors
+
+🏷&nbsp; **Tags:** `#intermediate`
+
+:white_check_mark: &nbsp; **Do:** Do
+
+Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Running a single process will slow down the tests ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
+
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
+
+</details>
+
+<br/>
 
 <br/><br/>
 
@@ -1562,11 +1604,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOT
-I3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5
-MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4NDQ2Nj
-czLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OTcyLC05
-MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyOD
-U0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwy
-OTQzODEyODRdfQ==
+eyJoaXN0b3J5IjpbLTUwMzUxMjcxOCwtMTkzMDcxNjU1LDExNT
+czNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3
+MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMz
+UsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2
+MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MT
+U5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwx
+NjYyODIzNDYxXX0=
 -->
