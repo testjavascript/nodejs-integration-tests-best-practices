@@ -594,13 +594,19 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
-### ⚪️ 6. Test (at least) the 6 common integration scenarios
+### ⚪️ 6. Test (at least) the six common integration scenarios
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Do
+:white_check_mark: &nbsp; **Do:** Do 
 
-Both status and body, single assert, specific header, inline snapshots, see dealing with data
+• Basic  
+• Error/metric  
+• State  
+• Forbidden: Permissions/Security/Bad input  
+• Logic  
+• MQ  
+• Integrations
 
 <br/>
 
@@ -1692,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDg4NzMwNTUsNTc3NzIxNTE2LC0xOT
-MwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIx
-MTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MS
-wtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02
-MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MT
-MwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwx
-OTEwMTkwNTU4XX0=
+eyJoaXN0b3J5IjpbMzQ4ODU5ODkwLDU3NzcyMTUxNiwtMTkzMD
+cxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5
+OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLT
+E5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5
+MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMD
+A5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkx
+MDE5MDU1OF19
 -->
