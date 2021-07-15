@@ -591,7 +591,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-### ⚪️ 6. Test (at least) the six common integration outcomes
+### ⚪️ 6. Test (at least) the five common integration outcomes
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
 
@@ -606,8 +606,6 @@ beforeAll(async (done) => {
 **• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
 
 **• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This goes directly to an important user - The ops user (i.e. production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some error should lead to process crash and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
-
-**• Logic  -** 
 
 <br/>
 
@@ -1699,11 +1697,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzOTczMTkxLC0xMjE1NjAyNzkzLDYxOD
-AwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4
-LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MD
-gyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwt
-MTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NT
-QyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1
-ODFdfQ==
+eyJoaXN0b3J5IjpbMTA4ODQxNDMyNCwtMTIxNTYwMjc5Myw2MT
+gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
+OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
+A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
+LTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNz
+U0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0
+NTgxXX0=
 -->
