@@ -601,11 +601,9 @@ beforeAll(async (done) => {
 • Forbidden request - The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
 • A new state - After invoking some action, some data was probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are covered below in the 📗 section 'Dealing with data' 
 • External calls - After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it  the 📗 section 'Testing integrations' below
-• Message queues - The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. Like anything that goes outside to the user, whether directly or not, we should write a test. This is very similar to testing integrations only working with message queues is different technically. Not only this, 
-• Logic  
-
-
-• Error/metric  - 
+• Message queues - The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. Like anything that goes outside to the user, whether directly or not, we should write a test. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
+• ObservabilityErrors/metric  - Some things must be observable, like errors or remarkable business events
+• Logic  - 
 
 <br/>
 
@@ -1697,7 +1695,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjk5MjMwNTM2LDYxODAwNzA0LC0xODEyMT
+eyJoaXN0b3J5IjpbLTIyNDI5NTM2LDYxODAwNzA0LC0xODEyMT
 Q1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5Mzcs
 MTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MT
 UxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDEx
