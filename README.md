@@ -597,9 +597,7 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the six common flow's output. When your test is triggering some action (e.g.API call), a reaction is happening, something meaningful occurs and calls for testing. Note that our focus is on outcomes, things that are noticable from outside and might affect the user. This is not about checking the internals. These outcomes/reactions can be put in 6 categories:
 
-**• Response -** The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
-
-**• Forbidden request -** The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
+**• Response -** The test invokes an action (e.g. via API) and gets a response. It's now concerned with checking the response data correctness, schema and HTTP status
 
 **• A new state -** After invoking some action, some data was probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are covered below in the 📗 section 'Dealing with data' 
 **• External calls -** After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it  the 📗 section 'Testing integrations' below
@@ -1697,11 +1695,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4NTIxMDExNCwtMTIxNTYwMjc5Myw2MT
-gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
-OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
-A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYs
-LTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNz
-U0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0
-NTgxXX0=
+eyJoaXN0b3J5IjpbLTExNzEyMjY3OTcsLTEyMTU2MDI3OTMsNj
+E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
+MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
+YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
+LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMj
+c1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUw
+NDU4MV19
 -->
