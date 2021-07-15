@@ -470,7 +470,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It must hold the JWT secret so the tests can also use this to sign a valid token in 2 lines of code. Other option, is that the user grabbed a session key which is passed to the API under test. At this stage the code must approach the i
 
 Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNzc1MDU0MDYsOTU2MDgyODkwLC0xMT
-I5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1
-LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMT
-AyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3
-ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5ND
-g4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3
-NDg5MTU5MF19
+eyJoaXN0b3J5IjpbNTU5ODkxMzA0LDk1NjA4Mjg5MCwtMTEyOT
+E1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwx
+MTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMj
+kyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3
+MDM1LC0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OC
+wxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4
+OTE1OTBdfQ==
 -->
