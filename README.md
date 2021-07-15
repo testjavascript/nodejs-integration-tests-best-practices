@@ -384,11 +384,11 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** 
 
-Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, 
+Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Big flows, reality ta ❌;  ❌; 
+👀 &nbsp; **Alternatives:** Big flows, reality taught us ❌;  
 
 <br/>
 
@@ -1558,7 +1558,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1Njk0NjM4ODYsLTEwMjkyNzI0NTEsLT
+eyJoaXN0b3J5IjpbLTE2NDk4NjUyMDQsLTEwMjkyNzI0NTEsLT
 E3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4
 NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OT
 cyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2
