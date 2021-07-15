@@ -246,7 +246,135 @@ services:
 
 <br/><br/>
 
-## **Section: Test file setup**
+## **Section 2: Web server setup**
+
+<br/>
+
+### ⚪️ 1. The test and the backend should live within the same process
+
+🏷&nbsp; **Tags:** `#basic, #strategic`
+
+:white_check_mark: &nbsp; **Do:** The tests should start the webserver within the same process, not in a remote environment or container. Failing to do so will result in lose of critical features: A test won't be able to simulate various important events using test doubles (e.g. make some component throw an exception), customize environment variables, and make configuration changes. Also, the complexity of measuring code coverage and intercepting network calls will highly increase
+
+<br/>
+
+👀 &nbsp; **Alternatives:** one might spin the backend in Docker container or just a separate Node process. This configuration better resembles the production but it will lack critical testing features as mentioned above ❌; Some teams run integration tests against production-like cloud envrionment (see bullet 'Reuse tests against production-like environment), this is a valid technique for extra validation but will get too slow and limiting to rely on during develoment ❌; 
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const apiUnderTest = require('../api/start.js');
+
+beforeAll(async (done) => {
+  //Start the backend in the same process
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 2. Let the tests control when the server should start and shutoff
+
+🏷&nbsp; **Tags:** `#basic, #strategic`
+
+:white_check_mark: &nbsp; **Do:** The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initializtion logic and the test should control the timing
+
+<br/>
+
+👀 &nbsp; **Alternatives:** The web server initializtion code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternativelly, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();
+  done();
+  }
+
+afterAll(async (done) => {
+  await stopWebServer();
+  done();
+});
+
+
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 3. Specify a port in production, randomize in testing
+
+🏷&nbsp; **Tags:** `#intermediate`
+
+:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Running a single process will slow down the tests ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
+
+<br/>
+
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
+
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
+
+</details>
+
+<br/><br/>
+
+## **Section 3 : Test test anatomy (basics)**
 
 <br/>
 
@@ -375,8 +503,7 @@ beforeAll(async (done) => {
 <br/><br/>
 
 
-
-## **Section: Isolating from the external world**
+## **Section 4 : Isolating from the external world**
 
 <br/>
 
@@ -1429,11 +1556,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYyNzQ0OTIzMCwtMTAyOTI3MjQ1MSwtMT
-c0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0
-NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5Nz
-IsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYz
-MTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzND
-YxLDI5NDM4MTI4NCwtNjI5NjA1NzY5LDIwODIwODY3MTMsLTIx
-MDkzNDI5MF19
+eyJoaXN0b3J5IjpbNDU3NDA5ODcyLC0xMDI5MjcyNDUxLC0xNz
+QyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0
+NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3Mi
+wtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNTkwLC03NjMx
+Mjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2NjI4MjM0Nj
+EsMjk0MzgxMjg0LC02Mjk2MDU3NjksMjA4MjA4NjcxMywtMjEw
+OTM0MjkwXX0=
 -->
