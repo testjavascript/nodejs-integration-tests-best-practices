@@ -468,7 +468,7 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Provide real credentials or token, avoid security back doors
 
-🏷&nbsp; **Tags:** `#intermediate`
+🏷&nbsp; **Tags:** `#basics`
 
 :white_check_mark: &nbsp; **Do:** Do
 
@@ -506,13 +506,13 @@ beforeAll(async (done) => {
 
 </details>
 
-### ⚪️ 4. Provide real credentials or token, avoid security back doors
+### ⚪️ 4. Assert on the HTTP response object status and body
 
-🏷&nbsp; **Tags:** `#intermediate`
+🏷&nbsp; **Tags:** `#basics`
 
 :white_check_mark: &nbsp; **Do:** Do
 
-Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
+Both stai
 
 <br/>
 
@@ -1604,11 +1604,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwMzUxMjcxOCwtMTkzMDcxNjU1LDExNT
-czNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3
-MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMz
-UsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2
-MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MT
-U5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwx
-NjYyODIzNDYxXX0=
+eyJoaXN0b3J5IjpbNjc1MTIwOTUsLTE5MzA3MTY1NSwxMTU3Mz
+czMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0
+NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC
+0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3
+NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OT
+AsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2
+MjgyMzQ2MV19
 -->
