@@ -600,9 +600,10 @@ beforeAll(async (done) => {
 • Response - The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
 • Forbidden request - The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
 • A new state - After invoking some action, some data was probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are covered below in the 📗 section 'Dealing with data' 
-• External calls - After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it in the  the 📗 section 'Dealing
+• External calls - After invoking some action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge credit card. This call is not part of the internals rather an intrinsic part of the requiements. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic that you should spend some time on. We've covered it  the 📗 section 'Testing integrations' below
+• Message queues - The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message for all the other components to continue the flow. Like anything that foe
 • Logic  
-• MQ  
+
 
 • Error/metric  - 
 
@@ -1696,7 +1697,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTUxMjg2NjksNjE4MDA3MDQsLTE4MT
+eyJoaXN0b3J5IjpbLTE1MzQyNTcwNzcsNjE4MDA3MDQsLTE4MT
 IxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0Nzkz
 NywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMj
 kxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUs
