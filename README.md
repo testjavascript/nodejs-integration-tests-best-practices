@@ -380,7 +380,7 @@ beforeAll(async (done) => {
 
 ### ⚪️ 1. Stick to unit testing best practices
 
-🏷&nbsp; **Tags:** `#basic, #strategic`
+🏷&nbsp; **Tags:** `#basic, #strategic, #draft`
 
 :white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. By definition, the developer-experience is a 
 
@@ -411,7 +411,7 @@ beforeAll(async (done) => {
 
 ### ⚪️ 2. Approach the API under test using a library that is solely HTTP client (e.g. axios, not supertest)
 
-🏷&nbsp; **Tags:** `#basic`
+🏷&nbsp; **Tags:** `#basic, #draft`
 
 :white_check_mark: &nbsp; **Do:** The
 
@@ -468,7 +468,7 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Provide real credentials or token. If possible, avoid security back doors
 
-🏷&nbsp; **Tags:** `#basics`
+🏷&nbsp; **Tags:** `#basics, #draft`
 
 :white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It must hold the JWT secret so the tests can also use this to sign a valid token in 2 lines of code. Other option, is that the user grabbed a session key which is passed to the API under test. At this stage the code must approach the issuer which is another Microservice - The test can intercept this response and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
 
@@ -510,11 +510,11 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** When testing API responses, compare all the relevant parts of the response object  (e.g., status, some body fields, specific HTTP header) with the expected data (code example below). From the test reader perspective, looking at the desired response object as a single unit, tells the story much better than checking 5 fields using 5 different statements. All the popular test runners support partial object matching (e.g. Chai expect.to.deep.equal, Jest.ToMatchObject). This advice does not advocate testing many things in a single test - Often, a single conceptual topic demands checking multiple fields.
+:white_check_mark: &nbsp; **Do:** When testing API responses, compare all the relevant parts of the response object  (e.g., status, body fields, specific HTTP header) with an object that shows the expected data (code example below). From the test reader perspective, looking at the desired response object as a single unit, tells the story much better than checking 5 fields using 5 different statements. All the popular test runners support partial object matching (e.g. Chai expect.to.deep.equal, Jest.ToMatchObject). This advice does not advocate testing many things in a single test - Often, a single conceptual topic demands checking multiple fields.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion - If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are tested ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty gritty in other scnarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
+👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion - If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are being tested together ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty-gritty in other scenarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
 
 <br/>
 
@@ -1660,11 +1660,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTE0MjgxMjUsMTA2NzExNTcyMSwtMT
-MxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2
-MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LD
-EyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUx
-NjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNT
-c3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4
-OTE4NV19
+eyJoaXN0b3J5IjpbMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMT
+g1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAy
+NzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMj
+UzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYw
+NTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3Nz
+cyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkx
+ODVdfQ==
 -->
