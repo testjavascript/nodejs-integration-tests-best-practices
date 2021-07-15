@@ -608,40 +608,6 @@ beforeAll(async (done) => {
 
 **• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
 
-<br/>
-
-👀 &nbsp; **Alternatives:** Single assert per field ❌; snapshots ❌; 
-
-<br/>
-
-
-<details><summary>✏ <b>Code Examples</b></summary>
-
-```
-// api-under-test.js
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    connection = expressApp.listen(webServerPort, () => {// No port
-      resolve(expressApp);
-    });
-  });
-};
-
-// test.js
-beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
-  });
-
-
-```
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
-
-</details>
-
-<br/>
-
 <br/><br/>
 
 
@@ -1698,11 +1664,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMD
-g4NDE0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1
-NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMT
-E5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUx
-NjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNT
-czNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3
-MjQ1MV19
+eyJoaXN0b3J5IjpbMTA2NzExNTcyMSwtMTMxODUwMjIzNywxMT
+g1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNjE4MDA3
+MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMT
+M0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4
+OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOT
+MwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIx
+MTk4XX0=
 -->
