@@ -547,13 +547,19 @@ beforeAll(async (done) => {
 </details>
 
 <br/>
-### ⚪️ 5. Strructure 
+### ⚪️ 5. Structure tests by routes and stories
 
 🏷&nbsp; **Tags:** `#basics`
 
 :white_check_mark: &nbsp; **Do:** Do
 
-Both status and body, single assert, specific header, inline snapshots, see dealing with data
+See image, POSTMAN, correlate failure with routes, stories
+
+Apply some structure to your test suite so an occasional visitor could easily understand the requirements (tests are the best documentation) and the various scenarios that are being tested. A common method for this is by placing at least 2 'describe' blocks above your tests: the 1st is for the name of the unit under test and the 2nd for additional level of categorization like the scenario or custom categories (see code examples and print screen below). Doing so will also greatly improve the test reports: The reader will easily infer the tests categories, delve into the desired section and correlate failing tests. In addition, it will get much easier for a developer to navigate through the code of a suite with many tests. There are multiple alternative structures for test suite that you may consider like  [given-when-then](https://github.com/searls/jasmine-given)  and  [RITE](https://github.com/ericelliott/riteway)
+
+  
+
+❌  **Otherwise:**  When
 
 <br/>
 
@@ -1686,11 +1692,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUzNzM3ODc1MiwtMTkzMDcxNjU1LDExNT
-czNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3
-MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMz
-UsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2
-MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MT
-U5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwx
-NjYyODIzNDYxXX0=
+eyJoaXN0b3J5IjpbNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1Nz
+M3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMDI5Mjcy
+NDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNS
+wtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYw
+NzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNT
+kwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2
+NjI4MjM0NjFdfQ==
 -->
