@@ -510,7 +510,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** When testing API responses, compare all the relevant parts of the response object  (e.g. status, some body fields, with the expected payload
+:white_check_mark: &nbsp; **Do:** When testing API responses, compare all the relevant parts of the response object  (e.g., status, some body fields, specific HTTP header) with the expected data (code example below). From the test reader perspective, looking at the desired response object as a single unit, tells the story much better than reading
 
 Both status and body, single assert, specific header, inline snapshots, see dealing with data
 
@@ -1664,7 +1664,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTEyNDk5NzQsMTA2NzExNTcyMSwtMT
+eyJoaXN0b3J5IjpbLTE4ODE5Mzk5NzksMTA2NzExNTcyMSwtMT
 MxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2
 MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LD
 EyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUx
