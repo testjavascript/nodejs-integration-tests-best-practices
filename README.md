@@ -553,9 +553,9 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. For example describe('/API'), describe('POST /orders'). See full example below.
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. For example describe('/API'), describe('POST /orders'). See full example below. This view is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. 
 
-See image, POSTMAN, correlate failure with routes, stories, report
+See image, POSTMAN, correlate failure with routes, stories, report, OpenAPI
 
 Apply some structure to your test suite so an occasional visitor could easily understand the requirements (tests are the best documentation) and the various scenarios that are being tested. A common method for this is by placing at least 2 'describe' blocks above your tests: the 1st is for the name of the unit under test and the 2nd for additional level of categorization like the scenario or custom categories (see code examples and print screen below). Doing so will also greatly improve the test reports: The reader will easily infer the tests categories, delve into the desired section and correlate failing tests. In addition, it will get much easier for a developer to navigate through the code of a suite with many tests. There are multiple alternative structures for test suite that you may consider like  [given-when-then](https://github.com/searls/jasmine-given)  and  [RITE](https://github.com/ericelliott/riteway)
 
@@ -1700,11 +1700,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0OD
-UxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMs
-NTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNz
-U4OTE4NSwtMjc1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4
-MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3My
-wtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4
-NDM2MDgxXX0=
+eyJoaXN0b3J5IjpbMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOT
+UyNzEwNTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4
+LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3Mz
+czMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0
+NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC
+0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3
+NTk0OTcyXX0=
 -->
