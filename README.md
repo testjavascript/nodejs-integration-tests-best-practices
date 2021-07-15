@@ -599,7 +599,7 @@ beforeAll(async (done) => {
 
 • Response - The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
 • Forbidden request - The test simulates an invalid call (e.g., Bad schema, not auth token) and asserts that nothing harfmul happened
-• A new state  
+• A new state - After invoking some action, some data was probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly, testers check only the response and not whether the new data
 
 
 • Logic  
@@ -1697,11 +1697,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwMzE0NTQ3OCw2MTgwMDcwNCwtMTgxMj
-E0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3
-LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOT
-E1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwx
-MTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMj
-kyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3
-MDM1XX0=
+eyJoaXN0b3J5IjpbMjA4NTIzNzUzLDYxODAwNzA0LC0xODEyMT
+Q1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5Mzcs
+MTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MT
+UxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDEx
+NTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOT
+I3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcw
+MzVdfQ==
 -->
