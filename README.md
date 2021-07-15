@@ -382,9 +382,9 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. 
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. By definition, the developer-experience is a 
 
-Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, fast, DX
+Ideas: Not E2E tests rather big unit, when-then, AAA, small, test doubles, my repo, single story, fast, DX. Adoption, 10 seconds
 
 <br/>
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ1Nzg2MDY5Miw1Nzc3MjE1MTYsLTE5Mz
-A3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjEx
-OTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC
-0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYy
-OTE1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMz
-AwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5
-MTAxOTA1NThdfQ==
+eyJoaXN0b3J5IjpbNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMD
+cxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5
+OCwtMTAyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLT
+E5NjA3ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5
+MTU5NDg4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMD
+A5LDM3NDg5MTU5MCwtNzYzMTI4NTQ2LDEyMjAxNjc5NTUsMTkx
+MDE5MDU1OF19
 -->
