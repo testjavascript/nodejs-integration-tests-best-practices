@@ -553,17 +553,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. For example describe('/API'), describe('POST /orders'). See full example below. This view is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. Most if not all developers would know to map a test failure in a specific routewith the correspoding code. Sometimes there are many scenario under each route, in this case consider creating another nested category (i.e. describe block)
-
- report, OpenAPI
-
-Apply some structure to your test suite so an occasional visitor could easily understand the requirements (tests are the best documentation) and the various scenarios that are being tested. A common method for this is by placing at least 2 'describe' blocks above your tests: the 1st is for the name of the unit under test and the 2nd for additional level of categorization like the scenario or custom categories (see code examples and print screen below). Doing so will also greatly improve the test reports: The reader will easily infer the tests categories, delve into the desired section and correlate failing tests. In addition, it will get much easier for a developer to navigate through the code of a suite with many tests. There are multiple alternative structures for test suite that you may consider like  [given-when-then](https://github.com/searls/jasmine-given)  and  [RITE](https://github.com/ericelliott/riteway)
-
-  
-
-❌  **Otherwise:**  When
-
-<br/>
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. For example describe('/API'), describe('POST /orders'). See full example below. This view is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. Most if not all developers would know to map a test failure in a specific routewith the correspoding code. Sometimes there are many scenario under each route, in this case consider creating another nested category (i.e. describe block) that represent a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
 
 👀 &nbsp; **Alternatives:** Single assert per field ❌; snapshots ❌; 
 
@@ -1700,7 +1690,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxNjcwNjk3NCwxMjUzODA2MjM4LDEzND
+eyJoaXN0b3J5IjpbMTc3OTUzODE3NywxMjUzODA2MjM4LDEzND
 MxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkw
 LC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMD
 cxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5
