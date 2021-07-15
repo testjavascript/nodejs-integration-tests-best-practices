@@ -556,7 +556,7 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
 
-
+![Test report by route](/graphics/test-report-by-route.png)
 
 
 👀 &nbsp; **Alternatives:** Organize the tests per topic or user stories title - This will also serve as great documentation for the viewer. Mapping between failures and the related code that should get explored might a little harder ; 
@@ -1693,11 +1693,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY3NTMzOTcyOCwxOTg3OTUwMzYsMTI1Mz
-gwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUw
-LDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3Mj
-E1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1
-LC0yNzU0MjExOTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNT
-Q3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5
-MTY4MjhdfQ==
+eyJoaXN0b3J5IjpbLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
+M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
+MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3Nz
+IxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4
+NSwtMjc1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LD
+U0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5
+OTE2ODI4XX0=
 -->
