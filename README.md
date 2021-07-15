@@ -595,9 +595,9 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-:white_check_mark: &nbsp; **Do:** When planning your tests, consider all the six common scenario categories. When your APO
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider all the six common scenario categories. When your test approaches the API or message queue, six different type of things might happen and might be an opprtunity for a valuable test. In all of these categories, the aim is to check the outcome of the component and not the internals. For moHere are the 6 testing categories
 
-• Response
+• Response - 
 • Error/metric  
 • State  
 • Forbidden: Permissions/Security/Bad input  
@@ -1695,7 +1695,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2NzUzMTUxNywtMTgxMjE0NTYxMywxOT
+eyJoaXN0b3J5IjpbLTM1NzI2NjY3NiwtMTgxMjE0NTYxMywxOT
 g3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEw
 NTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMD
 kxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1
