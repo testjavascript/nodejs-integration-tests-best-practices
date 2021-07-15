@@ -512,11 +512,11 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** Do
 
-Both stai
+Both status and body, single assert, specific header, inline snapshots, see dealing with data
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Running a single process will slow down the tests ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
+👀 &nbsp; **Alternatives:** Single assert per field ❌; snapshots ❌; 
 
 <br/>
 
@@ -1604,11 +1604,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjc1MTIwOTUsLTE5MzA3MTY1NSwxMTU3Mz
-czMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjExOTgsLTEwMjkyNzI0
-NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC0xOTYwNzg3MDM1LC
-0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYyOTE1OTQ4OCwxNjA3
-NTk0OTcyLC05MDg0MzYwODEsMTY4MDUxMzAwOSwzNzQ4OTE1OT
-AsLTc2MzEyODU0NiwxMjIwMTY3OTU1LDE5MTAxOTA1NTgsMTY2
-MjgyMzQ2MV19
+eyJoaXN0b3J5IjpbMzYyMTE2Nzk5LC0xOTMwNzE2NTUsMTE1Nz
+M3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMDI5Mjcy
+NDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNS
+wtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0ODgsMTYw
+NzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0ODkxNT
+kwLC03NjMxMjg1NDYsMTIyMDE2Nzk1NSwxOTEwMTkwNTU4LDE2
+NjI4MjM0NjFdfQ==
 -->
