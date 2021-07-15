@@ -597,10 +597,11 @@ beforeAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** When planning your tests, consider all the six common scenario categories. When your test approaches the API or message queue, six different type of things might happen and might be an opprtunity for a valuable test. In all of these categories, the aim is to check the outcome of the component and not the internals. For most of these categories, we have written a dedicated section below. Here are the 6 testing categories
 
-• Response - The test is concerned with response correctness
-• Error/metric  
+• Response - The test is concerned with response schema correctness. For example, that it contains all the mandatory field and the right HTTP status (see about logic below)
+• Forbidden request - The test f 
+• Error/metric  - 
 • State  
-• Forbidden: Permissions/Security/Bad input  
+
 • Logic  
 • MQ  
 • Integrations
@@ -1695,11 +1696,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nz
-k1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4
-LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MDA5MT
-cwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2NSwt
-MTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNz
-QyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0
-NjY3M119
+eyJoaXN0b3J5IjpbNjA2NTkxODM3LDYxODAwNzA0LC0xODEyMT
+Q1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5Mzcs
+MTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MT
+UxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDEx
+NTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMTAyOT
+I3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcw
+MzVdfQ==
 -->
