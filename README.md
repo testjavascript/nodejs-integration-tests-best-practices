@@ -553,7 +553,8 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. Eventually this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See full example below. This view is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. Most if not all developers would know to map a test failure in a specific route with the correspoding code. Sometimes there are many scenario under each route, in this case consider creating another nested category (i.e. describe block) that represent a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. Eventually this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See full example below. This common view of API end-points is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. Most if not all developers would know to map a test failure in a specific route with the correspoding code. A newly onboarded developer that is not familiar with the code, would benefit from understanding the various routes and then easily start
+Sometimes there are many scenario under each route, in this case consider creating another nested category (i.e. describe block) that represent a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
 
 👀 &nbsp; **Alternatives:** Organize the tests per topic or user stories title -  ❌; snapshots ❌; 
 
@@ -1690,7 +1691,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzY2NzgxNDYsMTI1MzgwNjIzOCwxMz
+eyJoaXN0b3J5IjpbLTE3ODYxMjIzNTcsMTI1MzgwNjIzOCwxMz
 QzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1NjA4Mjg5
 MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5Mz
 A3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjEx
