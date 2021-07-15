@@ -470,7 +470,9 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
+:white_check_mark: &nbsp; **Do:** Do
+
+Ideas - JWT, user pass, user microservice verification, 
 
 <br/>
 
@@ -1560,11 +1562,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMj
-c1NDIxMTk4LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUw
-NDU4MSwtMTk2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2OD
-I4LC02MjkxNTk0ODgsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2
-ODA1MTMwMDksMzc0ODkxNTkwLC03NjMxMjg1NDYsMTIyMDE2Nz
-k1NSwxOTEwMTkwNTU4LDE2NjI4MjM0NjEsMjk0MzgxMjg0LC02
-Mjk2MDU3NjldfQ==
+eyJoaXN0b3J5IjpbMTAxNzkyMzY3LDExNTczNzMwNjUsLTE5Mj
+c1ODkxODUsLTI3NTQyMTE5OCwtMTAyOTI3MjQ1MSwtMTc0Mjkw
+ODI0Niw1NDc1MDQ1ODEsLTE5NjA3ODcwMzUsLTE4MTg0NDY2Nz
+MsLTEwOTkxNjgyOCwtNjI5MTU5NDg4LDE2MDc1OTQ5NzIsLTkw
+ODQzNjA4MSwxNjgwNTEzMDA5LDM3NDg5MTU5MCwtNzYzMTI4NT
+Q2LDEyMjAxNjc5NTUsMTkxMDE5MDU1OCwxNjYyODIzNDYxLDI5
+NDM4MTI4NF19
 -->
