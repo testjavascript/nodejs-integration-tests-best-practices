@@ -553,10 +553,9 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. Eventually this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See full example below. This common view of API end-points is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. Most if not all developers would know to map a test failure in a specific route with the correspoding code. A newly onboarded developer that is not familiar with the code, would benefit from understanding the various routes and then easily start
-Sometimes there are many scenario under each route, in this case consider creating another nested category (i.e. describe block) that represent a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks that represent API routes. Eventually this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See full example below. This common view of API end-points is likely to look familiar and appeal to the occassional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs and others. Most if not all developers would know to map a test failure in a specific route with the correspoding code. A newly onboarded developer that is not familiar with the code, would benefit from understanding the various routes and then easily start exploring the corresponding controller code. Sometimes there are many scenario/cases under each route, in this case consider creating another nested category (i.e. describe block) that represent a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
 
-👀 &nbsp; **Alternatives:** Organize the tests per topic or user stories title -  ❌; snapshots ❌; 
+👀 &nbsp; **Alternatives:** Organize the tests per topic or user stories title - This will also serve as a great documentation for the viewer. Mapping between failures and related code to explore might a little harder  ❌; snapshots ❌; 
 
 <br/>
 
@@ -1691,11 +1690,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODYxMjIzNTcsMTI1MzgwNjIzOCwxMz
-QzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1NjA4Mjg5
-MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTYsLTE5Mz
-A3MTY1NSwxMTU3MzczMDY1LC0xOTI3NTg5MTg1LC0yNzU0MjEx
-OTgsLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNTQ3NTA0NTgxLC
-0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5MTY4MjgsLTYy
-OTE1OTQ4OF19
+eyJoaXN0b3J5IjpbMTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0Mz
+E0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAs
+LTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNz
+E2NTUsMTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4
+LC0xMDI5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMT
+k2MDc4NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02Mjkx
+NTk0ODhdfQ==
 -->
