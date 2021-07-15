@@ -470,7 +470,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: 
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It
 
 Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
@@ -1698,11 +1698,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0Mjg0MTYwOSw5NTYwODI4OTAsLTExMj
-kxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUs
-MTE1NzM3MzA2NSwtMTkyNzU4OTE4NSwtMjc1NDIxMTk4LC0xMD
-I5MjcyNDUxLC0xNzQyOTA4MjQ2LDU0NzUwNDU4MSwtMTk2MDc4
-NzAzNSwtMTgxODQ0NjY3MywtMTA5OTE2ODI4LC02MjkxNTk0OD
-gsMTYwNzU5NDk3MiwtOTA4NDM2MDgxLDE2ODA1MTMwMDksMzc0
-ODkxNTkwXX0=
+eyJoaXN0b3J5IjpbLTExNzc1MDU0MDYsOTU2MDgyODkwLC0xMT
+I5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1
+LDExNTczNzMwNjUsLTE5Mjc1ODkxODUsLTI3NTQyMTE5OCwtMT
+AyOTI3MjQ1MSwtMTc0MjkwODI0Niw1NDc1MDQ1ODEsLTE5NjA3
+ODcwMzUsLTE4MTg0NDY2NzMsLTEwOTkxNjgyOCwtNjI5MTU5ND
+g4LDE2MDc1OTQ5NzIsLTkwODQzNjA4MSwxNjgwNTEzMDA5LDM3
+NDg5MTU5MF19
 -->
