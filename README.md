@@ -382,7 +382,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. Half of the idea behind this technique is not to loose the great perks of unit tests (the second half is to cover more ground). In wide-integration and E2E tests the developer-experience is sacrified to gain
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. Half of the idea behind this technique is not to loose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroid and not
 
 testingBy definition, the developer-experience is a 
 
@@ -1662,11 +1662,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2Nzk2OTA2MDIsMTIwODQxMTU5LDEwNj
-cxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0
-MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLD
-E5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3
-MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNT
-AwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMw
-NjVdfQ==
+eyJoaXN0b3J5IjpbLTI1OTE4NDQ5MCwxMjA4NDExNTksMTA2Nz
+ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
+MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
+k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
+MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
+A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
+NV19
 -->
