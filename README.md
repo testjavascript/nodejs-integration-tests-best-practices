@@ -468,7 +468,7 @@ afterAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Mock the authentication middleware -  ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
+👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it to authorize the request - While not an aweful option, it means that the 'real' authorization code is not part of the test (becuase we stubbed it) ❌; Some are holding an environement variable or config key that instructs the system not to authorize requests (e.g. IS_TESTING=TRUE) - THis
 
 <br/>
 
@@ -1652,11 +1652,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTAyMzQ1NDEsOTY5ODM5ODQ2LC04MD
-MxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIy
-MzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLD
-YxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2
-MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOT
-U2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUx
-Nl19
+eyJoaXN0b3J5IjpbLTc5NDcyMTc4OCw5Njk4Mzk4NDYsLTgwMz
+EzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMjIz
+NywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNj
+E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
+MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
+YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
+XX0=
 -->
