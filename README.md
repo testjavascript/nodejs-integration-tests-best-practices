@@ -405,11 +405,11 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Approach the API under test using a library that is solely HTTP client (e.g. axios, not supertest)
+### ⚪️ 2. Approach the API using a library that is a pure HTTP client (e.g. axios, not supertest)
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark: &nbsp; **Do:** The
+:white_check_mark: &nbsp; **Do:** Call the backend under test's API using your preferred HTTP client library. 
 
 Ideas: Popular, not bounded, like production, get instance, eco-system, 
 
@@ -1656,11 +1656,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTY5ODM5ODQ2LC04MDMxMzY1MjcsMTIwOD
-QxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4
-NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xOD
-EyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5
-MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMT
-I5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1
+eyJoaXN0b3J5IjpbMjAxOTMxMjk5Myw5Njk4Mzk4NDYsLTgwMz
+EzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMjIz
+NywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNj
+E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
+MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
+YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
 XX0=
 -->
