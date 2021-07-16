@@ -464,11 +464,16 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are two main authrization styles: (A) The webserver is expecting a signed token - Since it must hold the JWT secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way the test act exactly like the user. (B) Some kind of credntials/claim is passed to the API, and it must verifies those against the claim provider (i.e., HTTP call to external component to authorize the user). The test can intercept this call and return a valid response (e.g., using nock or any other HTTP interceptor). Since the 3rd party service is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested. (C)  Some kind of session-based key is passed to the API which then verifies against the session store. In this case, add the key to the store before the test(s) - The authentication will pass.
+
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism as production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider (i.e., user management service) to authorize the request. Like any other testing design decision, one should strive to cover the same code that real users in production are stretching. In many authentication scenarios, this is possible. Generally speaking, there are three main types of authorization flows: (A) The webserver is expecting a signed token like JWT - Since the code anyway must hold the secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way, the test act precisely like the client by passing a valid token. (B) Some credentials/claims are passed to the API which must verify those against the claim provider (i.e., HTTP call to an external user management component). The test can intercept this call on the HTTP-level and return a valid response. For example, by using interceptors tools like [nock](https://www.npmjs.com/package/nock). Since the 3rd party service is outside the scope of the tests, the fact that we faked the response does not matter. The entire backend under test is tested. (C) Session-based flow where a session-key is passed to the API verifying against the session store. In this case, add the key to the store before the test(s) - The authentication will pass
+
+  
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it to authorize the request - While not an aweful option, it means that the 'real' authorization code is not part of the test (becuase we stubbed it) ❌; Some are holding an environement variable or config key that instructs the system not to authorize requests (e.g. IS_TESTING=TRUE) - This of course a dangerous option as it might leak to production
+  
+
+👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it into authorizing the request - While not an awful option, it means that the 'real' authorization code is not part of the test (because the test stubbed /replaced it) ❌; Some are holding an environment variable or config key that instructs the system not to authorize requests (e.g., IS_TESTING=TRUE) - This, of course, is a dangerous option as it might leak to production
 
 <br/>
 
@@ -1652,11 +1657,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5Nzk1MDg5LDk2OTgzOTg0NiwtODAzMT
-M2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0xMzE4NTAyMjM3
-LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNTYwMjc5Myw2MT
-gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
-OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
-A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTZd
-fQ==
+eyJoaXN0b3J5IjpbMTIxODY3NjI2MiwtMTk3OTUwODksOTY5OD
+M5ODQ2LC04MDMxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEs
+LTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMj
+E1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAz
+NiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5ND
+g1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkz
+XX0=
 -->
