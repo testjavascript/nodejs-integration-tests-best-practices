@@ -104,21 +104,38 @@ describe("/api", () => {
   describe("DELETE /order", () => {
     test("When deleting an existing order, Then should get a successful message", async () => {
       // Arrange
-      const orderToAdd = {
+      const orderToDelete = {
         userId: 1,
         productId: 2,
         externalIdentifier: `id-${getShortUnique()}`, //unique value
       };
       // ️️️✅ Best Practice: Each test acts on its own record. Avoid relying on records from previous tests
       const {
-        data: { id: existingOrderId },
-      } = await axiosAPIClient.post("/order", orderToAdd);
+        data: { id: orderToDeleteId },
+      } = await axiosAPIClient.post("/order", orderToDelete);
+
+      // ✅ Best Practice: Create another order to make sure the delete request deletes only the correct record
+      const anotherOrder = {
+        userId: 1,
+        productId: 2,
+        externalIdentifier: `id-${getShortUnique()}`, //unique value
+      };
+
+      nock("http://localhost/user/").get(`/1`).reply(200, {
+        id: 1,
+        name: "John",
+      });
+      const {
+        data: { id: anotherOrderId },
+      } = await axiosAPIClient.post("/order", anotherOrder);
 
       // Act
-      const receivedResponse = await axiosAPIClient.get(`/order/${existingOrderId}`);
+      const deleteResponse = await axiosAPIClient.delete(`/order/${orderToDeleteId}`);
+      const getOrderResponse = await axiosAPIClient.get(`/order/${anotherOrderId}`);
 
       // Assert
-      expect(receivedResponse.status).toBe(200);
+      expect(deleteResponse.status).toBe(204);
+      expect(getOrderResponse.status).toBe(200);
     });
   });
 });

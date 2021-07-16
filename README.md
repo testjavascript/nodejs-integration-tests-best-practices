@@ -981,8 +981,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g., new records) -  Assert that the new state data is satisf
-ory **using the REST API** when applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, but also the test might miss a bug in the API that returns the data (i.e., DB data is correct, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outermost layer that does expose this info like controller, service, facade, or repository. The more external this layer is, the more bugs are caught, and the coupling to the internals` noise is minimized.
+:white_check_mark:  **Do:**  After invoking the route under test, a new state is likely to exist (e.g., new records) -  Assert that the new state data is satisfactory **using the REST API** when applicable. By approaching through the API, the test simulates the most important flow: The user flow. What's wrong with approaching the DB directly? Not only it goes through a different journey than the user, but also the test might miss a bug in the API that returns the data (i.e., DB data is correct, the query code hides a bug). Sometimes, such REST API does not exist - In this case, use the outermost layer that does expose this info like controller, service, facade, or repository. The more external this layer is, the more bugs are caught, and the coupling to the internals` noise is minimized.
 
 This design decision does not come without a caveat. The test invokes much more code than needed: Tests might fail because of failures in code not being directly tested. Our philosophy is to stick to user flows under realistic conditions at the cost of a slight increase in developer's sweat. 
 
@@ -992,25 +991,39 @@ This design decision does not come without a caveat. The test invokes much more 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
+```javascript
+test('When adding a new valid order, Then should be able to retrieve it', async () => {
+  //Arrange
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+  //Act
+  const {
+    data: { id: addedOrderId },
+  } = await axiosAPIClient.post('/order', orderToAdd);
+
+  //Assert by fetch the new order, and not only by the POST response
+  const { data, status } = await axiosAPIClient.get(
+    `/order/${addedOrderId}`
+  );
+
+  expect({
+    data,
+    status,
+  }).toMatchObject({
+    status: 200,
+    data: {
+      id: addedOrderId,
+      userId: 1,
+      productId: 2,
+    },
+  });
+});
+```
 
 </details>
 
@@ -1034,24 +1047,11 @@ Who wins? There's no clear cut here. Both have their strength but also unpleasan
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here]()
   
 
 </details>
@@ -1071,24 +1071,29 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+// Adding a short unique suffix to the externalIdentifier enable the writer to ignore other tests
+// and the need to clean the db after each test
+test('When adding a new valid order, Then should get back 200 response', async () => {
+  //Arrange
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+    externalIdentifier: `id-${getShortUnique()}`, //unique value
+  };
+
+  //Act
+  const receivedAPIResponse = await axiosAPIClient.post(
+    '/order',
+    orderToAdd
+  );
+  ...
+});
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/data-isolation.test.js#L49-L63)
   
 
 </details>
@@ -1108,24 +1113,22 @@ When it is impossible to assert for specific data, check for mandatory field exi
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+test('When adding a new valid order, Then should get back approval with 200 response', async () => {
+  ...
+  //Assert
+  expect(receivedAPIResponse).toMatchObject({
+    status: 200,
+    data: {
+      id: expect.any(Number), // Any number satisfies this test
+      mode: 'approved',
+    },
+  });
+});
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L107-L113)
   
 
 </details>
@@ -1145,25 +1148,19 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+// Create the DB schema. Done once regardless of the amount of tests
+module.exports = async () => {
+  console.time('global-setup');
+  ...
+  await npmCommandAsPromise(['db:migrate']);
+  ...
+  // 👍🏼 We're ready
+  console.timeEnd('global-setup');
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L31)
 
 </details>
 
@@ -1183,24 +1180,46 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+    test("When deleting an existing order, Then should get a successful message", async () => {
+      // Arrange
+      const orderToDelete = {
+        userId: 1,
+        productId: 2,
+        externalIdentifier: `id-${getShortUnique()}`, //unique value
+      };
+      const {
+        data: { id: orderToDeleteId },
+      } = await axiosAPIClient.post("/order", orderToDelete);
+
+      // Create another order to make sure the delete request deletes only the correct record
+      const anotherOrder = {
+        userId: 1,
+        productId: 2,
+        externalIdentifier: `id-${getShortUnique()}`, //unique value
+      };
+
+      nock("http://localhost/user/").get(`/1`).reply(200, {
+        id: 1,
+        name: "John",
+      });
+      const {
+        data: { id: anotherOrderId },
+      } = await axiosAPIClient.post("/order", anotherOrder);
+
+      // Act
+      const deleteResponse = await axiosAPIClient.delete(`/order/${orderToDeleteId}`);
+      const getOrderResponse = await axiosAPIClient.get(`/order/${anotherOrderId}`);
+
+      // Assert
+      expect(deleteResponse.status).toBe(204);
+      // Assert anotherOrder still exists
+      expect(getOrderResponse.status).toBe(200);
+    });
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/data-isolation.test.js#L105-L139)
   
 
 </details>
