@@ -387,7 +387,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests? - Some unit tests are needed to cover algorhitms and areas with heavy logic (if exists). However, unit tests can not serve as the default technique. It is by-design focused on 'unit', parts, a fake system isolation and not on the real user
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests? - Some unit tests are needed to cover algorhitms and areas with heavy logic (if exists). However, unit tests can not serve as the default technique. It is by-design focused on 'unit', parts, a fake system isolation and not on the real thing. When our main tests cover something that doesn't resemble production - The deployment confidence is decreased. Kent Beck, 'father of TDD' wrote once 
 
 <br/>
 
@@ -1659,11 +1659,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3NjQxNzc1MiwxMjA4NDExNTksMTA2Nz
-ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
-MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
-k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
-MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
-A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
-NV19
+eyJoaXN0b3J5IjpbNzM4OTkwMzc4LDEyMDg0MTE1OSwxMDY3MT
+E1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4ODQxNDMy
+NCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOT
+g3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEw
+NTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMD
+kxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1
+XX0=
 -->
