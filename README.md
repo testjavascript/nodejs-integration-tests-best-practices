@@ -382,11 +382,12 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. Half of the idea behind this technique is not to loose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroid, not as small E2E tests. The biggest  threat to testing is abondement. If the developer experience is not great, there are chances that the team won't use it, or fake like their using it. Code-wise, keep the tests very small (good rule of thumb: not longer than 7 statements), the runtime should hopefully last few seconds and really strive to be below 10 seconds, keep a consistent naming pattern like 'when...   then...', use the AAA pattern to reach a very consistent structure, cover a single interaction and not a big flow. More explanations on this and other useful practices can be found in our [sister guid here](https://github.com/goldbergyoni/javascript-testing-best-practices). 
+
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices used for unit tests. Half of the idea behind this technique is not to lose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroids, not as small E2E tests. Why? The biggest threat to testing is abandonment. If the developer experience is not great, there are chances that the team won't use it, or fake it like their using it. Code-wise, keep the tests very small (a good rule of thumb: no longer than 7 statements), the runtime should hopefully last few seconds and strive to be below 10 seconds, keep a consistent naming pattern like 'when...   then...', use the AAA pattern to reach a very consistent structure, cover a single interaction and not a big flow. More explanations on this and other useful practices can be found in our [sister guid here](https://github.com/goldbergyoni/javascript-testing-best-practices). 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of thes tests are needed. It can not serve as the canonical test technique that developers write frequently during coding  ❌;
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests?
 
 <br/>
 
@@ -1658,11 +1659,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNjAzNDkzNTcsMTIwODQxMTU5LDEwNj
-cxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0
-MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLD
-E5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3
-MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNT
-AwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMw
-NjVdfQ==
+eyJoaXN0b3J5IjpbLTg0NDAwOTYxNywxMjA4NDExNTksMTA2Nz
+ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
+MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
+k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
+MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
+A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
+NV19
 -->
