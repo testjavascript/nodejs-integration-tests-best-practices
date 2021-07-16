@@ -55,7 +55,198 @@ In this folder you may find a complete example of real-world like application, a
 
 <br/>
 
-## **Section: Web server setup**
+
+## **Section 1: Infrastructure and database setup**
+
+<br/>
+
+### ⚪️ 1. Use Docker-Compose to host the database and other infrastructure
+
+🏷&nbsp; **Tags:** `#strategic`
+
+:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can't be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers
+
+
+<br/>
+
+👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kuberentes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;  
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+version: "3.6"
+services:
+  db:
+    image: postgres:11
+    command: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    ports:
+      - "5432:5432"
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 2. Start docker-compose using code in the global setup process
+
+🏷&nbsp; **Tags:** `#strategic`
+
+:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures)  using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
+
+<br/>
+
+
+👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kuberentes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;  
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+//Put global setup code here
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+
+### ⚪️ 3. Shutoff the infrastructure only in the CI environment
+
+🏷&nbsp; **Tags:** `#performance`
+
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers' machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
+
+<br/>
+
+
+👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continous-testing experience ❌;   
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+// Put teardown code that shows how we check for CI
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 4. Optimize your real DB for testing, Don't fake it
+
+🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
+
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
+<br/>
+
+👀 &nbsp; **Alternatives:** 
+* Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
+* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+
+
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+#### Postgres
+```
+//docker-compose file
+version: "3.6"
+services:
+  db:
+    image: postgres:13
+    container_name: 'postgres-for-testing'
+    command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
+    tmpfs: /var/lib/postgresql/data
+    ...
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 5. Store test data in RAM folder
+
+🏷&nbsp; **Tags:** `#performance, #draft`
+
+:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+//docker-compose file
+version: "3.6"
+services:
+  db:
+    image: postgres:13
+    container_name: 'postgres-for-testing'
+    tmpfs: /var/lib/postgresql/data
+    ...
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
+
+🏷&nbsp; **Tags:** `#performance`
+
+:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that build the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌;  Some migration frameworks (e.g. [umzug which is also used by Sequelize](https://github.com/sequelize/umzug)) allow checking for newer version by looking at local files which is way faster, this is a viable option but not applicable in many ORMs ✅; You may store locally the last migration check and execute the migration command only if the migration folder changed since then ✅;
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+//docker-compose file
+```
+// Show global-setup conditional migration command
+//Show npm script
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
+)
+  
+
+</details>
+
+<br/><br/>
+
+## **Section 2: Web server setup**
 
 <br/>
 
@@ -183,11 +374,104 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 4. One more thing here
+## **Section 3 : Test test anatomy (basics)**
 
-🏷&nbsp; **Tags:** `#intermediate, #draft`
+<br/>
 
-:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
+### ⚪️ 1. Stick to unit testing best practices, aim for great developer-experience
+
+🏷&nbsp; **Tags:** `#basic, #strategic`
+
+
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices used for unit tests. Half of the idea behind this technique is not to lose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroids, not as small E2E tests. Why? The biggest threat to testing is abandonment. If the developer experience is not great, there are chances that the team won't use it, or fake it like their using it. Code-wise, keep the tests very small (a good rule of thumb: no longer than 7 statements), the runtime should hopefully last few seconds and strive to be below 10 seconds, keep a consistent naming pattern like 'when...   then...', use the AAA pattern to reach a very consistent structure, cover a single interaction and not a big flow. More explanations on this and other useful practices can be found in our [sister guid here](https://github.com/goldbergyoni/javascript-testing-best-practices). 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests? - Some unit tests are needed to cover algorhitms and areas with heavy logic (if exists). However, unit tests can not serve as the default technique. It is by-design focused on 'unit', parts, a fake system isolation and not on the real thing. When our main tests cover something that doesn't resemble production - The deployment confidence is decreased. Kent Beck, 'father of TDD', wrote once "Programmer (aka “unit” tests). Give up tests being predictive and inspiring confidene for being writable, fast, and specific."
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const apiUnderTest = require('../api/start.js');
+
+beforeAll(async (done) => {
+  //Start the backend in the same process
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 2. Approach the API under test using a library that is solely HTTP client (e.g. axios, not supertest)
+
+🏷&nbsp; **Tags:** `#basic, #draft`
+
+:white_check_mark: &nbsp; **Do:** The
+
+Ideas: Popular, not bounded, like production, get instance, eco-system, 
+
+<br/>
+
+👀 &nbsp; **Alternatives:** Supertest ❌; Fetch, etc ❌
+
+<br/>
+
+<details><summary>✏ <b>Code Examples</b></summary>
+
+```
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    defineRoutes(expressApp);
+    connection = expressApp.listen(() => {
+      resolve(expressApp);
+    });
+  });
+}
+
+const stopWebServer = async () => {
+  return new Promise((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    })
+  });
+}
+
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();
+  done();
+  }
+
+afterAll(async (done) => {
+  await stopWebServer();
+  done();
+});
+
+
+```
+
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+)
+  
+
+</details>
+
+<br/><br/>
+
+### ⚪️ 3. Provide real credentials or token. If possible, avoid security back doors
+
+🏷&nbsp; **Tags:** `#basics, #draft`
+
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It must hold the JWT secret so the tests can also use this to sign a valid token in 2 lines of code. Other option, is that the user grabbed a session key which is passed to the API under test. At this stage the code must approach the issuer which is another Microservice - The test can intercept this response and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
+
+Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
 
 <br/>
 
@@ -221,241 +505,108 @@ beforeAll(async (done) => {
 
 </details>
 
-<br/><br/>
+### ⚪️ 4. Assert on the entire HTTP response object, not on every field
 
+🏷&nbsp; **Tags:** `#basics`
 
-## **Section: Database setup**
-
-<br/>
-
-### ⚪️ 1. Use Docker-Compose to host the database and other infrastructure
-
-🏷&nbsp; **Tags:** `#strategic`
-
-:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers.
-
+:white_check_mark: &nbsp; **Do:** When testing API responses, compare all the relevant parts of the response object  (e.g., status, body fields, specific HTTP header) with an object that shows the expected data (code example below). From the test reader perspective, looking at the desired response object as a single unit, tells the story much better than checking 5 fields using 5 different statements. All the popular test runners support partial object matching (e.g. Chai expect.to.deep.equal, Jest.ToMatchObject). This advice does not advocate testing many things in a single test - Often, a single conceptual topic demands checking multiple fields.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kuberentes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;  
+👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion - If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are being tested together ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty-gritty in other scenarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
 
 <br/>
+
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```yaml
-  # docker-compose.yml
-  version: '3.6'
-  services:
-    database:
-      image: postgres:11
-      command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
-      environment:
-        - POSTGRES_USER=myuser
-        - POSTGRES_PASSWORD=myuserpassword
-        - POSTGRES_DB=shop
-      container_name: 'postgres-for-testing'
-      ports:
-        - '54310:5432'
-      tmpfs: /var/lib/postgresql/data
 ```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/docker-compose.yml)
-  
-</details>
-
-<br/><br/>
-
-### ⚪️ 2. Start docker-compose using code in the global setup process
-
-🏷&nbsp; **Tags:** `#strategic`
-
-:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures) using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
-
-<br/>
-
-
-👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kuberentes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;  
-
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-
-```javascript
-  // jest.config.js
-  globalSetup: './example-application/test/global-setup.js'
-
-  // global-setup.js
-  const dockerCompose = require('docker-compose');
-
-  module.exports = async () => {
-    ...
-    await dockerCompose.upAll({
-      cwd: path.join(__dirname),
-      log: true,
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
     });
+  });
+};
 
-    await dockerCompose.exec(
-      'database',
-      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
-      { cwd: path.join(__dirname) }
-    );
-    ...
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
 ```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)
-  
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
 </details>
 
-<br/><br/>
-
-
-### ⚪️ 3. Shutoff the infrastructure only in the CI environment
-
-🏷&nbsp; **Tags:** `#performance`
-
-:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers' machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
-
 <br/>
 
+### ⚪️ 5. Structure tests by routes and stories
 
-👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continous-testing experience ❌;   
-
-<br/>
-
-<details><summary>✏ <b>Code Examples</b></summary>
-
-```javascript
-  // jest.config.js
-  globalTeardown: './example-application/test/global-teardown.js',
-
-  // global-teardown.js - clean-up after all tests
-  const isCI = require('is-ci');
-  const dockerCompose = require('docker-compose');
-
-  module.exports = async () => {
-    // Check if running CI environment
-    if (isCI) {
-      dockerCompose.down();
-    }
-  }
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L5-L8)
-  
-
-</details>
-
-<br/><br/>
-
-### ⚪️ 4. Optimize your real DB for testing, Don't fake it
-
-🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
-
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
-<br/>
-
-👀 &nbsp; **Alternatives:** 
-* Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
-* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+🏷&nbsp; **Tags:** `#basics`
 
 
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
 
-<br/>
+![Test report by route](/graphics/test-report-by-route.png)
 
-<details><summary>✏ <b>Code Examples</b></summary>
 
-#### Postgres
-```
-//docker-compose file
-version: "3.6"
-services:
-  db:
-    image: postgres:13
-    container_name: 'postgres-for-testing'
-    command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
-    tmpfs: /var/lib/postgresql/data
-    ...
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
-
-</details>
-
-<br/><br/>
-
-### ⚪️ 5. Store test data in RAM folder
-
-🏷&nbsp; **Tags:** `#performance, #draft`
-
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
-
-<br/>
-
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+👀 &nbsp; **Alternatives:** Organize the tests per topic or user stories title - This will also serve as great documentation for the viewer. Mapping between failures and the related code that should get explored might a little harder ; 
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```
-//docker-compose file
-version: "3.6"
-services:
-  db:
-    image: postgres:13
-    container_name: 'postgres-for-testing'
-    tmpfs: /var/lib/postgresql/data
-    ...
-```
+// api-under-test.js
+const initializeWebServer = async (customMiddleware) => {
+  return new Promise((resolve, reject) => {
+    // A typical Express setup
+    expressApp = express();
+    connection = expressApp.listen(webServerPort, () => {// No port
+      resolve(expressApp);
+    });
+  });
+};
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+// test.js
+beforeAll(async (done) => {
+  expressApp = await initializeWebServer();//No port
+  });
+
+
+```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
 </details>
 
-<br/><br/>
-
-### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
-
-🏷&nbsp; **Tags:** `#performance`
-
-:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
-
 <br/>
 
-👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that build the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌;  Some migration frameworks (e.g. [umzug which is also used by Sequelize](https://github.com/sequelize/umzug)) allow checking for newer version by looking at local files which is way faster, this is a viable option but not applicable in many ORMs ✅; You may store locally the last migration check and execute the migration command only if the migration folder changed since then ✅;
+### ⚪️ 6. Test the five potential outcomes
 
-<br/>
+🏷&nbsp; **Tags:** `#intermediate #strategic`
 
-<details><summary>✏ <b>Code Examples</b></summary>
 
-```javascript
-  // jest.config.js
-  globalSetup: './example-application/test/global-setup.js'
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the five typical flow's outputs. When your test is triggering some action (e.g., API call), a reaction is happening, something meaningful occurs and calls for testing. Note that we don't care about how things work. Our focus is on outcomes, things that are noticeable from the outside and might affect the user. These outcomes/reactions can be put in 5 categories:
 
-  // global-setup.js
-  const npm = require('npm');
-  const util = require('util');
+**• Response -** The test invokes an action (e.g., via API) and gets a response. It's now concerned with checking the response data correctness, schema, and HTTP status
 
-  module.exports = async () => {
-    ...
-    const npmCommandAsPromise = util.promisify(npm.commands.run);
-    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
-    ...
-```
+**• A new state -** After invoking an action, some data is probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly and mistakenly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are greatly covered below in the 📗 section 'Dealing with data' 
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L29-L30)
+**• External calls -** After invoking an action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge a credit card. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic which is discussed in the 📗 section 'Testing integrations' below
 
-</details>
+**• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message in some MQ product. Now other components can consume this message and continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
+
+**• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
 
 <br/><br/>
 
 
-## **Section: Isolating from the external world**
+## **Section 4 : Isolating from the external world**
 
 <br/>
 
@@ -1508,11 +1659,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjkyNzI0NTEsLTE3NDI5MDgyNDYsNT
-Q3NTA0NTgxLC0xOTYwNzg3MDM1LC0xODE4NDQ2NjczLC0xMDk5
-MTY4MjgsLTYyOTE1OTQ4OCwxNjA3NTk0OTcyLC05MDg0MzYwOD
-EsMTY4MDUxMzAwOSwzNzQ4OTE1OTAsLTc2MzEyODU0NiwxMjIw
-MTY3OTU1LDE5MTAxOTA1NTgsMTY2MjgyMzQ2MSwyOTQzODEyOD
-QsLTYyOTYwNTc2OSwyMDgyMDg2NzEzLC0yMTA5MzQyOTAsMTkx
-Mjc5NjY1OF19
+eyJoaXN0b3J5IjpbLTc3NDMwNzM3NSwxMjA4NDExNTksMTA2Nz
+ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
+MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
+k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
+MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
+A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
+NV19
 -->
