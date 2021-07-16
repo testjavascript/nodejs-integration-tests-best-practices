@@ -386,7 +386,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Write tes ❌;  
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system including many interactions (i.e., E2E) - Some of thes tests are needed. It can not serve as the canonical test technique that developers write frequently during coding.  ❌;  
 
 <br/>
 
@@ -1658,11 +1658,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExODg0NzE3ODcsMTIwODQxMTU5LDEwNj
-cxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0
-MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLD
-E5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3
-MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNT
-AwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMw
-NjVdfQ==
+eyJoaXN0b3J5IjpbMTUyNTMyNjYxNywxMjA4NDExNTksMTA2Nz
+ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
+MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
+k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
+MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
+A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
+NV19
 -->
