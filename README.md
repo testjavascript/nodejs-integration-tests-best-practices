@@ -409,7 +409,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark: &nbsp; **Do:** Call the backend under test's API using your preferred HTTP client library. 
+:white_check_mark: &nbsp; **Do:** Call the backend under test's API using your preferred HTTP client library. Prefer a library that specializes only in making HTTP calls like axios or fetch. Other tools that hang around like supertest provides more testing-related features like inferring the URL from an express object, doing assertion and more. We recommend again
 
 Ideas: Popular, not bounded, like production, get instance, eco-system, 
 
@@ -1656,11 +1656,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAxOTMxMjk5Myw5Njk4Mzk4NDYsLTgwMz
-EzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMjIz
-NywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNj
-E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
-MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
-YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
-XX0=
+eyJoaXN0b3J5IjpbLTE1ODMyMzE1NTQsOTY5ODM5ODQ2LC04MD
+MxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIy
+MzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLD
+YxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2
+MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOT
+U2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUx
+Nl19
 -->
