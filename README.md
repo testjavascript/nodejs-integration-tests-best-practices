@@ -464,7 +464,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are two main authrization styles: (A) The webserver is expecting a signed token - Since it must hold the JWT secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way the test act exactly like the user. (B) 
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are two main authrization styles: (A) The webserver is expecting a signed token - Since it must hold the JWT secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way the test act exactly like the user. (B) Some kind of credntials/claim is passed to the API, and it must verifies those against the claim provider (i.e., HTTP call to external component to authorize the user). The test can intercept this call and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
 
 <br/>
 
@@ -1652,7 +1652,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwODI0NTUxOSw5Njk4Mzk4NDYsLTgwMz
+eyJoaXN0b3J5IjpbMTQxNzI5NDE1Niw5Njk4Mzk4NDYsLTgwMz
 EzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMjIz
 NywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNj
 E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
