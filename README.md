@@ -409,11 +409,11 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark: &nbsp; **Do:** Call the backend under test's API using your preferred HTTP client library. Prefer a library that specializes only in making HTTP calls like axios or fetch. Other tools that hang around like supertest provides more testing-related features like inferring the URL from an express object, doing assertion and more. It's preferable not to bound the test to code objects rather to API-only and also to use default assertion library.
+:white_check_mark: &nbsp; **Do:** Call the backend under test's API using your preferred HTTP client library. Prefer a library that specializes only in making HTTP calls like axios or fetch. Other tools that hang around like supertest provides more testing-related features like inferring the URL from an express object, doing assertion and more. It's preferable not to bound the test to code objects rather to API-only and also to use default assertion library. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Supertest - Consider to avoid as it is ❌; Fetch, etc ❌
+👀 &nbsp; **Alternatives:** Supertest - Consider to avoid as it encourages direct bounding to express objects and promote different assertion syntax that your bult-in assertion library ❌; 
 
 <br/>
 
@@ -1654,7 +1654,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjczMTk0NTQsOTY5ODM5ODQ2LC04MD
+eyJoaXN0b3J5IjpbLTIwNTQ2MDEyNDcsOTY5ODM5ODQ2LC04MD
 MxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIy
 MzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLD
 YxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2
