@@ -387,7 +387,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests?
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests? - Some unit tests are needed to cover algorhitms and areas with heavy logic (if exists). However, unit tests can not serve as the default technique. It is by-design focused on 'unit', parts, a fake system isolation and not on the real user
 
 <br/>
 
@@ -1659,7 +1659,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0NDAwOTYxNywxMjA4NDExNTksMTA2Nz
+eyJoaXN0b3J5IjpbMTM3NjQxNzc1MiwxMjA4NDExNTksMTA2Nz
 ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
 MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
 k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
