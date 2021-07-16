@@ -510,7 +510,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion - If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are being tested together ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty-gritty in other scenarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
+👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion, we recommend against it. If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are being tested together ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty-gritty in other scenarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
 
 <br/>
 
@@ -1656,11 +1656,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgwMzEzNjUyNywxMjA4NDExNTksMTA2Nz
-ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
-MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
-k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
-MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
-A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
-NV19
+eyJoaXN0b3J5IjpbOTY5ODM5ODQ2LC04MDMxMzY1MjcsMTIwOD
+QxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4
+NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xOD
+EyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5
+MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMT
+I5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1
+XX0=
 -->
