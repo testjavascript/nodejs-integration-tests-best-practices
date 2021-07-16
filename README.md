@@ -468,7 +468,7 @@ afterAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it to authorize the request - While not an aweful option, it means that the 'real' authorization code is not part of the test (becuase we stubbed it) ❌; Some are holding an environement variable or config key that instructs the system not to authorize requests (e.g. IS_TESTING=TRUE) - THis
+👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it to authorize the request - While not an aweful option, it means that the 'real' authorization code is not part of the test (becuase we stubbed it) ❌; Some are holding an environement variable or config key that instructs the system not to authorize requests (e.g. IS_TESTING=TRUE) - This of course a dangerous option as it might leak to production
 
 <br/>
 
@@ -1652,11 +1652,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc5NDcyMTc4OCw5Njk4Mzk4NDYsLTgwMz
-EzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMjIz
-NywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNj
-E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
-MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
-YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
-XX0=
+eyJoaXN0b3J5IjpbLTE5Nzk1MDg5LDk2OTgzOTg0NiwtODAzMT
+M2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0xMzE4NTAyMjM3
+LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNTYwMjc5Myw2MT
+gwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1MzgwNjIz
+OCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUwLDk1Nj
+A4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5Myw1Nzc3MjE1MTZd
+fQ==
 -->
