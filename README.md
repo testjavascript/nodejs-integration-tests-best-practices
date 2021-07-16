@@ -467,11 +467,7 @@ afterAll(async (done) => {
 
 :white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism as production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider (i.e., user management service) to authorize the request. Like any other testing design decision, one should strive to cover the same code that real users in production are stretching. In many authentication scenarios, this is possible. Generally speaking, there are three main types of authorization flows: (A) The webserver is expecting a signed token like JWT - Since the code anyway must hold the secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way, the test act precisely like the client by passing a valid token. (B) Some credentials/claims are passed to the API which must verify those against the claim provider (i.e., HTTP call to an external user management component). The test can intercept this call on the HTTP-level and return a valid response. For example, by using interceptors tools like [nock](https://www.npmjs.com/package/nock). Since the 3rd party service is outside the scope of the tests, the fact that we faked the response does not matter. The entire backend under test is tested. (C) Session-based flow where a session-key is passed to the API verifying against the session store. In this case, add the key to the store before the test(s) - The authentication will pass
 
-  
-
 <br/>
-
-  
 
 👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it into authorizing the request - While not an awful option, it means that the 'real' authorization code is not part of the test (because the test stubbed /replaced it) ❌; Some are holding an environment variable or config key that instructs the system not to authorize requests (e.g., IS_TESTING=TRUE) - This, of course, is a dangerous option as it might leak to production
 
@@ -481,23 +477,7 @@ afterAll(async (done) => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```
-// api-under-test.js
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    connection = expressApp.listen(webServerPort, () => {// No port
-      resolve(expressApp);
-    });
-  });
-};
-
-// test.js
-beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
-  });
-
-
+// Code example with signing JWT token
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
@@ -1657,11 +1637,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxODY3NjI2MiwtMTk3OTUwODksOTY5OD
-M5ODQ2LC04MDMxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEs
-LTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMj
-E1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAz
-NiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5ND
-g1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkz
-XX0=
+eyJoaXN0b3J5IjpbLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOT
+g0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0x
+MzE4NTAyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNT
+YwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYs
+MTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NT
+E2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5M119
+
 -->
