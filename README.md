@@ -382,7 +382,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. Half of the idea behind this technique is not to loose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroid and not
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. Half of the idea behind this technique is not to loose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroid, not as small E2E tests. Code-wise, keep the tests very small (good rule of thumb: not longer than 7 statements), use the AAA pattern to reach a very consistent structure, cover a single interaction and not a big flow, 
 
 testingBy definition, the developer-experience is a 
 
@@ -1662,7 +1662,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1OTE4NDQ5MCwxMjA4NDExNTksMTA2Nz
+eyJoaXN0b3J5IjpbMTkxMzQ1MTUwMCwxMjA4NDExNTksMTA2Nz
 ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
 MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
 k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
