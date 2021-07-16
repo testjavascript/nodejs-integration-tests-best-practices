@@ -380,7 +380,7 @@ beforeAll(async (done) => {
 
 ### ⚪️ 1. Stick to unit testing best practices
 
-🏷&nbsp; **Tags:** `#basic, #strategic, #draft`
+🏷&nbsp; **Tags:** `#basic, #strategic`
 
 :white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices that are used for unit tests. By definition, the developer-experience is a 
 
@@ -1660,11 +1660,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMT
-g1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAy
-NzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMj
-UzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYw
-NTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3Nz
-cyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMwNjUsLTE5Mjc1ODkx
-ODVdfQ==
+eyJoaXN0b3J5IjpbMTkxNjA1NjE1MywxMjA4NDExNTksMTA2Nz
+ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
+MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
+k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
+MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
+A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
+NV19
 -->
