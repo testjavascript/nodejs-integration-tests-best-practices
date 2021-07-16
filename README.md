@@ -462,7 +462,7 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Provide real credentials or token. If possible, avoid security back doors
 
-🏷&nbsp; **Tags:** `#basics, #draft`
+🏷&nbsp; **Tags:** `#basics`
 
 :white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It must hold the JWT secret so the tests can also use this to sign a valid token in 2 lines of code. Other option, is that the user grabbed a session key which is passed to the API under test. At this stage the code must approach the issuer which is another Microservice - The test can intercept this response and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
 
@@ -1654,7 +1654,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTQ2MDEyNDcsOTY5ODM5ODQ2LC04MD
+eyJoaXN0b3J5IjpbLTE2ODA5NDk3NDUsOTY5ODM5ODQ2LC04MD
 MxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIy
 MzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLD
 YxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2
