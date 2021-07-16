@@ -464,7 +464,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are two main authrization styles: (A) The webserver is expecting a signed token - Since it must hold the JWT secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way the test act exactly like the user. (B) The user grabs a session key from the claim provider (E.g., user Microservice, user management platform) which is then passed by the client to the API under test. At this stage the code must approach the issuer which is another Microservice - The test can intercept this response and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are two main authrization styles: (A) The webserver is expecting a signed token - Since it must hold the JWT secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way the test act exactly like the user. (B) The user grabs a session key from the claim provider (E.g., user Microservice, user management platform) which is then passed by the client to the API under test. At this stage the app must approach the issuer to verify - The test can intercept this response and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
 
 <br/>
 
@@ -1652,11 +1652,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwODIxMTA4OTgsOTY5ODM5ODQ2LC04MD
-MxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIy
-MzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLD
-YxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2
-MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOT
-U2MDgyODkwLC0xMTI5MTUxNjgsNTAwOTE3MDkzLDU3NzcyMTUx
-Nl19
+eyJoaXN0b3J5IjpbLTcyNjgwNDAxMyw5Njk4Mzk4NDYsLTgwMz
+EzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMjIz
+NywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMsNj
+E4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MDYy
+MzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MCw5NT
+YwODI4OTAsLTExMjkxNTE2OCw1MDA5MTcwOTMsNTc3NzIxNTE2
+XX0=
 -->
