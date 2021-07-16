@@ -386,7 +386,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of thes tests are needed. It can not serve as the canonical test technique that developers write frequently during coding.  ❌;  
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of thes tests are needed. It can not serve as the canonical test technique that developers write frequently during coding  ❌;
 
 <br/>
 
@@ -1658,11 +1658,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTg0MjczNjMxLDEyMDg0MTE1OSwxMDY3MT
-E1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4ODQxNDMy
-NCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOT
-g3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEw
-NTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMD
-kxNzA5Myw1Nzc3MjE1MTYsLTE5MzA3MTY1NSwxMTU3MzczMDY1
-XX0=
+eyJoaXN0b3J5IjpbLTEzNjAzNDkzNTcsMTIwODQxMTU5LDEwNj
+cxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0
+MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLD
+E5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3
+MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjgsNT
+AwOTE3MDkzLDU3NzcyMTUxNiwtMTkzMDcxNjU1LDExNTczNzMw
+NjVdfQ==
 -->
