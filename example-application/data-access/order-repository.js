@@ -52,7 +52,6 @@ module.exports = class OrderRepository {
   }
 
   async cleanup() {
-    await orderModel.destroy({ where: {}, truncate: false });
-    return;
+    await orderModel.truncate();
   }
 };

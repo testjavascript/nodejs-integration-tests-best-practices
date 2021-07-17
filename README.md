@@ -1049,10 +1049,31 @@ Who wins? There's no clear cut here. Both have their strength but also unpleasan
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
+// After-all clean up (recommended)
+// global-teardown.js
+module.exports = async () => {
+  ...
+  if (Math.ceil(Math.random() * 10) === 10) {
+    await new OrderRepository().cleanup();
+  }
+};
 ```
 
-➡️ [Full code here]()
-  
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L10-L13)
+
+```javascript
+// After-each clean up
+afterAll(async () => {
+  await new OrderRepository().cleanup();
+});
+// or
+afterEach(async () => {
+  await new OrderRepository().cleanup();
+});
+
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/anti-pattern-data-isolation.test.js#L38-L43)
 
 </details>
 
