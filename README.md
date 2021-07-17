@@ -74,6 +74,7 @@ In this folder you may find a complete example of real-world like application, a
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+
 ```yml
   # docker-compose.yml
   version: '3.6'
@@ -111,6 +112,7 @@ In this folder you may find a complete example of real-world like application, a
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+
 ```javascript
   // jest.config.js
   globalSetup: './example-application/test/global-setup.js'
@@ -150,9 +152,11 @@ In this folder you may find a complete example of real-world like application, a
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+
 ```javascript
   // jest.config.js
   globalTeardown: './example-application/test/global-teardown.js',
+  
   // global-teardown.js - clean-up after all tests
   const isCI = require('is-ci');
   const dockerCompose = require('docker-compose');
@@ -180,8 +184,6 @@ In this folder you may find a complete example of real-world like application, a
 👀 &nbsp; **Alternatives:** 
 * Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
 * Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
-
-
 
 <br/>
 
@@ -253,6 +255,7 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
+
 ```javascript
   // jest.config.js
   globalSetup: './example-application/test/global-setup.js'
@@ -266,6 +269,7 @@ services:
     await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
     ...
 ```
+
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L29-L30)
 
 </details>
