@@ -64,7 +64,7 @@ In this folder you may find a complete example of real-world like application, a
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can't be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers
+:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers.
 
 
 <br/>
@@ -74,23 +74,24 @@ In this folder you may find a complete example of real-world like application, a
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+```yml
+  # docker-compose.yml
+  version: '3.6'
+  services:
+    database:
+      image: postgres:11
+      command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
+      environment:
+        - POSTGRES_USER=myuser
+        - POSTGRES_PASSWORD=myuserpassword
+        - POSTGRES_DB=shop
+      container_name: 'postgres-for-testing'
+      ports:
+        - '54310:5432'
+      tmpfs: /var/lib/postgresql/data
 ```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/docker-compose.yml)
 
 </details>
 
@@ -100,7 +101,7 @@ services:
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures)  using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below) 
+:white_check_mark:  **Do:** In a typical multi-process test runner (e.g. Mocha, Jest), the infrastructure should be started in a global setup/hook ([Jest global setup](https://jestjs.io/docs/en/configuration#globalsetup-string)), [Mocha global fixture](https://mochajs.org/#global-setup-fixtures) using custom code that spin up the docker-compose file. This takes away common workflows pains - The DB is an explicit dependency of the test, no more tests failing because the DB is down. A new developer onboarded? Get him up to speed with nothing more than ```git clone && npm test```. Everything happens automatically, no tedious README.md, no developers wonder what setup steps did they miss. In addition, going with this approach maximizes the test performance: the DB is not instantiated per process or per file, rather once and only once. On the global teardown phase, all the containers should shutoff (See a dedicated bullet below).
 
 <br/>
 
@@ -110,14 +111,26 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-```
-//Put global setup code here
+```javascript
+  // jest.config.js
+  globalSetup: './example-application/test/global-setup.js'
+  // global-setup.js
+  const dockerCompose = require('docker-compose');
+  module.exports = async () => {
+    ...
+    await dockerCompose.upAll({
+      cwd: path.join(__dirname),
+      log: true,
+    });
+    await dockerCompose.exec(
+      'database',
+      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
+      { cwd: path.join(__dirname) }
+    );
+    ...
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)  
 
 </details>
 
@@ -132,19 +145,26 @@ services:
 
 <br/>
 
-
 👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continous-testing experience ❌;   
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+```javascript
+  // jest.config.js
+  globalTeardown: './example-application/test/global-teardown.js',
+  // global-teardown.js - clean-up after all tests
+  const isCI = require('is-ci');
+  const dockerCompose = require('docker-compose');
+  module.exports = async () => {
+    // Check if running CI environment
+    if (isCI) {
+      dockerCompose.down();
+    }
+  }
 ```
-// Put teardown code that shows how we check for CI
-```
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L5-L8)
 
 </details>
 
@@ -233,14 +253,20 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+```javascript
+  // jest.config.js
+  globalSetup: './example-application/test/global-setup.js'
+
+  // global-setup.js
+  const npm = require('npm');
+  const util = require('util');
+  module.exports = async () => {
+    ...
+    const npmCommandAsPromise = util.promisify(npm.commands.run);
+    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
+    ...
 ```
-// Show global-setup conditional migration command
-//Show npm script
-```
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L29-L30)
 
 </details>
 
