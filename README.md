@@ -832,7 +832,7 @@ test('When order failed, send mail to admin', async () => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-
+// TODO
 ```
 
 ➡️ [Full code here]()
