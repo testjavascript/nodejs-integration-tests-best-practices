@@ -417,17 +417,14 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests? - Some unit tests are needed to cover algorhitms and areas with heavy logic (if exists). However, unit tests can not serve as the default technique. It is by-design focused on 'unit', parts, a fake system isolation and not on the real thing. When our main tests cover something that doesn't resemble production - The deployment confidence is decreased. Kent Beck, 'father of TDD', wrote once "Programmer (aka “unit” tests). Give up tests being predictive and inspiring confidene for being writable, fast, and specific."
+👀 &nbsp; **Alternatives:** Write tests that cover the entire user flow in the system, including many interactions (i.e., E2E) - Probably will result in slow execution (i.e., minutes, not seconds) and sometimes with flakiness. A few of these tests are needed. It can not serve as the canonical test technique that developers frequently write during coding  ❌; Then why not just writing unit tests? - Some unit tests are needed to cover areas with algorithms or heavy logic (if they exist). However, unit tests won't yield enough confidence when serving as the primary technique. Units by design focus on 'unit', parts, a fake system isolation and not on the real thing. When our main tests cover something that doesn't resemble production - The deployment confidence is decreased. Kent Beck, 'father of TDD', wrote once "Programmer (aka “unit” tests). Give up tests being predictive and inspiring confidence for being writable, fast, and specific."  ❌
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```
-const apiUnderTest = require('../api/start.js');
-
-beforeAll(async (done) => {
-  //Start the backend in the same process
+// simple short story with AAA
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
@@ -438,17 +435,15 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-### ⚪️ 2. Approach the API under test using a library that is solely HTTP client (e.g. axios, not supertest)
+### ⚪️ 2. Approach the API using a library that is a pure HTTP client (e.g. axios, not supertest)
 
-🏷&nbsp; **Tags:** `#basic, #draft`
+🏷&nbsp; **Tags:** `#basic`
 
-:white_check_mark: &nbsp; **Do:** The
-
-Ideas: Popular, not bounded, like production, get instance, eco-system, 
+:white_check_mark: &nbsp; **Do:** Call the backend under test's API using your preferred HTTP client library. Prefer a library that specializes only in making HTTP calls like axios or fetch. Other tools that hang around like supertest provides more testing-related features like inferring the URL from an express object, doing assertion and more. It's preferable not to bound the test to code objects rather to API-only and also to use default assertion library. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Supertest ❌; Fetch, etc ❌
+👀 &nbsp; **Alternatives:** Supertest - Consider to avoid as it encourages direct bounding to express objects and promote different assertion syntax that your bult-in assertion library ❌; 
 
 <br/>
 
@@ -497,15 +492,14 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Provide real credentials or token. If possible, avoid security back doors
 
-🏷&nbsp; **Tags:** `#basics, #draft`
+🏷&nbsp; **Tags:** `#basics`
 
-:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism like production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider to authorize the request. Like any other testing design decision, one should strive to use the same code paths like production. As long as it doesn't sacrifies the developer experience. In many authentication scenarios, this is possible. Generally speaking, there are multiple popular authorization techniques: The webserver is expecting a signed token - It must hold the JWT secret so the tests can also use this to sign a valid token in 2 lines of code. Other option, is that the user grabbed a session key which is passed to the API under test. At this stage the code must approach the issuer which is another Microservice - The test can intercept this response and return a valid response. Since the issuer is outside the scope of the tests, the fact that we faked the response does not matter. The entier backend under test is tested.
 
-Ideas - JWT, user pass, user microservice verification, login per file, invert the middleware
+:white_check_mark: &nbsp; **Do:** If applicable, authenticate using the same mechanism as production so the same code will get tested. Practically, this means passing a signed token with the request and/or stubbing the claim provider (i.e., user management service) to authorize the request. Like any other testing design decision, one should strive to cover the same code that real users in production are stretching. In many authentication scenarios, this is possible. Generally speaking, there are three main types of authorization flows: (A) The webserver is expecting a signed token like JWT - Since the code anyway must hold the secret to verify the claim, the tests can also use this to sign a valid token in 2 lines of code. This way, the test act precisely like the client by passing a valid token. (B) Some credentials/claims are passed to the API which must verify those against the claim provider (i.e., HTTP call to an external user management component). The test can intercept this call on the HTTP-level and return a valid response. For example, by using interceptors tools like [nock](https://www.npmjs.com/package/nock). Since the 3rd party service is outside the scope of the tests, the fact that we faked the response does not matter. The entire backend under test is tested. (C) Session-based flow where a session-key is passed to the API verifying against the session store. In this case, add the key to the store before the test(s) - The authentication will pass
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Running a single process will slow down the tests ❌; Some parallelize the tests but instantiate a single web server, in this case the tests live in a different process and will lose many features like test doubles (see dedicated bullet above) ❌; 
+👀 &nbsp; **Alternatives:** Mock the authentication middleware and disable it or trick it into authorizing the request - While not an awful option, it means that the 'real' authorization code is not part of the test (because the test stubbed /replaced it) ❌; Some are holding an environment variable or config key that instructs the system not to authorize requests (e.g., IS_TESTING=TRUE) - This, of course, is a dangerous option as it might leak to production
 
 <br/>
 
@@ -513,23 +507,7 @@ Ideas - JWT, user pass, user microservice verification, login per file, invert t
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```
-// api-under-test.js
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    connection = expressApp.listen(webServerPort, () => {// No port
-      resolve(expressApp);
-    });
-  });
-};
-
-// test.js
-beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
-  });
-
-
+// Code example with signing JWT token
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
@@ -543,7 +521,7 @@ beforeAll(async (done) => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion - If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are being tested together ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty-gritty in other scenarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
+👀 &nbsp; **Alternatives:** Snapshots are a popular way to write a no-brainer assertion, we recommend against it. If the response payload is small, why not include it within the test for better readability? If it's huge, it's a sign that too many things are being tested together ❌; Separate to different tests - This is a great idea in many cases. It can also be nitty-gritty in other scenarios - Consider checking that a user was added successfully: The test expects getting back {id, name, phone}. Creating a test for every field has a very low ROI ✅; 
 
 <br/>
 
@@ -1689,11 +1667,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc3NDMwNzM3NSwxMjA4NDExNTksMTA2Nz
-ExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQz
-MjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMT
-k4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mjcx
-MDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OCw1MD
-A5MTcwOTMsNTc3NzIxNTE2LC0xOTMwNzE2NTUsMTE1NzM3MzA2
-NV19
+eyJoaXN0b3J5IjpbLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOT
+g0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0x
+MzE4NTAyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNT
+YwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYs
+MTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NT
+E2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5M119
+
 -->
