@@ -10,8 +10,8 @@ module.exports = {
     // ❌ Anti-Pattern: Seed test records, read "Dealing with data" section for further information
     const now = new Date();
     await queryInterface.bulkInsert('Orders', [{
-      id: 1,
-      userId: 5,
+      userId: 1,
+      productId: 5,
       createdAt: now,
       updatedAt: now,
     }], {});
