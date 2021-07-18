@@ -520,6 +520,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
+// basic-tests.test.ts
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
   ...
   const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
