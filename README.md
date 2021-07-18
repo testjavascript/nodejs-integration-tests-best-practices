@@ -393,13 +393,35 @@ beforeAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
-// simple short story with AAA
+```javascript
+// basic-tests.test.ts
+test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+  // Arrange
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+  const {
+    data: { id: addedOrderId },
+  } = await axiosAPIClient.post(`/order`, orderToAdd);
+
+  // Act
+  const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
+
+  // Assert
+  expect(getResponse).toMatchObject({
+    status: 200,
+    data: {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    },
+  });
+});
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
-)
-  
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/master/example-application/test/basic-tests.test.js#L49-L74)
 
 </details>
 
@@ -419,41 +441,40 @@ beforeAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    defineRoutes(expressApp);
-    connection = expressApp.listen(() => {
-      resolve(expressApp);
-    });
-  });
-}
-
-const stopWebServer = async () => {
-  return new Promise((resolve, reject) => {
-    connection.close(() => {
-      resolve();
-    })
-  });
-}
+```javascript
+// basic-test.test.ts
+const axios = require('axios');
+let axiosAPIClient;
 
 beforeAll(async (done) => {
-  expressApp = await initializeWebServer();
-  done();
-  }
-
-afterAll(async (done) => {
-  await stopWebServer();
-  done();
+  const apiConnection = await initializeWebServer();
+  const axiosConfig = {
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    validateStatus: () => true,
+  };
+  // Create axios client for the whole test suite
+  axiosAPIClient = axios.create(axiosConfig);
+  ...
 });
 
+test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
 
+  // Use axios to create an order
+  const {
+    data: { id: addedOrderId },
+  } = await axiosAPIClient.post(`/order`, orderToAdd);
+
+  // Use axios to retrieve the same order by id
+  const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
+  ...
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
-)
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/master/example-application/test/basic-tests.test.js#L64)
   
 
 </details>
@@ -498,26 +519,23 @@ afterAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
-// api-under-test.js
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    connection = expressApp.listen(webServerPort, () => {// No port
-      resolve(expressApp);
-    });
+```javascript
+test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+  ...
+  const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
+
+  // Assert on entire HTTP response object
+  expect(getResponse).toMatchObject({
+    status: 200,
+    data: {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    },
   });
-};
-
-// test.js
-beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
-  });
-
-
+});
 ```
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/master/example-application/test/basic-tests.test.js#L66-L73)
 
 </details>
 
@@ -539,24 +557,16 @@ beforeAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
-// api-under-test.js
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    connection = expressApp.listen(webServerPort, () => {// No port
-      resolve(expressApp);
-    });
-  });
-};
-
-// test.js
-beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
+```javascript
+// basic-tests.test.js
+describe('/api', () => {
+  describe('GET /order', () => {
+    ...
   });
 
-
+  describe('POST /orders', () => {
+    ...
+  });
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
