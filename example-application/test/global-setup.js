@@ -29,6 +29,8 @@ module.exports = async () => {
     await npmLoadAsPromise();
     const npmCommandAsPromise = util.promisify(npm.commands.run);
     await npmCommandAsPromise(['db:migrate']);
+    // ✅ Best Practice: Seed only metadata and not test record, read "Dealing with data" section for further information
+    await npmCommandAsPromise(['db:seed']);
   }
 
   // 👍🏼 We're ready

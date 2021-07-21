@@ -8,7 +8,8 @@
     "test:nestjs": "jest --config='./recipes/nestjs/ts-jest.config.js'",
     "test:dev:verbose": "jest --watch --verbose",
     "lint": "eslint .",
-    "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
+    "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate",
+    "db:seed": "cd example-application/data-access && sequelize-cli db:seed:all"
   },
   "author": "",
   "license": "ISC",
