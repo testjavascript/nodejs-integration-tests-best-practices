@@ -612,10 +612,17 @@ describe('/api', () => {
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
+
+```javascript
+// Intercept requests for 3rd party APIs and return a predefined response 
+beforeEach(() => {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
+    id: 1,
+    name: 'John',
+  });
+});
 ```
-// Show simple nock definition
-```
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L27-L32)
 </details>
 
 <br/><br/>
@@ -632,12 +639,23 @@ describe('/api', () => {
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-```
-// Show before and after each
+
+```javascript
+// Create a one-time interceptor before every test
+beforeEach(() => {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
+    id: 1,
+    name: 'John',
+  });
+});
+
+// Endure clean slate after each test
+afterEach(() => {
+  nock.cleanAll();
+});
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L34-L37)
   
 
 </details>
@@ -658,25 +676,29 @@ Remember that after every test everything is cleaned-up, see bullet about clean-
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-   ```
+```javascript
+// Using an uncommon user id (7) and create a compatible interceptor
+test('When the user does not exist, return http 404', async () => {
+  //Arrange
+  const orderToAdd = {
+    userId: 7,
+    productId: 2,
+    mode: 'draft',
+  };
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
-  
+  nock('http://localhost/user/').get(`/7`).reply(404, {
+    message: 'User does not exist',
+    code: 'nonExisting',
+  });
+
+  //Act
+  const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
+
+  //Assert
+  expect(orderAddResult.status).toBe(404);
+});
+```  
 
 </details>
 
@@ -695,23 +717,20 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-    ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+```javascript
+beforeAll(async (done) => {
+  ...
+  // ️️️Ensure that this component is isolated by preventing unknown calls
+  nock.disableNetConnect();
+  // Enable only requests for the API under test
+  nock.enableNetConnect('127.0.0.1');
+
+  done();
+});
+```
+
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L20-L22)
   
 
 </details>
@@ -730,24 +749,31 @@ services:
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-//docker-compose file
+```javascript
+test('When users service replies with 503 once and retry mechanism is applied, then an order is added successfully', async () => {
+  //Arrange
+  nock.removeInterceptor(userServiceNock.interceptors[0])
+  nock('http://localhost/user/')
+    .get('/1')
+    .reply(503, undefined, { 'Retry-After': 100 });
+  nock('http://localhost/user/')
+    .get('/1')
+    .reply(200);
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+  //Act
+  const response = await axiosAPIClient.post('/order', orderToAdd);
+
+  //Assert
+  expect(response.status).toBe(200);
+});
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/component-isolation/test/isolation.test.js#L188-L206)
   
 
 </details>
@@ -766,25 +792,37 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
+```javascript
+// ️️️Assert that the app called the mailer service appropriately with the right input
+test('When order failed, send mail to admin', async () => {
+  //Arrange
+  ...
+  let emailPayload;
+  nock('http://mailer.com')
+    .post('/send', (payload) => ((emailPayload = payload), true))
+    .reply(202);
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+
+  //Act
+  await axiosAPIClient.post('/order', orderToAdd);
+
+  // ️️️Assert
+  expect(emailPayload).toMatchObject({
+    subject: expect.any(String),
+    body: expect.any(String),
+    recipientAddress: expect.stringMatching(
+      /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    ),
+  });
+});
 ```
 
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
-```
-
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/basic-tests.test.js#L148-L177)
   
 
 </details>
@@ -803,24 +841,12 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+// TODO
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here]()
   
 
 </details>
@@ -839,24 +865,34 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
-version: "3.6"
-services:
-  db:
-    image: postgres:11
-    command: postgres
-    environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=myuserpassword
-      - POSTGRES_DB=shop
-    ports:
-      - "5432:5432"
+```javascript
+// use "fake timers" to simulate long requests.
+test("When users service doesn't reply within 2 seconds, return 503", async () => {
+  //Arrange
+  const clock = sinon.useFakeTimers();
+  nock('http://localhost/user/')
+    .get('/1', () => clock.tick(5000))
+    .reply(200);
+
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+
+  //Act
+  const response = await axiosAPIClient.post('/order', orderToAdd);
+
+  //Assert
+  expect(response.status).toBe(503);
+
+  //Clean
+  clock.uninstall();
+});
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
-)
+➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/component-isolation/test/isolation.test.js#L163-L186)
   
 
 </details>
