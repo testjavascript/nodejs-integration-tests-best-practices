@@ -4,7 +4,7 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../../example-application/entry-points/api');
+} = require('../../../example-application/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 const {
   metricsExporter,
@@ -82,10 +82,7 @@ describe('Error Handling', () => {
         mode: 'approved',
       };
 
-      const errorToThrow = new AppError('example-error', {
-        isTrusted: true,
-        name: 'example-error-name',
-      });
+      const errorToThrow = new AppError('example-error', { isTrusted: true, name: 'example-error-name' });
 
       // Arbitrarily choose an object that throws an error
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
@@ -112,9 +109,7 @@ describe('Error Handling', () => {
       sinon.restore();
       const processExitListener = sinon.stub(process, 'exit');
       // Arbitrarily choose an object that throws an error
-      const errorToThrow = new AppError('example-error-name', {
-        isTrusted: false,
-      });
+      const errorToThrow = new AppError('example-error-name', { isTrusted: false });
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
@@ -172,27 +167,24 @@ describe('Error Handling', () => {
       ${{}}                          | ${'Object as error'}
       ${new Error('JS basic error')} | ${'JS error'}
       ${new AppError('error-name')}  | ${'AppError'}
-    `(
-      `When throwing $errorTypeDescription, Then it's handled correctly`,
-      async ({ errorInstance }) => {
-        //Arrange
-        const orderToAdd = {
-          userId: 1,
-          productId: 2,
-          mode: 'approved',
-        };
+    `(`When throwing $errorTypeDescription, Then it's handled correctly`, async ({ errorInstance }) => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        productId: 2,
+        mode: 'approved',
+      };
 
-        sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
-        const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
-        const consoleErrorDouble = sinon.stub(console, 'error');
+      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
+      const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
+      const consoleErrorDouble = sinon.stub(console, 'error');
 
-        //Act
-        await axiosAPIClient.post('/order', orderToAdd);
+      //Act
+      await axiosAPIClient.post('/order', orderToAdd);
 
-        //Assert
-        expect(metricsExporterDouble.called).toBe(true);
-        expect(consoleErrorDouble.called).toBe(true);
-      }
-    );
+      //Assert
+      expect(metricsExporterDouble.called).toBe(true);
+      expect(consoleErrorDouble.called).toBe(true);
+    });
   });
 });

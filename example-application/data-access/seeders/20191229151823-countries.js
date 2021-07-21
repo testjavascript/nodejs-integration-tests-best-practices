@@ -1,22 +1,21 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    //Configuration ✅
-    queryInterface.bulkInsert('Countries', [{
+  up: async (queryInterface, Sequelize) => {
+    // ✅ Best Practice: Seed only metadata and not test record, read "Dealing with data" section for further information
+    await queryInterface.bulkInsert('Countries', [{
       name: 'Italy',
       name: 'USA',
       name: 'India'
-    }], {})
+    }], {});
 
-    //Test data ❌ 
-    queryInterface.bulkInsert('Order', [{
-      id: 1,
-      price: 55,
-      userId: 5,
-    }], {})
-
-
-  }
-
+    // ❌ Anti-Pattern: Seed test records, read "Dealing with data" section for further information
+    const now = new Date();
+    await queryInterface.bulkInsert('Orders', [{
+      userId: 1,
+      productId: 5,
+      createdAt: now,
+      updatedAt: now,
+    }], {});
+  },
   down: (queryInterface, Sequelize) => {
     /*
       Add reverting commands here.

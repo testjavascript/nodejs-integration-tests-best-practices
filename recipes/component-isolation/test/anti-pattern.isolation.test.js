@@ -5,17 +5,17 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../../example-application/entry-points/api');
+} = require('../../../example-application/api');
 
 let axiosAPIClient;
 
 beforeAll(async (done) => {
   const apiConnection = await initializeWebServer();
-  const axiosConfig = {
-    baseURL: `http://127.0.0.1:${apiConnection.port}`,
-    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
-  };
-  axiosAPIClient = axios.create(axiosConfig);
+    const axiosConfig = {
+      baseURL: `http://127.0.0.1:${apiConnection.port}`,
+      validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    };
+    axiosAPIClient = axios.create(axiosConfig);
 
   // ❌ Anti-Pattern: By default, we allow outgoing network calls -
   // If some unknown code locations will issue HTTP request - It will passthrough out
