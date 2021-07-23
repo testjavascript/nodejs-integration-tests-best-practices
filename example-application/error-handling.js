@@ -5,7 +5,8 @@ const logger = require('./libraries/logger');
 const errorHandler = {
   handleError: async (errorToHandle) => {
     try {
-      logger.error(`Error occurred ${errorToHandle}`);
+      logger.error(`Error occurred`);
+      logger.error(errorToHandle);
       metricsExporter.fireMetric('error', {
         errorName: errorToHandle.name || 'generic-error',
       });
@@ -21,7 +22,7 @@ const errorHandler = {
       decideWhetherToCrash(errorToHandle);
     } catch (e) {
       // Continue the code flow if failed to handle the error
-      logger.error(`handleError threw an error ${e}`);
+      console.log(`handleError threw an error ${e}`);
     }
   },
 };

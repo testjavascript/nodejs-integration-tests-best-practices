@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "test:dev": "node --inspect=9229 node_modules/.bin/jest --watch --runInBand",
+    "test:dev": "jest --watch --silent --runInBand",
+    "test:dev:debug": "node --inspect=9229 node_modules/.bin/jest --watch --runInBand --silent",
     "test:nestjs": "jest --config='./recipes/nestjs/ts-jest.config.js'",
     "test:dev:verbose": "jest --watch --verbose",
     "lint": "eslint .",
