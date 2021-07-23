@@ -71,7 +71,7 @@ describe('Error Handling', () => {
       await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
-      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(String));
+      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(Object));
     });
 
     test('When exception is throw during request, Then a metric is fired', async () => {
