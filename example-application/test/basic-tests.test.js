@@ -1,7 +1,7 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
-const { initializeWebServer, stopWebServer } = require('../api');
+const { initializeWebServer, stopWebServer } = require('../entry-points/api');
 const OrderRepository = require('../data-access/order-repository');
 
 // Configuring file-level HTTP client with base URL will allow
@@ -107,12 +107,14 @@ describe('/api', () => {
       expect(receivedAPIResponse).toMatchObject({
         status: 200,
         data: {
+          id: expect.any(Number),
           mode: 'approved',
         },
       });
     });
 
     // ️️️✅ Best Practice: Check the new state
+    // In a real-world project, this test can be combined with the previous test
     test('When adding a new valid order, Then should be able to retrieve it', async () => {
       //Arrange
       const orderToAdd = {

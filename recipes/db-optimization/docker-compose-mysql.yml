@@ -1,0 +1,18 @@
+version: '3.6'
+services:
+  database:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password --innodb_flush_log_at_trx_commit=0 --sync-binlog=0
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=myuserpassword
+      - MYSQL_DATABASE=shop
+    container_name: 'mysql-for-testing'
+    ports:
+      - '33060:3306'
+    # Do not use Memory engine, use RAM folder (tmpfs) instead (https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437)
+    tmpfs: /var/lib/mysql
+    volumes:
+      - ./mysql-init-scripts:/docker-entrypoint-initdb.d
+      

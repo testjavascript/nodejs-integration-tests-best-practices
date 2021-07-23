@@ -4,12 +4,13 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "test:dev": "jest --watch --runInBand",
-    "test:nestjs": "jest --config='./various-receipes/nestjs/ts-jest.config.js'",
+    "test:dev": "node --inspect=9229 node_modules/.bin/jest --watch --runInBand",
+    "test:nestjs": "jest --config='./recipes/nestjs/ts-jest.config.js'",
     "test:dev:verbose": "jest --watch --verbose",
     "test:mocha": "mocha various-receipes/mocha/basic-tests.test.js --exit --require various-receipes/mocha/hooks.js",
     "lint": "eslint .",
-    "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate"
+    "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate",
+    "db:seed": "cd example-application/data-access && sequelize-cli db:seed:all"
   },
   "author": "",
   "license": "ISC",
@@ -17,8 +18,10 @@
     "@nestjs/common": "^7.6.17",
     "@nestjs/core": "^7.6.17",
     "@nestjs/platform-express": "^7.6.17",
+    "@types/amqplib": "^0.8.1",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/nock": "^11.1.0",
+    "amqplib": "^0.8.0",
     "axios": "^0.20.0",
     "axios-retry": "^3.1.9",
     "body-parser": "^1.19.0",

@@ -38,7 +38,7 @@ module.exports = class OrderRepository {
   }
 
   async getOrderById(id) {
-    return await orderModel.findOne({ where: { id: id } });
+    return await orderModel.findOne({ where: { id } });
   }
 
   async addOrder(orderDetails) {
@@ -52,7 +52,6 @@ module.exports = class OrderRepository {
   }
 
   async cleanup() {
-    await orderModel.destroy({ where: {}, truncate: false });
-    return;
+    await orderModel.truncate();
   }
 };
