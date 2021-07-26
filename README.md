@@ -1,17 +1,1 @@
-# The power of component tests
-
-## 🗺 Cover everything
-
-## 💰 Test less
-
-## 🚀 Fast
-
-## 🧍‍♂️ User and requirements oriented
-
-## 📦 Test what you deploy
-
-## 🖥 Test Ops aspects
-
-## 🌍 Framework agnostic
-
-## ❗️🐲 Don't let the bastards drug you down
+# Seat-belt on: This repo is about to be released in less than a week! 🐥
