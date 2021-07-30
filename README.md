@@ -1,17 +1,5 @@
-# The power of component tests
+# Seat-belt on: This repo is about to be released in less than a week! 🐥
 
-## 🗺 Cover everything
+## It might fundametally change how you test your Node.js backend code ✅
 
-## 💰 Test less
-
-## 🚀 Fast
-
-## 🧍‍♂️ User and requirements oriented
-
-## 📦 Test what you deploy
-
-## 🖥 Test Ops aspects
-
-## 🌍 Framework agnostic
-
-## ❗️🐲 Don't let the bastards drug you down
+## Remember to visit again at August 4th 2021 📅
