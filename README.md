@@ -406,7 +406,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-## **Section 3 : Test test anatomy (basics)**
+## **Section 3: Test test anatomy (basics)**
 
 <br/>
 
@@ -579,7 +579,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 🏷&nbsp; **Tags:** `#basics`
 
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated 4below), structure the routes by topics and queues.  
 
 ![Test report by route](/graphics/test-report-by-route.png)
 
@@ -627,7 +627,7 @@ describe('/api', () => {
 <br/><br/>
 
 
-## **Section 4 : Isolating from the external world**
+## **Section 4: Isolating from the external world**
 
 <br/>
 
@@ -931,7 +931,7 @@ test("When users service doesn't reply within 2 seconds, return 503", async () =
 
 <br/><br/>
 
-## **Section 5 : Dealing with data**
+## **Section 5: Dealing with data**
 
 
 <br/>
@@ -1326,7 +1326,7 @@ module.exports = async () => {
 
 <br/><br/>
 
-## **Section 6 : Message queues**
+## **Section 6: Message queues**
 
 ### ⚪️ 1.  Important: Use a fake MQ for the majority of testing
 
