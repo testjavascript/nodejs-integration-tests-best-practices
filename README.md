@@ -31,16 +31,21 @@ Prefer video or a workshop? Find here the same content as a course, online works
 
 # `Table of contents`
 
+### Best Practices
+
+- [`Database And Infrastructure Setup`](/) - Optimizing your DB, MQ and other infra for testing
+- [`Web-Server Setup`](/) - Good practices for starting and stopping the backend API
+- [`The Test Anatomy`](/) - The bread and butter of a component test
+- [`The Test Anatomy`](/) - The bread and butter of a component test
+- - [`The Test Anatomy`](/) - The bread and butter of a component test
+
+
 ### Example Application
 
 - [`Hello JavaScript Testing`](/) - Writing your first test
 - [`Anatomy Of Good Tests`](/) - Best practices and tools for high-quality test code
 
-### Best Practices
 
-- [`Infrastructure Setup`](/) - Bringing your DB, MQ and other infra up and running
-- [`Web-Server Setup`](/) - Starting and stopping the backend API
-- [`The Test Anatomy`](/) - The bread and butter of a component test
 -
 
 ### Other Recipes
@@ -1757,11 +1762,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjI3NTAxMywtOTcyMzA0MDYwLC0xNDQwOT
-Y1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYsLTgw
-MzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMj
-IzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMs
-NjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MD
-YyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MF19
-
+eyJoaXN0b3J5IjpbMjc5MTQ5Mjk2LC05NzIzMDQwNjAsLTE0ND
+A5NjUzNjUsLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOTg0Niwt
+ODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0xMzE4NT
+AyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNTYwMjc5
+Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1Mz
+gwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUw
+XX0=
 -->
