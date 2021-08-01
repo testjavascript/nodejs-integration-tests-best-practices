@@ -37,9 +37,9 @@ Prefer video or a workshop? Find here the same content as a course, online works
 - [`Web-Server Setup`](/) - Good practices for starting and stopping the backend API
 - [`The Test Anatomy`](/) - The bread and butter of a component test
 - [`Dealing With Data`](/) - Patterns and practices for testing the application state (database)
-- [`Integration`](/) - t
-- [`The Test Anatomy`](/) - The bread and butter of a component test
-- [`The Test Anatomy`](/) - The bread and butter of a component test
+- [`Integration`](/) - Techniques for testing collaborations with 3rd party components
+- [`Message Queue`](/) - Correctly testing flows that start or end at a queue
+- [`Development Workflow`](/) - Incorporoating component tests into your daily workflow
 
 ### Example Application
 
@@ -1763,11 +1763,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODgxMTM4MDYsLTk3MjMwNDA2MCwtMT
-Q0MDk2NTM2NSwtOTYzMjk1NiwtMTk3OTUwODksOTY5ODM5ODQ2
-LC04MDMxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMT
-g1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAy
-NzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMj
-UzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYw
-NTBdfQ==
+eyJoaXN0b3J5IjpbMTExODQ0MTU0LC05NzIzMDQwNjAsLTE0ND
+A5NjUzNjUsLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOTg0Niwt
+ODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0xMzE4NT
+AyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNTYwMjc5
+Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1Mz
+gwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUw
+XX0=
 -->
