@@ -37,7 +37,9 @@ This repo contains:
 - [`The Test Anatomy`](/) - The bread and butter of a component test
 -
 
+### Other Recipes
 
+- [`More Examples And Platforms`](/) - Bringing your DB, MQ and other infra up and running
 
 # 📊 Example application
 
@@ -1749,7 +1751,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTA3MTI1NTUsLTk2MzI5NTYsLTE5Nz
+eyJoaXN0b3J5IjpbLTE0NDA5NjUzNjUsLTk2MzI5NTYsLTE5Nz
 k1MDg5LDk2OTgzOTg0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwx
 MDY3MTE1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4OD
 QxNDMyNCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYx
