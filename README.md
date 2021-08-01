@@ -1732,21 +1732,15 @@ In this folder you may find a complete example of real-world like application, a
 More use cases and platforms. Each lives in its own folders:
 
 - Nest.js
-- Fastify (coming soon)
+- Fastify (coming soon 🗓)
 - Mocha
 - Authentication
-- Local env setup for speedy and convenient tests
-- Documentation based contract tests (validating Swagger correctness)
-- Consumer-driven contract tests (with PACT)
+- Message Queue
+- Testing OpenAPI (Swagger)
+- Consumer-driven contract tests (coming soon 🗓)
 - Authentication/Login
-- Tests with message queues
-- Schema migration and seeding
-- Data seeding
-- Data cleanup
-- Error handling tests
 - Testing for proper logging and metrics
-- Debug configuration and other dev tooling
-- Frameworks examples: Serverless, Nest, Fastify, Koa
+- Data isolation patterns
 
 # How to start learning quickly and conveniently?
 
@@ -1759,11 +1753,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMzY1MzkxNTcsLTk3MjMwNDA2MCwtMT
-Q0MDk2NTM2NSwtOTYzMjk1NiwtMTk3OTUwODksOTY5ODM5ODQ2
-LC04MDMxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMT
-g1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAy
-NzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMj
-UzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYw
-NTBdfQ==
+eyJoaXN0b3J5IjpbMTc4MDQ0MzI2MSwtOTcyMzA0MDYwLC0xND
+QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
+LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
+UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
+OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
+M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
+MF19
 -->
