@@ -47,12 +47,7 @@ Prefer video or a workshop? Find here the same content as a course, online works
 
 ### Other Recipes
 
-- [`More Examples And Platforms`](/) - Bringing your DB, MQ and other infra up and running
-
-# 📊 Example application
-
-In this folder you may find a complete example of real-world like application, a tiny Orders component (e.g. e-commerce ordering), including tests. We recommend skimming through this examples before or during reading the best practices. Note that we intentionally kept the app small enough to ease the reader experience. On top of it, a 'various-recipes' folder exists with additional patterns and practices - This is your next step in the learning journey
-
+- [`More Examples And Platforms`](/) - A list of more examples that cover more platforms and topics
 
 <br/><br/><br/>
 
@@ -1674,12 +1669,12 @@ services:
 
 <br/>
 
-## **Section: The test anatomy**
+## **Section: Development Workflow**
 
 
 <br/>
 
-### ⚪️ 1. Test should not be longer than 5-10 statements
+### ⚪️ 1. Soon in 2-3 days
 
 :white_check_mark: **Do:**
 For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
@@ -1759,7 +1754,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0NTYzNzkwMiwtOTcyMzA0MDYwLC0xND
+eyJoaXN0b3J5IjpbLTk1NTU3NzY2MCwtOTcyMzA0MDYwLC0xND
 QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
 LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
 UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
