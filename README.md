@@ -33,7 +33,9 @@ This repo contains:
 ### Best Practices
 
 - [`Infrastructure Setup`](/) - Bringing your DB, MQ and other infra up and running
-- [`Anatomy Of Good Tests`](/) - Best practices and tools for high-quality test code
+- [`Web-Server Setup`](/) - Starting and stopping the backend API
+- [`The Test Anatomy`](/) - The bread and butter of a component test
+-
 
 
 
@@ -1747,11 +1749,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI4MTgyMTUyLC05NjMyOTU2LC0xOTc5NT
-A4OSw5Njk4Mzk4NDYsLTgwMzEzNjUyNywxMjA4NDExNTksMTA2
-NzExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MT
-QzMjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMs
-MTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mj
-cxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OF19
-
+eyJoaXN0b3J5IjpbLTE4MTA3MTI1NTUsLTk2MzI5NTYsLTE5Nz
+k1MDg5LDk2OTgzOTg0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwx
+MDY3MTE1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4OD
+QxNDMyNCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYx
+MywxOTg3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOT
+UyNzEwNTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4
+XX0=
 -->
