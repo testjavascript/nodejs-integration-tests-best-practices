@@ -37,10 +37,10 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 
 - [`Database And Infrastructure Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup) - Optimizing your DB, MQ and other infra for testing (6 best practices)
 - [`Web-Server Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup) - Good practices for starting and stopping the backend API (3 best practices)
-- [`The Test Anatomy`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3--test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
-- [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4--isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
-- [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
-- [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
+- [`The Test Anatomy`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
+- [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
+- [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
+- [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
 - [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow
 
 ### Example Application
