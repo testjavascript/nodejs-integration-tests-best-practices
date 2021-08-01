@@ -4,9 +4,9 @@
 
 ## Master the art of the most powerful testing technique for backend
 
-<br/>
+<br/></br/>
 
-# 3 things here to your benefit
+# 3 things to your benefit
 
 Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills - This is why we're here. Warning: You might fall in love with testing  💚
 
@@ -18,14 +18,16 @@ This repository contains:
 
 **3. 🚀   Recipes folders -** Even more examples, each in its own folder, to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), message queues, authentication in tests, OpenAPI testing and more
 
+<br/><br/>
+
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
-<br/>
+<br/><br/>
 
 ## Courses and workshops
 
-Prefer video or a workshop? Find here the same content as a course, online workshop, free webinar, or invite a private workshop to your team
+Prefer video or a workshop? Find here the [same content as a course](https://testjavascript.com/), online workshop, free webinar, or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
 
 <br/><br/>
 
@@ -33,13 +35,13 @@ Prefer video or a workshop? Find here the same content as a course, online works
 
 ### Best Practices
 
-- [`Database And Infrastructure Setup`](/) - Optimizing your DB, MQ and other infra for testing
-- [`Web-Server Setup`](/) - Good practices for starting and stopping the backend API
-- [`The Test Anatomy`](/) - The bread and butter of a component test
-- [`Dealing With Data`](/) - Patterns and practices for testing the application state (database)
-- [`Integration`](/) - Techniques for testing collaborations with 3rd party components
-- [`Message Queue`](/) - Correctly testing flows that start or end at a queue
-- [`Development Workflow`](/) - Incorporoating component tests into your daily workflow
+- [`Database And Infrastructure Setup`](/) - Optimizing your DB, MQ and other infra for testing (7 best practices)
+- [`Web-Server Setup`](/) - Good practices for starting and stopping the backend API (7 best practices)
+- [`The Test Anatomy`](/) - The bread and butter of a component test (7 best practices)
+- [`Dealing With Data`](/) - Patterns and practices for testing the application data and database (7 best practices)
+- [`Integration`](/) - Techniques for testing collaborations with 3rd party components (7 best practices)
+- [`Message Queue`](/) - Correctly testing flows that start or end at a queue (7 best practices)
+- [`Development Workflow`](/) - Incorporoating component tests into your daily workflow (7 best practices)
 
 ### Example Application
 
