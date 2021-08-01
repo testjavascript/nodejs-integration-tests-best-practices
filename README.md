@@ -78,20 +78,20 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```yml
-  # docker-compose.yml
-  version: '3.6'
-  services:
-    database:
-      image: postgres:11
-      command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
-      environment:
-        - POSTGRES_USER=myuser
-        - POSTGRES_PASSWORD=myuserpassword
-        - POSTGRES_DB=shop
-      container_name: 'postgres-for-testing'
-      ports:
-        - '54310:5432'
-      tmpfs: /var/lib/postgresql/data
+# docker-compose.yml
+version: '3.6'
+services:
+  database:
+    image: postgres:11
+    command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    container_name: 'postgres-for-testing'
+    ports:
+      - '54310:5432'
+    tmpfs: /var/lib/postgresql/data
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/docker-compose.yml)
@@ -116,22 +116,24 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-  // jest.config.js
-  globalSetup: './example-application/test/global-setup.js'
-  // global-setup.js
-  const dockerCompose = require('docker-compose');
-  module.exports = async () => {
-    ...
-    await dockerCompose.upAll({
-      cwd: path.join(__dirname),
-      log: true,
-    });
-    await dockerCompose.exec(
-      'database',
-      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
-      { cwd: path.join(__dirname) }
-    );
-    ...
+// jest.config.js
+globalSetup: './example-application/test/global-setup.js';
+
+// global-setup.js
+const dockerCompose = require('docker-compose');
+module.exports = async () => {
+  // ...
+  await dockerCompose.upAll({
+    cwd: path.join(__dirname),
+    log: true,
+  });
+  await dockerCompose.exec(
+    'database',
+    ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
+    { cwd: path.join(__dirname) }
+  );
+  // ...
+}
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)  
@@ -156,18 +158,18 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-  // jest.config.js
-  globalTeardown: './example-application/test/global-teardown.js',
-  
-  // global-teardown.js - clean-up after all tests
-  const isCI = require('is-ci');
-  const dockerCompose = require('docker-compose');
-  module.exports = async () => {
-    // Check if running CI environment
-    if (isCI) {
-      dockerCompose.down();
-    }
+// jest.config.js
+globalTeardown: './example-application/test/global-teardown.js',
+
+// global-teardown.js - clean-up after all tests
+const isCI = require('is-ci');
+const dockerCompose = require('docker-compose');
+module.exports = async () => {
+  // Check if running CI environment
+  if (isCI) {
+    dockerCompose.down();
   }
+}
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L5-L8)
@@ -192,8 +194,8 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 <details><summary>✏ <b>Code Examples</b></summary>
 
 #### Postgres
-```
-//docker-compose file
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -201,7 +203,7 @@ services:
     container_name: 'postgres-for-testing'
     command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
     tmpfs: /var/lib/postgresql/data
-    ...
+    # ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -226,15 +228,15 @@ services:
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
-//docker-compose file
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
     tmpfs: /var/lib/postgresql/data
-    ...
+    # ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -259,17 +261,18 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-  // jest.config.js
-  globalSetup: './example-application/test/global-setup.js'
+// jest.config.js
+globalSetup: './example-application/test/global-setup.js'
 
-  // global-setup.js
-  const npm = require('npm');
-  const util = require('util');
-  module.exports = async () => {
-    ...
-    const npmCommandAsPromise = util.promisify(npm.commands.run);
-    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
-    ...
+// global-setup.js
+const npm = require('npm');
+const util = require('util');
+module.exports = async () => {
+  // ...
+  const npmCommandAsPromise = util.promisify(npm.commands.run);
+  await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
+  // ...
+}
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L29-L30)
@@ -296,7 +299,7 @@ services:
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```js
 const apiUnderTest = require('../api/start.js');
 
 beforeAll(async (done) => {
@@ -325,7 +328,7 @@ beforeAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```js
 const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
@@ -335,7 +338,7 @@ const initializeWebServer = async (customMiddleware) => {
       resolve(expressApp);
     });
   });
-}
+};
 
 const stopWebServer = async () => {
   return new Promise((resolve, reject) => {
@@ -343,12 +346,12 @@ const stopWebServer = async () => {
       resolve();
     })
   });
-}
+};
 
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
   done();
-  }
+});
 
 afterAll(async (done) => {
   await stopWebServer();
@@ -381,7 +384,7 @@ afterAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```js
 // api-under-test.js
 const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
@@ -395,10 +398,8 @@ const initializeWebServer = async (customMiddleware) => {
 
 // test.js
 beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
-  });
-
-
+  expressApp = await initializeWebServer();// No port
+});
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
@@ -486,7 +487,7 @@ beforeAll(async (done) => {
   };
   // Create axios client for the whole test suite
   axiosAPIClient = axios.create(axiosConfig);
-  ...
+  // ...
 });
 
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
@@ -503,7 +504,8 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
   // Use axios to retrieve the same order by id
   const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
-  ...
+  // ...
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/master/example-application/test/basic-tests.test.js#L64)
@@ -529,7 +531,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```javascript
 // Code example with signing JWT token
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
@@ -554,7 +556,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 ```javascript
 // basic-tests.test.ts
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
-  ...
+  // ...
   const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
 
   // Assert on entire HTTP response object
@@ -594,12 +596,13 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 // basic-tests.test.js
 describe('/api', () => {
   describe('GET /order', () => {
-    ...
+    // ...
   });
 
   describe('POST /orders', () => {
-    ...
+    // ...
   });
+});
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
@@ -752,7 +755,7 @@ test('When the user does not exist, return http 404', async () => {
 
 ```javascript
 beforeAll(async (done) => {
-  ...
+  // ...
   // ️️️Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
   // Enable only requests for the API under test
@@ -829,7 +832,7 @@ test('When users service replies with 503 once and retry mechanism is applied, t
 // ️️️Assert that the app called the mailer service appropriately with the right input
 test('When order failed, send mail to admin', async () => {
   //Arrange
-  ...
+  // ...
   let emailPayload;
   nock('http://mailer.com')
     .post('/send', (payload) => ((emailPayload = payload), true))
@@ -998,11 +1001,12 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 // Adding metadata globally. Done once regardless of the amount of tests
 module.exports = async () => {
   console.time('global-setup');
-  ...
+  // ...
   await npmCommandAsPromise(['db:seed']); // Will create a countries (metadata) list. This is not related to the tests subject
-  ...
+  // ...
   // 👍🏼 We're ready
   console.timeEnd('global-setup');
+};
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L32)
@@ -1131,7 +1135,7 @@ Who wins? There's no clear cut here. Both have their strength but also unpleasan
 // After-all clean up (recommended)
 // global-teardown.js
 module.exports = async () => {
-  ...
+  // ...
   if (Math.ceil(Math.random() * 10) === 10) {
     await new OrderRepository().cleanup();
   }
@@ -1189,7 +1193,7 @@ test('When adding a new valid order, Then should get back 200 response', async (
     '/order',
     orderToAdd
   );
-  ...
+  // ...
 });
 ```
 
@@ -1216,7 +1220,7 @@ When it is impossible to assert for specific data, check for mandatory field exi
 
 ```javascript
 test('When adding a new valid order, Then should get back approval with 200 response', async () => {
-  ...
+  // ...
   //Assert
   expect(receivedAPIResponse).toMatchObject({
     status: 200,
@@ -1253,9 +1257,9 @@ test('When adding a new valid order, Then should get back approval with 200 resp
 // Create the DB schema. Done once regardless of the amount of tests
 module.exports = async () => {
   console.time('global-setup');
-  ...
+  // ...
   await npmCommandAsPromise(['db:migrate']);
-  ...
+  // ...
   // 👍🏼 We're ready
   console.timeEnd('global-setup');
 ```
@@ -1282,41 +1286,41 @@ module.exports = async () => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-    test("When deleting an existing order, Then should get a successful message", async () => {
-      // Arrange
-      const orderToDelete = {
-        userId: 1,
-        productId: 2,
-        externalIdentifier: `id-${getShortUnique()}`, //unique value
-      };
-      const {
-        data: { id: orderToDeleteId },
-      } = await axiosAPIClient.post("/order", orderToDelete);
+test("When deleting an existing order, Then should get a successful message", async () => {
+  // Arrange
+  const orderToDelete = {
+    userId: 1,
+    productId: 2,
+    externalIdentifier: `id-${getShortUnique()}`, //unique value
+  };
+  const {
+    data: { id: orderToDeleteId },
+  } = await axiosAPIClient.post("/order", orderToDelete);
 
-      // Create another order to make sure the delete request deletes only the correct record
-      const anotherOrder = {
-        userId: 1,
-        productId: 2,
-        externalIdentifier: `id-${getShortUnique()}`, //unique value
-      };
+  // Create another order to make sure the delete request deletes only the correct record
+  const anotherOrder = {
+    userId: 1,
+    productId: 2,
+    externalIdentifier: `id-${getShortUnique()}`, //unique value
+  };
 
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
-      const {
-        data: { id: anotherOrderId },
-      } = await axiosAPIClient.post("/order", anotherOrder);
+  nock("http://localhost/user/").get(`/1`).reply(200, {
+    id: 1,
+    name: "John",
+  });
+  const {
+    data: { id: anotherOrderId },
+  } = await axiosAPIClient.post("/order", anotherOrder);
 
-      // Act
-      const deleteResponse = await axiosAPIClient.delete(`/order/${orderToDeleteId}`);
-      const getOrderResponse = await axiosAPIClient.get(`/order/${anotherOrderId}`);
+  // Act
+  const deleteResponse = await axiosAPIClient.delete(`/order/${orderToDeleteId}`);
+  const getOrderResponse = await axiosAPIClient.get(`/order/${anotherOrderId}`);
 
-      // Assert
-      expect(deleteResponse.status).toBe(204);
-      // Assert anotherOrder still exists
-      expect(getOrderResponse.status).toBe(200);
-    });
+  // Assert
+  expect(deleteResponse.status).toBe(204);
+  // Assert anotherOrder still exists
+  expect(getOrderResponse.status).toBe(200);
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/data-isolation.test.js#L105-L139)
@@ -1397,34 +1401,32 @@ class FakeMessageQueueProvider extends EventEmitter {
 
 ```javascript
 // message-queue-client.js. The MQ client/wrapper is throwing an event when the message handler is done
-  async consume(queueName, onMessageCallback) {
-    await this.channel.consume(queueName, async (theNewMessage) => {
-      await onMessageCallback(theNewMessage);
-      await this.ack(theNewMessage); // Handling is done, acknowledge the msg
-      this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
-    });
-  }
-
-
+async consume(queueName, onMessageCallback) {
+  await this.channel.consume(queueName, async (theNewMessage) => {
+    await onMessageCallback(theNewMessage);
+    await this.ack(theNewMessage); // Handling is done, acknowledge the msg
+    this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
+  });
+}
 ```
 
 ```javascript
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
 test('Whenever a user deletion message arrive, then this user orders are also deleted', async  ()  => {
 
-// Arrange
-
-// 👉🏼 HERE WE SHOULD add new orders to the system
-
-const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event from EventEmitter
-
-// Act
-fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
-
-// Assert
-const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resolve once the message handling is done
-
-// Now we're certain that the operations is done and can start asserting for the results 👇 
+  // Arrange
+  
+  // 👉🏼 HERE WE SHOULD add new orders to the system
+  
+  const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event from EventEmitter
+  
+  // Act
+  fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
+  
+  // Assert
+  const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resolve once the message handling is done
+  
+  // Now we're certain that the operations is done and can start asserting for the results 👇 
 });
 ```
 
@@ -1456,19 +1458,19 @@ const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resol
 //Putting a delete-order message, checking the the app processed this correctly AND acknowledged
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
-// Arrange
-// Add here a test record - A new order  of a specific user using the API
-
-const  fakeMessageQueue = await  startFakeMessageQueue();
-const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
-
-// Act
-fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
-
-// Assert
-const  eventFromMessageQueue = await  getNextMQEvent;
-// Check here that the user's orders were deleted
-expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
+  // Arrange
+  // Add here a test record - A new order  of a specific user using the API
+  
+  const  fakeMessageQueue = await  startFakeMessageQueue();
+  const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
+  
+  // Act
+  fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
+  
+  // Assert
+  const  eventFromMessageQueue = await  getNextMQEvent;
+  // Check here that the user's orders were deleted
+  expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 });
 ```
 
@@ -1493,9 +1495,9 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 	<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1530,9 +1532,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1568,9 +1570,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1605,9 +1607,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1642,9 +1644,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1691,7 +1693,7 @@ The application under test can avoid opening connections and delegate this to th
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```javascript
 const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
