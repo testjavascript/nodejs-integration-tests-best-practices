@@ -23,25 +23,19 @@ This repo contains:
 
 <br/><br/><br/>
 
-# What can you find here?
+# `Table of contents`
 
-This repo provides the following benefits and assets:
+### Example Application
 
-**1. 📊  Example application -** A Complete showcase of a typical Microservice with tests setup and the test themselves
+- [`Hello JavaScript Testing`](/) - Writing your first test
+- [`Anatomy Of Good Tests`](/) - Best practices and tools for high-quality test code
 
-**2. ✅ 40+ Best Practices List -** Detailed instructions on how to write integartiong tests in the RIGHT way including code example and reference to the example application
+### Best Practices
 
-**3. 🚀   Advanced stuff -** How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
-
-<br/><br/><br/>
-
-
-# 6 min explainer video
-
-https://user-images.githubusercontent.com/8571500/124645598-4a6f3a80-de9c-11eb-9d17-725a6f9b57a7.mp4
+- [`Infrastructure Setup`](/) - Bringing your DB, MQ and other infra up and running
+- [`Anatomy Of Good Tests`](/) - Best practices and tools for high-quality test code
 
 
-<br/><br/><br/>
 
 # 📊 Example application
 
@@ -1753,11 +1747,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2MTYyMjgzNiwtOTYzMjk1NiwtMTk3OT
-UwODksOTY5ODM5ODQ2LC04MDMxMzY1MjcsMTIwODQxMTU5LDEw
-NjcxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4ND
-E0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEz
-LDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NT
-I3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjhd
-fQ==
+eyJoaXN0b3J5IjpbOTI4MTgyMTUyLC05NjMyOTU2LC0xOTc5NT
+A4OSw5Njk4Mzk4NDYsLTgwMzEzNjUyNywxMjA4NDExNTksMTA2
+NzExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MT
+QzMjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMs
+MTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mj
+cxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OF19
+
 -->
