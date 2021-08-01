@@ -8,7 +8,7 @@
 
 # 3 things here to your benefit
 
-Component/integration test is an emergint technique that is an hybrid between E2E and unit tets. The idea is to test the entire component (e.g., Microservice) as-is, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills, this is why we're here. Warning: You might fall in love with testing 💚
+Component/integration test is (popular, read about the testing diamond) an emergint technique that is an hybrid between E2E and unit tets. The idea is to test the entire component (e.g., Microservice) as-is, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills - This is why we're here. Warning: You might fall in love with testing 💚
 
 This repo contains:
 
@@ -1751,11 +1751,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NDA5NjUzNjUsLTk2MzI5NTYsLTE5Nz
-k1MDg5LDk2OTgzOTg0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwx
-MDY3MTE1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4OD
-QxNDMyNCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYx
-MywxOTg3OTUwMzYsMTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOT
-UyNzEwNTgsOTQ4NTE2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4
+eyJoaXN0b3J5IjpbLTk3MjMwNDA2MCwtMTQ0MDk2NTM2NSwtOT
+YzMjk1NiwtMTk3OTUwODksOTY5ODM5ODQ2LC04MDMxMzY1Mjcs
+MTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NT
+IxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0
+LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzND
+MxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkw
 XX0=
 -->
