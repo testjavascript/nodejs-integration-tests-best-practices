@@ -16,7 +16,7 @@ This repo contains:
 
 **2. ✅ 40+ Best Practices List -** Detailed instructions on how to write component tests in the RIGHT way including code example and reference to the example application
 
-**3. 🚀   Advanced stuff and recipes -** More examples 
+**3. 🚀   Advanced stuff and recipes -** Even more examples to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), authentication in tests, OpenAPI testing and always growing
 
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
@@ -1760,7 +1760,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MzM2Mjg1MzUsLTk2MzI5NTYsLTE5Nz
+eyJoaXN0b3J5IjpbLTE3NTgzNDcxMjksLTk2MzI5NTYsLTE5Nz
 k1MDg5LDk2OTgzOTg0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwx
 MDY3MTE1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4OD
 QxNDMyNCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYx
