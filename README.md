@@ -8,10 +8,15 @@
 
 # 3 things here to your benefit
 
-🚦Seat belt on, strategic backend content lies in front of you. Component/integration test is an emergint technique that is an hybrid between E2E and unit tets. 
+🚦Seat belt on, strategic backend content lies in front of you. Component/integration test is an emergint technique that is an hybrid between E2E and unit tets. The idea is to test the entire component (e.g., Microservice) as-is, with all the layers including database but fake anything exterenous. This brings both confidence
 
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
 
+**1. 📊  Example application -** A Complete showcase of a typical Microservice with tests setup and the test themselves
+
+**2. ✅ 40+ Best Practices List -** Detailed instructions on how to write integartiong tests in the RIGHT way including code example and reference to the example application
+
+**3. 🚀   Advanced stuff -** How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
 
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
@@ -1755,7 +1760,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExNDgzMjczLC05NjMyOTU2LC0xOTc5NT
+eyJoaXN0b3J5IjpbMjUyNzA3MDIyLC05NjMyOTU2LC0xOTc5NT
 A4OSw5Njk4Mzk4NDYsLTgwMzEzNjUyNywxMjA4NDExNTksMTA2
 NzExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MT
 QzMjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMs
