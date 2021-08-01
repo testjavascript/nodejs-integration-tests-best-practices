@@ -35,21 +35,21 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 
 ### Best Practices
 
-- [`Database And Infrastructure Setup`](/) - Optimizing your DB, MQ and other infra for testing (7 best practices)
-- [`Web-Server Setup`](/) - Good practices for starting and stopping the backend API (7 best practices)
-- [`The Test Anatomy`](/) - The bread and butter of a component test (7 best practices)
-- [`Dealing With Data`](/) - Patterns and practices for testing the application data and database (7 best practices)
-- [`Integration`](/) - Techniques for testing collaborations with 3rd party components (7 best practices)
-- [`Message Queue`](/) - Correctly testing flows that start or end at a queue (7 best practices)
-- [`Development Workflow`](/) - Incorporoating component tests into your daily workflow (7 best practices)
+- [`Database And Infrastructure Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup) - Optimizing your DB, MQ and other infra for testing (6 best practices)
+- [`Web-Server Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup) - Good practices for starting and stopping the backend API (3 best practices)
+- [`The Test Anatomy`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
+- [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
+- [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
+- [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
+- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow
 
 ### Example Application
 
-- [`Our Showcase`](/) - An example Node.js component that embodies selected list of important best practices
+- [`Our Showcase`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#-example-application) - An example Node.js component that embodies selected list of important best practices
 
 ### Other Recipes
 
-- [`More Examples And Platforms`](/) - A list of more examples that cover more platforms and topics
+- [`More Examples And Platforms`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#-recipes) - A list of more examples that cover more platforms and topics
 
 <br/><br/><br/>
 
@@ -406,7 +406,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-## **Section 3 : Test test anatomy (basics)**
+## **Section 3: Test test anatomy (basics)**
 
 <br/>
 
@@ -579,7 +579,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 🏷&nbsp; **Tags:** `#basics`
 
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated 4below), structure the routes by topics and queues.  
 
 ![Test report by route](/graphics/test-report-by-route.png)
 
@@ -627,7 +627,7 @@ describe('/api', () => {
 <br/><br/>
 
 
-## **Section 4 : Isolating from the external world**
+## **Section 4: Isolating from the external world**
 
 <br/>
 
@@ -931,7 +931,7 @@ test("When users service doesn't reply within 2 seconds, return 503", async () =
 
 <br/><br/>
 
-## **Section: Dealing with data**
+## **Section 5: Dealing with data**
 
 
 <br/>
@@ -1326,7 +1326,7 @@ module.exports = async () => {
 
 <br/><br/>
 
-## **Section: Message queues**
+## **Section 6: Message queues**
 
 ### ⚪️ 1.  Important: Use a fake MQ for the majority of testing
 
