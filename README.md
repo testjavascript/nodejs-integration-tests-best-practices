@@ -8,9 +8,11 @@
 
 # 3 things here to your benefit
 
-🚦Seat belt on, strategic backend content lies in front of you. Better block sometimes to walk-through.
+🚦Seat belt on, strategic backend content lies in front of you. Component/integration test is an emergint technique that is an hybrid between E2E and unit tets. 
 
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
+
+
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
@@ -1753,11 +1755,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0OTA4MDcwOSwtOTYzMjk1NiwtMTk3OT
-UwODksOTY5ODM5ODQ2LC04MDMxMzY1MjcsMTIwODQxMTU5LDEw
-NjcxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4ND
-E0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEz
-LDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NT
-I3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjhd
-fQ==
+eyJoaXN0b3J5IjpbMjExNDgzMjczLC05NjMyOTU2LC0xOTc5NT
+A4OSw5Njk4Mzk4NDYsLTgwMzEzNjUyNywxMjA4NDExNTksMTA2
+NzExNTcyMSwtMTMxODUwMjIzNywxMTg1MjEzMzg0LDEwODg0MT
+QzMjQsLTEyMTU2MDI3OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMs
+MTk4Nzk1MDM2LDEyNTM4MDYyMzgsMTM0MzE0NzkzNywxMTk1Mj
+cxMDU4LDk0ODUxNjA1MCw5NTYwODI4OTAsLTExMjkxNTE2OF19
+
 -->
