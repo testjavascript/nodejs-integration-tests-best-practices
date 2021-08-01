@@ -1671,6 +1671,7 @@ services:
 
 ## **Section: Development Workflow**
 
+Soon in 2-3 days
 
 <br/>
 
@@ -1718,18 +1719,22 @@ const stopWebServer = async () => {
 <br/><br/>
 
 
-# Advanced techniques and reference to all features
+# 📊 Example application
 
-<br/><br/><br/>
-****
-# Reference: List of techniques and features
+In this folder you may find a complete example of real-world like application, a tiny Orders component (e.g. e-commerce ordering), including tests. We recommend skimming through this examples before or during reading the best practices. Note that we intentionally kept the app small enough to ease the reader experience. On top of it, a 'various-recipes' folder exists with additional patterns and practices - This is your next step in the learning journey
 
-This repo contains examples for writing Node.js backend tests in THE RIGHT WAY including:
+<br/><br/>
 
-- Tests against API
-- Isolating 3rd party services
-- Stubbing the backend behavior to simulate corner cases
-- Database setup with speedy RAM folder that supports both Linux, Mac & Windows
+
+# 🍪 Recipes
+
+
+More use cases and platforms. Each lives in its own folders:
+
+- Nest.js
+- Fastify (coming soon)
+- Mocha
+- Authentication
 - Local env setup for speedy and convenient tests
 - Documentation based contract tests (validating Swagger correctness)
 - Consumer-driven contract tests (with PACT)
@@ -1754,11 +1759,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk1NTU3NzY2MCwtOTcyMzA0MDYwLC0xND
-QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
-LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
-UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
-OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
-M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
-MF19
+eyJoaXN0b3J5IjpbLTEzMzY1MzkxNTcsLTk3MjMwNDA2MCwtMT
+Q0MDk2NTM2NSwtOTYzMjk1NiwtMTk3OTUwODksOTY5ODM5ODQ2
+LC04MDMxMzY1MjcsMTIwODQxMTU5LDEwNjcxMTU3MjEsLTEzMT
+g1MDIyMzcsMTE4NTIxMzM4NCwxMDg4NDE0MzI0LC0xMjE1NjAy
+NzkzLDYxODAwNzA0LC0xODEyMTQ1NjEzLDE5ODc5NTAzNiwxMj
+UzODA2MjM4LDEzNDMxNDc5MzcsMTE5NTI3MTA1OCw5NDg1MTYw
+NTBdfQ==
 -->
