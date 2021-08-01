@@ -2,14 +2,13 @@
 
 <br/>
 
-## Master the art of the most powerful technique for testing modern backend
-
+## Master the art of the most powerful testing technique for backend
 
 <br/>
 
-# Intro
+# 3 things here to your benefit
 
-🚦Seat belt on, deep breath. Strategic backend content lies in front of you. Better block sometimes to walk-through.
+🚦Seat belt on, strategic backend content lies in front of you. Better block sometimes to walk-through.
 
 This repo shows the immense power of narrow integration tests, also known as 'component test', including examples and how to set them up properly. This might make a dramatic impact on your testing effort and success 🚀. Warning: You might fall in love with testing 💚
 
@@ -1754,11 +1753,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOT
-g0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0x
-MzE4NTAyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNT
-YwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYs
-MTI1MzgwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NT
-E2MDUwLDk1NjA4Mjg5MCwtMTEyOTE1MTY4LDUwMDkxNzA5M119
-
+eyJoaXN0b3J5IjpbMTM0OTA4MDcwOSwtOTYzMjk1NiwtMTk3OT
+UwODksOTY5ODM5ODQ2LC04MDMxMzY1MjcsMTIwODQxMTU5LDEw
+NjcxMTU3MjEsLTEzMTg1MDIyMzcsMTE4NTIxMzM4NCwxMDg4ND
+E0MzI0LC0xMjE1NjAyNzkzLDYxODAwNzA0LC0xODEyMTQ1NjEz
+LDE5ODc5NTAzNiwxMjUzODA2MjM4LDEzNDMxNDc5MzcsMTE5NT
+I3MTA1OCw5NDg1MTYwNTAsOTU2MDgyODkwLC0xMTI5MTUxNjhd
+fQ==
 -->
