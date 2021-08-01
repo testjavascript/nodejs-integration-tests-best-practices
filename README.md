@@ -1743,5 +1743,38 @@ More use cases and platforms. Each lives in its own folders:
 - Authentication/Login
 - Testing for proper logging and metrics
 - Data isolation patterns
-Markdown 86965 bytes 11911 words 1743 lines Ln 1743, Col 25HTML 60571 characters 11461 words 877 paragraphs
-WORKSPACES
+- Optimized DB for testing
+
+## The Team
+
+Some text some text some text some text some text some text
+
+<img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/yoni.jpg"/>
+
+<h2><b>Yoni Goldberg</b></h2>
+<a href="https://twitter.com/goldbergyoni"><img src="graphics/team/twitter.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="graphics/team/website.png" width="16" height="16"></img></a>
+
+Independent Node.js consultant who works with customers in the USA, Europe, and Israel on building large-scale Node.js applications. Author of [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices). Holds testing workshops [online, onsite](https://testjavascript.com/contact-2/) and also a [recorded course](https://testjavascript.com/).
+
+<br/>
+
+<img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/michael.jpg"/>
+
+<h2><b>Michael Solomon</b></h2>
+<br/>
+
+Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+
+<br/>
+<br/>
+
+<img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/daniel.jpg"/>
+
+<h2><b>Daniel Gluskin</b></h2>
+<br/>
+
+Enthusiastic Node.js and javscript developer. Always eager to learn and explore new technologies. 
+
+<br/>
