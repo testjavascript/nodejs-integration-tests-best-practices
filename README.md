@@ -14,14 +14,20 @@ This repository contains:
 
 **1. ✅ 40+ Best Practices List -** Detailed instructions on how to write component tests in the RIGHT way including code example and reference to the example application
 
-**2. 📊  Example application -** A Complete showcase of a typical Node.js backend with performant tests setup.  (50 tests in 4 seconds! including database!)
+**2. 📊  Example application -** A Complete showcase of a typical Node.js backend with performant tests setup (50 tests in 4 seconds! including database!)
 
-**3. 🚀   Advanced stuff and recipes -** Even more examples to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), authentication in tests, OpenAPI testing and always growing
+**3. 🚀   Recipes -** Even more examples to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), message queues, authentication in tests, OpenAPI testing and more
 
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
-<br/><br/><br/>
+<br/>
+
+## Courses and workshops
+
+Component/integration test is an hybrid between E2E and uni
+
+<br/><br/>
 
 # `Table of contents`
 
@@ -1751,11 +1757,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIzNDM4NTUzNiwtOTcyMzA0MDYwLC0xND
-QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
-LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
-UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
-OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
-M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
-MF19
+eyJoaXN0b3J5IjpbNjY1MTE4NTQyLC05NzIzMDQwNjAsLTE0ND
+A5NjUzNjUsLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOTg0Niwt
+ODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0xMzE4NT
+AyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNTYwMjc5
+Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1Mz
+gwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUw
+XX0=
 -->
