@@ -4,11 +4,11 @@
 
 ## Master the art of the most powerful testing technique for backend
 
-<br/></br/>
+<br/><br/>
 
 # 3 things to your benefit
 
-Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills - This is why we're here. Warning: You might fall in love with testing  💚
+Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills. This is the mission statement of this repo. Warning: You might fall in love with testing  💚
 
 This repository contains:
 
