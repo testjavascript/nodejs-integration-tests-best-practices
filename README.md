@@ -8,15 +8,15 @@
 
 # 3 things here to your benefit
 
-🚦Seat belt on, strategic Node.js content lies in front of you. Component/integration test is an emergint technique that is an hybrid between E2E and unit tets. The idea is to test the entire component (e.g., Microservice) as-is, with all the layers including database but fake anything exterenous. This brings **both** high confidence and great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills. This is why  Warning: You might fall in love with testing 💚
+🚦Seat belt on, strategic Node.js content lies in front of you. Component/integration test is an emergint technique that is an hybrid between E2E and unit tets. The idea is to test the entire component (e.g., Microservice) as-is, with all the layers including database but fake anything exterenous. This brings **both** high confidence and great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills. Warning: You might fall in love with testing 💚
 
 This repo contains:
 
-**1. 📊  Example application -** A Complete showcase of a typical Node.js backend with tests setup and the test themselves
+**1. 📊  Example application -** A Complete showcase of a typical Node.js backend with performant tests setup (50 tests in 4 seconds including database!), and the themselves of course
 
-**2. ✅ 40+ Best Practices List -** Detailed instructions on how to write integartiong tests in the RIGHT way including code example and reference to the example application
+**2. ✅ 40+ Best Practices List -** Detailed instructions on how to write component tests in the RIGHT way including code example and reference to the example application
 
-**3. 🚀   Advanced stuff -** How to take this technique to the next level and maximize your invest. This includes beyond the basics techniques like store your DB data in a fast RAM folder, detect memory leaks during tests, testing data migrations, contract tests and more
+**3. 🚀   Advanced stuff and recipes -** More examples 
 
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
@@ -1760,7 +1760,7 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzk2MDE1NTMsLTk2MzI5NTYsLTE5Nz
+eyJoaXN0b3J5IjpbLTE4MzM2Mjg1MzUsLTk2MzI5NTYsLTE5Nz
 k1MDg5LDk2OTgzOTg0NiwtODAzMTM2NTI3LDEyMDg0MTE1OSwx
 MDY3MTE1NzIxLC0xMzE4NTAyMjM3LDExODUyMTMzODQsMTA4OD
 QxNDMyNCwtMTIxNTYwMjc5Myw2MTgwMDcwNCwtMTgxMjE0NTYx
