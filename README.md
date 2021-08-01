@@ -8,13 +8,13 @@
 
 # 3 things here to your benefit
 
-Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills - This is why we're here. Warning: You might fall in love with testing  💚
+Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills - This is why we're here. Warning: You might fall in love with testing  💚
 
-This repo contains:
+This repository contains:
 
-**1. 📊  Example application -** A Complete showcase of a typical Node.js backend with performant tests setup (50 tests run in 4 seconds including database!), and the tests themselves of course
+**1. ✅ 40+ Best Practices List -** Detailed instructions on how to write component tests in the RIGHT way including code example and reference to the example application
 
-**2. ✅ 40+ Best Practices List -** Detailed instructions on how to write component tests in the RIGHT way including code example and reference to the example application
+**2. 📊  Example application -** A Complete showcase of a typical Node.js backend with performant tests setup.  (50 tests in 4 seconds! including database!)
 
 **3. 🚀   Advanced stuff and recipes -** Even more examples to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), authentication in tests, OpenAPI testing and always growing
 
@@ -1751,11 +1751,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODUyODY3ODc3LC05NzIzMDQwNjAsLTE0ND
-A5NjUzNjUsLTk2MzI5NTYsLTE5Nzk1MDg5LDk2OTgzOTg0Niwt
-ODAzMTM2NTI3LDEyMDg0MTE1OSwxMDY3MTE1NzIxLC0xMzE4NT
-AyMjM3LDExODUyMTMzODQsMTA4ODQxNDMyNCwtMTIxNTYwMjc5
-Myw2MTgwMDcwNCwtMTgxMjE0NTYxMywxOTg3OTUwMzYsMTI1Mz
-gwNjIzOCwxMzQzMTQ3OTM3LDExOTUyNzEwNTgsOTQ4NTE2MDUw
-XX0=
+eyJoaXN0b3J5IjpbMTIzNDM4NTUzNiwtOTcyMzA0MDYwLC0xND
+QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
+LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
+UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
+OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
+M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
+MF19
 -->
