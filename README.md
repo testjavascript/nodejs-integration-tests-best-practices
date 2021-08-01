@@ -1741,19 +1741,8 @@ More use cases and platforms. Each lives in its own folders:
 - Authentication/Login
 - Testing for proper logging and metrics
 - Data isolation patterns
-
-# How to start learning quickly and conveniently?
-
-Just do:
-
-- npm i
-- npm run test:dev
-- Open the file ./src/tests/basic-tests.test
-- Follow the code and best practices inside
-- Move to more advanced use cases in ./src/tests/
-```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc4MDQ0MzI2MSwtOTcyMzA0MDYwLC0xND
+eyJoaXN0b3J5IjpbLTM0MDMyNTM0NSwtOTcyMzA0MDYwLC0xND
 QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
 LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
 UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
