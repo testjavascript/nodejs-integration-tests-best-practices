@@ -16,7 +16,7 @@ This repository contains:
 
 **2. 📊  Example application -** A Complete showcase of a typical Node.js backend with performant tests setup (50 tests in 4 seconds! including database!)
 
-**3. 🚀   Recipes -** Even more examples to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), message queues, authentication in tests, OpenAPI testing and more
+**3. 🚀   Recipes folders -** Even more examples, each in its own folder, to cover more platform and use cases like Nest.js, Mocha, Jest, Express, Fastify (soon), message queues, authentication in tests, OpenAPI testing and more
 
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
@@ -25,7 +25,7 @@ This repository contains:
 
 ## Courses and workshops
 
-Prefer video or a workshop? Find here the same content as a course, online workshop, free webinar, 
+Prefer video or a workshop? Find here the same content as a course, online workshop, free webinar, or invite a private workshop to your team
 
 <br/><br/>
 
@@ -1757,11 +1757,11 @@ Just do:
 - Move to more advanced use cases in ./src/tests/
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcyMDg0MDg1MCwtOTcyMzA0MDYwLC0xND
-QwOTY1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYs
-LTgwMzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxOD
-UwMjIzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3
-OTMsNjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNT
-M4MDYyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1
-MF19
+eyJoaXN0b3J5IjpbMjI3NTAxMywtOTcyMzA0MDYwLC0xNDQwOT
+Y1MzY1LC05NjMyOTU2LC0xOTc5NTA4OSw5Njk4Mzk4NDYsLTgw
+MzEzNjUyNywxMjA4NDExNTksMTA2NzExNTcyMSwtMTMxODUwMj
+IzNywxMTg1MjEzMzg0LDEwODg0MTQzMjQsLTEyMTU2MDI3OTMs
+NjE4MDA3MDQsLTE4MTIxNDU2MTMsMTk4Nzk1MDM2LDEyNTM4MD
+YyMzgsMTM0MzE0NzkzNywxMTk1MjcxMDU4LDk0ODUxNjA1MF19
+
 -->
