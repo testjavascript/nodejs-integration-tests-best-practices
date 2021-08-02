@@ -1763,7 +1763,7 @@ Independent Node.js consultant who works with customers in the USA, Europe, and 
 
 <h2><b>Michael Solomon</b></h2>
 <a href="https://www.linkedin.com/in/michael-solomon-b3571a97/"><img src="graphics/team/linkedin.png" width="16" height="16"></img></a>
-<a href="https://github.com/mikicho"><img src="graphics/team/github.png" width="16" height="16"></img></a>
+<a href="https://github.com/mikicho"><img src="graphics/team/github.png" width="16" height="16"></img><img src="graphics/team/github-light.png" width="16" height="16"></img></a>
 
 Started to program accidentally and fell in love. Strive for readable code. Chasing after perfection. Knowledge freak. Nothing is obvious. Backend developer.
 
