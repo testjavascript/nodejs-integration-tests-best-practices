@@ -1764,7 +1764,7 @@ Independent Node.js consultant who works with customers in the USA, Europe, and 
 <h2><b>Michael Solomon</b></h2>
 <br/>
 
-I started to program accidentally and fell in love. Eager to explore the software world. Strive for readable code. Nothing is obvious. Backend developer.
+Started to program accidentally and fell in love. Eager to explore the software world. Strive for readable code. Nothing is obvious. Backend developer.
 
 
 <br/>
