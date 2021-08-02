@@ -25,11 +25,6 @@ This repository contains:
 
 <br/><br/>
 
-## Courses and workshops
-
-Prefer video or a workshop? Find here the [same content as a course](https://testjavascript.com/), online workshop, free webinar, or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
-
-<br/><br/>
 
 # `Table of contents`
 
@@ -406,7 +401,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-## **Section 3: Test test anatomy (basics)**
+## **Section 3: The test anatomy (basics)**
 
 <br/>
 
@@ -627,7 +622,7 @@ describe('/api', () => {
 <br/><br/>
 
 
-## **Section 4: Isolating from the external world**
+## **Section 4: External services**
 
 <br/>
 
@@ -1671,53 +1666,77 @@ services:
 
 <br/>
 
-## **Section: Development Workflow**
+## **Section 7: Development Workflow**
 
 Soon in 2-3 days
 
 <br/>
 
-### ⚪️ 1. Soon in 2-3 days
+### ⚪️ 1. Always start with integration/component tests
 
-:white_check_mark: **Do:**
-For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
-
-<br/>
-
-👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+:white_check_mark: **Do:** On why these tests should be 1st in the workflow. This bullet will get written in 2 days ⏱
 
 <br/>
 
-<details><summary>✏ <b>Code Examples</b></summary>
+👀 **Alternatives:** This bullet will get written in 2 days ⏱
 
-```
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    defineRoutes(expressApp);
-    connection = expressApp.listen(() => {
-      resolve(expressApp);
-    });
-  });
-}
 
-const stopWebServer = async () => {
-  return new Promise((resolve, reject) => {
-    connection.close(() => {
-      resolve();
-    })
-  });
-}
-```
+<br/><br/>
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
-)
-  
+### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-</details>
+:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. . This bullet will get written in 2 days ⏱
 
+<br/>
+
+👀 **Alternatives:** This bullet will get written in 2 days ⏱
+
+
+<br/><br/>
+
+### ⚪️ 3. Cover features, not functions
+
+:white_check_mark: **Do:** On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
+
+<br/>
+
+👀 **Alternatives:** This bullet will get written in 2 days ⏱
+
+
+<br/><br/>
+
+### ⚪️ 4. Write the tests before or during the code, not after the fact
+
+:white_check_mark: **Do:** On the benefit of having the tests written early. This bullet will get written in 2 days ⏱
+
+<br/>
+
+👀 **Alternatives:** This bullet will get written in 2 days ⏱
+
+
+<br/><br/>
+
+### ⚪️ 5. Let the tests run in the background
+
+:white_check_mark: **Do:** On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
+
+<br/>
+
+👀 **Alternatives:** This bullet will get written in 2 days ⏱
+
+
+<br/><br/>
+
+### ⚪️ 6. Consider testing the 5 known outcomes
+
+:white_check_mark: **Do:** On the definition of done for integration testing. This bullet will get written in 2 days ⏱
+
+<br/>
+
+👀 **Alternatives:** This bullet will get written in 2 days ⏱
+
+
+<br/><br/>
 <br/><br/>
 
 
@@ -1762,10 +1781,10 @@ Independent Node.js consultant who works with customers in the USA, Europe, and 
 <img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/michael.jpg"/>
 
 <h2><b>Michael Solomon</b></h2>
-<br/>
+<a href="https://www.linkedin.com/in/michael-solomon-b3571a97/"><img src="graphics/team/linkedin.png" width="16" height="16"></img></a>
+<a href="https://github.com/mikicho"><img src="graphics/team/github.png" width="16" height="16"></img><img src="graphics/team/github-light.png" width="16" height="16"></img></a>
 
-Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+Started to program accidentally and fell in love. Strive for readable code. Chasing after perfection. Knowledge freak. Nothing is obvious. Backend developer.
 
 <br/>
 <br/>
