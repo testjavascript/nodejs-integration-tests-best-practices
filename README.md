@@ -1764,8 +1764,8 @@ Independent Node.js consultant who works with customers in the USA, Europe, and 
 <h2><b>Michael Solomon</b></h2>
 <br/>
 
-Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+I started to program accidentally and fell in love. Eager to explore the software world. Strive for readable code. Nothing is obvious. Backend developer.
+
 
 <br/>
 <br/>
