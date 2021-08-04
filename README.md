@@ -1669,16 +1669,14 @@ services:
 
 ## **Section 7: Development Workflow**
 
-Soon in 2-3 days
-
 <br/>
 
-### ⚪️ 1. Always start with integration/component tests
+### ⚪️ 1. Always START with integration/component tests
 
-:white_check_mark: **Do:** On why these tests should be 1st in the workflow. 
+:white_check_mark: **Do:** Regardless of the exact timing
 
 
-Natural step when having req, double-verification loop, right focus - Not the entire world, then consider writing others (see next) This bullet will get written in 2 days ⏱
+Natural step when having req, double-verification loop, right focus - Not the entire world, then consider writing others (see next) This bullet will get written in 2 days ⏱, why care about internal details when the visible layer is not set
 
 
 <br/><br/>
@@ -1803,6 +1801,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzY1ODIwOTg2LDE3NjM1NzEyNjMsLTcyMj
-U2NTg3Miw4MDYxMzM3ODMsMjc5OTM1ODUyXX0=
+eyJoaXN0b3J5IjpbNTM3NDA2Mzk4LDc2NTgyMDk4NiwxNzYzNT
+cxMjYzLC03MjI1NjU4NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
+
 -->
