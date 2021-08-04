@@ -174,7 +174,7 @@ This repository contains:
 
 🏷&nbsp; **Tags:** `#intermediate,
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achived and hundrands tests can be run in a few seconds. Another type of optimization you may consider is creating a RAM drive (or use tmpfs in LiOur guide includes a recipe with examples of how to tune-up the popular DBs for testing
 
 <br/>
 
@@ -1797,5 +1797,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwNzE5MjA1Nl19
+eyJoaXN0b3J5IjpbMzg3NzEzNjg0XX0=
 -->
