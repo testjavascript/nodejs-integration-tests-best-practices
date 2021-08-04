@@ -1679,7 +1679,7 @@ services:
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the spcific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in this context they represent that are done with real collaborators and on a real infrastrucrture. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When unit tests are needed? in the precense of none-trivia logic and algorithms. When having a single module with remarkable complexity, it's harder to isolate those parts and not test then with many other pieces. This article greatly outlines (when unit tests shine)[https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/].
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators and on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit tests are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the unit. This article greatly outlines (when unit tests shine)[https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/].
 
 
 <br/><br/>
@@ -1790,7 +1790,8 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM5NjEzMjQ2MCwtMjA2MTYxNjEzNSwtMT
-I4ODA2NjcxMCw4NDU1MDQ0NjYsNzY1ODIwOTg2LDE3NjM1NzEy
-NjMsLTcyMjU2NTg3Miw4MDYxMzM3ODMsMjc5OTM1ODUyXX0=
+eyJoaXN0b3J5IjpbMTAwOTk4MDM3LDEzOTYxMzI0NjAsLTIwNj
+E2MTYxMzUsLTEyODgwNjY3MTAsODQ1NTA0NDY2LDc2NTgyMDk4
+NiwxNzYzNTcxMjYzLC03MjI1NjU4NzIsODA2MTMzNzgzLDI3OT
+kzNTg1Ml19
 -->
