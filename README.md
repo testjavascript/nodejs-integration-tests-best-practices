@@ -1675,11 +1675,10 @@ Soon in 2-3 days
 
 ### ⚪️ 1. Always start with integration/component tests
 
-:white_check_mark: **Do:** On why these tests should be 1st in the workflow. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** On why these tests should be 1st in the workflow. 
 
-<br/>
 
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
+Natural step when having req, double-verification loop,  This bullet will get written in 2 days ⏱
 
 
 <br/><br/>
@@ -1799,5 +1798,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODA2MTMzNzgzLDI3OTkzNTg1Ml19
+eyJoaXN0b3J5IjpbMTEzOTY0ODExMCw4MDYxMzM3ODMsMjc5OT
+M1ODUyXX0=
 -->
