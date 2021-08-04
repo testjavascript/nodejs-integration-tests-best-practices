@@ -210,7 +210,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine this can be done easily by mapping the data to the built-in tmpfs folder - This special folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a 
+:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine this can be done easily by mapping the data to the built-in tmpfs folder - This special folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were 
 
 Another type of optimization you may consider is creating a RAM drive (or use tmpfs in Linux) to store the DB data and write ahead logs.
 
@@ -1802,5 +1802,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzYxNzY4Mjc5LDI3OTkzNTg1Ml19
+eyJoaXN0b3J5IjpbLTY0MzY2MTkyLDI3OTkzNTg1Ml19
 -->
