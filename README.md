@@ -214,7 +214,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+👀 &nbsp; **Alternatives:** When configuring the DB for low-durability level (described in the bullet 'Optimize your real DB for testing, Don't fake it'), this step may be omitted ✅; 
 
 <br/>
 
@@ -1798,5 +1798,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU5MzM4NTMwOSwyNzk5MzU4NTJdfQ==
+eyJoaXN0b3J5IjpbMTg2Njk3MjEyLDI3OTkzNTg1Ml19
 -->
