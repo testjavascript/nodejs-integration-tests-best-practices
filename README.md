@@ -1679,7 +1679,8 @@ services:
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. 
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the spcific nature of the component, some unit tests might be needed as well. Thought E2E
+
 
 
 Always run few E2E, selectively write some unit test in the precense of logic and algorithms (great article). Integration can not cover a layer of risks - out configuration issues, misunderstading, infra. Somethings are harder to test in collaboration. This bullet will get written in 2 days ⏱
@@ -1797,7 +1798,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjE2MTYxMzUsLTEyODgwNjY3MTAsOD
-Q1NTA0NDY2LDc2NTgyMDk4NiwxNzYzNTcxMjYzLC03MjI1NjU4
-NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
+eyJoaXN0b3J5IjpbLTIwNjgyMzQ5MCwtMjA2MTYxNjEzNSwtMT
+I4ODA2NjcxMCw4NDU1MDQ0NjYsNzY1ODIwOTg2LDE3NjM1NzEy
+NjMsLTcyMjU2NTg3Miw4MDYxMzM3ODMsMjc5OTM1ODUyXX0=
 -->
