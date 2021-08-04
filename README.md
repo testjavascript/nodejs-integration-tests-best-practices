@@ -1673,7 +1673,7 @@ services:
 
 ### ⚪️ 1. Always START with integration/component tests
 
-:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature are kicked-off, the first details that are known to the developer are the outcome of the BOX. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. Testing the implementation functions with unit tests before the overall outcome is specified does not make sense. Also classic TDD books mention this potential workflow, for example the double verification loop model.
+:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature are kicked-off, the first details that are known to the developer are the outcome of the BOX. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in mind, define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make sense. Also classic TDD books mention this potential workflow, for example [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). 
 
 
 Natural step when having req, double-verification loop, right focus - Not the entire world, then consider writing others (see next) This bullet will get written in 2 days ⏱, why care about internal details when the visible layer is not set
@@ -1801,7 +1801,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQ1NTA0NDY2LDc2NTgyMDk4NiwxNzYzNT
-cxMjYzLC03MjI1NjU4NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
-
+eyJoaXN0b3J5IjpbLTQ3ODg3NzYxOSw4NDU1MDQ0NjYsNzY1OD
+IwOTg2LDE3NjM1NzEyNjMsLTcyMjU2NTg3Miw4MDYxMzM3ODMs
+Mjc5OTM1ODUyXX0=
 -->
