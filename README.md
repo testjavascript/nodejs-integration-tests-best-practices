@@ -1688,7 +1688,7 @@ Natural step when having req, double-verification loop, right focus - Not the en
 :white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. 
 
 
-Always run few E2E, selectively write some unit test in the precense of logic and algorithms (great article). Integration can not find out configuration issues, misunderstaingThis bullet will get written in 2 days ⏱
+Always run few E2E, selectively write some unit test in the precense of logic and algorithms (great article). Integration can not cover a layer of risks - out configuration issues, misunderstading, infra. Somethings are harder to test in collaboration. This bullet will get written in 2 days ⏱
 
 <br/>
 
@@ -1801,6 +1801,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU4MjQzODAwNiwtNzIyNTY1ODcyLDgwNj
+eyJoaXN0b3J5IjpbMTMyNTc5MDQ0MCwtNzIyNTY1ODcyLDgwNj
 EzMzc4MywyNzk5MzU4NTJdfQ==
 -->
