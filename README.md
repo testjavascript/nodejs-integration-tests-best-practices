@@ -1699,7 +1699,9 @@ Always run few E2E, selectively write some unit test in the precense of logic an
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** 
+
+On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
 
 <br/>
 
@@ -1708,7 +1710,7 @@ Always run few E2E, selectively write some unit test in the precense of logic an
 
 <br/><br/>
 
-### ⚪️ 4. Write the tests before or during the code, not after the fact
+### ⚪️ 4. Write the tests before **or during** the code, not after the fact
 
 :white_check_mark: **Do:** On the benefit of having the tests written early. This bullet will get written in 2 days ⏱
 
@@ -1801,6 +1803,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMyNTc5MDQ0MCwtNzIyNTY1ODcyLDgwNj
+eyJoaXN0b3J5IjpbMTE4NzY3ODAyMCwtNzIyNTY1ODcyLDgwNj
 EzMzc4MywyNzk5MzU4NTJdfQ==
 -->
