@@ -177,7 +177,7 @@ This repository contains:
 :white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
 <br/>
 
-👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLiare tempting to Use SQLite which is actually slower and not the same as production ❌;  no optimizations.* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsopprted features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
@@ -1795,5 +1795,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMDM2NzI0NzNdfQ==
+eyJoaXN0b3J5IjpbLTk5NjM0NTQ5Nl19
 -->
