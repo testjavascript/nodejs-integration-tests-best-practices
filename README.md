@@ -1673,7 +1673,7 @@ services:
 
 ### ⚪️ 1. Always START with integration/component tests
 
-:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature is kicked-off, the first details that are known to the developer are the outcome of 
+:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature are kicked-off, the first details that are known to the developer are the outcome of the BOX. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. W
 
 
 Natural step when having req, double-verification loop, right focus - Not the entire world, then consider writing others (see next) This bullet will get written in 2 days ⏱, why care about internal details when the visible layer is not set
@@ -1801,7 +1801,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjQwMDA1MDUsNzY1ODIwOTg2LDE3Nj
-M1NzEyNjMsLTcyMjU2NTg3Miw4MDYxMzM3ODMsMjc5OTM1ODUy
-XX0=
+eyJoaXN0b3J5IjpbMTQ2MTQ4MzI1OCw3NjU4MjA5ODYsMTc2Mz
+U3MTI2MywtNzIyNTY1ODcyLDgwNjEzMzc4MywyNzk5MzU4NTJd
+fQ==
 -->
