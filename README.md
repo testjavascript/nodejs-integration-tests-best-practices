@@ -208,7 +208,7 @@ services:
 
 ### ⚪️ 5. Store test data in RAM folder
 
-🏷&nbsp; **Tags:** `#performance, #draft`
+🏷&nbsp; **Tags:** `#performance`
 
 
 :white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in tmpfs folder - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were covered above already minimize the IO work and modern SSD discs are blazing fast. Some specific databases like Mongo comes with a built-in memory engine, this is an additional option to consider. 
@@ -242,7 +242,7 @@ services:
 
 ### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
 
-🏷&nbsp; **Tags:** `#performance`
+🏷&nbsp; **Tags:** `#intermediate`
 
 :white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
 
@@ -1799,5 +1799,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYzNzY3MzM5NCwyNzk5MzU4NTJdfQ==
+eyJoaXN0b3J5IjpbODA2MTMzNzgzLDI3OTkzNTg1Ml19
 -->
