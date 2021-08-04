@@ -28,7 +28,7 @@ This repository contains:
 
 # `Table of contents`
 
-### Best Practices
+### Best Practices Sections
 
 - [`Database And Infrastructure Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup) - Optimizing your DB, MQ and other infra for testing (6 best practices)
 - [`Web-Server Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup) - Good practices for starting and stopping the backend API (3 best practices)
@@ -36,7 +36,7 @@ This repository contains:
 - [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
 - [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
 - [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
-- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow
+- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow (5 best practices)
 
 ### Example Application
 
@@ -111,24 +111,17 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-// jest.config.js
-globalSetup: './example-application/test/global-setup.js';
+  // jest.config.js
+  globalSetup: './example-application/test/global-setup.js'
+```
 
+```javascript
 // global-setup.js
 const dockerCompose = require('docker-compose');
+  
 module.exports = async () => {
-  // ...
-  await dockerCompose.upAll({
-    cwd: path.join(__dirname),
-    log: true,
-  });
-  await dockerCompose.exec(
-    'database',
-    ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
-    { cwd: path.join(__dirname) }
-  );
-  // ...
-}
+  await dockerCompose.upAll();
+};
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)  
@@ -153,18 +146,20 @@ module.exports = async () => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-// jest.config.js
-globalTeardown: './example-application/test/global-teardown.js',
-
+  // jest.config.js
+  globalTeardown: './example-application/test/global-teardown.js',
+```
+```javascript
 // global-teardown.js - clean-up after all tests
 const isCI = require('is-ci');
 const dockerCompose = require('docker-compose');
+  
 module.exports = async () => {
   // Check if running CI environment
   if (isCI) {
     dockerCompose.down();
   }
-}
+};
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L5-L8)
@@ -175,14 +170,13 @@ module.exports = async () => {
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
+🏷&nbsp; **Tags:** `#intermediate,
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achived and hundrands tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
+
 <br/>
 
-👀 &nbsp; **Alternatives:** 
-* Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
-* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsopprted features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
@@ -196,6 +190,7 @@ services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
+    // fsync=off means don't wait for disc acknowledgement
     command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
     tmpfs: /var/lib/postgresql/data
     # ...
@@ -211,13 +206,14 @@ services:
 
 ### ⚪️ 5. Store test data in RAM folder
 
-🏷&nbsp; **Tags:** `#performance, #draft`
+🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
+
+:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in tmpfs folder - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were covered above already minimize the IO work and modern SSD discs are blazing fast. Some specific databases like Mongo comes with a built-in memory engine, this is an additional option to consider. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+👀 &nbsp; **Alternatives:** When configuring the DB for low-durability level (described in the bullet 'Optimize your real DB for testing, Don't fake it), this step may be omitted ✅; 
 
 <br/>
 
@@ -230,6 +226,7 @@ services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
+    // 👇 Stores the DB data in RAM folder. Works only in Linux
     tmpfs: /var/lib/postgresql/data
     # ...
 ```
@@ -243,7 +240,7 @@ services:
 
 ### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
 
-🏷&nbsp; **Tags:** `#performance`
+🏷&nbsp; **Tags:** `#intermediate`
 
 :white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
 
@@ -1670,35 +1667,26 @@ services:
 
 ## **Section 7: Development Workflow**
 
-Soon in 2-3 days
-
 <br/>
 
-### ⚪️ 1. Always start with integration/component tests
+### ⚪️ 1. Always START with integration/component tests
 
-:white_check_mark: **Do:** On why these tests should be 1st in the workflow. This bullet will get written in 2 days ⏱
-
-<br/>
-
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
-
+:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature is kicked off, the first details known to the developer are about the outcome of the component. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in mind -  Define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make any sense. Surprisingly, even classic TDD books mention this workflow, see [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). What about E2E tests? These usually focus on a broader problem than needed at first - Consequently, it should also get deferred.
 
 <br/><br/>
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. . This bullet will get written in 2 days ⏱
-
-<br/>
-
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators and on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit tests are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the unit. This article greatly outlines (when unit tests shine)[https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/].
 
 
 <br/><br/>
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** 
+
+On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
 
 <br/>
 
@@ -1707,20 +1695,20 @@ Soon in 2-3 days
 
 <br/><br/>
 
-### ⚪️ 4. Write the tests before or during the code, not after the fact
+### ⚪️ 4. Write the tests before **or during** the code, not after the fact
 
-:white_check_mark: **Do:** On the benefit of having the tests written early. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes. You just spent 3 hours coding, achieved great new feature or part of it, not writing a test now means your work can get broken in the next 2-3 days of development. You lose the anti-regression perks that tests bring. Interchangeably, 2-3 tests can secure this work and alarm when this new features are broken. You may also consider writing some tests before the code as being advocate by TDD
 
-<br/>
-
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
+This bullet will get written in 2 days ⏱'
 
 
 <br/><br/>
 
-### ⚪️ 5. Let the tests run in the background
+### ⚪️ 5. Run the tests frequenly, if possible run continously in the background
 
-:white_check_mark: **Do:** On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes
+
+On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
 
 <br/>
 
@@ -1755,12 +1743,12 @@ In this folder you may find a complete example of real-world like application, a
 More use cases and platforms. Each lives in its own folders:
 
 - [Nest.js](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/nestjs)
-- Fastify (coming soon 🗓)
+- Fastify (coming soon 🗓 )
 - [Mocha](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/mocha)
 - [Authentication](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/authentication)
 - [Message Queue](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/message-queue)
 - [Testing OpenAPI (Swagger)](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/doc-driven-contract-test)
-- Consumer-driven contract tests (coming soon 🗓)
+- Consumer-driven contract tests (coming soon 🗓 )
 - [Data isolation patterns](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/data-isolation)
 - [Optimized DB for testing](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/db-optimization)
 - [Error handling](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/error-handling)
@@ -1799,3 +1787,9 @@ Started to program accidentally and fell in love. Strive for readable code. Chas
 Enthusiastic Node.js and javscript developer. Always eager to learn and explore new technologies. 
 
 <br/>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTAwOTk4MDM3LDEzOTYxMzI0NjAsLTIwNj
+E2MTYxMzUsLTEyODgwNjY3MTAsODQ1NTA0NDY2LDc2NTgyMDk4
+NiwxNzYzNTcxMjYzLC03MjI1NjU4NzIsODA2MTMzNzgzLDI3OT
+kzNTg1Ml19
+-->
