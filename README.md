@@ -1712,7 +1712,7 @@ On why the main focus should be on features coverage and not on code. Code cover
 
 ### ⚪️ 4. Write the tests before **or during** the code, not after the fact
 
-:white_check_mark: **Do:** On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes
+:white_check_mark: **Do:** On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes. You just spent 3 hours coding, 2-3 tests can secure this work and alarm when this new features are broken. 
 
 This bullet will get written in 2 days ⏱
 
@@ -1805,6 +1805,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE5MDExNDU3MywtNzIyNTY1ODcyLDgwNj
-EzMzc4MywyNzk5MzU4NTJdfQ==
+eyJoaXN0b3J5IjpbLTE1NTA1NTE2NTksLTcyMjU2NTg3Miw4MD
+YxMzM3ODMsMjc5OTM1ODUyXX0=
 -->
