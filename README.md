@@ -1685,7 +1685,10 @@ Natural step when having req, double-verification loop, right focus - Not the en
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. . This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. 
+
+
+Always run few E2E,  This bullet will get written in 2 days ⏱
 
 <br/>
 
@@ -1798,6 +1801,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcyMjU2NTg3Miw4MDYxMzM3ODMsMjc5OT
-M1ODUyXX0=
+eyJoaXN0b3J5IjpbLTE1MzQ4NDI2OTAsLTcyMjU2NTg3Miw4MD
+YxMzM3ODMsMjc5OTM1ODUyXX0=
 -->
