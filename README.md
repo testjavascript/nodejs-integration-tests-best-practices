@@ -1714,13 +1714,14 @@ On why the main focus should be on features coverage and not on code. Code cover
 
 :white_check_mark: **Do:** On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes. You just spent 3 hours coding, achieved great new feature or part of it, not writing a test now means your work can get broken in the next 2-3 days of development. You lose the anti-regression perks that tests bring. Interchangeably, 2-3 tests can secure this work and alarm when this new features are broken. You may also consider writing some tests before the code as being advocate by TDD
 
-This bullet will get written in 2 days ⏱
+This bullet will get written in 2 days ⏱'
+
 
 <br/><br/>
 
 ### ⚪️ 5. Run the tests frequenly, if possible run continously in the background
 
-:white_check_mark: **Do:** If permits, put in watch mode or run every few minutes
+:white_check_mark: **Do:** If permits, let the tests guard. put in watch mode or run every few minutes
 
 On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
 
@@ -1802,6 +1803,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA3NDE1NTY4NCwxNzYzNTcxMjYzLC03Mj
-I1NjU4NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
+eyJoaXN0b3J5IjpbLTE3Mjg1NzIzMzcsMTc2MzU3MTI2MywtNz
+IyNTY1ODcyLDgwNjEzMzc4MywyNzk5MzU4NTJdfQ==
 -->
