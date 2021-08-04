@@ -28,7 +28,7 @@ This repository contains:
 
 # `Table of contents`
 
-### Best Practices
+### Best Practices Sections
 
 - [`Database And Infrastructure Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup) - Optimizing your DB, MQ and other infra for testing (6 best practices)
 - [`Web-Server Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup) - Good practices for starting and stopping the backend API (3 best practices)
@@ -36,7 +36,7 @@ This repository contains:
 - [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
 - [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
 - [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
-- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow
+- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow (5 best practices)
 
 ### Example Application
 
@@ -113,20 +113,15 @@ This repository contains:
 ```javascript
   // jest.config.js
   globalSetup: './example-application/test/global-setup.js'
+```
+
+```javascript
   // global-setup.js
   const dockerCompose = require('docker-compose');
   module.exports = async () => {
-    ...
-    await dockerCompose.upAll({
-      cwd: path.join(__dirname),
-      log: true,
-    });
-    await dockerCompose.exec(
-      'database',
-      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
-      { cwd: path.join(__dirname) }
-    );
-    ...
+
+    await dockerCompose.upAll();
+
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)  
@@ -1797,3 +1792,6 @@ Started to program accidentally and fell in love. Strive for readable code. Chas
 Enthusiastic Node.js and javscript developer. Always eager to learn and explore new technologies. 
 
 <br/>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE3NjA5Mjg1NjhdfQ==
+-->
