@@ -1679,7 +1679,7 @@ services:
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the spcific nature of the component, some unit tests might be needed as well. Thought E2E means different things to different testers, in this context they represent that are done with real collaborators and on a real infrastrucrture. U
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the spcific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in this context they represent that are done with real collaborators and on a real infrastrucrture. 
 
 
 
@@ -1798,7 +1798,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjkxNTQ5NTUsLTIwNjE2MTYxMzUsLT
-EyODgwNjY3MTAsODQ1NTA0NDY2LDc2NTgyMDk4NiwxNzYzNTcx
-MjYzLC03MjI1NjU4NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
+eyJoaXN0b3J5IjpbLTY3MzI2NzQ2LC0yMDYxNjE2MTM1LC0xMj
+g4MDY2NzEwLDg0NTUwNDQ2Niw3NjU4MjA5ODYsMTc2MzU3MTI2
+MywtNzIyNTY1ODcyLDgwNjEzMzc4MywyNzk5MzU4NTJdfQ==
 -->
