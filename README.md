@@ -118,6 +118,7 @@ This repository contains:
 ```javascript
   // global-setup.js
   const dockerCompose = require('docker-compose');
+  
   module.exports = async () => {
 
     await dockerCompose.upAll();
@@ -148,10 +149,13 @@ This repository contains:
 ```javascript
   // jest.config.js
   globalTeardown: './example-application/test/global-teardown.js',
+```
+```javascript
   
   // global-teardown.js - clean-up after all tests
   const isCI = require('is-ci');
   const dockerCompose = require('docker-compose');
+  
   module.exports = async () => {
     // Check if running CI environment
     if (isCI) {
@@ -168,14 +172,12 @@ This repository contains:
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
+🏷&nbsp; **Tags:** `#intermediate,
 
 :white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
 <br/>
 
-👀 &nbsp; **Alternatives:** 
-* Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
-* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLiare tempting to Use SQLite which is actually slower and not the same as production ❌;  no optimizations.* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
 
 <br/>
 
@@ -1793,5 +1795,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjA5Mjg1NjhdfQ==
+eyJoaXN0b3J5IjpbLTIxMDM2NzI0NzNdfQ==
 -->
