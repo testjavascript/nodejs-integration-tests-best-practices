@@ -1673,7 +1673,7 @@ services:
 
 ### ⚪️ 1. Always START with integration/component tests
 
-:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature are kicked-off, the first details that are known to the developer are the outcome of the BOX. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in mind, define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make sense. Also classic TDD books mention this potential workflow, for example [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). E2E tests usually focuses on a problem that is wider than what the developer is presented with - Consequenly it should also get deferred.
+:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature is kicked off, the first details known to the developer are about the outcome of the component. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in mind -  Define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make any sense. Surprisingly, even classic TDD books mention this workflow, see [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). What about E2E tests? These usually focus on a broader problem than needed at first - Consequently, it should also get deferred.
 
 <br/><br/>
 
@@ -1797,7 +1797,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODgwNjY3MTAsODQ1NTA0NDY2LDc2NT
-gyMDk4NiwxNzYzNTcxMjYzLC03MjI1NjU4NzIsODA2MTMzNzgz
-LDI3OTkzNTg1Ml19
+eyJoaXN0b3J5IjpbLTIwNjE2MTYxMzUsLTEyODgwNjY3MTAsOD
+Q1NTA0NDY2LDc2NTgyMDk4NiwxNzYzNTcxMjYzLC03MjI1NjU4
+NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
 -->
