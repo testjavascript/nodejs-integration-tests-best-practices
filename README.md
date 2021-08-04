@@ -1753,12 +1753,12 @@ In this folder you may find a complete example of real-world like application, a
 More use cases and platforms. Each lives in its own folders:
 
 - [Nest.js](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/nestjs)
-- Fastify (coming soon 🗓)
+- Fastify (coming soon 🗓 )
 - [Mocha](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/mocha)
 - [Authentication](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/authentication)
 - [Message Queue](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/message-queue)
 - [Testing OpenAPI (Swagger)](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/doc-driven-contract-test)
-- Consumer-driven contract tests (coming soon 🗓)
+- Consumer-driven contract tests (coming soon 🗓 )
 - [Data isolation patterns](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/data-isolation)
 - [Optimized DB for testing](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/db-optimization)
 - [Error handling](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/error-handling)
