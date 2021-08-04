@@ -1678,7 +1678,7 @@ Soon in 2-3 days
 :white_check_mark: **Do:** On why these tests should be 1st in the workflow. 
 
 
-Natural step when having req, double-verification loop,  This bullet will get written in 2 days ⏱
+Natural step when having req, double-verification loop, right focus - Not the entire world, then consider writing others (see next) This bullet will get written in 2 days ⏱
 
 
 <br/><br/>
@@ -1798,6 +1798,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzOTY0ODExMCw4MDYxMzM3ODMsMjc5OT
+eyJoaXN0b3J5IjpbLTcyMjU2NTg3Miw4MDYxMzM3ODMsMjc5OT
 M1ODUyXX0=
 -->
