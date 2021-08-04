@@ -1718,9 +1718,9 @@ This bullet will get written in 2 days ⏱
 
 <br/><br/>
 
-### ⚪️ 5. Let the tests run in the background
+### ⚪️ 5. Run the tests frequenly, if possible run continously in the background
 
-:white_check_mark: **Do:** 
+:white_check_mark: **Do:** If permits, put in watch mode or run every few minutes
 
 On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
 
@@ -1802,6 +1802,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc2MzU3MTI2MywtNzIyNTY1ODcyLDgwNj
-EzMzc4MywyNzk5MzU4NTJdfQ==
+eyJoaXN0b3J5IjpbMTA3NDE1NTY4NCwxNzYzNTcxMjYzLC03Mj
+I1NjU4NzIsODA2MTMzNzgzLDI3OTkzNTg1Ml19
 -->
