@@ -210,7 +210,7 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
+:white_check_mark:  **Do:** In the spirit of creating great testing developer experience, Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
 
 <br/>
 
@@ -227,6 +227,7 @@ services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
+    // 👇 Stores the DB data in RAM folder. Works only in Linux
     tmpfs: /var/lib/postgresql/data
     ...
 ```
@@ -1797,5 +1798,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjc5OTM1ODUyXX0=
+eyJoaXN0b3J5IjpbLTEwNDIyMTQ2NzUsMjc5OTM1ODUyXX0=
 -->
