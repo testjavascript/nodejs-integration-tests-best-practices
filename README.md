@@ -1679,15 +1679,7 @@ services:
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the spcific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in this context they represent that are done with real collaborators and on a real infrastrucrture. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When unit tests are needed? in the precense of none-trivia logic and algorithms. Having a single module that is 
-
-
-
-Always run few E2E, selectively write some unit test in the precense of logic and algorithms (great article). Integration can not cover a layer of risks - out configuration issues, misunderstading, infra. Somethings are harder to test in collaboration. This bullet will get written in 2 days ⏱
-
-<br/>
-
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the spcific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in this context they represent that are done with real collaborators and on a real infrastrucrture. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When unit tests are needed? in the precense of none-trivia logic and algorithms. When having a single module with remarkable complexity, it's harder to isolate those parts and not test then with many other pieces. This article greatly outlines (when unit tests shine)[https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/].
 
 
 <br/><br/>
@@ -1798,7 +1790,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1OTgzMDg3NiwtMjA2MTYxNjEzNSwtMT
+eyJoaXN0b3J5IjpbMTM5NjEzMjQ2MCwtMjA2MTYxNjEzNSwtMT
 I4ODA2NjcxMCw4NDU1MDQ0NjYsNzY1ODIwOTg2LDE3NjM1NzEy
 NjMsLTcyMjU2NTg3Miw4MDYxMzM3ODMsMjc5OTM1ODUyXX0=
 -->
