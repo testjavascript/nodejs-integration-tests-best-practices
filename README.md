@@ -174,7 +174,8 @@ This repository contains:
 
 🏷&nbsp; **Tags:** `#intermediate,
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
+
 <br/>
 
 👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsopprted features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
@@ -191,6 +192,7 @@ services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
+    // fsync=off means don't wait for disc acknowledgement
     command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
     tmpfs: /var/lib/postgresql/data
     ...
@@ -1795,5 +1797,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5NjM0NTQ5Nl19
+eyJoaXN0b3J5IjpbMTIwNzE5MjA1Nl19
 -->
