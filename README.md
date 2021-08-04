@@ -210,7 +210,11 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** In the spirit of creating great testing developer experience, Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
+:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine this can be done easily by  
+
+Another type of optimization you may consider is creating a RAM drive (or use tmpfs in Linux) to store the DB data and write ahead logs.
+
+In the spirit of creating great testing developer experience, additional Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark], WAL(https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
 
 <br/>
 
@@ -1798,5 +1802,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNDIyMTQ2NzUsMjc5OTM1ODUyXX0=
+eyJoaXN0b3J5IjpbLTExOTg0MDU5NTksMjc5OTM1ODUyXX0=
 -->
