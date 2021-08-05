@@ -48,7 +48,6 @@ This repository contains:
 
 <br/><br/><br/>
 
-🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
 
 # ✅ Best Practices
 
@@ -628,6 +627,8 @@ describe('/api', () => {
 
 Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
 
+<br/><br/>
+
 
 ## **Section 4: External services**
 
@@ -1157,6 +1158,10 @@ afterEach(async () => {
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/anti-pattern-data-isolation.test.js#L38-L43)
 
 </details>
+
+<br/><br/>
+
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
 
 <br/><br/>
 
@@ -1813,5 +1818,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTEyOTU1OTAxXX0=
+eyJoaXN0b3J5IjpbMTA2OTEzNjU3N119
 -->
