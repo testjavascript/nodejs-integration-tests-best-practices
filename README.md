@@ -178,7 +178,7 @@ This repository contains:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsopprted features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsupported features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
@@ -602,6 +602,8 @@ describe('/api', () => {
 </details>
 
 <br/>
+
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
 
 ### ⚪️ 6. Test the five potential outcomes
 
@@ -1321,6 +1323,13 @@ module.exports = async () => {
 </details>
 
 <br/><br/>
+
+### This content is available also as a course or a workshop
+
+Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
+
+<br/><br/>
+
 
 ## **Section 6: Message queues**
 
