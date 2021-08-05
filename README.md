@@ -48,6 +48,8 @@ This repository contains:
 
 <br/><br/><br/>
 
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
+
 # ✅ Best Practices
 
 <br/>
@@ -175,12 +177,12 @@ This repository contains:
 
 🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the stotragde relidurability and increase speed(i.e., . With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
 <br/>
 
 👀 &nbsp; **Alternatives:** 
-* Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
-* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+* Use SQLiteis actually slower and not the same as production ❌;  no optimizations.
+* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test) are te ❌
 
 <br/>
 
@@ -211,7 +213,8 @@ services:
 
 🏷&nbsp; **Tags:** `#performance, #draft`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
+
+:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in tmpfs folder - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
 
 <br/>
 
@@ -241,7 +244,7 @@ services:
 
 ### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
 
-🏷&nbsp; **Tags:** `#performance`
+🏷&nbsp; **Tags:** `#performancintermediate`
 
 :white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
 
@@ -363,7 +366,7 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Specify a port in production, randomize in testing
 
-🏷&nbsp; **Tags:** `#intermediate`
+🏷&nbsp; **Tags:** `#e`
 
 :white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
 
@@ -620,6 +623,10 @@ describe('/api', () => {
 **• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
 
 <br/><br/>
+
+### This content is available also as a course or a workshop
+
+Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
 
 
 ## **Section 4: External services**
@@ -1624,7 +1631,7 @@ services:
 
 <br/>
 
-### ⚪️ 8.  On top of development testing, write a few E2E tests
+### ⚪️ 8.  top of development testing, write a few E2E tests
 
 🏷&nbsp; **Tags:** `#intermediate`
 
@@ -1674,7 +1681,7 @@ Soon in 2-3 days
 
 ### ⚪️ 1. Always start with integration/component tests
 
-:white_check_mark: **Do:** On why these tests should be 1st in the workflow. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** On why these tests should be 1st in the workflow. This bullet will get writtRegardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature is kicked off, the first details known to the developer are about the outcome of the component. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in 2 days ⏱
 
 <br/>
 
@@ -1685,18 +1692,26 @@ Soon in 2-3 days
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. . This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** On why E2E these are always needed and unit tests only sometimes. . This bullet will get wrmind -  Define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make any sense. Surprisingly, even classic TDD books mention this workflow, see [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). What about E2E tests? These usually focus on a broader problem than needed at first - Consequently, it should also get deferred.
+
+<br/><br/>
+
+### ⚪️ 2. Run few E2E, selectively consider unit tests
+
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators and on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit ten in 2 days ⏱
 
 <br/>
 
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
+👀 **Alternatives:** This bullet will get wrsts are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the unit. This article greatly outlines [when unit ten in 2 days ⏱sts shine](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/).
 
 
 <br/><br/>
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
+:white_check_mark: **Do:** 
+
+On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
 
 <br/>
 
@@ -1711,12 +1726,12 @@ Soon in 2-3 days
 
 <br/>
 
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
+👀 **Alternatives:** This bullet will get written in 2 days ⏱'
 
 
 <br/><br/>
 
-### ⚪️ 5. Let the tests run in the background
+### ⚪️ 5. LetRun the tests runfrequenly, if possible run continously in the background
 
 :white_check_mark: **Do:** On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
 
@@ -1797,3 +1812,6 @@ Started to program accidentally and fell in love. Strive for readable code. Chas
 Enthusiastic Node.js and javscript developer. Always eager to learn and explore new technologies. 
 
 <br/>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNTEyOTU1OTAxXX0=
+-->
