@@ -48,6 +48,7 @@ This repository contains:
 
 <br/><br/><br/>
 
+
 # ✅ Best Practices
 
 <br/>
@@ -172,11 +173,11 @@ module.exports = async () => {
 
 🏷&nbsp; **Tags:** `#intermediate,
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achived and hundrands tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achieved and hundreds tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsopprted features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsupported features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
@@ -363,7 +364,7 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Specify a port in production, randomize in testing
 
-🏷&nbsp; **Tags:** `#intermediate`
+🏷&nbsp; **Tags:** `#e`
 
 :white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
 
@@ -602,6 +603,8 @@ describe('/api', () => {
 
 <br/>
 
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
+
 ### ⚪️ 6. Test the five potential outcomes
 
 🏷&nbsp; **Tags:** `#intermediate #strategic`
@@ -618,6 +621,12 @@ describe('/api', () => {
 **• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message in some MQ product. Now other components can consume this message and continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
 
 **• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
+
+<br/><br/>
+
+### This content is available also as a course or a workshop
+
+Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
 
 <br/><br/>
 
@@ -1154,6 +1163,10 @@ afterEach(async () => {
 
 <br/><br/>
 
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
+
+<br/><br/>
+
 ### ⚪️ 5.  Add some randomness to unique fields
 
 🏷&nbsp; **Tags:** `#intermediate`
@@ -1321,6 +1334,13 @@ test("When deleting an existing order, Then should get a successful message", as
 </details>
 
 <br/><br/>
+
+### This content is available also as a course or a workshop
+
+Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
+
+<br/><br/>
+
 
 ## **Section 6: Message queues**
 
@@ -1623,7 +1643,7 @@ services:
 
 <br/>
 
-### ⚪️ 8.  On top of development testing, write a few E2E tests
+### ⚪️ 8.  top of development testing, write a few E2E tests
 
 🏷&nbsp; **Tags:** `#intermediate`
 
@@ -1787,9 +1807,3 @@ Started to program accidentally and fell in love. Strive for readable code. Chas
 Enthusiastic Node.js and javscript developer. Always eager to learn and explore new technologies. 
 
 <br/>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwOTk4MDM3LDEzOTYxMzI0NjAsLTIwNj
-E2MTYxMzUsLTEyODgwNjY3MTAsODQ1NTA0NDY2LDc2NTgyMDk4
-NiwxNzYzNTcxMjYzLC03MjI1NjU4NzIsODA2MTMzNzgzLDI3OT
-kzNTg1Ml19
--->
