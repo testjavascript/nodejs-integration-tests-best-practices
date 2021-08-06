@@ -5,7 +5,7 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../example-application/api');
+} = require('../../example-application/entry-points/api');
 const { getShortUnique } = require('./test-helper');
 
 // ❌ Anti-Pattern: Test data is a global variable instead of being scoped inside tests
