@@ -1714,9 +1714,11 @@ Mutation tests is also an increasing technique that can be combined in the verif
 
 <br/><br/>
 
-### ⚪️ 4. Write the tests before **or during** the code, not after the fact
+### ⚪️ 4. Write the tests before **or during** the code, but not after the fact
 
-:white_check_mark: **Do:** On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes. You just spent 3 hours coding, achieved great new feature or part of it, not writing a test now means your work can get broken in the next 2-3 days of development. You lose the anti-regression perks that tests bring. Interchangeably, 2-3 tests can secure this work and alarm when this new features are broken. You may also consider writing some tests before the code as being advocate by TDD. Unlike the extremist TDD, tied gordian knots around
+:white_check_mark: **Do:** Write the tests on your most convenient time, when you have enough certainty about the requirements/code. Do not write them at the end once the features are ready bec.
+
+On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes. You just spent 3 hours coding, achieved great new feature or part of it, not writing a test now means your work can get broken in the next 2-3 days of development. You lose the anti-regression perks that tests bring. Interchangeably, 2-3 tests can secure this work and alarm when this new features are broken. You may also consider writing some tests before the code as being advocate by TDD. Unlike the extremist TDD, tied gordian knots around
 
 Rock climbing, secure
 
@@ -1802,7 +1804,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzMjkzMzA5MywtMjI3MDMxMzAzLC0xMD
-E1NzIxOTk5LC0xNTkxNzA3ODIxLDIzMzU0NjA5MiwxNjQ5NDQ0
-MjU2LDM2MDgyNzIwMCw0MzIzNDk1XX0=
+eyJoaXN0b3J5IjpbLTE0NTk1ODY4MjIsMjEzMjkzMzA5MywtMj
+I3MDMxMzAzLC0xMDE1NzIxOTk5LC0xNTkxNzA3ODIxLDIzMzU0
+NjA5MiwxNjQ5NDQ0MjU2LDM2MDgyNzIwMCw0MzIzNDk1XX0=
 -->
