@@ -1706,7 +1706,7 @@ services:
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** Intuitively and manually check that your tests cover all or at least most of the application *features* (usually prepresented as routes). Yes, this measurement is based on human judgement and therefore is error-prone - Sadly there is no better option. Many teams use code coverage to measure their test effectiveness. While this is a great  
+:white_check_mark: **Do:** Intuitively and manually check that your tests cover all or at least most of the application *features* (usually prepresented as routes). Yes, this measurement is based on human judgement and therefore is error-prone - Sadly there is no better option. Many teams use code coverage to measure their test effectiveness. While this is a great measurement tool, it's by no mean exaustive and reliable enough to tell whether the tests are reliable enough. Having 100% coverage is not only expensive but also does not guarantee bug-free deployment - Error might exist in the DB, MQ or from code that is covered but not tested 
 
 On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱ No practical tool, 
 
@@ -1810,5 +1810,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTUxODk3MDQyXX0=
+eyJoaXN0b3J5IjpbLTEzODgzODU3OThdfQ==
 -->
