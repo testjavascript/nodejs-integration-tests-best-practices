@@ -1728,6 +1728,7 @@ This bullet will get written in 2 days ⏱'
 :white_check_mark: **Do:** If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes
 
 In the same spirit of getting safety net, rock climbing, 
+
 On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
 
 <br/>
@@ -1808,6 +1809,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQ4NzI5MDg5LDIzMzU0NjA5MiwxNjQ5ND
-Q0MjU2LDM2MDgyNzIwMCw0MzIzNDk1XX0=
+eyJoaXN0b3J5IjpbLTE1OTE3MDc4MjEsMjMzNTQ2MDkyLDE2ND
+k0NDQyNTYsMzYwODI3MjAwLDQzMjM0OTVdfQ==
 -->
