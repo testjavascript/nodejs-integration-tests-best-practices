@@ -1718,6 +1718,8 @@ Mutation tests is also an increasing technique that can be combined in the verif
 
 :white_check_mark: **Do:** On the benefit of having the tests written early. We have worked hard for DX so these tests can be a coding companion, empower the dev as she codes. You just spent 3 hours coding, achieved great new feature or part of it, not writing a test now means your work can get broken in the next 2-3 days of development. You lose the anti-regression perks that tests bring. Interchangeably, 2-3 tests can secure this work and alarm when this new features are broken. You may also consider writing some tests before the code as being advocate by TDD
 
+Rock climbing, secure
+
 This bullet will get written in 2 days ⏱'
 
 
@@ -1800,7 +1802,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzM2NDYxMTE2LC0xNTkxNzA3ODIxLDIzMz
-U0NjA5MiwxNjQ5NDQ0MjU2LDM2MDgyNzIwMCw0MzIzNDk1XX0=
-
+eyJoaXN0b3J5IjpbLTEwMTU3MjE5OTksLTE1OTE3MDc4MjEsMj
+MzNTQ2MDkyLDE2NDk0NDQyNTYsMzYwODI3MjAwLDQzMjM0OTVd
+fQ==
 -->
