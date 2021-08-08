@@ -1739,7 +1739,7 @@ Mutation tests is also an increasing technique that can be combined in the verif
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark: **Do:** *This section also appear at the begining and is repeated here as it also integral part of the testing workflow*
+*(This section also appear at the begining and is repeated here as it also integral part of the testing workflow)*
 
 :white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the five typical flow's outputs. When your test is triggering some action (e.g., API call), a reaction is happening, something meaningful occurs and calls for testing. Note that we don't care about how things work. Our focus is on outcomes, things that are noticeable from the outside and might affect the user. These outcomes/reactions can be put in 5 categories:
 
