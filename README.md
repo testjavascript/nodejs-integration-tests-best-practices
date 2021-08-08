@@ -1706,7 +1706,7 @@ services:
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** Intuitively and manually check that your tests cover all or at least most of the application *features*, these are 
+:white_check_mark: **Do:** Intuitively and manually check that your tests cover all or at least most of the application *features* (usually prepresented as routes). Yes, this measurement is based on human judgement and therefore is error-prone - Sadly there is no other tool that can do better. 
 
 On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱ No practical tool, 
 
@@ -1810,5 +1810,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzU1ODM1Mjg4XX0=
+eyJoaXN0b3J5IjpbNDA1ODIyOThdfQ==
 -->
