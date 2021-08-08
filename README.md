@@ -1699,16 +1699,16 @@ services:
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators (i.e., external services) on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit tests are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the challenging unit. This article greatly outlines (when unit tests shine)[https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/].
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators (i.e., external services) on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit tests are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the challenging unit. [This article greatly outlines when unit tests shine](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/).
 
 
 <br/><br/>
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** 
+:white_check_mark: **Do:** Intuitively and manually check that your tests cover all or at least most of the application *features*, these are 
 
-On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱
+On why the main focus should be on features coverage and not on code. Code coverage is always misleading, knowing that the user flows are covered gives confidence that the important parts are checked. This bullet will get written in 2 days ⏱ No practical tool, 
 
 <br/>
 
@@ -1810,5 +1810,5 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0ODAxMzEwMV19
+eyJoaXN0b3J5IjpbMzU1ODM1Mjg4XX0=
 -->
