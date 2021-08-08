@@ -1723,11 +1723,13 @@ This bullet will get written in 2 days ⏱'
 
 <br/><br/>
 
-### ⚪️ 5. Run the tests frequenly, if possible run continously in the background
+### ⚪️ 5. Run the tests frequenly, if possible run continously in watch mode
 
-:white_check_mark: **Do:** If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes
+:white_check_mark: **Do:** Run the tests very frequently, if possible automatically and even continously while a developer is coding. This approach
 
-In the same spirit of getting safety net, rock climbing, 
+If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes
+
+In the same spirit of getting safety net, rock climbing, if small, our extension, shift left
 
 On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
 
@@ -1809,6 +1811,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1OTE3MDc4MjEsMjMzNTQ2MDkyLDE2ND
-k0NDQyNTYsMzYwODI3MjAwLDQzMjM0OTVdfQ==
+eyJoaXN0b3J5IjpbNjg1MDAyMSwtMTU5MTcwNzgyMSwyMzM1ND
+YwOTIsMTY0OTQ0NDI1NiwzNjA4MjcyMDAsNDMyMzQ5NV19
 -->
