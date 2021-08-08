@@ -1693,11 +1693,15 @@ services:
 
 ### ⚪️ 1. Always START with integration/component tests
 
+🏷&nbsp; **Tags:** `#strategic`
+
 :white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature is kicked off, the first details known to the developer are about the outcome of the component. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in mind -  Define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make any sense. Surprisingly, even classic TDD books mention this workflow, see [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). What about E2E tests? These usually focus on a broader problem than needed at first - Consequently, it should also get deferred.
 
 <br/><br/>
 
 ### ⚪️ 2. Run few E2E, selectively consider unit tests
+
+🏷&nbsp; **Tags:** ``
 
 :white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators (i.e., external services) on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit tests are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the challenging unit. [This article greatly outlines when unit tests shine](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/).
 
@@ -1706,6 +1710,7 @@ services:
 
 ### ⚪️ 3. Cover features, not functions
 
+🏷&nbsp; **Tags:** ``
 
 :white_check_mark: **Do:** Intuitively and manually check that your tests cover all, or at least most, of the application *features* (usually represented as routes). Yes, this measurement is based on human judgment and therefore is error-prone - Sadly, there is no better option yet. Many teams use code coverage to measure their test effectiveness. While this is a great measurement tool, it's by no means exhaustive and reliable enough to tell whether the tests are trustworthy enough. Having 100% coverage is expensive and does not guarantee bug-free deployment - Error might exist in the DB, MQ, or from code that is *covered* but not *tested* (i.e., one can reach some piece of code but not assert against it). Sometimes a component scores high coverage, say 90%, this might falsely trigger confidence, but the left 10% represent the most critical flows of the app. There are some other coverage blind spots and downsides.
 Consequently, when high reliability is imperative, it's recommended to use coverage as a complementary measurement, but not as the single truth for confidence. In the lack of reliable scientific measurement, nothing can inspire confidence more than knowing that *what the user does is covered with testing (i.e., features)*. Practically, this can be achieved in few ways: by looking at tht test reports and comparing with the requirements document, or by looking at coverage reports and verifying that the untested code is not part of key features, and by checking that the core routes/messages are approached by the tests. 
@@ -1724,7 +1729,7 @@ Mutation tests is also an increasing technique that can be combined in the verif
 
 ### ⚪️ 5. Run the tests frequenly, if possible run continously in watch mode
 
-🏷&nbsp; **Tags:** `#strategic`
+🏷&nbsp; **Tags:** ``
 
 :white_check_mark: **Do:** Run the tests very frequently, not longer than every few minutes during coding. If possible let it happen automatically, even continuously, while a developer is coding. The more frequent the tests run, the sooner they will discover issues.  When they run automatically, the developer won't even need to remember to do anything - The tests are just there, watching her back like a robot assistant. When a component's size is relatively small, the tests can get executed in watch mode, so every code change will trigger a new run. Try this with our example app (includes live DB) - The test will show feedback in 3 seconds. Concerned with noise coming from the testing terminal? Put it in the background: Some test runner will show pop-up when the tests suddenly fail (e.g., [Jest notify](https://jestjs.io/docs/configuration#notify-boolean)). There are also silent test runners like [mocha-silent](https://www.npmjs.com/package/mocha-silent-reporter) and [jest-silent](https://github.com/rickhanlonii/jest-silent-reporter). You may also try our experimental watch mode extension that will run the tests every 30 seconds automatically in the background. Interested? Just open an issue
 
@@ -1810,7 +1815,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjcwMTcxMjYzLC0xNTgxMDcyMjgzLDIxMz
+eyJoaXN0b3J5IjpbMzc2NjY5MzA1LC0xNTgxMDcyMjgzLDIxMz
 I5MzMwOTMsLTIyNzAzMTMwMywtMTAxNTcyMTk5OSwtMTU5MTcw
 NzgyMSwyMzM1NDYwOTIsMTY0OTQ0NDI1NiwzNjA4MjcyMDAsND
 MyMzQ5NV19
