@@ -1712,11 +1712,6 @@ Consequently, when high reliability is imperative, it's recommended to use cover
 
 Mutation tests is also an increasing technique that can be combined in the verification suite of tools. That said, it can not serve as the primary technique since it is slow by nature and shows poor performance in tests that involve DB and IO.
 
-<br/>
-
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
-
-
 <br/><br/>
 
 ### ⚪️ 4. Write the tests before **or during** the code, not after the fact
@@ -1812,6 +1807,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0OTQ0NDI1NiwzNjA4MjcyMDAsNDMyMz
-Q5NV19
+eyJoaXN0b3J5IjpbMjMzNTQ2MDkyLDE2NDk0NDQyNTYsMzYwOD
+I3MjAwLDQzMjM0OTVdfQ==
 -->
