@@ -4,7 +4,7 @@ const chaiSubset = require('chai-subset');
 const { after, afterEach, before, beforeEach, describe, it } = require('mocha');
 const sinon = require('sinon');
 const nock = require('nock');
-const { initializeWebServer, stopWebServer } = require('../../example-application/api');
+const { initializeWebServer, stopWebServer } = require('../../example-application/entry-points/api');
 const OrderRepository = require('../../example-application/data-access/order-repository');
 
 // So we can use containSubset
