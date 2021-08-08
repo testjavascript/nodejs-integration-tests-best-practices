@@ -1706,9 +1706,11 @@ services:
 
 ### ⚪️ 3. Cover features, not functions
 
-:white_check_mark: **Do:** Intuitively and manually check that your tests cover all, or at least most, of the application *features* (usually prepresented as routes). Yes, this measurement is based on human judgement and therefore is error-prone - Sadly there is no better option yet. Many teams use code coverage to measure their test effectiveness. While this is a great measurement tool, it's by no mean exaustive and reliable enough to tell whether the tests are reliable enough. Having 100% coverage is not only expensive but also does not guarantee bug-free deployment - Error might exist in the DB, MQ or from code that is *covered* but not *tested* (i.e., one can reach some piece of code but not assert against it). There are some other coverage blind spots. Consequently, it's recommended to use coverage as a complemetary measurement, but not as the single truth for confidence. In the lack of a reliable scientific measurement, nothing can inspire confidence more than knowing that what the user does is covered with testing (i.e., features). Practically, this can be achieved in few ways: by looking at tht test reports and comparing with the requirements document, by looking at coverage reports and verifying that the untested code is not part of core features, and by checking that the core routes/messages are approached by the tests. 
 
-Mutation tests is also an increasing technique that can be combined in the verification suite of tools. That said, it can be used as the primary tool since its slow by nature and shows poor perfomance in tests that involve DB and IO.
+:white_check_mark: **Do:** Intuitively and manually check that your tests cover all, or at least most, of the application *features* (usually represented as routes). Yes, this measurement is based on human judgment and therefore is error-prone - Sadly, there is no better option yet. Many teams use code coverage to measure their test effectiveness. While this is a great measurement tool, it's by no means exhaustive and reliable enough to tell whether the tests are trustworthy enough. Having 100% coverage is expensive and does not guarantee bug-free deployment - Error might exist in the DB, MQ, or from code that is *covered* but not *tested* (i.e., one can reach some piece of code but not assert against it). Sometimes a component scores high coverage, say 90%, this might falsely trigger confidence, but the left 10% represent the most critical flows of the app. There are some other coverage blind spots and downsides.
+Consequently, when high reliability is imperative, it's recommended to use coverage as a complementary measurement, but not as the single truth for confidence. In the lack of reliable scientific measurement, nothing can inspire confidence more than knowing that *what the user does is covered with testing (i.e., features)*. Practically, this can be achieved in few ways: by looking at tht test reports and comparing with the requirements document, or by looking at coverage reports and verifying that the untested code is not part of key features, and by checking that the core routes/messages are approached by the tests. 
+
+Mutation tests is also an increasing technique that can be combined in the verification suite of tools. That said, it can not serve as the primary technique since it is slow by nature and shows poor performance in tests that involve DB and IO.
 
 <br/>
 
@@ -1810,5 +1812,6 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzYwODI3MjAwLDQzMjM0OTVdfQ==
+eyJoaXN0b3J5IjpbMTY0OTQ0NDI1NiwzNjA4MjcyMDAsNDMyMz
+Q5NV19
 -->
