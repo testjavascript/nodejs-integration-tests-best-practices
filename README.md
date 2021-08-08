@@ -1725,9 +1725,9 @@ This bullet will get written in 2 days ⏱'
 
 ### ⚪️ 5. Run the tests frequenly, if possible run continously in watch mode
 
-:white_check_mark: **Do:** Run the tests very frequently, if possible automatically and even continously while a developer is coding. This approach
+:white_check_mark: **Do:** Run the tests very frequently, if possible automatically and even continously while a developer is coding. The more frequenet the tests run, the sooner they will discover issues.  When they run automatically developer won't even need to remember to do anything - The tests are just there, watching the developer's back like a robot assistant. 
 
-If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes
+If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes, I'm watching your back
 
 In the same spirit of getting safety net, rock climbing, if small, our extension, shift left
 
@@ -1811,6 +1811,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjg1MDAyMSwtMTU5MTcwNzgyMSwyMzM1ND
-YwOTIsMTY0OTQ0NDI1NiwzNjA4MjcyMDAsNDMyMzQ5NV19
+eyJoaXN0b3J5IjpbMTEyMzgwNzk3NCwtMTU5MTcwNzgyMSwyMz
+M1NDYwOTIsMTY0OTQ0NDI1NiwzNjA4MjcyMDAsNDMyMzQ5NV19
+
 -->
