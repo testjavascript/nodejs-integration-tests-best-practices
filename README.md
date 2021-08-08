@@ -1725,18 +1725,7 @@ This bullet will get written in 2 days ⏱'
 
 ### ⚪️ 5. Run the tests frequenly, if possible run continously in watch mode
 
-:white_check_mark: **Do:** Run the tests very frequently, if possible automatically and even continously while a developer is coding. The more frequenet the tests run, the sooner they will discover issues.  When they run automatically developer won't even need to remember to do anything - The tests are just there, watching the developer's back like a robot assistant. When a component's size is relativelly small, the tests can get executed in watch mode so every code change will trigger a new run (try this with our project which includes live DB - The test will show feedback in 3 seconds). Concerned with noise coming from the testing terminal? Put it on the background, some test runner will show pop-up when the tests suddenly fail (e.g., [Jest notify](https://jestjs.io/docs/configuration#notify-boolean)). There are also silent test runners like [mocha-silent]() and [jest-silent](https://github.com/rickhanlonii/jest-silent-reporter)
-
-If permits, let the tests actively guard the coding process. put in watch mode or run every few minutes, I'm watching your back, pop-up
-
-In the same spirit of getting safety net, rock climbing, if small, our extension, shift left
-
-On why a developers should not remember to run tests. This bullet will get written in 2 days ⏱
-
-<br/>
-
-👀 **Alternatives:** This bullet will get written in 2 days ⏱
-
+:white_check_mark: **Do:** Run the tests very frequently, not longer than every few minutes during coding, if possible automatically and even continously while a developer is coding. The more frequenet the tests run, the sooner they will discover issues.  When they run automatically developer won't even need to remember to do anything - The tests are just there, watching her back like a robot assistant. When a component's size is relativelly small, the tests can get executed in watch mode so every code change will trigger a new run (try this with our project which includes live DB - The test will show feedback in 3 seconds). Concerned with noise coming from the testing terminal? Put it on the background, some test runner will show pop-up when the tests suddenly fail (e.g., [Jest notify](https://jestjs.io/docs/configuration#notify-boolean)). There are also silent test runners like [mocha-silent](https://www.npmjs.com/package/mocha-silent-reporter) and [jest-silent](https://github.com/rickhanlonii/jest-silent-reporter). You may also try our experimental watch mode extension that will run the tests every 30 seconds automatically in the background, please comment here
 
 <br/><br/>
 
@@ -1811,7 +1800,7 @@ Enthusiastic Node.js and javscript developer. Always eager to learn and explore 
 
 <br/>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQzNDQwMDkyNCwtMTU5MTcwNzgyMSwyMz
+eyJoaXN0b3J5IjpbMTMxOTM2NzU0MiwtMTU5MTcwNzgyMSwyMz
 M1NDYwOTIsMTY0OTQ0NDI1NiwzNjA4MjcyMDAsNDMyMzQ5NV19
 
 -->
