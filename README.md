@@ -36,7 +36,7 @@ This repository contains:
 - [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
 - [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
 - [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
-- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-development-workflow) - Incorporoating component tests into your daily workflow (5 best practices)
+- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-7-development-workflow) - Incorporoating component tests into your daily workflow (5 best practices)
 
 ### Example Application
 
