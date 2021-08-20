@@ -171,7 +171,7 @@ module.exports = async () => {
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#intermediate,
+🏷&nbsp; **Tags:** `#intermediate`
 
 :white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achieved and hundreds tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
 
