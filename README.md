@@ -25,33 +25,29 @@ This repository contains:
 
 <br/><br/>
 
-## Courses and workshops
-
-Prefer video or a workshop? Find here the [same content as a course](https://testjavascript.com/), online workshop, free webinar, or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
-
-<br/><br/>
 
 # `Table of contents`
 
-### Best Practices
+### Best Practices Sections
 
-- [`Database And Infrastructure Setup`](/) - Optimizing your DB, MQ and other infra for testing (7 best practices)
-- [`Web-Server Setup`](/) - Good practices for starting and stopping the backend API (7 best practices)
-- [`The Test Anatomy`](/) - The bread and butter of a component test (7 best practices)
-- [`Dealing With Data`](/) - Patterns and practices for testing the application data and database (7 best practices)
-- [`Integration`](/) - Techniques for testing collaborations with 3rd party components (7 best practices)
-- [`Message Queue`](/) - Correctly testing flows that start or end at a queue (7 best practices)
-- [`Development Workflow`](/) - Incorporoating component tests into your daily workflow (7 best practices)
+- [`Database And Infrastructure Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup) - Optimizing your DB, MQ and other infra for testing (6 best practices)
+- [`Web-Server Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup) - Good practices for starting and stopping the backend API (3 best practices)
+- [`The Test Anatomy`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
+- [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
+- [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
+- [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
+- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-7-development-workflow) - Incorporoating component tests into your daily workflow (5 best practices)
 
 ### Example Application
 
-- [`Our Showcase`](/) - An example Node.js component that embodies selected list of important best practices
+- [`Our Showcase`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#-example-application) - An example Node.js component that embodies selected list of important best practices
 
 ### Other Recipes
 
-- [`More Examples And Platforms`](/) - A list of more examples that cover more platforms and topics
+- [`More Examples And Platforms`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#-recipes) - A list of more examples that cover more platforms and topics
 
 <br/><br/><br/>
+
 
 # ✅ Best Practices
 
@@ -78,20 +74,20 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```yml
-  # docker-compose.yml
-  version: '3.6'
-  services:
-    database:
-      image: postgres:11
-      command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
-      environment:
-        - POSTGRES_USER=myuser
-        - POSTGRES_PASSWORD=myuserpassword
-        - POSTGRES_DB=shop
-      container_name: 'postgres-for-testing'
-      ports:
-        - '54310:5432'
-      tmpfs: /var/lib/postgresql/data
+# docker-compose.yml
+version: '3.6'
+services:
+  database:
+    image: postgres:11
+    command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=myuserpassword
+      - POSTGRES_DB=shop
+    container_name: 'postgres-for-testing'
+    ports:
+      - '54310:5432'
+    tmpfs: /var/lib/postgresql/data
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/docker-compose.yml)
@@ -118,20 +114,15 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 ```javascript
   // jest.config.js
   globalSetup: './example-application/test/global-setup.js'
-  // global-setup.js
-  const dockerCompose = require('docker-compose');
-  module.exports = async () => {
-    ...
-    await dockerCompose.upAll({
-      cwd: path.join(__dirname),
-      log: true,
-    });
-    await dockerCompose.exec(
-      'database',
-      ['sh', '-c', 'until pg_isready ; do sleep 1; done'],
-      { cwd: path.join(__dirname) }
-    );
-    ...
+```
+
+```javascript
+// global-setup.js
+const dockerCompose = require('docker-compose');
+  
+module.exports = async () => {
+  await dockerCompose.upAll();
+};
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L14-L25)  
@@ -158,16 +149,18 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 ```javascript
   // jest.config.js
   globalTeardown: './example-application/test/global-teardown.js',
+```
+```javascript
+// global-teardown.js - clean-up after all tests
+const isCI = require('is-ci');
+const dockerCompose = require('docker-compose');
   
-  // global-teardown.js - clean-up after all tests
-  const isCI = require('is-ci');
-  const dockerCompose = require('docker-compose');
-  module.exports = async () => {
-    // Check if running CI environment
-    if (isCI) {
-      dockerCompose.down();
-    }
+module.exports = async () => {
+  // Check if running CI environment
+  if (isCI) {
+    dockerCompose.down();
   }
+};
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-teardown.js#L5-L8)
@@ -178,30 +171,30 @@ Prefer video or a workshop? Find here the [same content as a course](https://tes
 
 ### ⚪️ 4. Optimize your real DB for testing, Don't fake it
 
-🏷&nbsp; **Tags:** `#performance, #draft, #Michael`
+🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to reduce the storage reliability and increase speed. With just a few configuration flags ~20% performance gain is achived and hundrands tests can be run in a few seconds. You can do this by turn off the DB durability settings in postgres or run in-memory in MySQL. Using so close setup as production will make your test reliable.
+:white_check_mark:  **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achieved and hundreds tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
+
 <br/>
 
-👀 &nbsp; **Alternatives:** 
-* Use SQLite which is actually slower and not the same as production ❌;  no optimizations.
-* Fake/Mock the DB brings noise and impair the completeness of the tests by excluding the DB from the test ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsupported features❌;  Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
 #### Postgres
-```
-//docker-compose file
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
+    // fsync=off means don't wait for disc acknowledgement
     command: postgres -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c random_page_cost=1.0
     tmpfs: /var/lib/postgresql/data
-    ...
+    # ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -214,27 +207,29 @@ services:
 
 ### ⚪️ 5. Store test data in RAM folder
 
-🏷&nbsp; **Tags:** `#performance, #draft`
+🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Minor boost, harder in Mac, easier in Linux using tmpfs, some DB has a built-in memory engine which you may consider because ([benchmark](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437))
+
+:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in tmpfs folder - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were covered above already minimize the IO work and modern SSD discs are blazing fast. Some specific databases like Mongo comes with a built-in memory engine, this is an additional option to consider. 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Use SQLite which is actually slower ❌;  no optimizations
+👀 &nbsp; **Alternatives:** When configuring the DB for low-durability level (described in the bullet 'Optimize your real DB for testing, Don't fake it), this step may be omitted ✅; 
 
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
-//docker-compose file
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
     image: postgres:13
     container_name: 'postgres-for-testing'
+    // 👇 Stores the DB data in RAM folder. Works only in Linux
     tmpfs: /var/lib/postgresql/data
-    ...
+    # ...
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/docker-compose.yml#L1
@@ -246,7 +241,7 @@ services:
 
 ### ⚪️ 6. Build the DB schema using migrations, ensure it happens only once in dev
 
-🏷&nbsp; **Tags:** `#performance`
+🏷&nbsp; **Tags:** `#intermediate`
 
 :white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
 
@@ -259,17 +254,18 @@ services:
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-  // jest.config.js
-  globalSetup: './example-application/test/global-setup.js'
+// jest.config.js
+globalSetup: './example-application/test/global-setup.js'
 
-  // global-setup.js
-  const npm = require('npm');
-  const util = require('util');
-  module.exports = async () => {
-    ...
-    const npmCommandAsPromise = util.promisify(npm.commands.run);
-    await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
-    ...
+// global-setup.js
+const npm = require('npm');
+const util = require('util');
+module.exports = async () => {
+  // ...
+  const npmCommandAsPromise = util.promisify(npm.commands.run);
+  await npmCommandAsPromise(['db:migrate']); // Migrating the DB using a npm script before running any tests.
+  // ...
+}
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L29-L30)
@@ -296,14 +292,14 @@ services:
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```js
 const apiUnderTest = require('../api/start.js');
 
 beforeAll(async (done) => {
   //Start the backend in the same process
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/entry-points/api-under-test.js#L10-L34
 )
   
 
@@ -325,7 +321,7 @@ beforeAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```js
 const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
@@ -335,7 +331,7 @@ const initializeWebServer = async (customMiddleware) => {
       resolve(expressApp);
     });
   });
-}
+};
 
 const stopWebServer = async () => {
   return new Promise((resolve, reject) => {
@@ -343,12 +339,12 @@ const stopWebServer = async () => {
       resolve();
     })
   });
-}
+};
 
 beforeAll(async (done) => {
   expressApp = await initializeWebServer();
   done();
-  }
+});
 
 afterAll(async (done) => {
   await stopWebServer();
@@ -358,7 +354,7 @@ afterAll(async (done) => {
 
 ```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
+➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/entry-points/api-under-test.js#L10-L34
 )
   
 
@@ -368,7 +364,7 @@ afterAll(async (done) => {
 
 ### ⚪️ 3. Specify a port in production, randomize in testing
 
-🏷&nbsp; **Tags:** `#intermediate`
+🏷&nbsp; **Tags:** `#e`
 
 :white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
 
@@ -381,7 +377,7 @@ afterAll(async (done) => {
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```js
 // api-under-test.js
 const initializeWebServer = async (customMiddleware) => {
   return new Promise((resolve, reject) => {
@@ -395,10 +391,8 @@ const initializeWebServer = async (customMiddleware) => {
 
 // test.js
 beforeAll(async (done) => {
-  expressApp = await initializeWebServer();//No port
-  });
-
-
+  expressApp = await initializeWebServer();// No port
+});
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
@@ -406,7 +400,7 @@ beforeAll(async (done) => {
 
 <br/><br/>
 
-## **Section 3 : Test test anatomy (basics)**
+## **Section 3: The test anatomy (basics)**
 
 <br/>
 
@@ -414,8 +408,7 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-
-:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices used for unit tests. Half of the idea behind this technique is not to lose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroids, not as small E2E tests. Why? The biggest threat to testing is abandonment. If the developer experience is not great, there are chances that the team won't use it, or fake it like their using it. Code-wise, keep the tests very small (a good rule of thumb: no longer than 7 statements), the runtime should hopefully last few seconds and strive to be below 10 seconds, keep a consistent naming pattern like 'when...   then...', use the AAA pattern to reach a very consistent structure, cover a single interaction and not a big flow. More explanations on this and other useful practices can be found in our [sister guid here](https://github.com/goldbergyoni/javascript-testing-best-practices). 
+:white_check_mark: &nbsp; **Do:** Write integration-component tests using the same style and practices used for unit tests. Half of the idea behind this technique is not to lose the great perks of unit tests (the second half is to cover more ground). In other words, this technique should be thought of like unit tests on steroids, not as small E2E tests. Why? The biggest threat to testing is abandonment. If the developer experience is not great, there are chances that the team won't use it, or fake it like they're using it. Code-wise, keep the tests very small (a good rule of thumb: no longer than 7 statements), the runtime should hopefully last few seconds and strive to be below 10 seconds, keep a consistent naming pattern like 'when...   then...', use the AAA pattern to reach a very consistent structure, cover a single interaction and not a big flow. More explanations on this and other useful practices can be found in our [sister guide here](https://github.com/goldbergyoni/javascript-testing-best-practices). 
 
 <br/>
 
@@ -486,7 +479,7 @@ beforeAll(async (done) => {
   };
   // Create axios client for the whole test suite
   axiosAPIClient = axios.create(axiosConfig);
-  ...
+  // ...
 });
 
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
@@ -503,7 +496,8 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
   // Use axios to retrieve the same order by id
   const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
-  ...
+  // ...
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/master/example-application/test/basic-tests.test.js#L64)
@@ -529,7 +523,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
 <details><summary>✏ <b>Code Examples</b></summary>
 
-```
+```javascript
 // Code example with signing JWT token
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
@@ -554,7 +548,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 ```javascript
 // basic-tests.test.ts
 test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
-  ...
+  // ...
   const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
 
   // Assert on entire HTTP response object
@@ -579,7 +573,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 🏷&nbsp; **Tags:** `#basics`
 
 
-:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated section below), structure the routes by topics and queues.  
+:white_check_mark: &nbsp; **Do:** Organize your tests using 'describe' blocks representing API routes. Eventually, this will result in a tree of routes and tests underneath. For example describe('/API'), describe('POST /orders'). See the full example below. This common view of API end-points will likely look familiar and appeal to the occasional test report viewer. It resembles tooling that were proven to be popular like POSTMAN, OpenAPI docs, and others. Most, if not all, developers would know to map a test failure in a specific route with the corresponding code. A newly onboarded developer who is unfamiliar with the code would benefit from understanding the various routes and then easily start exploring the corresponding controller. Sometimes there are many scenario/cases under each route. In this case, consider creating another nested category (i.e. describe block) that represents a topic or user story. If the code under test is accessed using a message queue (see dedicated 4below), structure the routes by topics and queues.  
 
 ![Test report by route](/graphics/test-report-by-route.png)
 
@@ -594,18 +588,21 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 // basic-tests.test.js
 describe('/api', () => {
   describe('GET /order', () => {
-    ...
+    // ...
   });
 
   describe('POST /orders', () => {
-    ...
+    // ...
   });
+});
 ```
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/fb93b498d437aa6d0469485e648e74a6b9e719cc/example-application/test/basic-tests.test.js#L11)
 
 </details>
 
 <br/>
+
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
 
 ### ⚪️ 6. Test the five potential outcomes
 
@@ -626,8 +623,14 @@ describe('/api', () => {
 
 <br/><br/>
 
+### This content is available also as a course or a workshop
 
-## **Section 4 : Isolating from the external world**
+Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
+
+<br/><br/>
+
+
+## **Section 4: External services**
 
 <br/>
 
@@ -752,7 +755,7 @@ test('When the user does not exist, return http 404', async () => {
 
 ```javascript
 beforeAll(async (done) => {
-  ...
+  // ...
   // ️️️Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
   // Enable only requests for the API under test
@@ -829,7 +832,7 @@ test('When users service replies with 503 once and retry mechanism is applied, t
 // ️️️Assert that the app called the mailer service appropriately with the right input
 test('When order failed, send mail to admin', async () => {
   //Arrange
-  ...
+  // ...
   let emailPayload;
   nock('http://mailer.com')
     .post('/send', (payload) => ((emailPayload = payload), true))
@@ -931,7 +934,7 @@ test("When users service doesn't reply within 2 seconds, return 503", async () =
 
 <br/><br/>
 
-## **Section: Dealing with data**
+## **Section 5: Dealing with data**
 
 
 <br/>
@@ -998,11 +1001,12 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 // Adding metadata globally. Done once regardless of the amount of tests
 module.exports = async () => {
   console.time('global-setup');
-  ...
+  // ...
   await npmCommandAsPromise(['db:seed']); // Will create a countries (metadata) list. This is not related to the tests subject
-  ...
+  // ...
   // 👍🏼 We're ready
   console.timeEnd('global-setup');
+};
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/example-application/test/global-setup.js#L32)
@@ -1131,7 +1135,7 @@ Who wins? There's no clear cut here. Both have their strength but also unpleasan
 // After-all clean up (recommended)
 // global-teardown.js
 module.exports = async () => {
-  ...
+  // ...
   if (Math.ceil(Math.random() * 10) === 10) {
     await new OrderRepository().cleanup();
   }
@@ -1155,6 +1159,10 @@ afterEach(async () => {
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/anti-pattern-data-isolation.test.js#L38-L43)
 
 </details>
+
+<br/><br/>
+
+🎦 Learn all of these topics in an [online course by Yoni Goldberg](https://testjavascript.com)
 
 <br/><br/>
 
@@ -1189,7 +1197,7 @@ test('When adding a new valid order, Then should get back 200 response', async (
     '/order',
     orderToAdd
   );
-  ...
+  // ...
 });
 ```
 
@@ -1216,7 +1224,7 @@ When it is impossible to assert for specific data, check for mandatory field exi
 
 ```javascript
 test('When adding a new valid order, Then should get back approval with 200 response', async () => {
-  ...
+  // ...
   //Assert
   expect(receivedAPIResponse).toMatchObject({
     status: 200,
@@ -1253,9 +1261,9 @@ test('When adding a new valid order, Then should get back approval with 200 resp
 // Create the DB schema. Done once regardless of the amount of tests
 module.exports = async () => {
   console.time('global-setup');
-  ...
+  // ...
   await npmCommandAsPromise(['db:migrate']);
-  ...
+  // ...
   // 👍🏼 We're ready
   console.timeEnd('global-setup');
 ```
@@ -1282,41 +1290,41 @@ module.exports = async () => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-    test("When deleting an existing order, Then should get a successful message", async () => {
-      // Arrange
-      const orderToDelete = {
-        userId: 1,
-        productId: 2,
-        externalIdentifier: `id-${getShortUnique()}`, //unique value
-      };
-      const {
-        data: { id: orderToDeleteId },
-      } = await axiosAPIClient.post("/order", orderToDelete);
+test("When deleting an existing order, Then should get a successful message", async () => {
+  // Arrange
+  const orderToDelete = {
+    userId: 1,
+    productId: 2,
+    externalIdentifier: `id-${getShortUnique()}`, //unique value
+  };
+  const {
+    data: { id: orderToDeleteId },
+  } = await axiosAPIClient.post("/order", orderToDelete);
 
-      // Create another order to make sure the delete request deletes only the correct record
-      const anotherOrder = {
-        userId: 1,
-        productId: 2,
-        externalIdentifier: `id-${getShortUnique()}`, //unique value
-      };
+  // Create another order to make sure the delete request deletes only the correct record
+  const anotherOrder = {
+    userId: 1,
+    productId: 2,
+    externalIdentifier: `id-${getShortUnique()}`, //unique value
+  };
 
-      nock("http://localhost/user/").get(`/1`).reply(200, {
-        id: 1,
-        name: "John",
-      });
-      const {
-        data: { id: anotherOrderId },
-      } = await axiosAPIClient.post("/order", anotherOrder);
+  nock("http://localhost/user/").get(`/1`).reply(200, {
+    id: 1,
+    name: "John",
+  });
+  const {
+    data: { id: anotherOrderId },
+  } = await axiosAPIClient.post("/order", anotherOrder);
 
-      // Act
-      const deleteResponse = await axiosAPIClient.delete(`/order/${orderToDeleteId}`);
-      const getOrderResponse = await axiosAPIClient.get(`/order/${anotherOrderId}`);
+  // Act
+  const deleteResponse = await axiosAPIClient.delete(`/order/${orderToDeleteId}`);
+  const getOrderResponse = await axiosAPIClient.get(`/order/${anotherOrderId}`);
 
-      // Assert
-      expect(deleteResponse.status).toBe(204);
-      // Assert anotherOrder still exists
-      expect(getOrderResponse.status).toBe(200);
-    });
+  // Assert
+  expect(deleteResponse.status).toBe(204);
+  // Assert anotherOrder still exists
+  expect(getOrderResponse.status).toBe(200);
+});
 ```
 
 ➡️ [Full code here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/data-isolation/data-isolation.test.js#L105-L139)
@@ -1326,7 +1334,14 @@ module.exports = async () => {
 
 <br/><br/>
 
-## **Section: Message queues**
+### This content is available also as a course or a workshop
+
+Find here the [same content as a course](https://testjavascript.com/), online [workshop](https://www.eventbrite.com/e/advanced-nodejs-testing-2-meetings-tickets-162539230213), free webinar (TBD, [follow here](https://goldbergyoni.com/news-letter/) for specific date), or invite [a private workshop to your team](https://testjavascript.com/contact-2/)
+
+<br/><br/>
+
+
+## **Section 6: Message queues**
 
 ### ⚪️ 1.  Important: Use a fake MQ for the majority of testing
 
@@ -1397,34 +1412,32 @@ class FakeMessageQueueProvider extends EventEmitter {
 
 ```javascript
 // message-queue-client.js. The MQ client/wrapper is throwing an event when the message handler is done
-  async consume(queueName, onMessageCallback) {
-    await this.channel.consume(queueName, async (theNewMessage) => {
-      await onMessageCallback(theNewMessage);
-      await this.ack(theNewMessage); // Handling is done, acknowledge the msg
-      this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
-    });
-  }
-
-
+async consume(queueName, onMessageCallback) {
+  await this.channel.consume(queueName, async (theNewMessage) => {
+    await onMessageCallback(theNewMessage);
+    await this.ack(theNewMessage); // Handling is done, acknowledge the msg
+    this.emit('message-acknowledged', eventDescription); // Let the tests know that all is over
+  });
+}
 ```
 
 ```javascript
 // The test listen to the acknowledge/confirm message and knows when the operation is done 
 test('Whenever a user deletion message arrive, then this user orders are also deleted', async  ()  => {
 
-// Arrange
-
-// 👉🏼 HERE WE SHOULD add new orders to the system
-
-const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event from EventEmitter
-
-// Act
-fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
-
-// Assert
-const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resolve once the message handling is done
-
-// Now we're certain that the operations is done and can start asserting for the results 👇 
+  // Arrange
+  
+  // 👉🏼 HERE WE SHOULD add new orders to the system
+  
+  const  getNextMQEvent =  once(MQClient, "message-acknowledged"); // Once function, part of Node, promisifies an event from EventEmitter
+  
+  // Act
+  fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });  
+  
+  // Assert
+  const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resolve once the message handling is done
+  
+  // Now we're certain that the operations is done and can start asserting for the results 👇 
 });
 ```
 
@@ -1456,19 +1469,19 @@ const  eventFromMessageQueue = await  getNextMQEvent; // This promise will resol
 //Putting a delete-order message, checking the the app processed this correctly AND acknowledged
 test('Whenever a user deletion message arrive, then his orders are deleted', async  ()  => {
 
-// Arrange
-// Add here a test record - A new order  of a specific user using the API
-
-const  fakeMessageQueue = await  startFakeMessageQueue();
-const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
-
-// Act
-fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
-
-// Assert
-const  eventFromMessageQueue = await  getNextMQEvent;
-// Check here that the user's orders were deleted
-expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
+  // Arrange
+  // Add here a test record - A new order  of a specific user using the API
+  
+  const  fakeMessageQueue = await  startFakeMessageQueue();
+  const  getNextMQEvent =  getNextMQConfirmation(fakeMessageQueue);
+  
+  // Act
+  fakeMessageQueue.pushMessageToQueue('deleted-user', { id:  addedOrderId });
+  
+  // Assert
+  const  eventFromMessageQueue = await  getNextMQEvent;
+  // Check here that the user's orders were deleted
+  expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 });
 ```
 
@@ -1493,9 +1506,9 @@ expect(eventFromMessageQueue).toEqual([{ event:  'message-acknowledged' }]);
 	<br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1530,9 +1543,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1568,9 +1581,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1605,9 +1618,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1629,7 +1642,7 @@ services:
 
 <br/>
 
-### ⚪️ 8.  On top of development testing, write a few E2E tests
+### ⚪️ 8.  top of development testing, write a few E2E tests
 
 🏷&nbsp; **Tags:** `#intermediate`
 
@@ -1642,9 +1655,9 @@ services:
 <br/>
 
 <details><summary>✏ <b>Code Examples</b></summary>
-//docker-compose file
 
-```
+```yml
+# docker-compose file
 version: "3.6"
 services:
   db:
@@ -1671,52 +1684,72 @@ services:
 
 <br/>
 
-## **Section: Development Workflow**
-
-Soon in 2-3 days
+## **Section 7: Development Workflow**
 
 <br/>
 
-### ⚪️ 1. Soon in 2-3 days
+### ⚪️ 1. Always START with integration/component tests
 
-:white_check_mark: **Do:**
-For proper startup and teardown, the app entry point (e.g. webserver start code) must expose for the testing a start and stop methods that will initialize and teardown all resources. The tests will use these methods to initialize the app (e.g. API, MQ) and clean-up when done
+🏷&nbsp; **Tags:** `#strategic`
 
-<br/>
+:white_check_mark: **Do:** Regardless of the exact timing, the first set of tests to be written is component tests. Once a new sprint or feature is kicked off, the first details known to the developer are about the outcome of the component. At first, a developer can tell what the API/MQ might receive and what (roughly) type of information is returned. Naturally, testing this outer layer, the public interface and outcome, should come first. By doing so, developers are pushed to work with the end in mind -  Define the goals before the implementation. Testing the inner functions with unit tests before the overall outcome is specified and understood does not make any sense. Surprisingly, even classic TDD books mention this workflow, see [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg). What about E2E tests? These usually focus on a broader problem than needed at first - Consequently, it should also get deferred.
 
-👀 **Alternatives:**
-The application under test can avoid opening connections and delegate this to the test, however this will make a change between production and test code. Alternativelly, one can just let the test runner kill the resources then with frequent testing many connections will leak and might choke the machine
+<br/><br/>
 
-<br/>
+### ⚪️ 2. Run few E2E, selectively consider unit tests
 
-<details><summary>✏ <b>Code Examples</b></summary>
+🏷&nbsp; **Tags:** ``
 
-```
-const initializeWebServer = async (customMiddleware) => {
-  return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    defineRoutes(expressApp);
-    connection = expressApp.listen(() => {
-      resolve(expressApp);
-    });
-  });
-}
+:white_check_mark: **Do:** Always write few E2E tests on top of component tests. Based on the specific nature of the component, some unit tests might be needed as well. Though E2E means different things to different testers, in the context of a backend they represent tests that are done with live collaborators (i.e., external services) on a real infrastructure. Therefore, they cover risks that are not covered by components tests - configuration issues, misunderstanding with 3rd party services, infrastructural issues and more. When then unit tests are needed? in the presence of none-trivial logic and algorithms. When having a single module with remarkable complexity, it's easier to avoid the distraction coming from other parts by isolating the challenging unit. [This article greatly outlines when unit tests shine](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/).
 
-const stopWebServer = async () => {
-  return new Promise((resolve, reject) => {
-    connection.close(() => {
-      resolve();
-    })
-  });
-}
-```
 
-➡️ [Full code here](https://github.com/testjavascript/integration-tests-a-z/blob/4c76cb2e2202e6c1184d1659bf1a2843db3044e4/example-application/api-under-test.js#L10-L34
-)
-  
+<br/><br/>
 
-</details>
+### ⚪️ 3. Cover features, not functions
+
+🏷&nbsp; **Tags:** ``
+
+:white_check_mark: **Do:** Intuitively and manually check that your tests cover all, or at least most, of the application *features* (usually represented as routes). Yes, this measurement is based on human judgment and therefore is error-prone - Sadly, there is no better option yet. Many teams use code coverage to measure their test effectiveness. While this is a great measurement tool, it's by no means exhaustive and reliable enough to tell whether the tests are trustworthy enough. Having 100% coverage is expensive and does not guarantee bug-free deployment - Error might exist in the DB, MQ, or from code that is *covered* but not *tested* (i.e., one can reach some piece of code but not assert against it). Sometimes a component scores high coverage, say 90%, this might falsely trigger confidence, but the left 10% represent the most critical flows of the app. There are some other coverage blind spots and downsides.
+Consequently, when high reliability is imperative, it's recommended to use coverage as a complementary measurement, but not as the single truth for confidence. In the lack of reliable scientific measurement, nothing can inspire confidence more than knowing that *what the user does is covered with testing (i.e., features)*. Practically, this can be achieved in few ways: by looking at tht test reports and comparing with the requirements document, or by looking at coverage reports and verifying that the untested code is not part of key features, and by checking that the core routes/messages are approached by the tests. 
+
+Mutation tests is also an increasing technique that can be combined in the verification suite of tools. That said, it can not serve as the primary technique since it is slow by nature and shows poor performance in tests that involve DB and IO.
+
+<br/><br/>
+
+### ⚪️ 4. Write the tests before **or during** the code, but not after the fact
+
+🏷&nbsp; **Tags:** `#strategic`
+
+:white_check_mark: **Do:** Write the tests on your most convenient time before or during coding, usually when you have enough certainty about the requirements/code. Do not write them once the features are ready because you will lose the great anti-regression perks of testing. Consider this, a developer is writing some great and fully-working code for 3 hours. Let's call this point in time - "A". Now she is coding for additional 6 hours only to discover that 5 hours ago, she presented a new bug. It might be that the last coding hours are a waste or should be fixed fundamentally. Should she have written some tests at point "A", those tests would have discovered the regression right awat and prevented this significant time loss. Like in rock climbing, tests secure our achievements and ensure we don't fall back below the latest success point. The earlier we write the tests, the less time can get lost due to a bug in code that already worked before (e.g., regression). on the other hand, the earlier we write the tests (e.g., TDD), the higher the chances of fundamental changes to the code that will mandate test refactoring -  This is another form of time loss. The sweet spot then for writing tests is when the requirements and the implementation are clear enough. Not neccesserily 100% clear, but at least a solid understanding do exist. For some modules, this understanding might occur before writing the code, in other cases, one would prefer to run some experiments before filling confidence enough that she knows what the code is about. In either case, focus on the goal - Writing the tests early enough to get a safety net. Whether it is before the tests or 45 min after - This level of discussion is not strategic enough and should be left for the developers` personal style. 
+
+<br/><br/>
+
+### ⚪️ 5. Run the tests frequenly, if possible run continously in watch mode
+
+🏷&nbsp; **Tags:** ``
+
+:white_check_mark: **Do:** Run the tests very frequently, not longer than every few minutes during coding. If possible let it happen automatically, even continuously, while a developer is coding. The more frequent the tests run, the sooner they will discover issues.  When they run automatically, the developer won't even need to remember to do anything - The tests are just there, watching her back like a robot assistant. When a component's size is relatively small, the tests can get executed in watch mode, so every code change will trigger a new run. Try this with our example app (includes live DB) - The test will show feedback in 3 seconds. Concerned with noise coming from the testing terminal? Put it in the background: Some test runner will show pop-up when the tests suddenly fail (e.g., [Jest notify](https://jestjs.io/docs/configuration#notify-boolean)). There are also silent test runners like [mocha-silent](https://www.npmjs.com/package/mocha-silent-reporter) and [jest-silent](https://github.com/rickhanlonii/jest-silent-reporter). You may also try our experimental watch mode extension that will run the tests every 30 seconds automatically in the background. Interested? Just open an issue
+
+<br/><br/>
+
+### ⚪️ 6. [Repeated Bullet] Consider testing the 5 known outcomes
+
+🏷&nbsp; **Tags:** `#strategic`
+
+*(This section also appear at the begining and is repeated here as it also integral part of the testing workflow)*
+
+:white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the five typical flow's outputs. When your test is triggering some action (e.g., API call), a reaction is happening, something meaningful occurs and calls for testing. Note that we don't care about how things work. Our focus is on outcomes, things that are noticeable from the outside and might affect the user. These outcomes/reactions can be put in 5 categories:
+
+**• Response -** The test invokes an action (e.g., via API) and gets a response. It's now concerned with checking the response data correctness, schema, and HTTP status
+
+**• A new state -** After invoking an action, some data is probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly and mistakenly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are greatly covered below in the 📗 section 'Dealing with data' 
+
+**• External calls -** After invoking an action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge a credit card. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic which is discussed in the 📗 section 'Testing integrations' below
+
+**• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message in some MQ product. Now other components can consume this message and continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
+
+**• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straighforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon
+
 
 <br/><br/>
 
@@ -1733,15 +1766,54 @@ In this folder you may find a complete example of real-world like application, a
 
 More use cases and platforms. Each lives in its own folders:
 
-- Nest.js
-- Fastify (coming soon 🗓)
-- Mocha
-- Authentication
-- Message Queue
-- Testing OpenAPI (Swagger)
-- Consumer-driven contract tests (coming soon 🗓)
-- Authentication/Login
-- Testing for proper logging and metrics
-- Data isolation patterns
-Markdown 86965 bytes 11911 words 1743 lines Ln 1743, Col 25HTML 60571 characters 11461 words 877 paragraphs
-WORKSPACES
+- [Nest.js](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/nestjs)
+- Fastify (coming soon 🗓 )
+- [Mocha](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/mocha)
+- [Authentication](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/authentication)
+- [Message Queue](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/message-queue)
+- [Testing OpenAPI (Swagger)](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/doc-driven-contract-test)
+- Consumer-driven contract tests (coming soon 🗓 )
+- [Data isolation patterns](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/data-isolation)
+- [Optimized DB for testing](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/db-optimization)
+- [Error handling](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/error-handling)
+- [Performance](https://github.com/testjavascript/nodejs-integration-tests-best-practices/tree/master/recipes/performance)
+
+## The Team
+
+The people who spent almost 1000 hours cumulatively to bring this content together
+
+<img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/yoni.jpg"/>
+
+<h2><b>Yoni Goldberg</b></h2>
+<a href="https://twitter.com/goldbergyoni"><img src="graphics/team/twitter.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="graphics/team/website.png" width="16" height="16"></img></a>
+
+Independent Node.js consultant who works with customers in the USA, Europe, and Israel on building large-scale Node.js applications. Author of [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices). Holds testing workshops [online, onsite](https://testjavascript.com/contact-2/) and also a [recorded course](https://testjavascript.com/).
+
+<br/>
+
+<img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/michael.jpg"/>
+
+<h2><b>Michael Solomon</b></h2>
+<a href="https://www.linkedin.com/in/michael-solomon-b3571a97/"><img src="graphics/team/linkedin.png" width="16" height="16"></img></a>
+<a href="https://github.com/mikicho"><img src="graphics/team/github.png" width="16" height="16"></img><img src="graphics/team/github-light.png" width="16" height="16"></img></a>
+
+Started to program accidentally and fell in love. Strive for readable code. Chasing after perfection. Knowledge freak. Nothing is obvious. Backend developer.
+
+<br/>
+<br/>
+
+<img align="left" width="100" height="100" style="margin-right: 15px;" src="graphics/team/daniel.jpg"/>
+
+<h2><b>Daniel Gluskin</b></h2>
+<br/>
+
+Enthusiastic Node.js and javscript developer. Always eager to learn and explore new technologies. 
+
+<br/>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMzc2NjY5MzA1LC0xNTgxMDcyMjgzLDIxMz
+I5MzMwOTMsLTIyNzAzMTMwMywtMTAxNTcyMTk5OSwtMTU5MTcw
+NzgyMSwyMzM1NDYwOTIsMTY0OTQ0NDI1NiwzNjA4MjcyMDAsND
+MyMzQ5NV19
+-->
