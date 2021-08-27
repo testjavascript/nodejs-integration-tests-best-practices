@@ -16,11 +16,13 @@ const initializeWebServer = async () => {
 
   const webServerPort = process.env.PORT ? process.env.PORT : null;
 
-  return new Promise((resolve, reject) => {
+  const address = await new Promise((resolve, reject) => {
     connection = app.listen(webServerPort, () => {
       resolve(connection.address());
     });
   });
+
+  return address;
 };
 
 const stopWebServer = async () => {

@@ -31,13 +31,14 @@ afterAll(async () => {
   nock.enableNetConnect();
 });
 
+// 
 const HELLO_QUERY = gqlt.query({
   operation: 'hello',
   variables: { value: { type: 'Int', required: false } },
 }).query;
 
-describe('/api', () => {
-  describe('GET /hello', () => {
+describe('/graphql', () => {
+  describe('hello Query', () => {
     test('When valid request, Then should return hello', async () => {
       // Act
       const { data, status } = await axiosGraphQLClient.post('', {
