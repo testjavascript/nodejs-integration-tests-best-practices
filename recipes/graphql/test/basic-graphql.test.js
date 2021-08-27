@@ -31,7 +31,6 @@ afterAll(async () => {
   nock.enableNetConnect();
 });
 
-// 
 const HELLO_QUERY = gqlt.query({
   operation: 'hello',
   variables: { value: { type: 'Int', required: false } },
