@@ -54,24 +54,29 @@ afterEach(() => {
 
 describe('Error Handling', () => {
   describe('Selected Examples', () => {
-    test('When exception is throw during request, Then logger reports the error', async () => {
+    test('When exception is throw during request, Then logger reports the mandatory fields', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
         mode: 'approved',
       };
-      // ️️️✅ Best Practice: Simulate also internal error
+  
       sinon
         .stub(OrderRepository.prototype, 'addOrder')
-        .rejects(new AppError('saving-failed', true));
+        .rejects(new AppError('saving-failed', 'Order could not be saved', 500));
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act
       await axiosAPIClient.post('/order', orderToAdd);
 
       //Assert
-      expect(loggerDouble.lastCall.firstArg).toEqual(expect.any(Object));
+      expect(loggerDouble.lastCall.firstArg).toMatchObject({
+        name: 'saving-failed',
+        status: 500,
+        stack: expect.any(String),
+        message: expect.any(String),
+      });
     });
 
     test('When exception is throw during request, Then a metric is fired', async () => {
@@ -82,9 +87,7 @@ describe('Error Handling', () => {
         mode: 'approved',
       };
 
-      const errorToThrow = new AppError('example-error', { isTrusted: true, name: 'example-error-name' });
-
-      // Arbitrarily choose an object that throws an error
+      const errorToThrow = new AppError('example-error', 'some example message', 500);
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
       const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
 
@@ -94,7 +97,7 @@ describe('Error Handling', () => {
       //Assert
       expect(
         metricsExporterDouble.calledWith('error', {
-          errorName: 'example-error-name',
+          errorName: 'example-error',
         })
       ).toBe(true);
     });
@@ -108,8 +111,12 @@ describe('Error Handling', () => {
       };
       sinon.restore();
       const processExitListener = sinon.stub(process, 'exit');
-      // Arbitrarily choose an object that throws an error
-      const errorToThrow = new AppError('example-error-name', { isTrusted: false });
+      const errorToThrow = new AppError(
+        'saving-failed',
+        'Order could not be saved',
+        500,
+        false // ❌ Non-trusted error!
+      );
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
 
       //Act
@@ -167,24 +174,28 @@ describe('Error Handling', () => {
       ${{}}                          | ${'Object as error'}
       ${new Error('JS basic error')} | ${'JS error'}
       ${new AppError('error-name')}  | ${'AppError'}
-    `(`When throwing $errorTypeDescription, Then it's handled correctly`, async ({ errorInstance }) => {
-      //Arrange
-      const orderToAdd = {
-        userId: 1,
-        productId: 2,
-        mode: 'approved',
-      };
+      ${'🐤'}                        | ${'Small cute duck 🐤 as error'}
+    `(
+      `When throwing $errorTypeDescription, Then it's handled correctly`,
+      async ({ errorInstance }) => {
+        //Arrange
+        const orderToAdd = {
+          userId: 1,
+          productId: 2,
+          mode: 'approved',
+        };
 
-      sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
-      const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
-      const consoleErrorDouble = sinon.stub(console, 'error');
+        sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
+        const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
+        const consoleErrorDouble = sinon.stub(console, 'error');
 
-      //Act
-      await axiosAPIClient.post('/order', orderToAdd);
+        //Act
+        await axiosAPIClient.post('/order', orderToAdd);
 
-      //Assert
-      expect(metricsExporterDouble.called).toBe(true);
-      expect(consoleErrorDouble.called).toBe(true);
-    });
+        //Assert
+        expect(metricsExporterDouble.called).toBe(true);
+        expect(consoleErrorDouble.called).toBe(true);
+      }
+    );
   });
 });

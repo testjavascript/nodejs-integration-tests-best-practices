@@ -1,5 +1,7 @@
 const mailer = require('./libraries/mailer');
 const logger = require('./libraries/logger');
+const { HttpStatus } = require('@nestjs/common');
+const { RuleTester } = require('eslint');
 
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
@@ -34,11 +36,11 @@ const decideWhetherToCrash = (error) => {
 };
 
 class AppError extends Error {
-  constructor(message = 'Something wrong', meta = {}) {
+  constructor(name, message, HTTPStatus, isTrusted) {
     super(message);
-    this.name = meta.name;
-    this.isTrusted = meta.isTrusted;
-    this.status = meta.status;
+    this.name = name;
+    this.status = HTTPStatus;
+    this.isTrusted = isTrusted === undefined ? true : false;
   }
 }
 
