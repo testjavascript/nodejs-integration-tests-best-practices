@@ -1,3 +1,4 @@
+const express = require('express');
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
@@ -61,10 +62,12 @@ describe('Error Handling', () => {
         productId: 2,
         mode: 'approved',
       };
-  
+
       sinon
         .stub(OrderRepository.prototype, 'addOrder')
-        .rejects(new AppError('saving-failed', 'Order could not be saved', 500));
+        .rejects(
+          new AppError('saving-failed', 'Order could not be saved', 500)
+        );
       const loggerDouble = sinon.stub(logger, 'error');
 
       //Act
@@ -87,7 +90,11 @@ describe('Error Handling', () => {
         mode: 'approved',
       };
 
-      const errorToThrow = new AppError('example-error', 'some example message', 500);
+      const errorToThrow = new AppError(
+        'example-error',
+        'some example message',
+        500
+      );
       sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
       const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
 
@@ -126,7 +133,7 @@ describe('Error Handling', () => {
       expect(processExitListener.called).toBe(true);
     });
 
-    test('When unknown exception is throw during request, Then its treated as trusted error and the process stays alive', async () => {
+    test('When unknown exception is throw during request, Then the process stays alive', async () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
@@ -146,11 +153,37 @@ describe('Error Handling', () => {
       expect(processExitListener.called).toBe(false);
     });
   });
-
   describe('Various Throwing Scenarios And Locations', () => {
-    test.todo(
-      "When an error is thrown during startup, then it's handled correctly"
-    );
+    test('When unhandled exception is throw, Then the logger reports correctly', async () => {
+      //Arrange
+      const loggerDouble = sinon.stub(logger, 'error');
+      const errorToThrow = new Error('An error that wont be caught 😳');
+
+      //Act
+      process.emit('uncaughtException', errorToThrow);
+
+      // Assert
+      expect(loggerDouble.lastCall.firstArg).toMatchObject(errorToThrow);
+    });
+
+    test.skip('When an error is thrown during startup for more than 3 times, then the process exits', async () => {
+      // Arrange
+      const noneExistingPort = 80;
+      sinon.restore();
+      //const app = express();
+      const http = require('http');
+      sinon.stub(http, 'createServer').throws(new Error('Can not start'));
+      //sinon.stub(app, 'listen').throws(new Error());
+      //process.env.PORT = noneExistingPort;
+      const processExitListener = sinon.stub(process, 'exit');
+
+      // Act
+      await initializeWebServer();
+
+      // Assert
+      expect(processExitListener.called).toBe(true);
+    });
+
     test.todo(
       "When an error is thrown during web request, then it's handled correctly"
     );
@@ -187,14 +220,14 @@ describe('Error Handling', () => {
 
         sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorInstance);
         const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
-        const consoleErrorDouble = sinon.stub(console, 'error');
+        const loggerDouble = sinon.stub(logger, 'error');
 
         //Act
         await axiosAPIClient.post('/order', orderToAdd);
 
         //Assert
         expect(metricsExporterDouble.called).toBe(true);
-        expect(consoleErrorDouble.called).toBe(true);
+        expect(loggerDouble.called).toBe(true);
       }
     );
   });

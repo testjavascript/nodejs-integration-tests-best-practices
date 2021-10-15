@@ -43,6 +43,7 @@ module.exports = class OrderRepository {
 
   async addOrder(orderDetails) {
     const addingResponse = await orderModel.create(orderDetails);
+
     return addingResponse.dataValues
   }
 

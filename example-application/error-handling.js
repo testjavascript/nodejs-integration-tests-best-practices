@@ -1,13 +1,10 @@
 const mailer = require('./libraries/mailer');
 const logger = require('./libraries/logger');
-const { HttpStatus } = require('@nestjs/common');
-const { RuleTester } = require('eslint');
 
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
   handleError: async (errorToHandle) => {
     try {
-      logger.error(`Error occurred`);
       logger.error(errorToHandle);
       metricsExporter.fireMetric('error', {
         errorName: errorToHandle.name || 'generic-error',
