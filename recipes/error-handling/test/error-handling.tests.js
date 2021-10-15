@@ -166,24 +166,7 @@ describe('Error Handling', () => {
       expect(loggerDouble.lastCall.firstArg).toMatchObject(errorToThrow);
     });
 
-    test.skip('When an error is thrown during startup for more than 3 times, then the process exits', async () => {
-      // Arrange
-      const noneExistingPort = 80;
-      sinon.restore();
-      //const app = express();
-      const http = require('http');
-      sinon.stub(http, 'createServer').throws(new Error('Can not start'));
-      //sinon.stub(app, 'listen').throws(new Error());
-      //process.env.PORT = noneExistingPort;
-      const processExitListener = sinon.stub(process, 'exit');
-
-      // Act
-      await initializeWebServer();
-
-      // Assert
-      expect(processExitListener.called).toBe(true);
-    });
-
+    
     test.todo(
       "When an error is thrown during web request, then it's handled correctly"
     );
