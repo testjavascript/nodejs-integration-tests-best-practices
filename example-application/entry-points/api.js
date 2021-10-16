@@ -63,7 +63,7 @@ const defineRoutes = (expressApp) => {
 
       // verify user existence by calling external Microservice
       try {
-        const user = await getUserFromUsersService(req.body.userId);
+        await getUserFromUsersService(req.body.userId);
       } catch (error) {
         const { response } = error;
 
@@ -73,9 +73,11 @@ const defineRoutes = (expressApp) => {
         }
 
         if (error?.code === 'ECONNABORTED') {
-          throw new AppError(error.code, {
-            status: 503,
-          });
+          throw new AppError(
+            'user-doesnt-exist',
+            `The user ${req.body.userId} doesnt exist`,
+            503
+          );
         }
 
         throw error;
