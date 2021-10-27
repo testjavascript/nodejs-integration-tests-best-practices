@@ -21,7 +21,7 @@ class MessageQueueStarter {
       const newMessageAsObject = JSON.parse(message);
       // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
       if (!newMessageAsObject.id) {
-        return throw new AppError('invalid-message', true);
+        throw new AppError('invalid-message', true);
       }
 
       const orderRepository = new OrderRepository();
