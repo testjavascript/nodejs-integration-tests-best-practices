@@ -6,11 +6,13 @@ const {
 } = require('../../example-application/entry-points/message-queue-starter');
 const { once } = require('events');
 const { resolve } = require('path');
+const amqplib = require('amqplib');
+const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
 // Starts the message queue client with a fake MQ - Ideal for testing
 module.exports.startFakeMessageQueue = async () => {
   const fakeMessageQueue = new FakeMessageQueueProvider();
-  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
+  const messageQueueStarter = new MessageQueueStarter(amqplib);
   await messageQueueStarter.start();
   return fakeMessageQueue;
 };
@@ -34,4 +36,26 @@ module.exports.getNextMQConfirmation = async (
   });
 
   return Promise.race([timeout, eventFromMQ, errorFromMQ]);
+};
+
+module.exports.getMQMessageOrTimeout = async (queueName, timeoutInMS) => {
+  const timeoutPromise = new Promise((resolve) =>
+    setTimeout(resolve.bind(this, { event: 'time-out' }), timeoutInMS)
+  );
+
+  const newMessagePromise = new Promise((resolve) => {
+    const messageQueueClient = new MessageQueueClient(amqplib);
+    messageQueueClient.consume(queueName, async (newMessage) => {
+      resolve(newMessage);
+    })
+  });
+
+  return Promise.race([timeoutPromise, newMessagePromise]);
+};
+
+module.exports.getShortUnique = () => {
+  const now = new Date();
+  // We add this weak random just to cover the case where two test started at the very same millisecond
+  const aBitOfMoreSalt = Math.ceil(Math.random() * 99);
+  return `${process.pid}${aBitOfMoreSalt}${now.getMilliseconds()}`;
 };

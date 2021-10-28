@@ -26,8 +26,8 @@ class MessageQueueClient extends EventEmitter {
       protocol: 'amqp',
       hostname: 'localhost',
       port: 5672,
-      username: 'rabbitmq',
-      password: 'rabbitmq', // This is a demo app, no security considerations. This is the password for the local dev server
+      username: 'guest',
+      password: 'guest', // This is a demo app, no security considerations. This is the password for the local dev server
       locale: 'en_US',
       frameMax: 0,
       heartbeat: 0,
@@ -57,6 +57,57 @@ class MessageQueueClient extends EventEmitter {
     );
 
     return sendResponse;
+  }
+
+  async publish(exchangeName, routingKey, message) {
+    if (!this.channel) {
+      await this.connect();
+    }
+    console.log('publish', exchangeName, routingKey);
+    const sendResponse = await this.channel.publish(
+      exchangeName,
+      routingKey,
+      Buffer.from(JSON.stringify(message))
+    );
+
+    return sendResponse;
+  }
+
+  async deleteQueue(queueName) {
+    if (!this.channel) {
+      await this.connect();
+    }
+    await this.channel.deleteQueue(queueName);
+
+    return;
+  }
+
+  async assertQueue(queueName) {
+    if (!this.channel) {
+      await this.connect();
+    }
+    await this.channel.assertQueue(queueName);
+
+    return;
+  }
+
+  async assertExchange(name, type) {
+    if (!this.channel) {
+      await this.connect();
+    }
+    await this.channel.assertExchange(name, type, { durable: false });
+
+    return;
+  }
+
+  async bindQueue(queueToBind, exchangeToBindTo, bindingPattern) {
+    if (!this.channel) {
+      await this.connect();
+    }
+
+    await this.channel.bindQueue(queueToBind, exchangeToBindTo, bindingPattern);
+
+    return;
   }
 
   async consume(queueName, onMessageCallback) {
