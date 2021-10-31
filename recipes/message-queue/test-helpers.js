@@ -23,7 +23,7 @@ module.exports.createQueueForTest = async (bindingPattern) => {
   const exchangeName = `user-events-${this.getShortUnique()}`;
   mqClient.assertExchange(exchangeName, 'topic');
   await mqClient.assertQueue(queueName);
-  await mqClient.bindQueue(activeQueue, exchangeName, bindingPattern);
+  await mqClient.bindQueue(queueName, exchangeName, bindingPattern);
   return { queueName, exchangeName };
 };
 
@@ -57,7 +57,7 @@ module.exports.startMQSubscriber = async (fakeOrReal, queueName) => {
   return messageQueueClient;
 };
 
-module.exports.addNewOrder = async (axiosInstance) => {
+module.exports.addNewOrder = async (axiosAPIClient) => {
   const orderToAdd = {
     userId: 1,
     productId: 2,

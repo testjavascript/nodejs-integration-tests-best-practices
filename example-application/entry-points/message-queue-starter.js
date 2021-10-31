@@ -14,6 +14,7 @@ class MessageQueueStarter {
   }
 
   async consumeUserDeletionQueue() {
+    console.log("consume register", this.queueName)
     // Let's now register to new delete messages from the queue
     return await this.messageQueueClient.consume(
       this.queueName,

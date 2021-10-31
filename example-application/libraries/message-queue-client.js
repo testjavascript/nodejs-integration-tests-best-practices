@@ -14,11 +14,11 @@ class MessageQueueClient extends EventEmitter {
     // It can get one in the constructor here or even change by environment variables
     if (customMessageQueueProvider) {
       this.messageQueueProvider = customMessageQueueProvider;
-    } else if (process.env.MESSAGE_QUEUE_PROVIDER === 'real') {
-      this.messageQueueProvider = amqplib;
     } else {
-      this.messageQueueProvider = new FakeMessageQueueProvider();
+      this.messageQueueProvider = amqplib;
     }
+
+    this.countEvents();
   }
 
   async connect() {
@@ -59,7 +59,7 @@ class MessageQueueClient extends EventEmitter {
     return sendResponse;
   }
 
-  async publish(exchangeName, routingKey, message) {
+  async publish(exchangeName, routingKey, message, messageId) {
     if (!this.channel) {
       await this.connect();
     }
@@ -68,7 +68,8 @@ class MessageQueueClient extends EventEmitter {
     const sendResponse = await this.channel.publish(
       exchangeName,
       routingKey,
-      Buffer.from(JSON.stringify(message))
+      Buffer.from(JSON.stringify(message)),
+      { messageId }
     );
 
     return sendResponse;
@@ -117,19 +118,19 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     this.channel.assertQueue(queueName);
+    console.log('consume start', queueName);
 
-    const consumerTag = await this.channel.consume(queueName, async (theNewMessage) => {
-      console.log('new message', theNewMessage, consumerTag);
+    await this.channel.consume(queueName, async (theNewMessage) => {
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
           console.log('ack');
-          this.emit('ack');
+          this.emit('ack', theNewMessage);
           this.channel.ack(theNewMessage);
         })
         .catch((error) => {
-          this.channel.nack(theNewMessage);
-          this.emit('nack');
+          this.channel.nack(theNewMessage, false, true);
+          this.emit('nack', theNewMessage);
           console.log('nack', error.message);
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
           //errorHandler.handleError(error);
@@ -137,6 +138,42 @@ class MessageQueueClient extends EventEmitter {
     });
 
     return;
+  }
+
+  countEvents() {
+    const eventsToListen = ['nack', 'ack'];
+    if (this.eventsCounter === undefined) {
+      this.eventsCounter = {};
+      eventsToListen.forEach((eventToListenTo) => {
+        this.eventsCounter[eventToListenTo] = 0;
+        this.on(eventToListenTo, (eventData) => {
+          this.eventsCounter[eventToListenTo]++;
+          console.log('events counting', this.eventsCounter);
+          this.emit('event-counted', {
+            name: eventToListenTo,
+            lastEventData: eventData,
+            count: this.eventsCounter[eventToListenTo],
+          });
+        });
+      });
+    }
+  }
+
+  // Helper methods for testing
+  async waitFor(eventName, howMuch) {
+    return new Promise((resolve, reject) => {
+      this.on('event-counted', (eventInfo) => {
+        if (eventInfo.name !== eventName) {
+          return;
+        }
+        if (eventInfo.count >= howMuch) {
+          resolve({
+            lastEventData: eventInfo.lastEventData,
+            count: eventInfo.count,
+          });
+        }
+      });
+    });
   }
 }
 

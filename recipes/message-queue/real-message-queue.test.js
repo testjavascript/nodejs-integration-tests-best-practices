@@ -85,17 +85,15 @@ test.skip('playground 2 When a message is poisoned, then its rejected and put ba
 
 test('When a delete message fails ONCE, than thanks to retry the order is deleted', async () => {
   // Arrange
-  const orderToDelete = testHelpers.addNewOrder(axiosAPIClient);
-  perTestQueue = testHelpers.createQueueForTest('user.delete');
+  const addedOrderId = await testHelpers.addNewOrder(axiosAPIClient);
+  perTestQueue = await testHelpers.createQueueForTest('user.deleted');
   const messageQueueClient = await testHelpers.startMQSubscriber(
     'real',
     perTestQueue.queueName
   );
-  // Replace with our own promise
-  const waitForAck = once(messageQueueClient, 'ack');
   const deleteOrderStub = sinon.stub(orderRepository.prototype, 'deleteOrder');
-  deleteOrderStub.onFirstCall().rejects(new Error('Cant delete order'));
-  orderRepository.prototype.deleteOrder.callThrough();
+  deleteOrderStub.onFirstCall().rejects(new Error('Cant delete order')); // Fail only once
+  orderRepository.prototype.deleteOrder.callThrough(); // Then on retry succeed
 
   // Act
   await messageQueueClient.publish(perTestQueue.exchangeName, 'user.deleted', {
@@ -103,10 +101,43 @@ test('When a delete message fails ONCE, than thanks to retry the order is delete
   });
 
   // Assert
-  await waitForAck;
+  await messageQueueClient.waitFor('ack', 1);
   const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
   expect(aQueryForDeletedOrder.status).toBe(404);
-  console.log('final', aQueryForDeletedOrder.status);
+});
+
+test('When a batch of messages has ONE poisoned message, than only one is rejected (nack)', async () => {
+  // Arrange
+  const addedOrderId = await testHelpers.addNewOrder(axiosAPIClient);
+  perTestQueue = await testHelpers.createQueueForTest('user.deleted');
+  const messageQueueClient = await testHelpers.startMQSubscriber(
+    'real',
+    perTestQueue.queueName
+  );
+  const badMessageId = getShortUnique();
+  const goodMessageId = getShortUnique();
+
+  // Act
+  await messageQueueClient.publish(
+    perTestQueue.exchangeName,
+    'user.deleted',
+    {
+      id: addedOrderId,
+    },
+    goodMessageId
+  ); //good message
+  await messageQueueClient.publish(
+    perTestQueue.exchangeName,
+    'user.deleted',
+    {
+      nonExisting: 'invalid',
+    },
+    badMessageId
+  ); // bad message
+
+  // Assert
+  const lastNackEvent = await messageQueueClient.waitFor('nack', 1);
+  expect(lastNackEvent.lastEventData.properties.messageId).toBe(badMessageId);
 });
