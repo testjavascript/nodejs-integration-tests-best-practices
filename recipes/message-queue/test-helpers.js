@@ -12,9 +12,19 @@ const MessageQueueClient = require('../../example-application/libraries/message-
 // Starts the message queue client with a fake MQ - Ideal for testing
 module.exports.startFakeMessageQueue = async () => {
   const fakeMessageQueue = new FakeMessageQueueProvider();
-  const messageQueueStarter = new MessageQueueStarter(amqplib);
+  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
   await messageQueueStarter.start();
   return fakeMessageQueue;
+};
+
+module.exports.createQueueForTest = async (bindingPattern) => {
+  const mqClient = new MessageQueueClient(amqplib);
+  const queueName = `user-deleted-${this.getShortUnique()}`;
+  const exchangeName = `user-events-${this.getShortUnique()}`;
+  mqClient.assertExchange(exchangeName, 'topic');
+  await mqClient.assertQueue(queueName);
+  await mqClient.bindQueue(activeQueue, exchangeName, bindingPattern);
+  return { queueName, exchangeName };
 };
 
 // A typical message queue emits events ("callbacks") which can make the test syntax cumbersome and based on callbacks
@@ -38,6 +48,26 @@ module.exports.getNextMQConfirmation = async (
   return Promise.race([timeout, eventFromMQ, errorFromMQ]);
 };
 
+module.exports.startMQSubscriber = async (fakeOrReal, queueName) => {
+  const messageQueueProvider =
+    fakeOrReal === 'fake' ? FakeMessageQueueProvider : amqplib;
+  const messageQueueClient = new MessageQueueClient(messageQueueProvider);
+  await new MessageQueueStarter(messageQueueClient, queueName).start();
+
+  return messageQueueClient;
+};
+
+module.exports.addNewOrder = async (axiosInstance) => {
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
+    .id;
+  return addedOrderId;
+};
+
 module.exports.getMQMessageOrTimeout = async (queueName, timeoutInMS) => {
   const timeoutPromise = new Promise((resolve) =>
     setTimeout(resolve.bind(this, { event: 'time-out' }), timeoutInMS)
@@ -47,7 +77,7 @@ module.exports.getMQMessageOrTimeout = async (queueName, timeoutInMS) => {
     const messageQueueClient = new MessageQueueClient(amqplib);
     messageQueueClient.consume(queueName, async (newMessage) => {
       resolve(newMessage);
-    })
+    });
   });
 
   return Promise.race([timeoutPromise, newMessagePromise]);

@@ -25,6 +25,8 @@ class FakeMessageQueueProvider extends EventEmitter {
   async consume(queueName, messageHandler) {
     // We just save the callback (handler) locally, whenever a message will put into this queue
     // we will fire this handler
+    console.info(`Received request to listen to the queue ${queueName}`);
+    console.log("6");
     this.messageHandler = messageHandler;
   }
 

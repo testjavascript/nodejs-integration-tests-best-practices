@@ -2,14 +2,9 @@ const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
 const { once } = require('events');
-const amqplib = require('amqplib');
-
-const messageQueueClient = require('../../example-application/libraries/message-queue-client');
 const {
   getNextMQConfirmation,
   startFakeMessageQueue,
-  getMQMessageOrTimeout,
-  getShortUnique,
 } = require('./test-helpers');
 const {
   FakeMessageQueueProvider,
@@ -20,7 +15,7 @@ const {
   stopWebServer,
 } = require('../../example-application/entry-points/api');
 
-let axiosAPIClient, mqClient;
+let axiosAPIClient;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -34,9 +29,6 @@ beforeAll(async (done) => {
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
-
-  mqClient = new messageQueueClient(amqplib);
-  mqClient.assertExchange('user-events', 'topic');
 
   done();
 });
@@ -62,45 +54,16 @@ afterAll(async (done) => {
   done();
 });
 
-// Playground
-test('playground', async () => {
-  // Arrange
-  const userDeletedQueueName = `user-deleted-${getShortUnique()}`;
-  console.time('queue-creation');
-  await mqClient.assertQueue(userDeletedQueueName);
-  await mqClient.bindQueue(userDeletedQueueName, 'user-events', 'user.deleted');
-  console.timeEnd('queue-creation');
-  const orderToAdd = {
-    userId: 1,
-    productId: 2,
-    mode: 'approved',
-  };
-  
-  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
-    .id;
-  const newMessagePromise = getMQMessageOrTimeout(userDeletedQueueName, 3000);
-
-  // Act
-
-  console.log('before publish');
-  await mqClient.publish('user-events', 'user.deleted', { id: addedOrderId });
-  console.log('after publish');
-
-  // Assert
-  const newMessage = await newMessagePromise;
-  console.log('msg arrived', newMessage);
-});
-
 // ️️️✅ Best Practice: Test a flow that starts via a queue message and ends with removing/confirming the message
 test('Whenever a user deletion message arrive, then his orders are deleted', async () => {
   // Arrange
-  const orderToAdd = {
-    userId: 1,
-    productId: 2,
-    mode: 'approved',
-  };
-  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
-    .id;
+    const orderToAdd = {
+      userId: 1,
+      productId: 2,
+      mode: 'approved',
+    };
+    const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
+      .id;
   const fakeMessageQueue = await startFakeMessageQueue();
   const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue); //Store the MQ actions in a promise
 
@@ -116,7 +79,7 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
   expect(aQueryForDeletedOrder.status).toBe(404);
 });
 
-test('When a poisoned message arrives, then it is being rejected back', async () => {
+test.only('When a poisoned message arrives, then it is being rejected back', async () => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
   const fakeMessageQueue = await startFakeMessageQueue();

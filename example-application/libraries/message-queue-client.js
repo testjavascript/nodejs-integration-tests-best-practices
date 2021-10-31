@@ -64,6 +64,7 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     console.log('publish', exchangeName, routingKey);
+
     const sendResponse = await this.channel.publish(
       exchangeName,
       routingKey,
@@ -77,7 +78,8 @@ class MessageQueueClient extends EventEmitter {
     if (!this.channel) {
       await this.connect();
     }
-    await this.channel.deleteQueue(queueName);
+    const queueDeletionResult = await this.channel.deleteQueue(queueName);
+    console.log(queueDeletionResult);
 
     return;
   }
@@ -116,16 +118,21 @@ class MessageQueueClient extends EventEmitter {
     }
     this.channel.assertQueue(queueName);
 
-    await this.channel.consume(queueName, async (theNewMessage) => {
+    const consumerTag = await this.channel.consume(queueName, async (theNewMessage) => {
+      console.log('new message', theNewMessage, consumerTag);
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
+          console.log('ack');
+          this.emit('ack');
           this.channel.ack(theNewMessage);
         })
         .catch((error) => {
           this.channel.nack(theNewMessage);
+          this.emit('nack');
+          console.log('nack', error.message);
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
-          errorHandler.handleError(error);
+          //errorHandler.handleError(error);
         });
     });
 
