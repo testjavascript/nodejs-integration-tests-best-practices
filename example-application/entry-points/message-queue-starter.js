@@ -14,17 +14,17 @@ class MessageQueueStarter {
   }
 
   async consumeUserDeletionQueue() {
-    console.log("consume register", this.queueName)
     // Let's now register to new delete messages from the queue
     return await this.messageQueueClient.consume(
       this.queueName,
       async (message) => {
+       
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
         const newMessageAsObject = JSON.parse(message);
 
         // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
         if (!newMessageAsObject.id) {
-          throw new AppError('invalid-message', true);
+          throw new AppError('invalid-message', 'Unknown message schema');
         }
 
         const orderRepository = new OrderRepository();

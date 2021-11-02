@@ -17,7 +17,6 @@ const {
   const numOfIterations = 200;
 
   for (let index = 0; index < numOfIterations; index++) {
-    console.time('measure');
     const startTime = new Date();
     const userDeletedQueueName = `user-deleted-${getShortUnique()}`;
     await mqClient.assertQueue(userDeletedQueueName);
@@ -31,9 +30,6 @@ const {
     const endTime = new Date();
     const singleTime = endTime.getTime() - startTime.getTime();
     overallTime += singleTime;
-    console.log('Single time', singleTime);
-    console.timeEnd('measure');
   }
 
-  console.log('Overall time', overallTime / numOfIterations);
 })();

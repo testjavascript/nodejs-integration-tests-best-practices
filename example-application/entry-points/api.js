@@ -96,7 +96,7 @@ const defineRoutes = (expressApp) => {
       }
 
       // We should notify others that a new order was added - Let's put a message in a queue
-      new MessageQueueClient().sendMessage('new-order', req.body);
+      await new MessageQueueClient().publish('order.events','order.events.new', req.body);
 
       res.json(DBResponse);
     } catch (error) {

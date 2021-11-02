@@ -1,19 +1,17 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
-const { once } = require('events');
+const testHelpers = require('./test-helpers');
+
 const {
   getNextMQConfirmation,
   startFakeMessageQueue,
 } = require('./test-helpers');
 const {
-  FakeMessageQueueProvider,
-} = require('../../example-application/libraries/fake-message-queue-provider');
-
-const {
   initializeWebServer,
   stopWebServer,
 } = require('../../example-application/entry-points/api');
+const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
 let axiosAPIClient;
 
@@ -29,6 +27,8 @@ beforeAll(async (done) => {
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
+
+  process.env.USE_FAKE_MQ = 'true';
 
   done();
 });
@@ -51,46 +51,55 @@ afterAll(async (done) => {
   await stopWebServer();
   //await messageQueueClient.close();
   nock.enableNetConnect();
+  process.env.USE_FAKE_MQ = undefined;
   done();
 });
 
 // ️️️✅ Best Practice: Test a flow that starts via a queue message and ends with removing/confirming the message
 test('Whenever a user deletion message arrive, then his orders are deleted', async () => {
   // Arrange
-    const orderToAdd = {
-      userId: 1,
-      productId: 2,
-      mode: 'approved',
-    };
-    const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
-      .id;
-  const fakeMessageQueue = await startFakeMessageQueue();
-  const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue); //Store the MQ actions in a promise
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
+  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
+    .id;
+  const messageQueueClient = await testHelpers.startMQSubscriber(
+    'fake',
+    'user.deleted'
+  );
 
   // Act
-  fakeMessageQueue.pushMessageToQueue('deleted-user', { id: addedOrderId });
+  await messageQueueClient.publish('user.events', 'user.deleted', {
+    id: addedOrderId,
+  });
 
   // Assert
-  const eventFromMessageQueue = await getNextMQEvent;
-  expect(eventFromMessageQueue).toEqual([{ event: 'message-acknowledged' }]);
+  await messageQueueClient.waitFor('ack', 1);
   const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
   expect(aQueryForDeletedOrder.status).toBe(404);
 });
 
-test.only('When a poisoned message arrives, then it is being rejected back', async () => {
+test('When a poisoned message arrives, then it is being rejected back', async () => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid' };
-  const fakeMessageQueue = await startFakeMessageQueue();
-  const getNextMQEvent = getNextMQConfirmation(fakeMessageQueue);
+  const messageQueueClient = await testHelpers.startMQSubscriber(
+    'fake',
+    'user.deleted'
+  );
 
   // Act
-  fakeMessageQueue.pushMessageToQueue('deleted-user', messageWithInvalidSchema);
+  await messageQueueClient.publish(
+    'user.events',
+    'user.deleted',
+    messageWithInvalidSchema
+  );
 
   // Assert
-  const eventFromMessageQueue = await getNextMQEvent;
-  expect(eventFromMessageQueue).toEqual([{ event: 'message-rejected' }]);
+  await messageQueueClient.waitFor('nack', 1);
 });
 
 // ️️️✅ Best Practice: Verify that messages are put in queue whenever the requirements state so
@@ -101,17 +110,14 @@ test('When a valid order is added, then a message is emitted to the new-order qu
     productId: 2,
     mode: 'approved',
   };
-  const spyOnSendMessage = sinon.stub(
-    FakeMessageQueueProvider.prototype,
-    'sendToQueue'
-  );
+  const spyOnSendMessage = sinon.spy(MessageQueueClient.prototype, 'publish');
 
   //Act
   await axiosAPIClient.post('/order', orderToAdd);
 
   // Assert
-  expect(spyOnSendMessage.called).toBe(true);
-  expect(spyOnSendMessage.lastCall.args).toMatchObject({}); //TODO - Be more explicit here
+  expect(spyOnSendMessage.lastCall.args[0]).toBe('order.events');
+  expect(spyOnSendMessage.lastCall.args[1]).toBe('order.events.new');
 });
 
 test.todo('When an error occurs, then the message is not acknowledged');

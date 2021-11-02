@@ -1,5 +1,6 @@
 const amqplib = require('amqplib');
 const { EventEmitter } = require('events');
+const { throwIfEmpty } = require('rxjs/operators');
 const { AppError, errorHandler } = require('../error-handling');
 const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
 
@@ -9,12 +10,17 @@ class MessageQueueClient extends EventEmitter {
   constructor(customMessageQueueProvider) {
     super();
     this.isReady = false;
+    this.requeue = true; // Tells whether to return failed messages to the queue
 
     // To facilitate testing, the client allows working with a fake MQ provider
     // It can get one in the constructor here or even change by environment variables
     if (customMessageQueueProvider) {
       this.messageQueueProvider = customMessageQueueProvider;
-    } else {
+    } 
+    else if(process.env.USE_FAKE_MQ === 'true'){
+      this.messageQueueProvider = new FakeMessageQueueProvider();
+    }
+    else {
       this.messageQueueProvider = amqplib;
     }
 
@@ -63,7 +69,6 @@ class MessageQueueClient extends EventEmitter {
     if (!this.channel) {
       await this.connect();
     }
-    console.log('publish', exchangeName, routingKey);
 
     const sendResponse = await this.channel.publish(
       exchangeName,
@@ -71,6 +76,7 @@ class MessageQueueClient extends EventEmitter {
       Buffer.from(JSON.stringify(message)),
       { messageId }
     );
+    this.emit('publish', { exchangeName, routingKey, message });
 
     return sendResponse;
   }
@@ -80,7 +86,6 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     const queueDeletionResult = await this.channel.deleteQueue(queueName);
-    console.log(queueDeletionResult);
 
     return;
   }
@@ -118,20 +123,17 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     this.channel.assertQueue(queueName);
-    console.log('consume start', queueName);
 
     await this.channel.consume(queueName, async (theNewMessage) => {
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
-          console.log('ack');
           this.emit('ack', theNewMessage);
           this.channel.ack(theNewMessage);
         })
         .catch((error) => {
-          this.channel.nack(theNewMessage, false, true);
+          this.channel.nack(theNewMessage, false, this.requeue);
           this.emit('nack', theNewMessage);
-          console.log('nack', error.message);
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
           //errorHandler.handleError(error);
         });
@@ -140,38 +142,51 @@ class MessageQueueClient extends EventEmitter {
     return;
   }
 
+  setRequeue(newValue) {
+    this.requeue = newValue;
+  }
+
+  // This function stores all the MQ events in a local data structure so later
+  // one query this
   countEvents() {
-    const eventsToListen = ['nack', 'ack'];
-    if (this.eventsCounter === undefined) {
-      this.eventsCounter = {};
-      eventsToListen.forEach((eventToListenTo) => {
-        this.eventsCounter[eventToListenTo] = 0;
-        this.on(eventToListenTo, (eventData) => {
-          this.eventsCounter[eventToListenTo]++;
-          console.log('events counting', this.eventsCounter);
-          this.emit('event-counted', {
-            name: eventToListenTo,
-            lastEventData: eventData,
-            count: this.eventsCounter[eventToListenTo],
-          });
+    const eventsToListen = ['nack', 'ack', 'publish'];
+    if (this.eventsRecorder !== undefined) {
+      return; // Already initialized and set up
+    }
+    this.eventsRecorder = {};
+    eventsToListen.forEach((eventToListenTo) => {
+      this.eventsRecorder[eventToListenTo] = {
+        count: 0,
+        lastEventData: null,
+        name: eventToListenTo,
+      };
+      this.on(eventToListenTo, (eventData) => {
+        this.eventsRecorder[eventToListenTo].count++;
+        this.eventsRecorder[eventToListenTo].lastEventData = eventData;
+        this.emit('message-queue-event', {
+          name: eventToListenTo,
+          eventsRecorder: this.eventsRecorder,
         });
+      });
+    });
+  }
+
+  resolveIfEventExceededThreshold(eventName, threshold, resolve) {
+    if (this.eventsRecorder[eventName].count >= threshold) {
+      resolve({
+        name: eventName,
+        lastEventData: this.eventsRecorder[eventName].lastEventData,
+        count: this.eventsRecorder[eventName].count,
       });
     }
   }
-
-  // Helper methods for testing
+  // Helper methods for testing - Resolves/fires when some event happens
   async waitFor(eventName, howMuch) {
     return new Promise((resolve, reject) => {
-      this.on('event-counted', (eventInfo) => {
-        if (eventInfo.name !== eventName) {
-          return;
-        }
-        if (eventInfo.count >= howMuch) {
-          resolve({
-            lastEventData: eventInfo.lastEventData,
-            count: eventInfo.count,
-          });
-        }
+      // The first resolve is for cases where the caller has approached AFTER the event has already happen
+      this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
+      this.on('message-queue-event', (eventInfo) => {
+        this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
       });
     });
   }

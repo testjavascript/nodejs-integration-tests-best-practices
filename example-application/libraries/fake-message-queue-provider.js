@@ -20,13 +20,16 @@ class FakeMessageQueueProvider extends EventEmitter {
     this.emit('message-sent', message);
   }
 
+  async publish(exchangeName, routingKey, message) {
+    this.emit('message-published', message);
+    this.pushMessageToQueue('unknown', message);
+  }
+
   async assertQueue() {}
 
   async consume(queueName, messageHandler) {
     // We just save the callback (handler) locally, whenever a message will put into this queue
     // we will fire this handler
-    console.info(`Received request to listen to the queue ${queueName}`);
-    console.log("6");
     this.messageHandler = messageHandler;
   }
 
@@ -34,10 +37,7 @@ class FakeMessageQueueProvider extends EventEmitter {
   // It allows us to fake like there is a new message in the queue and start a flow
   async pushMessageToQueue(queue, newMessage) {
     if (this.messageHandler) {
-      const wrappedMessage = {
-        content: Buffer.from(JSON.stringify(newMessage)),
-      };
-      this.messageHandler(wrappedMessage);
+      this.messageHandler({content: newMessage})
     } else {
       // Just warning and no exception because the test might want to simulate that
       console.error(
