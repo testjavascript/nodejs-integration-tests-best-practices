@@ -21,7 +21,7 @@ class MessageQueueClient extends EventEmitter {
       this.messageQueueProvider = new FakeMessageQueueProvider();
     }
     else {
-      this.messageQueueProvider = amqplib;
+      this.messageQueueProvider = new FakeMessageQueueProvider();
     }
 
     this.countEvents();
