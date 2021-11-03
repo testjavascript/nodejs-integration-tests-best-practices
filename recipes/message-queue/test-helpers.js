@@ -12,29 +12,71 @@ const MessageQueueClient = require('../../example-application/libraries/message-
 module.exports.createQueueForTest = async (
   exchangeName,
   queueName,
-  bindingPattern
+  bindingPattern,
+  deadLetterExchange = undefined,
+  deadLetterBindingPattern = undefined
 ) => {
   const mqClient = new MessageQueueClient(amqplib);
   const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
   const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
-  mqClient.assertExchange(randomizedExchangeName, 'topic');
-  await mqClient.assertQueue(randomizedQueueName);
+  // TODO - forgot to add the await
+  await mqClient.assertExchange(randomizedExchangeName, 'topic');
+  await mqClient.assertQueue(randomizedQueueName, {
+    deadLetterExchange,
+    deadLetterRoutingKey: deadLetterBindingPattern,
+  });
   await mqClient.bindQueue(
     randomizedQueueName,
     randomizedExchangeName,
     bindingPattern
   );
   return {
+    mqClient,
     queueName: randomizedQueueName,
     exchangeName: randomizedExchangeName,
   };
 };
 
-module.exports.startMQSubscriber = async (fakeOrReal, queueName) => {
+module.exports.createDeadLetterQueueForTest = async (
+  exchangeName,
+  queueName,
+  bindingPattern
+) => {
+  const mqClient = new MessageQueueClient(amqplib);
+
+  const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
+  const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
+
+  // TODO - MAKE THIS TO BE MQ AGNOSTIC
+  // In RabbitMQ Dead Letter Exchanges must be fan-out
+  await mqClient.assertExchange(randomizedExchangeName, 'fanout');
+  await mqClient.assertQueue(randomizedQueueName);
+  await mqClient.bindQueue(
+    randomizedQueueName,
+    randomizedExchangeName,
+    bindingPattern
+  );
+
+  return {
+    mqClient,
+    queueName: randomizedQueueName,
+    exchangeName: randomizedExchangeName,
+  };
+};
+
+module.exports.startMQSubscriber = async (
+  fakeOrReal,
+  queueName,
+  deadLetterQueueName = undefined
+) => {
   const messageQueueProvider =
     fakeOrReal === 'fake' ? new FakeMessageQueueProvider() : amqplib;
   const messageQueueClient = new MessageQueueClient(messageQueueProvider);
-  await new MessageQueueStarter(messageQueueClient, queueName).start();
+  await new MessageQueueStarter(
+    messageQueueClient,
+    queueName,
+    deadLetterQueueName
+  ).start();
 
   return messageQueueClient;
 };

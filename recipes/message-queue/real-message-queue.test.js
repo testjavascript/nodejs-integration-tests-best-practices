@@ -22,7 +22,7 @@ const {
   stopWebServer,
 } = require('../../example-application/entry-points/api');
 
-let axiosAPIClient, mqClient, perTestQueue;
+let axiosAPIClient, mqClient, deleteOrderPerTestQueue;
 
 beforeAll(async (done) => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -68,7 +68,7 @@ afterAll(async (done) => {
 // Playground
 test('When a message is poisoned, then its rejected and put back to queue', async () => {
   // Arrange
-  perTestQueue = await testHelpers.createQueueForTest(
+  deleteOrderPerTestQueue = await testHelpers.createQueueForTest(
     'user-events',
     'user-deleted',
     'user.deleted'
@@ -76,7 +76,7 @@ test('When a message is poisoned, then its rejected and put back to queue', asyn
   mqClient.setRequeue(false);
 
   // Act
-  await mqClient.publish(perTestQueue.exchangeName, 'user.deleted', {
+  await mqClient.publish(deleteOrderPerTestQueue.exchangeName, 'user.deleted', {
     invalidField: 'invalid-value',
   });
 
@@ -86,23 +86,27 @@ test('When a message is poisoned, then its rejected and put back to queue', asyn
 test('When a delete message fails ONCE, than thanks to retry the order is deleted', async () => {
   // Arrange
   const addedOrderId = await testHelpers.addNewOrder(axiosAPIClient);
-  perTestQueue = await testHelpers.createQueueForTest(
+  deleteOrderPerTestQueue = await testHelpers.createQueueForTest(
     'user-events',
-    'user-deleted',
+    'user-deleted', // TODO - THE EVENTS ARE ALL ABOUT USERS BUT THE CODE IS ABOUT ORDER BEING DELETED
     'user.deleted'
   );
   const messageQueueClient = await testHelpers.startMQSubscriber(
     'real',
-    perTestQueue.queueName
+    deleteOrderPerTestQueue.queueName
   );
   const deleteOrderStub = sinon.stub(orderRepository.prototype, 'deleteOrder');
   deleteOrderStub.onFirstCall().rejects(new Error('Cant delete order')); // Fail only once
   orderRepository.prototype.deleteOrder.callThrough(); // Then on retry succeed
 
   // Act
-  await messageQueueClient.publish(perTestQueue.exchangeName, 'user.deleted', {
-    id: addedOrderId,
-  });
+  await messageQueueClient.publish(
+    deleteOrderPerTestQueue.exchangeName,
+    'user.deleted',
+    {
+      id: addedOrderId,
+    }
+  );
 
   // Assert
   await messageQueueClient.waitFor('ack', 1);
@@ -115,14 +119,14 @@ test('When a delete message fails ONCE, than thanks to retry the order is delete
 test('When a batch of messages has ONE poisoned message, than only one is rejected (nack)', async () => {
   // Arrange
   const addedOrderId = await testHelpers.addNewOrder(axiosAPIClient);
-  perTestQueue = await testHelpers.createQueueForTest(
+  deleteOrderPerTestQueue = await testHelpers.createQueueForTest(
     'user-events',
     'user-deleted',
     'user.deleted'
   );
   const messageQueueClient = await testHelpers.startMQSubscriber(
     'real',
-    perTestQueue.queueName
+    deleteOrderPerTestQueue.queueName
   );
   const badMessageId = getShortUnique();
   const goodMessageId = getShortUnique();
@@ -130,23 +134,82 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
 
   // Act
   await messageQueueClient.publish(
-    perTestQueue.exchangeName,
+    deleteOrderPerTestQueue.exchangeName,
     'user.deleted',
     {
       id: addedOrderId,
     },
-    goodMessageId
+    { messageId: goodMessageId }
   ); //good message
   await messageQueueClient.publish(
-    perTestQueue.exchangeName,
+    deleteOrderPerTestQueue.exchangeName,
     'user.deleted',
     {
       nonExisting: 'invalid',
     },
-    badMessageId
+    { messageId: badMessageId }
   ); // bad message
 
   // Assert
   const lastNackEvent = await messageQueueClient.waitFor('nack', 1);
   expect(lastNackEvent.lastEventData.properties.messageId).toBe(badMessageId);
+});
+
+test('When a message failed after x times it should move to the dead letter exchange', async () => {
+  // Arrange
+  const addedOrderId = await testHelpers.addNewOrder(axiosAPIClient);
+
+  // Create dead letter exchange & queue - bind them
+  const deadLetterPerTestQueue = await testHelpers.createDeadLetterQueueForTest(
+    'failed-user-events',
+    'failed-user-deleted',
+    'failed.user.deleted'
+  );
+
+  deleteOrderPerTestQueue = await testHelpers.createQueueForTest(
+    'user-events',
+    'user-deleted',
+    'user.deleted',
+    deadLetterPerTestQueue.exchangeName,
+    'failed.user.deleted'
+  );
+
+  const orderDeletedMessageQueueClient = await testHelpers.startMQSubscriber(
+    'real',
+    deleteOrderPerTestQueue.queueName
+  );
+
+  orderDeletedMessageQueueClient.requeue = false;
+
+  const failedOrderDeletedMessageQueueClient = await testHelpers.startMQSubscriber(
+    'real',
+    undefined,
+    deadLetterPerTestQueue.queueName
+  );
+
+  const deleteOrderStub = sinon.stub(orderRepository.prototype, 'deleteOrder');
+  deleteOrderStub.rejects(new Error('Cant delete order')); // Always fail
+
+  // Act
+  // Publish the message with the dead letter exchange
+  await orderDeletedMessageQueueClient.publish(
+    deleteOrderPerTestQueue.exchangeName,
+    'user.deleted',
+    { id: addedOrderId },
+    { maxRetries: 2 }
+  );
+
+  // Assert
+
+  // Wait for the message to move to the dead letter exchange
+
+  // TODO - should we check if ack was called, we may want to check how many times the message has been requeue
+  await orderDeletedMessageQueueClient.waitFor('ack', 2);
+  await failedOrderDeletedMessageQueueClient.waitFor('ack', 1);
+  const aQueryForDeletedOrder = await axiosAPIClient.get(
+    `/order/${addedOrderId}`
+  );
+
+  // not deleted
+  expect(aQueryForDeletedOrder.status).toBe(200);
 });

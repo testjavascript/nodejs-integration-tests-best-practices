@@ -30,6 +30,7 @@ beforeAll(async (done) => {
 
   process.env.USE_FAKE_MQ = 'true';
 
+  // TODO: You don't need the done
   done();
 });
 
@@ -52,6 +53,8 @@ afterAll(async (done) => {
   //await messageQueueClient.close();
   nock.enableNetConnect();
   process.env.USE_FAKE_MQ = undefined;
+
+  // TODO: You don't need the done
   done();
 });
 
@@ -65,12 +68,17 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
   };
   const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
     .id;
+
+  // TODO - ?: How it connect to the current server
   const messageQueueClient = await testHelpers.startMQSubscriber(
     'fake',
     'user.deleted'
   );
 
   // Act
+  // TODO - ?: Don't you need to create the exchange?
+  //        ?: Don't you need to bind the exchange to the queue
+  //        Fake MQ should be real as possible
   await messageQueueClient.publish('user.events', 'user.deleted', {
     id: addedOrderId,
   });

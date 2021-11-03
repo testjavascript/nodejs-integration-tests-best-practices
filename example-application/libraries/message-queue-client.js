@@ -16,12 +16,10 @@ class MessageQueueClient extends EventEmitter {
     // It can get one in the constructor here or even change by environment variables
     if (customMessageQueueProvider) {
       this.messageQueueProvider = customMessageQueueProvider;
-    } 
-    else if(process.env.USE_FAKE_MQ === 'true'){
+    } else if (process.env.USE_FAKE_MQ === 'true') {
       this.messageQueueProvider = new FakeMessageQueueProvider();
-    }
-    else {
-      this.messageQueueProvider = new FakeMessageQueueProvider();
+    } else {
+      this.messageQueueProvider = amqplib;
     }
 
     this.countEvents();
@@ -56,7 +54,9 @@ class MessageQueueClient extends EventEmitter {
     if (!this.channel) {
       await this.connect();
     }
-    await this.channel.assertQueue(queueName);
+    // TODO - It's problematic as if I wanna send to queue that has some options this will fail as the queues options are conflicting
+    // await this.channel.assertQueue(queueName);
+
     const sendResponse = await this.channel.sendToQueue(
       queueName,
       Buffer.from(JSON.stringify(message))
@@ -65,7 +65,12 @@ class MessageQueueClient extends EventEmitter {
     return sendResponse;
   }
 
-  async publish(exchangeName, routingKey, message, messageId) {
+  async publish(
+    exchangeName,
+    routingKey,
+    message,
+    { messageId, maxRetries } = {}
+  ) {
     if (!this.channel) {
       await this.connect();
     }
@@ -74,7 +79,12 @@ class MessageQueueClient extends EventEmitter {
       exchangeName,
       routingKey,
       Buffer.from(JSON.stringify(message)),
-      { messageId }
+      {
+        messageId,
+        headers: {
+          maxRetries,
+        },
+      }
     );
     this.emit('publish', { exchangeName, routingKey, message });
 
@@ -90,11 +100,17 @@ class MessageQueueClient extends EventEmitter {
     return;
   }
 
-  async assertQueue(queueName) {
+  async assertQueue(
+    queueName,
+    { deadLetterExchange, deadLetterRoutingKey } = {}
+  ) {
     if (!this.channel) {
       await this.connect();
     }
-    await this.channel.assertQueue(queueName);
+    await this.channel.assertQueue(queueName, {
+      deadLetterExchange,
+      deadLetterRoutingKey,
+    });
 
     return;
   }
@@ -122,7 +138,9 @@ class MessageQueueClient extends EventEmitter {
     if (!this.channel) {
       await this.connect();
     }
-    this.channel.assertQueue(queueName);
+
+    // TODO - It's problematic as if I wanna send to queue that has some options this will fail as the queues options are conflicting
+    // this.channel.assertQueue(queueName);
 
     await this.channel.consume(queueName, async (theNewMessage) => {
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
@@ -131,7 +149,13 @@ class MessageQueueClient extends EventEmitter {
           this.emit('ack', theNewMessage);
           this.channel.ack(theNewMessage);
         })
-        .catch((error) => {
+        .catch(async (error) => {
+          // If need to have retry
+          if (theNewMessage.properties?.headers.maxRetries) {
+            await this._handleRetry(theNewMessage, error);
+            return;
+          }
+
           this.channel.nack(theNewMessage, false, this.requeue);
           this.emit('nack', theNewMessage);
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
@@ -140,6 +164,75 @@ class MessageQueueClient extends EventEmitter {
     });
 
     return;
+  }
+
+  async _handleRetry(message, error) {
+    const currentRetry = (message.properties.headers?.currentRetry ?? 0) + 1;
+
+    // We don't check for equality with max retries because the first run should not count as a retry
+    if (currentRetry > message.properties.headers?.maxRetries) {
+      // We count the first run as a retry so we subtract it here
+      console.log('Max retries exceeded: ' + (currentRetry - 1));
+
+      // Drop the message (if queue have dead letter exchange/queue it will move the message there)
+      this.channel.nack(message, false, false);
+
+      this.emit('nack', message);
+      error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
+      //errorHandler.handleError(error);
+
+      return;
+    }
+
+    // Note that messages still may be re-queued in the case that your consumer disconnects before sending any acknowledgement, positive or negative, back to the server.
+    // In this case, the original message will be delivered as-is (no custom header) and the redelivered flag will be set.
+
+    // TODO - should I requque or send to the exchange again?
+    let messageUpdatedOptions = {
+      headers: {
+        ...message.properties.headers,
+        currentRetry: currentRetry,
+      },
+      expiration: message.properties.expiration,
+      userId: message.properties.userId,
+      // Missing CC
+
+      // Missing mandatory
+      // Missing persistent
+      deliveryMode: message.properties.deliveryMode,
+      // Missing BCC
+
+      contentType: message.properties.contentType,
+      contentEncoding: message.properties.contentEncoding,
+      priority: message.properties.priority,
+      correlationId: message.properties.correlationId,
+      replyTo: message.properties.replyTo,
+      messageId: message.properties.messageId,
+      timestamp: message.properties.timestamp,
+      type: message.properties.type,
+      appId: message.properties.appId,
+    };
+    // If exchange name is empty it's means that the message was pushed to queue directly
+    // TODO - (I think need to check)
+    if (message.fields.exchange === '') {
+      await this.channel.sendToQueue(
+        // From what I checked when the routing key is the queue name
+        message.fields.routingKey,
+        message.content,
+        messageUpdatedOptions
+      );
+    } else {
+      // TODO - Do we want to publish again to the exchange or just requeue
+      await this.channel.publish(
+        message.fields.exchange,
+        message.fields.routingKey,
+        message.content,
+        messageUpdatedOptions
+      );
+    }
+
+    this.channel.ack(message);
+    this.emit('ack', message);
   }
 
   setRequeue(newValue) {
@@ -180,11 +273,14 @@ class MessageQueueClient extends EventEmitter {
       });
     }
   }
+
   // Helper methods for testing - Resolves/fires when some event happens
   async waitFor(eventName, howMuch) {
     return new Promise((resolve, reject) => {
       // The first resolve is for cases where the caller has approached AFTER the event has already happen
       this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
+
+      // TODO - ?: Should clean the listener
       this.on('message-queue-event', (eventInfo) => {
         this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
       });

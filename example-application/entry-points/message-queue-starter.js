@@ -4,13 +4,17 @@ const OrderRepository = require('../data-access/order-repository');
 
 // This is message queue entry point. Like API routes but for message queues.
 class MessageQueueStarter {
-  constructor(messageQueueClient, queueName) {
+  constructor(messageQueueClient, queueName, deadLetterQueue = undefined) {
     this.messageQueueClient = messageQueueClient;
     this.queueName = queueName;
+    this.deadLetterQueue = deadLetterQueue;
   }
 
   async start() {
-    await this.consumeUserDeletionQueue();
+    this.queueName !== undefined && (await this.consumeUserDeletionQueue());
+
+    this.deadLetterQueue !== undefined &&
+      (await this.consumeFailedUserDeletionQueue());
   }
 
   async consumeUserDeletionQueue() {
@@ -18,7 +22,6 @@ class MessageQueueStarter {
     return await this.messageQueueClient.consume(
       this.queueName,
       async (message) => {
-       
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
         const newMessageAsObject = JSON.parse(message);
 
@@ -29,6 +32,17 @@ class MessageQueueStarter {
 
         const orderRepository = new OrderRepository();
         await orderRepository.deleteOrder(newMessageAsObject.id);
+      }
+    );
+  }
+
+  async consumeFailedUserDeletionQueue() {
+    // Let's now register to failed delete messages from the queue
+    return await this.messageQueueClient.consume(
+      this.deadLetterQueue,
+      async (message) => {
+        // TODO - do something
+        console.error('Failed message', message);
       }
     );
   }

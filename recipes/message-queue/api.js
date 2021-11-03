@@ -24,10 +24,13 @@ const initializeWebServer = (customMiddleware) => {
       })
     );
     expressApp.use(bodyParser.json());
+
     if (customMiddleware) {
       expressApp.use(customMiddleware);
     }
+
     defineRoutes(expressApp);
+
     // ️️️✅ Best Practice: Specify no port for testing, only in production
     const webServerPort = process.env.PORT ? process.env.PORT : null;
     connection = expressApp.listen(webServerPort, () => {

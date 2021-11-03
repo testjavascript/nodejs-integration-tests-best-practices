@@ -135,7 +135,7 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
     {
       id: addedOrderId,
     },
-    goodMessageId
+    { messageId: goodMessageId }
   ); //good message
   await messageQueueClient.publish(
     perTestQueue.exchangeName,
@@ -143,7 +143,7 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
     {
       nonExisting: 'invalid',
     },
-    badMessageId
+    { messageId: badMessageId }
   ); // bad message
 
   // Assert
