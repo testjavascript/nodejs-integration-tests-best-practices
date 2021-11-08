@@ -11,7 +11,8 @@
     "test:mocha": "mocha recipes/mocha/basic-tests.test.js --exit --require recipes/mocha/hooks.js",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate",
-    "db:seed": "cd example-application/data-access && sequelize-cli db:seed:all"
+    "db:seed": "cd example-application/data-access && sequelize-cli db:seed:all",
+    "pact:publish": "node recipes/contract/message-queue/pact/consumer/publish.js"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,7 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^9.16.5",
     "@types/jest": "^26.0.23",
     "chai": "^4.3.4",
     "chai-subset": "^1.6.0",

@@ -1,0 +1,46 @@
+{
+  "consumer": {
+    "name": "delivery-service"
+  },
+  "provider": {
+    "name": "order-service"
+  },
+  "messages": [
+    {
+      "description": "a new order created",
+      "providerStates": [
+
+      ],
+      "contents": {
+        "order": 1,
+        "item": 1
+      },
+      "matchingRules": {
+        "body": {
+          "$.order": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.item": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "metaData": {
+        "content-type": "application/json"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}
