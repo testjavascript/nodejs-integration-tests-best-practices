@@ -4,8 +4,6 @@ const {
 const {
   QueueSubscriber: MessageQueueStarter,
 } = require('../../example-application/entry-points/message-queue-starter');
-const { once } = require('events');
-const { resolve } = require('path');
 const amqplib = require('amqplib');
 const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
@@ -20,7 +18,6 @@ module.exports.createQueueForTest = async ({
   const mqClient = new MessageQueueClient(amqplib);
   const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
   const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
-  // TODO - forgot to add the await
   await mqClient.assertExchange(randomizedExchangeName, 'topic');
   await mqClient.assertQueue(randomizedQueueName, {
     deadLetterExchange,

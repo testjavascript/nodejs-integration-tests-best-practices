@@ -245,13 +245,12 @@ test('When a message not being consumed after 2 seconds it should move to the de
   );
 
   // Assert - the message arrived to the DLQ
-  await failedOrderDeletedMessageQueueClient.waitFor(
-    `ack:${deadLetterPerTestQueue.queueName}`,
-    1
-  );
+  await failedOrderDeletedMessageQueueClient.waitFor(`consume`, 1, {
+    queueName: deadLetterPerTestQueue.queueName,
+  });
 });
 
-test('When a message in `user-deleted` queue not being consumed after 2 seconds it should move to the dead letter exchange', async () => {
+test.skip('Pseudo code: When a message in `user-deleted` queue not being consumed after 2 seconds it should move to the dead letter exchange', async () => {
   // Arrange
   // The 'user-deleted' queue have TTL of 2 seconds
 
@@ -270,8 +269,7 @@ test('When a message in `user-deleted` queue not being consumed after 2 seconds 
   );
 
   // Assert - the message arrived to the DLQ
-  await failedOrderDeletedMessageQueueClient.waitFor(
-    `ack:failed-user-deleted`,
-    1
-  );
+  await failedOrderDeletedMessageQueueClient.waitFor(`consume`, 1, {
+    queueName: 'failed-user-deleted',
+  });
 });
