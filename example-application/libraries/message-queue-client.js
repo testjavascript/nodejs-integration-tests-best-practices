@@ -22,7 +22,7 @@ class MessageQueueClient extends EventEmitter {
       this.messageQueueProvider = amqplib;
     }
 
-    this.countEvents();
+    // this.countEvents();
   }
 
   async connect() {
@@ -100,17 +100,11 @@ class MessageQueueClient extends EventEmitter {
     return;
   }
 
-  async assertQueue(
-    queueName,
-    { deadLetterExchange, deadLetterRoutingKey } = {}
-  ) {
+  async assertQueue(queueName, options = {}) {
     if (!this.channel) {
       await this.connect();
     }
-    await this.channel.assertQueue(queueName, {
-      deadLetterExchange,
-      deadLetterRoutingKey,
-    });
+    await this.channel.assertQueue(queueName, options);
 
     return;
   }
@@ -147,17 +141,19 @@ class MessageQueueClient extends EventEmitter {
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
           this.emit('ack', theNewMessage);
+          this.emit(`ack:${queueName}`, theNewMessage);
           this.channel.ack(theNewMessage);
         })
         .catch(async (error) => {
           // If need to have retry
           if (theNewMessage.properties?.headers.maxRetries) {
-            await this._handleRetry(theNewMessage, error);
+            await this._handleRetry(queueName, theNewMessage, error);
             return;
           }
 
           this.channel.nack(theNewMessage, false, this.requeue);
           this.emit('nack', theNewMessage);
+          this.emit(`nack:${queueName}`, theNewMessage);
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
           //errorHandler.handleError(error);
         });
@@ -166,7 +162,7 @@ class MessageQueueClient extends EventEmitter {
     return;
   }
 
-  async _handleRetry(message, error) {
+  async _handleRetry(queueName, message, error) {
     const currentRetry = (message.properties.headers?.currentRetry ?? 0) + 1;
 
     // We don't check for equality with max retries because the first run should not count as a retry
@@ -178,6 +174,7 @@ class MessageQueueClient extends EventEmitter {
       this.channel.nack(message, false, false);
 
       this.emit('nack', message);
+      this.emit(`nack:${queueName}`, message);
       error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
       //errorHandler.handleError(error);
 
@@ -233,14 +230,62 @@ class MessageQueueClient extends EventEmitter {
 
     this.channel.ack(message);
     this.emit('ack', message);
+    this.emit(`ack:${queueName}`, message);
   }
 
   setRequeue(newValue) {
     this.requeue = newValue;
   }
 
-  // This function stores all the MQ events in a local data structure so later
-  // one query this
+  emit(eventName, ...args) {
+    this.addNewlyEmittedToEventRecorder(eventName, ...args);
+
+    return super.emit(eventName, ...args);
+  }
+
+  addNewlyEmittedToEventRecorder(eventName, ...args) {
+    // Don't add this event to the recorder
+    // TODO - Maybe we can change this so the ignored event name is not hard coded
+    //        and we can set only wanted events using glob (e.g. ack:*) or something
+    if (eventName === 'message-queue-event') {
+      return;
+    }
+
+    // Already initialized with this event
+    if (this.eventsRecorder && this.eventsRecorder[eventName]) {
+      return;
+    }
+
+    // Stores all the MQ events in a local data structure so later
+    // one query this
+
+    this.eventsRecorder = this.eventsRecorder ?? {};
+
+    this.eventsRecorder[eventName] = {
+      count: 0,
+      lastEventData: null,
+      name: eventName,
+    };
+
+    // TODO - maybe remove this on and immediately update the event recorder
+    // Although adding `.on` will add it in the end of the listeners array
+    // and if we update the event recorder immediately here we executing it immediately
+    this.on(eventName, (eventData) => {
+      this.eventsRecorder[eventName].count++;
+      this.eventsRecorder[eventName].lastEventData = eventData;
+
+      this.emit('message-queue-event', {
+        name: eventName,
+        eventsRecorder: this.eventsRecorder,
+      });
+    });
+  }
+
+  /**
+   * This function stores all the MQ events in a local data structure so later
+   * one query this
+   * @deprecated just emit regularity and it would work
+   */
   countEvents() {
     const eventsToListen = ['nack', 'ack', 'publish'];
     if (this.eventsRecorder !== undefined) {
@@ -265,7 +310,10 @@ class MessageQueueClient extends EventEmitter {
   }
 
   resolveIfEventExceededThreshold(eventName, threshold, resolve) {
-    if (this.eventsRecorder[eventName].count >= threshold) {
+    if (
+      this.eventsRecorder &&
+      this.eventsRecorder[eventName]?.count >= threshold
+    ) {
       resolve({
         name: eventName,
         lastEventData: this.eventsRecorder[eventName].lastEventData,

@@ -9,13 +9,14 @@ const { resolve } = require('path');
 const amqplib = require('amqplib');
 const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
-module.exports.createQueueForTest = async (
+module.exports.createQueueForTest = async ({
   exchangeName,
   queueName,
   bindingPattern,
   deadLetterExchange = undefined,
-  deadLetterBindingPattern = undefined
-) => {
+  deadLetterBindingPattern = undefined,
+  ttl = undefined,
+} = {}) => {
   const mqClient = new MessageQueueClient(amqplib);
   const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
   const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
@@ -24,6 +25,7 @@ module.exports.createQueueForTest = async (
   await mqClient.assertQueue(randomizedQueueName, {
     deadLetterExchange,
     deadLetterRoutingKey: deadLetterBindingPattern,
+    messageTtl: ttl,
   });
   await mqClient.bindQueue(
     randomizedQueueName,

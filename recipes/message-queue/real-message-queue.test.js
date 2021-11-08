@@ -179,8 +179,6 @@ test('When a message failed after x times it should move to the dead letter exch
     deleteOrderPerTestQueue.queueName
   );
 
-  orderDeletedMessageQueueClient.requeue = false;
-
   const failedOrderDeletedMessageQueueClient = await testHelpers.startMQSubscriber(
     'real',
     undefined,
@@ -204,12 +202,76 @@ test('When a message failed after x times it should move to the dead letter exch
   // Wait for the message to move to the dead letter exchange
 
   // TODO - should we check if ack was called, we may want to check how many times the message has been requeue
-  await orderDeletedMessageQueueClient.waitFor('ack', 2);
+  // TODO - Should be stated that we talk about the DLQ
   await failedOrderDeletedMessageQueueClient.waitFor('ack', 1);
+  await orderDeletedMessageQueueClient.waitFor('ack', 2);
   const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
 
   // not deleted
   expect(aQueryForDeletedOrder.status).toBe(200);
+});
+
+test('When a message not being consumed after 2 seconds it should move to the dead letter exchange', async () => {
+  // Arrange
+  // Create dead letter exchange & queue - bind them
+  const deadLetterPerTestQueue = await testHelpers.createDeadLetterQueueForTest(
+    'failed-user-events',
+    'failed-user-deleted'
+  );
+
+  // Create queue with TTL
+  deleteOrderPerTestQueue = await testHelpers.createQueueForTest({
+    exchangeName: 'user-events',
+    queueName: 'user-deleted',
+    bindingPattern: 'user.deleted',
+    deadLetterExchange: deadLetterPerTestQueue.exchangeName,
+    ttl: 2000,
+  });
+
+  const failedOrderDeletedMessageQueueClient = await testHelpers.startMQSubscriber(
+    'real',
+    // Not providing the queue name by default so it won't consume messages which make the ttl pass
+    undefined,
+    deadLetterPerTestQueue.queueName
+  );
+
+  // Act
+  await deleteOrderPerTestQueue.mqClient.publish(
+    deleteOrderPerTestQueue.exchangeName,
+    'user.deleted',
+    { id: 1 } // hard coded ID for the test
+  );
+
+  // Assert - the message arrived to the DLQ
+  await failedOrderDeletedMessageQueueClient.waitFor(
+    `ack:${deadLetterPerTestQueue.queueName}`,
+    1
+  );
+});
+
+test('When a message in `user-deleted` queue not being consumed after 2 seconds it should move to the dead letter exchange', async () => {
+  // Arrange
+  // The 'user-deleted' queue have TTL of 2 seconds
+
+  const failedOrderDeletedMessageQueueClient = await testHelpers.startMQSubscriber(
+    'real',
+    // Not providing the queue name by default so it won't consume messages which make the ttl pass
+    undefined,
+    'failed-user-deleted'
+  );
+
+  // Act
+  await deleteOrderPerTestQueue.mqClient.publish(
+    deleteOrderPerTestQueue.exchangeName,
+    'user.deleted',
+    { id: 1 } // hard coded ID for the test
+  );
+
+  // Assert - the message arrived to the DLQ
+  await failedOrderDeletedMessageQueueClient.waitFor(
+    `ack:failed-user-deleted`,
+    1
+  );
 });
