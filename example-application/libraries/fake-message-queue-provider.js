@@ -4,6 +4,19 @@ const { EventEmitter } = require('events');
 // and implement the same signature, but each method does nothing but emit an event which the test
 // can verify that indeed happened
 class FakeMessageQueueProvider extends EventEmitter {
+  async consume(queueName, messageHandler) {
+    this.messageHandler = messageHandler;
+    Promise.resolve();
+  }
+
+  async publish(exchangeName, routingKey, newMessage) {
+    if (this.messageHandler) {
+      this.messageHandler({ content: newMessage });
+      this.emit('publish', { exchangeName, routingKey, newMessage });
+    }
+    Promise.resolve();
+  }
+
   async nack() {
     const eventDescription = { event: 'message-rejected' };
     this.emit('message-rejected', eventDescription); // Multiple events allows the test to filter for the relevant event
@@ -16,35 +29,7 @@ class FakeMessageQueueProvider extends EventEmitter {
     this.emit('message-handled', eventDescription);
   }
 
-  async sendToQueue(queueName, message) {
-    this.emit('message-sent', message);
-  }
-
-  async publish(exchangeName, routingKey, message) {
-    this.emit('message-published', message);
-    this.pushMessageToQueue('unknown', message);
-  }
-
   async assertQueue() {}
-
-  async consume(queueName, messageHandler) {
-    // We just save the callback (handler) locally, whenever a message will put into this queue
-    // we will fire this handler
-    this.messageHandler = messageHandler;
-  }
-
-  // This is the only method that does not exist in the MQ client library
-  // It allows us to fake like there is a new message in the queue and start a flow
-  async pushMessageToQueue(queue, newMessage) {
-    if (this.messageHandler) {
-      this.messageHandler({content: newMessage})
-    } else {
-      // Just warning and no exception because the test might want to simulate that
-      console.error(
-        'A new message put into the fake queue but no handlers exist'
-      );
-    }
-  }
 
   async createChannel() {
     return this;

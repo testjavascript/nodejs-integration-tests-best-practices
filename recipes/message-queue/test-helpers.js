@@ -2,7 +2,7 @@ const {
   FakeMessageQueueProvider,
 } = require('../../example-application/libraries/fake-message-queue-provider');
 const {
-  MessageQueueStarter,
+  QueueSubscriber: MessageQueueStarter,
 } = require('../../example-application/entry-points/message-queue-starter');
 const { once } = require('events');
 const { resolve } = require('path');

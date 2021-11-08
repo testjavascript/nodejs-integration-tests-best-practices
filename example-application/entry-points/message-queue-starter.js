@@ -3,7 +3,7 @@ const { errorHandler, AppError } = require('../error-handling');
 const OrderRepository = require('../data-access/order-repository');
 
 // This is message queue entry point. Like API routes but for message queues.
-class MessageQueueStarter {
+class QueueSubscriber {
   constructor(messageQueueClient, queueName) {
     this.messageQueueClient = messageQueueClient;
     this.queueName = queueName;
@@ -18,7 +18,6 @@ class MessageQueueStarter {
     return await this.messageQueueClient.consume(
       this.queueName,
       async (message) => {
-       
         // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
         const newMessageAsObject = JSON.parse(message);
 
@@ -42,4 +41,4 @@ process.on('unhandledRejection', (reason) => {
   errorHandler.handleError(reason);
 });
 
-module.exports = { MessageQueueStarter };
+module.exports = { QueueSubscriber };
