@@ -19,11 +19,48 @@ class MessageQueueClient extends EventEmitter {
     } else if (process.env.USE_FAKE_MQ === 'true') {
       this.messageQueueProvider = new FakeMessageQueueProvider();
     } else {
-      this.messageQueueProvider = amqplib;
+      this.messageQueueProvider = new FakeMessageQueueProvider();
     }
 
-    // this.countEvents();
+    this.countEvents();
   }
+
+  // This function stores all the MQ events in a local data structure so later
+  // one query this
+  countEvents() {
+    if (this.recordingStarted === true) {
+      return; // Already initialized and set up
+    }
+    this.records = {
+      ack: { count: 0, lastEventData: null },
+      nack: { count: 0, lastEventData: null },
+      publish: { count: 0, lastEventData: null },
+      consume: { count: 0, lastEventData: null },
+    };
+    ['nack', 'ack', 'publish'].forEach((eventToListenTo) => {
+      this.on(eventToListenTo, (eventData) => {
+        this.records[eventToListenTo].count++;
+        this.records[eventToListenTo].lastEventData = eventData;
+        this.emit('message-queue-event', {
+          name: eventToListenTo,
+          eventsRecorder: this.recordingStarted,
+        });
+      });
+    });
+  }
+
+  // Helper methods for testing - Resolves/fires when some event happens
+  async waitFor(eventName, howMuch) {
+    return new Promise((resolve, reject) => {
+      // The first resolve is for cases where the caller has approached AFTER the event has already happen
+      this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
+      this.on('message-queue-event', (eventInfo) => {
+        this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
+      });
+    });
+  }
+
+
 
   async connect() {
     const connectionProperties = {
@@ -310,29 +347,13 @@ class MessageQueueClient extends EventEmitter {
   }
 
   resolveIfEventExceededThreshold(eventName, threshold, resolve) {
-    if (
-      this.eventsRecorder &&
-      this.eventsRecorder[eventName]?.count >= threshold
-    ) {
+    if (this.records[eventName].count >= threshold) {
       resolve({
         name: eventName,
-        lastEventData: this.eventsRecorder[eventName].lastEventData,
-        count: this.eventsRecorder[eventName].count,
+        lastEventData: this.records[eventName].lastEventData,
+        count: this.records[eventName].count,
       });
     }
-  }
-
-  // Helper methods for testing - Resolves/fires when some event happens
-  async waitFor(eventName, howMuch) {
-    return new Promise((resolve, reject) => {
-      // The first resolve is for cases where the caller has approached AFTER the event has already happen
-      this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
-
-      // TODO - ?: Should clean the listener
-      this.on('message-queue-event', (eventInfo) => {
-        this.resolveIfEventExceededThreshold(eventName, howMuch, resolve);
-      });
-    });
   }
 }
 

@@ -3,8 +3,8 @@ const { errorHandler, AppError } = require('../error-handling');
 const OrderRepository = require('../data-access/order-repository');
 
 // This is message queue entry point. Like API routes but for message queues.
-class MessageQueueStarter {
-  constructor(messageQueueClient, queueName, deadLetterQueue = undefined) {
+class QueueSubscriber {
+  constructor(messageQueueClient, queueName, deadLetterQueue) {
     this.messageQueueClient = messageQueueClient;
     this.queueName = queueName;
     this.deadLetterQueue = deadLetterQueue;
@@ -56,4 +56,4 @@ process.on('unhandledRejection', (reason) => {
   errorHandler.handleError(reason);
 });
 
-module.exports = { MessageQueueStarter };
+module.exports = { QueueSubscriber };
