@@ -1,7 +1,4 @@
-const amqplib = require('amqplib');
 const { EventEmitter } = require('events');
-const { throwIfEmpty } = require('rxjs/operators');
-const { AppError, errorHandler } = require('../error-handling');
 const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
@@ -27,67 +24,6 @@ class MessageQueueClient extends EventEmitter {
     this.countEvents();
   }
 
-  // This function stores all the MQ events in a local data structure so later
-  // one query this
-  countEvents() {
-    if (this.recordingStarted === true) {
-      return; // Already initialized and set up
-    }
-
-    this.records = {
-      ack: { count: 0, events: [], lastEventData: null },
-      nack: { count: 0, events: [], lastEventData: null },
-      publish: { count: 0, events: [], lastEventData: null },
-      sendToQueue: { count: 0, events: [], lastEventData: null },
-      consume: { count: 0, events: [], lastEventData: null },
-    };
-
-    Object.keys(this.records).forEach((eventToListenTo) => {
-      this.on(eventToListenTo, (eventData) => {
-        // Not needed anymore when having the `events` array
-        this.records[eventToListenTo].count++;
-        this.records[eventToListenTo].lastEventData = eventData;
-
-        this.records[eventToListenTo].events.push(eventData);
-
-        this.emit('message-queue-event', {
-          name: eventToListenTo,
-          eventData,
-          eventsRecorder: this.recordingStarted,
-        });
-      });
-    });
-  }
-
-  /**
-   * Helper methods for testing - Resolves/fires when some event happens
-   * @param eventName
-   * @param {number} howMuch how much as number or option object
-   * @param {object?} query
-   * @param {string?} query.exchangeName
-   * @param {string?} query.queueName
-   * @returns {Promise<unknown>}
-   */
-  async waitFor(eventName, howMuch, query = {}) {
-    let options = query || {};
-    options.howMuch = howMuch;
-
-    return new Promise((resolve, reject) => {
-      // The first resolve is for cases where the caller has approached AFTER the event has already happen
-      if (this.resolveIfEventExceededThreshold(eventName, options, resolve)) {
-        return;
-      }
-
-      const handler = (eventInfo) => {
-        if (this.resolveIfEventExceededThreshold(eventName, options, resolve)) {
-          this.off('message-queue-event', handler);
-        }
-      };
-
-      this.on('message-queue-event', handler);
-    });
-  }
-
   async connect() {
     const connectionProperties = {
       protocol: 'amqp',
@@ -110,7 +46,6 @@ class MessageQueueClient extends EventEmitter {
     if (this.connection) {
       await this.connection.close();
     }
-    return;
   }
 
   async sendMessage(queueName, message) {
@@ -130,12 +65,7 @@ class MessageQueueClient extends EventEmitter {
     return sendResponse;
   }
 
-  async publish(
-    exchangeName,
-    routingKey,
-    message,
-    { messageId, maxRetries } = {}
-  ) {
+  async publish(exchangeName, routingKey, message, messageId) {
     if (!this.channel) {
       await this.connect();
     }
@@ -144,12 +74,7 @@ class MessageQueueClient extends EventEmitter {
       exchangeName,
       routingKey,
       Buffer.from(JSON.stringify(message)),
-      {
-        messageId,
-        headers: {
-          maxRetries,
-        },
-      }
+      { messageId }
     );
     this.emit('publish', { exchangeName, routingKey, message });
 
@@ -160,9 +85,7 @@ class MessageQueueClient extends EventEmitter {
     if (!this.channel) {
       await this.connect();
     }
-    const queueDeletionResult = await this.channel.deleteQueue(queueName);
-
-    return;
+    await this.channel.deleteQueue(queueName);
   }
 
   async assertQueue(queueName, options = {}) {
@@ -170,8 +93,6 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     await this.channel.assertQueue(queueName, options);
-
-    return;
   }
 
   async assertExchange(name, type) {
@@ -179,27 +100,19 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     await this.channel.assertExchange(name, type, { durable: false });
-
-    return;
   }
 
   async bindQueue(queueToBind, exchangeToBindTo, bindingPattern) {
     if (!this.channel) {
       await this.connect();
     }
-
     await this.channel.bindQueue(queueToBind, exchangeToBindTo, bindingPattern);
-
-    return;
   }
 
   async consume(queueName, onMessageCallback) {
     if (!this.channel) {
       await this.connect();
     }
-
-    // TODO - It's problematic as if I wanna send to queue that has some options this will fail as the queues options are conflicting
-    // this.channel.assertQueue(queueName);
 
     await this.channel.consume(queueName, async (theNewMessage) => {
       this.emit('consume', { queueName, message: theNewMessage });
@@ -211,93 +124,78 @@ class MessageQueueClient extends EventEmitter {
           this.channel.ack(theNewMessage);
         })
         .catch(async (error) => {
-          // If need to have retry
-          if (theNewMessage.properties?.headers.maxRetries) {
-            await this._handleRetry(queueName, theNewMessage, error);
-            return;
-          }
-
           this.channel.nack(theNewMessage, false, this.requeue);
           this.emit('nack', { queueName, message: theNewMessage });
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
           //errorHandler.handleError(error);
         });
     });
-
-    return;
-  }
-
-  async _handleRetry(queueName, message, error) {
-    const currentRetry = (message.properties.headers?.currentRetry ?? 0) + 1;
-
-    // We don't check for equality with max retries because the first run should not count as a retry
-    if (currentRetry > message.properties.headers?.maxRetries) {
-      // We count the first run as a retry so we subtract it here
-      console.log('Max retries exceeded: ' + (currentRetry - 1));
-
-      // Drop the message (if queue have dead letter exchange/queue it will move the message there)
-      this.channel.nack(message, false, false);
-
-      this.emit('nack', { queueName, message });
-      error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
-      //errorHandler.handleError(error);
-
-      return;
-    }
-
-    // Note that messages still may be re-queued in the case that your consumer disconnects before sending any acknowledgement, positive or negative, back to the server.
-    // In this case, the original message will be delivered as-is (no custom header) and the redelivered flag will be set.
-
-    // TODO - should I requque or send to the exchange again?
-    let messageUpdatedOptions = {
-      headers: {
-        ...message.properties.headers,
-        currentRetry: currentRetry,
-      },
-      expiration: message.properties.expiration,
-      userId: message.properties.userId,
-      // Missing CC
-
-      // Missing mandatory
-      // Missing persistent
-      deliveryMode: message.properties.deliveryMode,
-      // Missing BCC
-
-      contentType: message.properties.contentType,
-      contentEncoding: message.properties.contentEncoding,
-      priority: message.properties.priority,
-      correlationId: message.properties.correlationId,
-      replyTo: message.properties.replyTo,
-      messageId: message.properties.messageId,
-      timestamp: message.properties.timestamp,
-      type: message.properties.type,
-      appId: message.properties.appId,
-    };
-    // If exchange name is empty it's means that the message was pushed to queue directly
-    // TODO - (I think need to check)
-    if (message.fields.exchange === '') {
-      await this.channel.sendToQueue(
-        // From what I checked when the routing key is the queue name
-        message.fields.routingKey,
-        message.content,
-        messageUpdatedOptions
-      );
-    } else {
-      // TODO - Do we want to publish again to the exchange or just requeue
-      await this.channel.publish(
-        message.fields.exchange,
-        message.fields.routingKey,
-        message.content,
-        messageUpdatedOptions
-      );
-    }
-
-    this.channel.ack(message);
-    this.emit('ack', { queueName, message });
   }
 
   setRequeue(newValue) {
     this.requeue = newValue;
+  }
+
+  // This function stores all the MQ events in a local data structure so later
+  // one query this
+  countEvents() {
+    if (this.recordingStarted === true) {
+      return; // Already initialized and set up
+    }
+
+    const eventsName = ['ack', 'nack', 'publish', 'sendToQueue', 'consume'];
+
+    this.records = {};
+
+    eventsName.forEach((eventToListenTo) => {
+      this.records[eventToListenTo] = {
+        count: 0,
+        events: [],
+        lastEventData: null,
+      };
+
+      this.on(eventToListenTo, (eventData) => {
+        // Not needed anymore when having the `events` array
+        this.records[eventToListenTo].count++;
+        this.records[eventToListenTo].lastEventData = eventData;
+
+        this.records[eventToListenTo].events.push(eventData);
+
+        this.emit('message-queue-event', {
+          name: eventToListenTo,
+          eventsRecorder: this.records,
+        });
+      });
+    });
+  }
+
+  /**
+   * Helper methods for testing - Resolves/fires when some event happens
+   * @param eventName
+   * @param {number} howMuch how much
+   * @param {object?} query
+   * @param {string?} query.exchangeName
+   * @param {string?} query.queueName
+   * @returns {Promise<unknown>}
+   */
+  async waitFor(eventName, howMuch, query = {}) {
+    let options = query || {};
+    options.howMuch = howMuch;
+
+    return new Promise((resolve) => {
+      // The first resolve is for cases where the caller has approached AFTER the event has already happen
+      if (this.resolveIfEventExceededThreshold(eventName, options, resolve)) {
+        return;
+      }
+
+      const handler = () => {
+        if (this.resolveIfEventExceededThreshold(eventName, options, resolve)) {
+          this.off('message-queue-event', handler);
+        }
+      };
+
+      this.on('message-queue-event', handler);
+    });
   }
 
   /**
@@ -310,22 +208,19 @@ class MessageQueueClient extends EventEmitter {
    * @returns {boolean} Return true if resolve fn called, otherwise false
    */
   resolveIfEventExceededThreshold(eventName, options, resolve) {
-    const eventRecord = this.records[eventName];
+    const eventRecords = this.records[eventName];
 
     // Can be optimized by:
     // - Only run it if the options have such filter
     // - Check only what asked
-    const filteredEvents = eventRecord.events.filter((eventData) => {
-      if (options.queueName && eventData.queueName === options.queueName) {
-        return true;
-      }
-
-      if (
-        options.exchangeName &&
-        eventData.exchangeName === options.exchangeName
-      ) {
-        return true;
-      }
+    const filteredEvents = eventRecords.events.filter((eventData) => {
+      return (
+        // If the queue name is the same (in case it was provided)
+        (!options.queueName || eventData.queueName === options.queueName) &&
+        // If the exchange name is the same (in case the it was provided)
+        (!options.exchangeName ||
+          eventData.exchangeName === options.exchangeName)
+      );
     });
 
     if (filteredEvents.length >= options.howMuch) {

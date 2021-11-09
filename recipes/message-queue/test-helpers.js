@@ -8,6 +8,7 @@ const amqplib = require('amqplib');
 const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
 module.exports.createQueueForTest = async ({
+  mqClient = new MessageQueueClient(amqplib),
   exchangeName,
   queueName,
   bindingPattern,
@@ -15,7 +16,7 @@ module.exports.createQueueForTest = async ({
   deadLetterBindingPattern = undefined,
   ttl = undefined,
 } = {}) => {
-  const mqClient = new MessageQueueClient(amqplib);
+  // const mqClient = new MessageQueueClient(amqplib);
   const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
   const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
   await mqClient.assertExchange(randomizedExchangeName, 'topic');
@@ -36,13 +37,12 @@ module.exports.createQueueForTest = async ({
   };
 };
 
-module.exports.createDeadLetterQueueForTest = async (
+module.exports.createDLQForTest = async ({
   exchangeName,
   queueName,
-  bindingPattern
-) => {
-  const mqClient = new MessageQueueClient(amqplib);
-
+  bindingPattern,
+  mqClient = new MessageQueueClient(amqplib),
+}) => {
   const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
   const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
 
@@ -66,11 +66,14 @@ module.exports.createDeadLetterQueueForTest = async (
 module.exports.startMQSubscriber = async (
   fakeOrReal,
   queueName,
-  deadLetterQueueName = undefined
+  deadLetterQueueName = undefined,
+  messageQueueClient = undefined
 ) => {
-  const messageQueueProvider =
-    fakeOrReal === 'fake' ? new FakeMessageQueueProvider() : amqplib;
-  const messageQueueClient = new MessageQueueClient(messageQueueProvider);
+  if (!messageQueueClient) {
+    const messageQueueProvider =
+      fakeOrReal === 'fake' ? new FakeMessageQueueProvider() : amqplib;
+    messageQueueClient = new MessageQueueClient(messageQueueProvider);
+  }
   await new MessageQueueStarter(
     messageQueueClient,
     queueName,

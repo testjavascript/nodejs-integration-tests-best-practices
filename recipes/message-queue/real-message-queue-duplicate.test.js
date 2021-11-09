@@ -1,21 +1,12 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
-const { once } = require('events');
 const amqplib = require('amqplib');
 const messageQueueClient = require('../../example-application/libraries/message-queue-client');
 const testHelpers = require('./test-helpers');
 const orderRepository = require('../../example-application/data-access/order-repository');
 
-const {
-  getNextMQConfirmation,
-  startFakeMessageQueue,
-  getMQMessageOrTimeout,
-  getShortUnique,
-} = require('./test-helpers');
-const {
-  FakeMessageQueueProvider,
-} = require('../../example-application/libraries/fake-message-queue-provider');
+const { getShortUnique } = require('./test-helpers');
 
 const {
   initializeWebServer,
@@ -135,7 +126,7 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
     {
       id: addedOrderId,
     },
-    { messageId: goodMessageId }
+    goodMessageId
   ); //good message
   await messageQueueClient.publish(
     perTestQueue.exchangeName,
@@ -143,7 +134,7 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
     {
       nonExisting: 'invalid',
     },
-    { messageId: badMessageId }
+    badMessageId
   ); // bad message
 
   // Assert
