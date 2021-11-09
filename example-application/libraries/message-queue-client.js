@@ -47,6 +47,7 @@ class MessageQueueClient extends EventEmitter {
         });
       });
     });
+    this.recordingStarted == true;
   }
 
   // Helper methods for testing - Resolves/fires when some event happens
