@@ -1,14 +1,10 @@
 module.exports = async (message) => {
-  const { order, item, status } = message;
+  const { userId, userAddress } = message;
 
-  if (typeof order !== 'number')
-    throw new Error(`order should be a number`);
+  if (typeof userId !== 'number') throw new Error(`User ID should be a number`);
 
-  if (typeof item !== 'number')
-    throw new Error(`product should be a number`);
-
-  // if (status !== 'Created' && status !== 'Paid'  && status !== 'Delivered')
-  //   throw new Error(`wrong status `);
+  if (typeof userAddress !== 'string')
+    throw new Error(`Address should be a string`);
 
   // pass message to business logic
-}
+};

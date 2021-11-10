@@ -1,0 +1,57 @@
+{
+  "consumer": {
+    "name": "order-service"
+  },
+  "provider": {
+    "name": "user-service"
+  },
+  "messages": [
+    {
+      "description": "A user was deleted event",
+      "providerStates": [
+
+      ],
+      "contents": {
+        "userId": 1,
+        "deletionDate": "2021-11-09T11:04:23.216Z",
+        "deletionReason": "user-opted-out"
+      },
+      "matchingRules": {
+        "body": {
+          "$.userId": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.deletionDate": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.deletionReason": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "metaData": {
+        "authentication": {
+          "json_class": "Pact::SomethingLike",
+          "contents": "Bearer some-token-here"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "consumer": {
+    "name": "delivery-service"
+  },
+  "provider": {
+    "name": "user-service"
+  },
+  "messages": [
+    {
+      "description": "A user was deleted event",
+      "providerStates": [
+
+      ],
+      "contents": {
+        "userId": 1,
+        "userAddress": "Ruth Avenue 28 NY"
+      },
+      "matchingRules": {
+        "body": {
+          "$.userId": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.userAddress": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "metaData": {
+        "content-type": "application/json"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}

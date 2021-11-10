@@ -1,21 +1,20 @@
 const { MessageProviderPact, Interaction } = require('@pact-foundation/pact');
-const newOrderCreatedEvent = require('./new-order-event');
+const { factorUserDeletedMessage } = require('./user-deleted-message-factory');
 
-describe('message producer', () => {
-  const messagePact = new MessageProviderPact({
-    messageProviders: {
-      // 'a new order created': () => newOrderCreatedEvent(1, 1, 1, 'created')
-      'a new order created': () => Promise.resolve({ order: 1, user: 1, item: 1 })
-    },
-    provider: 'order-service',
+describe('User deleted message publishing', () => {
+  const PACTSchemaVerifier = new MessageProviderPact({
+    provider: 'user-service',
     pactBrokerUrl: 'http://localhost:9292',
-    publishVerificationResult: true,
-    providerVersion: '1',
-    includeWipPactsSince: '2021-11-06',
-    enablePending: false
-  });
+    messageProviders: {
+      'A user was deleted event': () => {
+        return factorUserDeletedMessage(1, new Date(),
+         'user-request');
+      },
+    },
+  })
 
-  test('should create a valid order created message', async () => {
-    console.log(await messagePact.verify());
+  test(`When publishing user deleted message, then schema matches 
+  consumers expectations`, async () => {
+    await PACTSchemaVerifier.verify();
   });
 });

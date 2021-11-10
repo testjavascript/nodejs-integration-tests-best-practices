@@ -4,11 +4,11 @@ const {
   asynchronousBodyHandler,
 } = require('@pact-foundation/pact');
 const path = require('path');
-const handler = require('./delivery-service-handler');
+const handler = require('./order-user-deleted-handler');
 
-describe('message consumer', () => {
+describe('user deleted message', () => {
   const messagePact = new MessageConsumerPact({
-    consumer: 'delivery-service',
+    consumer: 'order-service',
     provider: 'user-service',
     dir: path.resolve(
       process.cwd(),
@@ -22,15 +22,16 @@ describe('message consumer', () => {
     logLevel: 'info',
   });
 
-  test('should accept a valid created order message', async () => {
+  test('When user deleted message arrives, then the schema is well formed', async () => {
     await messagePact
       .expectsToReceive('A user was deleted event')
       .withContent({
         userId: Matchers.like(1),
-        userAddress: Matchers.like('Ruth Avenue 28 NY'),
+        deletionDate: Matchers.like(new Date()),
+        deletionReason: Matchers.like('user-opted-out'),
       })
       .withMetadata({
-        'content-type': 'application/json',
+        authentication: Matchers.like('Bearer some-token-here'),
       })
       .verify(asynchronousBodyHandler(handler));
   });
