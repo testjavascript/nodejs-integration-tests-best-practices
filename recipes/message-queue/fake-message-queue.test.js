@@ -1,6 +1,8 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
+const {UserDeletedMessageValidator} = require('user-payloads');
+
 const testHelpers = require('./test-helpers');
 
 const {
@@ -77,7 +79,6 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
   );
 
   // Act
-  console.log('0');
   await messageQueueClient.publish('user.events', 'user.deleted', {
     id: addedOrderId,
   });
