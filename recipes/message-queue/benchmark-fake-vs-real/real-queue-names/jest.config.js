@@ -6,6 +6,11 @@ module.exports = {
   collectCoverageFrom: ['**/*.js', '!**/node_modules/**', '!**/test/**'],
   forceExit: true,
   testEnvironment: 'node',
+
+  // Make it run in single process cause we're using the same queue
+  maxWorkers: 1,
+
+
   notify: true,
   globalSetup: '../../../../example-application/test/global-setup.js',
   globalTeardown: '../../../../example-application/test/global-teardown.js',

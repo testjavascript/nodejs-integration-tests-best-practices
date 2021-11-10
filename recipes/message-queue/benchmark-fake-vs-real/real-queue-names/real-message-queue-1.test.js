@@ -61,28 +61,6 @@ afterAll(async () => {
   await stopWebServer();
   nock.enableNetConnect();
 });
-test(`#-1 When a message is valid, than it should be ack-ed ${testHelpers.getShortUnique()}`, async () => {
-  // Arrange
-  await testHelpers.createQueueForTest({
-    mqClient,
-    exchangeName: 'user-events',
-    queueName: QUEUE_NAME,
-    bindingPattern: 'user.deleted',
-    randomize: false,
-  });
-
-  const addedOrderId = await testHelpers.addNewOrder(axiosAPIClient);
-
-  await testHelpers.startMQSubscriber('real', QUEUE_NAME, undefined, mqClient);
-
-  // Act
-  await mqClient.publish('user-events', 'user.deleted', {
-    id: addedOrderId,
-  });
-
-  // Assert
-  await mqClient.waitFor('ack', 1);
-});
 
 for (let i = 0; i < 10; i++) {
   test(`#${i} When a message is valid, than it should be ack-ed ${testHelpers.getShortUnique()}`, async () => {

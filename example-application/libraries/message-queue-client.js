@@ -1,5 +1,6 @@
 const { EventEmitter } = require('events');
 const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
+const { log } = require('@pulumi/pulumi');
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
@@ -117,6 +118,7 @@ class MessageQueueClient extends EventEmitter {
     await this.channel.consume(queueName, async (theNewMessage) => {
       // If the consumer is cancelled by RabbitMQ, the message callback will be invoked with null.
       if (theNewMessage === null) {
+        console.log('Consumer cancelled');
         return;
       }
       this.emit('consume', { queueName, message: theNewMessage });
