@@ -115,6 +115,10 @@ class MessageQueueClient extends EventEmitter {
     }
 
     await this.channel.consume(queueName, async (theNewMessage) => {
+      // If the consumer is cancelled by RabbitMQ, the message callback will be invoked with null.
+      if (theNewMessage === null) {
+        return;
+      }
       this.emit('consume', { queueName, message: theNewMessage });
 
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message

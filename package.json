@@ -11,7 +11,9 @@
     "test:mocha": "mocha recipes/mocha/basic-tests.test.js --exit --require recipes/mocha/hooks.js",
     "lint": "eslint .",
     "db:migrate": "cd example-application/data-access && sequelize-cli db:migrate",
-    "db:seed": "cd example-application/data-access && sequelize-cli db:seed:all"
+    "db:seed": "cd example-application/data-access && sequelize-cli db:seed:all",
+    "test:benchmark:real-queues": "jest --silent --runInBand --config='./recipes/message-queue/benchmark-fake-vs-real/real-queue-names/jest.config.js'",
+    "test:benchmark:fake-queues": "jest --silent --config='./recipes/message-queue/benchmark-fake-vs-real/generated-queue-names/jest.config.js'"
   },
   "author": "",
   "license": "ISC",

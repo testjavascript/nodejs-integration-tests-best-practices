@@ -15,10 +15,15 @@ module.exports.createQueueForTest = async ({
   deadLetterExchange = undefined,
   deadLetterBindingPattern = undefined,
   ttl = undefined,
+  randomize = true,
 } = {}) => {
   // const mqClient = new MessageQueueClient(amqplib);
-  const randomizedQueueName = `${queueName}-${this.getShortUnique()}`;
-  const randomizedExchangeName = `${exchangeName}-${this.getShortUnique()}`;
+  const randomizedQueueName = randomize
+    ? `${queueName}-${this.getShortUnique()}`
+    : queueName;
+  const randomizedExchangeName = randomize
+    ? `${exchangeName}-${this.getShortUnique()}`
+    : exchangeName;
   await mqClient.assertExchange(randomizedExchangeName, 'topic');
   await mqClient.assertQueue(randomizedQueueName, {
     deadLetterExchange,
