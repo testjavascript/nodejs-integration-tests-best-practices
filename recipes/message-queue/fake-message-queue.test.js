@@ -1,7 +1,7 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
-const {UserDeletedMessageValidator} = require('user-payloads');
+const { UserDeletedMessageValidator } = require('user-payloads');
 
 const testHelpers = require('./test-helpers');
 
@@ -20,6 +20,7 @@ const {
 const {
   QueueSubscriber,
 } = require('../../example-application/entry-points/message-queue-starter');
+const { isJSDoc } = require('typescript');
 
 let axiosAPIClient;
 
@@ -79,14 +80,16 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
   );
 
   // Act
-  await messageQueueClient.publish('user.events', 'user.deleted', {
-    id: addedOrderId,
-  });
+  const deletionMessageToPublish = { userId: 1, deletionDate: new Date() };
+  await messageQueueClient.publish(
+    'user.events',
+    'user.deleted',
+    deletionMessageToPublish
+  );
 
   // Assert
-  console.log('1');
+
   await messageQueueClient.waitFor('ack', 1);
-  console.log('2');
   const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
@@ -96,7 +99,10 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
 test('When a poisoned message arrives, then it is being rejected back', async () => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid❌' };
-  const messageQueueClient = await testHelpers.startMQSubscriber('fake','user.deleted');
+  const messageQueueClient = await testHelpers.startMQSubscriber(
+    'fake',
+    'user.deleted'
+  );
 
   // Act
   await messageQueueClient.publish(

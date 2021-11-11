@@ -1,0 +1,12 @@
+{
+  "name": "user-payloads",
+  "version": "1.0.0",
+  "description": "Schemas, validator and API client for the users Microservice",
+  "files": [
+    "user-events-schema.js",
+    "**/*d.ts"
+  ],
+  "main": "user-events-schema.js"
+}
+
+

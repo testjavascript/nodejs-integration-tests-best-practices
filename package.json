@@ -34,7 +34,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.1.0",
     "sequelize": "^6.3.4",
-    "user-payloads": "^1.0.2"
+    "user-payloads": "^2.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",

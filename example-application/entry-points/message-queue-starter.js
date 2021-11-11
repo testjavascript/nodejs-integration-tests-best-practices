@@ -1,3 +1,8 @@
+const { UserDeletedMessageValidator } = require('user-payloads');
+/**
+ * @typedef { import("user-payloads").UserDeletedMessageSchema } UserDeletedMessageSchema
+ */
+
 const MessageQueueClient = require('../libraries/message-queue-client');
 const { errorHandler, AppError } = require('../error-handling');
 const OrderRepository = require('../data-access/order-repository');
@@ -18,8 +23,16 @@ class QueueSubscriber {
     return await this.messageQueueClient.consume(
       this.queueName,
       async (message) => {
-        // Validate to ensure it is not a poisoned message (invalid) that will loop into the queue
+        /**
+         * @type {UserDeletedMessageSchema}
+         */
         const newMessageAsObject = JSON.parse(message);
+        const deletionReason = newMessageAsObject.deletionReason;
+        console.log(deletionReason);
+        if (!UserDeletedMessageValidator(newMessageAsObject)) {
+          throw new AppError('invalid-mq-message');
+        }
+        console.log(newMessageAsObject.deletionReason);
 
         // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
         if (!newMessageAsObject.id) {
