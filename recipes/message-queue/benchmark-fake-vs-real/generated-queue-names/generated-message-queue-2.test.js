@@ -4,18 +4,13 @@ const nock = require('nock');
 const amqplib = require('amqplib');
 const messageQueueClient = require('../../../../example-application/libraries/message-queue-client');
 const testHelpers = require('../../test-helpers');
-const orderRepository = require('../../../../example-application/data-access/order-repository');
 
 const {
   initializeWebServer,
   stopWebServer,
 } = require('../../../../example-application/entry-points/api');
-const MessageQueueClient = require('../../../../example-application/libraries/message-queue-client');
 
-let axiosAPIClient, mqClient, deleteOrderPerTestQueue;
-
-// Type 1:
-// Random queue name = multi-process
+let axiosAPIClient, mqClient, deleteOrderPerTestQueue, generatedQueueName;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -34,10 +29,10 @@ beforeAll(async () => {
   axiosAPIClient = axios.create(axiosConfig);
 
   // TODO: I don't like this global initialization
+
   mqClient = new messageQueueClient(amqplib);
   await mqClient.assertExchange('order.events', 'topic');
 });
-// for i in {2..5}; do cp generated-message-queue-1.test.js "generated-message-queue-$i.test.js"; done
 
 beforeEach(async () => {
   nock('http://localhost/user/').get(`/1`).reply(200, {
@@ -45,9 +40,31 @@ beforeEach(async () => {
     name: 'John',
   });
   nock('http://mail.com').post('/send').reply(202);
+
+  generatedQueueName = undefined;
 });
 
 afterEach(async () => {
+  const failedExpectations = jasmine.currentTest.failedExpectations;
+
+  // If not test passed and the generated queue was created than delete the queue
+  if (failedExpectations.length === 0 && generatedQueueName) {
+    await mqClient
+      .deleteQueue(generatedQueueName)
+      // Don't wanna throw as we want to continue the test cleanup
+      .catch(() =>
+        console.log(
+          'Failed to delete queue of successful test, queue name:',
+          generatedQueueName
+        )
+      );
+  } else if (generatedQueueName) {
+    console.log(
+      'Queue that was involved with the failed test called:',
+      generatedQueueName
+    );
+  }
+
   nock.cleanAll();
   sinon.restore();
 });
@@ -55,7 +72,7 @@ afterEach(async () => {
 afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
-  //await messageQueueClient.close();
+  // await mqClient.close();
   nock.enableNetConnect();
 });
 
@@ -70,6 +87,9 @@ for (let i = 0; i < 10; i++) {
       queueName: 'user-deleted',
       bindingPattern: 'user.deleted',
     });
+
+    // Save the generated queue name for later cleanup
+    generatedQueueName = deleteOrderPerTestQueue.queueName;
 
     await testHelpers.startMQSubscriber(
       'real',

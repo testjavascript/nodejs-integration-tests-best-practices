@@ -9,6 +9,14 @@ module.exports = {
   notify: true,
   globalSetup: '../../../../example-application/test/global-setup.js',
   globalTeardown: '../../../../example-application/test/global-teardown.js',
+
+  setupFilesAfterEnv: [
+    // This script must be inside `setupFilesAfterEnv` as we need to access the testing framework.
+    // Make sure tests can access the `jasmin.currentTest` global variable
+    // This is used so we can only delete queues of successful tests
+    '../helpers/store-current-spec-result.js',
+  ],
+
   notifyMode: 'change',
   watchPlugins: [
     'jest-watch-typeahead/filename',

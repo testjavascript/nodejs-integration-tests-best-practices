@@ -4,15 +4,13 @@ const nock = require('nock');
 const amqplib = require('amqplib');
 const messageQueueClient = require('../../../../example-application/libraries/message-queue-client');
 const testHelpers = require('../../test-helpers');
-const orderRepository = require('../../../../example-application/data-access/order-repository');
 
 const {
   initializeWebServer,
   stopWebServer,
 } = require('../../../../example-application/entry-points/api');
-const MessageQueueClient = require('../../../../example-application/libraries/message-queue-client');
 
-let axiosAPIClient, mqClient, deleteOrderPerTestQueue;
+let axiosAPIClient, mqClient;
 const QUEUE_NAME = 'user-deleted';
 
 // Type 1:
@@ -34,7 +32,6 @@ beforeAll(async () => {
 
   axiosAPIClient = axios.create(axiosConfig);
 });
-// for i in {2..5}; do cp generated-message-queue-1.test.js "generated-message-queue-$i.test.js"; done
 
 beforeEach(async () => {
   nock('http://localhost/user/').get(`/1`).reply(200, {
