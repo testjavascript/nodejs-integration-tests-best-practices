@@ -25,13 +25,6 @@ This repository contains:
 
 <br/><br/>
 
-<br/>
-
-👨‍🏫 [Nodeconf 2021](https://www.nodeconfremote.com/#workshops) is just around the corner, and will **host a 5 hours testing workshop with Yoni Goldberg**. [Register here](https://www.nodeconfremote.com/#workshops)
-
-<br/>
-
-
 # `Table of contents`
 
 ### Best Practices Sections
