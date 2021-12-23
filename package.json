@@ -51,7 +51,6 @@
     "jest-watch-typeahead": "^0.6.0",
     "mocha": "^9.0.1",
     "nock": "^13.0.4",
-    "npm": "^6.13.4",
     "prettier": "2.2.1",
     "sequelize-cli": "^6.2.0",
     "sinon": "^9.0.1",
