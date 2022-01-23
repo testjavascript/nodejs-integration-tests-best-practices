@@ -8,7 +8,7 @@
 
 # 3 things to your benefit
 
-Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything exterenous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximing the value demand some learning and skills. This is the mission statement of this repo. Warning: You might fall in love with testing  💚
+Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything extraneous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximizing the value demand some learning and skills. This is the mission statement of this repo. Warning: You might fall in love with testing  💚
 
 This repository contains:
 
@@ -35,7 +35,7 @@ This repository contains:
 - [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
 - [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
 - [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
-- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-7-development-workflow) - Incorporoating component tests into your daily workflow (5 best practices)
+- [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-7-development-workflow) - Incorporating component tests into your daily workflow (5 best practices)
 
 ### Example Application
 
@@ -61,7 +61,7 @@ This repository contains:
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not neccesserily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers.
+:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not necessarily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers.
 
 
 <br/>
@@ -135,11 +135,11 @@ module.exports = async () => {
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers' machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
+:white_check_mark:  **Do:** Keep the database and other infrastructure always alive in developers' machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continuously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environnement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continous-testing experience ❌;   
+👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continuous-testing experience ❌;   
 
 <br/>
 
@@ -209,7 +209,7 @@ services:
 🏷&nbsp; **Tags:** `#performance`
 
 
-:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in tmpfs folder - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were covered above already minimize the IO work and modern SSD discs are blazing fast. Some specific databases like Mongo comes with a built-in memory engine, this is an additional option to consider. 
+:white_check_mark:  **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in `tmpfs` directory - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were covered above already minimize the IO work and modern SSD discs are blazing fast. Some specific databases like Mongo comes with a built-in memory engine, this is an additional option to consider. 
 
 <br/>
 
@@ -242,7 +242,7 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, withoug thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternativelly, run the migrations only if a specific environmen flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
+:white_check_mark:  **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, without thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternatively, run the migrations only if a specific environment flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
 
 <br/>
 
@@ -285,7 +285,7 @@ module.exports = async () => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** one might spin the backend in Docker container or just a separate Node process. This configuration better resembles the production but it will lack critical testing features as mentioned above ❌; Some teams run integration tests against production-like cloud envrionment (see bullet 'Reuse tests against production-like environment), this is a valid technique for extra validation but will get too slow and limiting to rely on during develoment ❌; 
+👀 &nbsp; **Alternatives:** one might spin the backend in Docker container or just a separate Node process. This configuration better resembles the production but it will lack critical testing features as mentioned above ❌; Some teams run integration tests against production-like cloud environment (see bullet 'Reuse tests against production-like environment), this is a valid technique for extra validation but will get too slow and limiting to rely on during development ❌; 
 
 <br/>
 
@@ -310,11 +310,11 @@ beforeAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#basic, #strategic`
 
-:white_check_mark: &nbsp; **Do:** The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initializtion logic and the test should control the timing
+:white_check_mark: &nbsp; **Do:** The server under test should let the test decide when to open the connection and when to close it. If the webserver do this alone automatically when its file is imported, then the test has no chance to perform important actions beforehand (e.g. change DB connection string). It also won't stand a chance to close the connection and avoid hanging resources. Consequently, the web server initialize code should expose two functions: start(port), stop(). By doing so, the production code has the initialization logic and the test should control the timing
 
 <br/>
 
-👀 &nbsp; **Alternatives:** The web server initializtion code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternativelly, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
+👀 &nbsp; **Alternatives:** The web server initialization code might return a reference to the webserver (e.g. Express app) so the tests open the connection and control it - This will require to put another identical production code that opens connections, then tests and production code will deviate a bit ❌; Alternatively, one can avoid closing connections and wait for the process to exit - This might leave hanging resources and won't solve the need to do some actions before startup ❌
 
 <br/>
 
@@ -365,7 +365,7 @@ afterAll(async (done) => {
 
 🏷&nbsp; **Tags:** `#e`
 
-:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randmoizes a port by default when no specific port is specified
+:white_check_mark: &nbsp; **Do:** Let the server randomize a port in testing to prevent port collisions. Otherwise, specifying a specific port will prevent two testing processes from running at the same time. Almost every network object (e.g. Node.js http server, TCP, Nest, etc) randomizes a port by default when no specific port is specified
 
 <br/>
 
@@ -459,7 +459,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Supertest - Consider to avoid as it encourages direct bounding to express objects and promote different assertion syntax that your bult-in assertion library ❌; 
+👀 &nbsp; **Alternatives:** Supertest - Consider to avoid as it encourages direct bounding to express objects and promote different assertion syntax that your built-in assertion library ❌; 
 
 <br/>
 
