@@ -17,7 +17,7 @@ module.exports.addOrder = async function (newOrder) {
 
   // verify user existence by calling external Microservice
   const userWhoOrdered = await getUserFromUsersService(newOrder.userId);
-  
+
   if (!userWhoOrdered) {
     throw new AppError(
       'user-doesnt-exist',
@@ -41,6 +41,14 @@ module.exports.addOrder = async function (newOrder) {
   await new MessageQueueClient().sendMessage('new-order', newOrder);
 
   return DBResponse;
+};
+
+module.exports.deleteUser = async function (userId) {
+  return await new OrderRepository().deleteOrder(userId);
+};
+
+module.exports.getUser = async function (userId) {
+  return await new OrderRepository().getOrderById(userId);
 };
 
 async function getUserFromUsersService(userId) {

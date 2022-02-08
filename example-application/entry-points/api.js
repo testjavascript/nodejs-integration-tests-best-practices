@@ -56,7 +56,7 @@ const defineRoutes = (expressApp) => {
   // get existing order by id
   router.get('/:id', async (req, res, next) => {
     console.log(`Order API was called to get user by id ${req.params.id}`);
-    const response = await new OrderRepository().getOrderById(req.params.id);
+    const response = await orderService.getUser(req.params.id);
 
     if (!response) {
       res.status(404).end();
@@ -67,10 +67,9 @@ const defineRoutes = (expressApp) => {
   });
 
   // delete order by id
-
   router.delete('/:id', async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
-    await new OrderRepository().deleteOrder(req.params.id);
+    await orderService.deleteUser(req.params.id);
     res.status(204).end();
   });
 
