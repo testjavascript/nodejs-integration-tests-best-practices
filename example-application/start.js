@@ -1,5 +1,5 @@
 const { initializeWebServer } = require('./entry-points/api');
-const {MessageQueueStarter} = require('./entry-points/message-queue-starter');
+const { MessageQueueStarter } = require('./entry-points/message-queue-starter');
 
 async function start() {
   await initializeWebServer();

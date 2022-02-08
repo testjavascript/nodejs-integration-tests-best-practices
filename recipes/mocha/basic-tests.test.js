@@ -4,7 +4,10 @@ const chaiSubset = require('chai-subset');
 const { after, afterEach, before, beforeEach, describe, it } = require('mocha');
 const sinon = require('sinon');
 const nock = require('nock');
-const { initializeWebServer, stopWebServer } = require('../../example-application/entry-points/api');
+const {
+  initializeWebServer,
+  stopWebServer,
+} = require('../../example-application/entry-points/api');
 const OrderRepository = require('../../example-application/data-access/order-repository');
 
 // So we can use containSubset
@@ -209,10 +212,7 @@ describe('/api', () => {
 
     it('When the user does not exist, return 404 response', async () => {
       //Arrange
-      nock('http://localhost/user/').get(`/7`).reply(404, {
-        message: 'User does not exist',
-        code: 'nonExisting',
-      });
+      nock('http://localhost/user/').get(`/7`).reply(404, null);
       const orderToAdd = {
         userId: 7,
         productId: 2,
