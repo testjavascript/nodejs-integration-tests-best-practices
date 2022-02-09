@@ -50,18 +50,23 @@ describe('Verify openApi (Swagger) spec', () => {
     });
 
     test('When an invalid order was send, then error 400 is expected', async () => {
+      // Arrange
       nock('http://localhost/user/').get(`/1`).reply(200, {
         id: 1,
         name: 'John',
       });
       const orderToAdd = {
         userId: 1,
+        productId: undefined, //❌
         mode: 'approved',
       };
 
-      const res = await axiosAPIClient.post('/order', orderToAdd);
+      // Act
+      const receivedResponse = await axiosAPIClient.post('/order', orderToAdd);
 
-      expect(res).toSatisfyApiSpec();
+      // Assert
+      expect(receivedResponse).toSatisfyApiSpec();
+      expect(receivedResponse.status).toBe(400);
     });
 
     test('When a call to the users microservice fails, then get back 404 error', async () => {

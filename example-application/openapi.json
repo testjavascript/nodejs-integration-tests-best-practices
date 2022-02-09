@@ -80,7 +80,7 @@
             }
           },
           "400": {
-            "description": "Invalid Product ID",
+            "description": "User Not Found",
             "content": {}
           },
           "404": {
