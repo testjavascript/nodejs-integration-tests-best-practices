@@ -4,7 +4,7 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../../example-application/api');
+} = require('../../../example-application/entry-points/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
 
 let axiosAPIClient, mailerNock, userServiceNock;
@@ -17,7 +17,6 @@ beforeAll(async (done) => {
   };
   axiosAPIClient = axios.create(axiosConfig);
 
-  
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the api
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
@@ -116,10 +115,7 @@ describe('/api', () => {
 
       // ️️️✅ Best Practice: Simulate non-happy external services responses like 404, 422 or 500.
       // ✅ Best Practice: Override the default response with a custom scenario by triggering a unique path
-      nock('http://localhost/user/').get(`/7`).reply(404, {
-        message: 'User does not exist',
-        code: 'nonExisting',
-      });
+      nock('http://localhost/user/').get(`/7`).reply(404, null);
 
       //Act
       const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
@@ -135,7 +131,7 @@ describe('/api', () => {
         .stub(OrderRepository.prototype, 'addOrder')
         .throws(new Error('Unknown error'));
 
-      nock.removeInterceptor(mailerNock.interceptors[0])
+      nock.removeInterceptor(mailerNock.interceptors[0]);
       let emailPayload;
       nock('http://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
@@ -161,13 +157,13 @@ describe('/api', () => {
     });
   });
 
-  test('When users service doesn\'t reply within 2 seconds, return 503', async () => {
+  test("When users service doesn't reply within 2 seconds, return 503", async () => {
     //Arrange
-    // ✅ Best Practice: use "fake timers" to simulate long requests. 
+    // ✅ Best Practice: use "fake timers" to simulate long requests.
     const clock = sinon.useFakeTimers();
     nock.removeInterceptor(userServiceNock.interceptors[0]);
     nock('http://localhost/user/')
-      .get('/1', () => (clock.tick(5000)))
+      .get('/1', () => clock.tick(5000))
       .reply(200);
 
     const orderToAdd = {
@@ -178,7 +174,7 @@ describe('/api', () => {
 
     //Act
     const response = await axiosAPIClient.post('/order', orderToAdd);
-    
+
     //Assert
     expect(response.status).toBe(503);
 
@@ -188,13 +184,14 @@ describe('/api', () => {
 
   test('When users service replies with 503 once and retry mechanism is applied, then an order is added successfully', async () => {
     //Arrange
-    nock.removeInterceptor(userServiceNock.interceptors[0])
+    nock.removeInterceptor(userServiceNock.interceptors[0]);
     nock('http://localhost/user/')
       .get('/1')
       .reply(503, undefined, { 'Retry-After': 100 });
-    nock('http://localhost/user/')
-      .get('/1')
-      .reply(200);
+    nock('http://localhost/user/').get('/1').reply(200, {
+      id: 1,
+      name: 'John',
+    });
     const orderToAdd = {
       userId: 1,
       productId: 2,

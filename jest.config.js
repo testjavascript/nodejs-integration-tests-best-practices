@@ -3,6 +3,7 @@ module.exports = {
   testMatch: [
     '**/test/**/*test*.js',
     '**/*test*.js',
+    '!**/mocha/**',
     '!**/playground/**',
     '!**/*test-helper*',
     '!**/*anti-pattern*', // Uncomment this only when you want to inspect the consequences of anti-patterns

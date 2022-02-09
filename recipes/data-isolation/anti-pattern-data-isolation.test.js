@@ -5,7 +5,7 @@ const nock = require('nock');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../example-application/api');
+} = require('../../example-application/entry-points/api');
 const { getShortUnique } = require('./test-helper');
 
 // ❌ Anti-Pattern: Test data is a global variable instead of being scoped inside tests
@@ -129,7 +129,7 @@ describe('/api', () => {
 
     // 🤔 Questionable-Pattern: Counting records in the DB. This means the test assuming it owns the
     // DB during the runtime
-    test('When querying for all orders, then get all of them back', () => {
+    test('When querying for all orders, then get all of them back', async() => {
       //Arrange
       const orderToAdd = {
         userId: 1,

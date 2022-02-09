@@ -5,4 +5,4 @@ import { AppController } from './app.controller';
   imports: [],
   controllers: [AppController],
 })
-export class AppModule {}
+export class AppModule {};

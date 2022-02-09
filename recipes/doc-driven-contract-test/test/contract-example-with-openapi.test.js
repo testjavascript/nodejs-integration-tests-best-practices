@@ -5,7 +5,7 @@ const jestOpenAPI = require('jest-openapi');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../../example-application/api');
+} = require('../../../example-application/entry-points/api');
 
 jestOpenAPI(path.join(__dirname, '../../../example-application/openapi.json'));
 
