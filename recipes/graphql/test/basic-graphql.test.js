@@ -33,7 +33,6 @@ afterAll(async () => {
 
 const HELLO_QUERY = gqlt.query({
   operation: 'hello',
-  variables: {},
 }).query;
 
 describe('/graphql', () => {
@@ -42,7 +41,6 @@ describe('/graphql', () => {
       // Act
       const { data, status } = await axiosGraphQLClient.post('', {
         query: HELLO_QUERY,
-        variables: {},
       });
 
       // Assert
