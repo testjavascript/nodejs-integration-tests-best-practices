@@ -1,16 +1,15 @@
-v1.0.0
+# Running the example app
 
-1. Example app:
-API & DB
-Test runner config - Parallel execution, good defaults, coverage threshold, 
-Webserver setup - optimizations for parallelizations (random ports) - Yoni
-DB dockerized setup, teardown, seeding, clean-up strategy, optimization (fsync) - Juan
-Isolate 3rd party (Michael)
-Tests example - Happy response, correct error in response, simulate 3rd party failure (Michael), test the new state, - 
+## Prerequisites
 
+1. Docker
+2. Node.js
+3. nvm
 
-2. various-example
-2.1 MQ - Sebas
-2.2 RAM folder - Michael
-2.3 Authorization - Yoni
-2.4 Contract tests OpenAPI, memory leak, cucumber, 
+## Installation
+
+1. Fork the repo
+2. Run `npm i`
+3. Run `nvm use`
+4. Run the tests `Run t`
+   

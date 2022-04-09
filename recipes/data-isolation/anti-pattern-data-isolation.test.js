@@ -129,7 +129,7 @@ describe('/api', () => {
 
     // 🤔 Questionable-Pattern: Counting records in the DB. This means the test assuming it owns the
     // DB during the runtime
-    test('When querying for all orders, then get all of them back', () => {
+    test('When querying for all orders, then get all of them back', async() => {
       //Arrange
       const orderToAdd = {
         userId: 1,

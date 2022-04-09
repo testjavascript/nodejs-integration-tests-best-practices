@@ -39,10 +39,12 @@ module.exports = class OrderRepository {
 
   async getOrderById(id) {
     return await orderModel.findOne({ where: { id } });
+
   }
 
   async addOrder(orderDetails) {
     const addingResponse = await orderModel.create(orderDetails);
+
     return addingResponse.dataValues
   }
 

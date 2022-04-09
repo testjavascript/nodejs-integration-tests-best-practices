@@ -5,7 +5,6 @@ const logger = require('./libraries/logger');
 const errorHandler = {
   handleError: async (errorToHandle) => {
     try {
-      logger.error(`Error occurred`);
       logger.error(errorToHandle);
       metricsExporter.fireMetric('error', {
         errorName: errorToHandle.name || 'generic-error',
@@ -34,11 +33,11 @@ const decideWhetherToCrash = (error) => {
 };
 
 class AppError extends Error {
-  constructor(message = 'Something wrong', meta = {}) {
+  constructor(name, message, HTTPStatus, isTrusted) {
     super(message);
-    this.name = meta.name;
-    this.isTrusted = meta.isTrusted;
-    this.status = meta.status;
+    this.name = name;
+    this.status = HTTPStatus;
+    this.isTrusted = isTrusted === undefined ? true : false;
   }
 }
 
