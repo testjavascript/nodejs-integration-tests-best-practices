@@ -33,7 +33,7 @@ afterAll(async () => {
 
 const HELLO_QUERY = gqlt.query({
   operation: 'hello',
-  variables: { value: { type: 'Int', required: false } },
+  variables: {},
 }).query;
 
 describe('/graphql', () => {
@@ -42,35 +42,13 @@ describe('/graphql', () => {
       // Act
       const { data, status } = await axiosGraphQLClient.post('', {
         query: HELLO_QUERY,
-        variables: { value: 10 },
+        variables: {},
       });
 
       // Assert
       expect(status).toEqual(200);
       expect(data).toMatchObject({
         data: { hello: 'Hello world!' },
-      });
-    });
-
-    test('When invalid request, Then should return an error', async () => {
-      // Act
-      const { data, status } = await axiosGraphQLClient.post('', {
-        query: HELLO_QUERY,
-        variables: { value: 42 },
-      });
-
-      // Assert
-      expect(status).toEqual(200);
-      expect(data).toMatchObject({
-        data: { hello: null },
-        errors: [
-          {
-            extensions: {
-              code: 'INTERNAL_SERVER_ERROR',
-            },
-            message: '42',
-          },
-        ],
       });
     });
   });
