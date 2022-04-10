@@ -89,6 +89,24 @@ describe('/api', () => {
       });
     });
 
+    test('When a number is declared as a literal, then it is matched', () => {
+      // Arrange
+      const theNumberToMatch = 5;
+
+      // Act
+      // Assert
+      expect(theNumberToMatch).toEqual(expect.any(Number));
+    });
+
+    test('When a number is constructed with Number, then it is matched', () => {
+      // Arrange
+      const theNumberToMatch = Number(5);
+
+      // Act
+      // Assert
+      expect(theNumberToMatch).toEqual(expect.any(Number));
+    });
+
     test('When adding a new valid order , Then should get back 200 response', async () => {
       //Arrange
       const orderToAdd = {

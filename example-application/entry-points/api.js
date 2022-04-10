@@ -21,7 +21,8 @@ const initializeWebServer = (customMiddleware) => {
       expressApp.use(customMiddleware);
     }
     defineRoutes(expressApp);
-    // ️️️✅ Best Practice: Specify no port for testing, only in production
+    // ️️️✅ Best Practice 8.13: Specify no port for testing, only in production
+    // 📖 Read more at: bestpracticesnodejs.com/bp/8.13
     const webServerPort = process.env.PORT ? process.env.PORT : null;
     connection = expressApp.listen(webServerPort, () => {
       resolve(connection.address());

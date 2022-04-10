@@ -45,7 +45,7 @@ module.exports = class OrderRepository {
   async addOrder(orderDetails) {
     const addingResponse = await orderModel.create(orderDetails);
 
-    return addingResponse.dataValues
+    return addingResponse.dataValues;
   }
 
   async deleteOrder(orderToDelete) {
