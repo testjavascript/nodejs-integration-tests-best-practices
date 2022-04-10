@@ -38,7 +38,11 @@ module.exports.addOrder = async function (newOrder) {
   }
 
   // We should notify others that a new order was added - Let's put a message in a queue
-  await new MessageQueueClient().sendMessage('new-order', newOrder);
+  await new MessageQueueClient().publish(
+    'order.events',
+    'order.events.new',
+    newOrder
+  );
 
   return DBResponse;
 };

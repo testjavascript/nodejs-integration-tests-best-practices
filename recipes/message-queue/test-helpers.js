@@ -2,36 +2,28 @@ const {
   FakeMessageQueueProvider,
 } = require('../../example-application/libraries/fake-message-queue-provider');
 const {
-  MessageQueueStarter,
+  QueueSubscriber: MessageQueueStarter,
 } = require('../../example-application/entry-points/message-queue-starter');
-const { once } = require('events');
-const { resolve } = require('path');
+const amqplib = require('amqplib');
+const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
-// Starts the message queue client with a fake MQ - Ideal for testing
-module.exports.startFakeMessageQueue = async () => {
-  const fakeMessageQueue = new FakeMessageQueueProvider();
-  const messageQueueStarter = new MessageQueueStarter(fakeMessageQueue);
-  await messageQueueStarter.start();
-  return fakeMessageQueue;
-};
-
-// A typical message queue emits events ("callbacks") which can make the test syntax cumbersome and based on callbacks
-// This method sugar coats the syntax by returning a promise and will fire event from the MQ or a timeout
-module.exports.getNextMQConfirmation = async (
-  fakeMessageQueue,
-  timeoutInMS = 500,
-  eventName = 'message-handled'
+module.exports.startMQSubscriber = async (
+  fakeOrReal,
+  queueName,
+  deadLetterQueueName = undefined,
+  messageQueueClient = undefined
 ) => {
-  const timeout = new Promise((resolve) =>
-    setTimeout(resolve.bind(this, { event: 'time-out' }), timeoutInMS)
-  );
-  const eventFromMQ = once(fakeMessageQueue, eventName);
-  const errorFromMQ = new Promise((resolve, reject) => {
-    fakeMessageQueue.on('error', (error) => {
-      console.error(`Error caught from fake MQ`, error);
-      resolve({ event: 'error' });
-    });
-  });
+  if (!messageQueueClient) {
+    const messageQueueProvider =
+      fakeOrReal === 'fake' ? new FakeMessageQueueProvider() : amqplib;
+    messageQueueClient = new MessageQueueClient(messageQueueProvider);
+  }
 
-  return Promise.race([timeout, eventFromMQ, errorFromMQ]);
+  await new MessageQueueStarter(
+    messageQueueClient,
+    queueName,
+    deadLetterQueueName
+  ).start();
+
+  return messageQueueClient;
 };
