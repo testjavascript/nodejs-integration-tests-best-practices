@@ -90,6 +90,7 @@ module.exports.startMQSubscriber = async (
       fakeOrReal === 'fake' ? new FakeMessageQueueProvider() : amqplib;
     messageQueueClient = new MessageQueueClient(messageQueueProvider);
   }
+
   await new MessageQueueStarter(
     messageQueueClient,
     queueName,

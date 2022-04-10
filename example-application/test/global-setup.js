@@ -1,8 +1,7 @@
 const isPortReachable = require('is-port-reachable');
 const path = require('path');
 const dockerCompose = require('docker-compose');
-const npm = require('npm');
-const util = require('util');
+const { execSync } = require('child_process');
 
 module.exports = async () => {
   console.time('global-setup');
@@ -25,12 +24,9 @@ module.exports = async () => {
     );
 
     // ️️️✅ Best Practice: Use npm script for data seeding and migrations
-    const npmLoadAsPromise = util.promisify(npm.load);
-    await npmLoadAsPromise();
-    const npmCommandAsPromise = util.promisify(npm.commands.run);
-    await npmCommandAsPromise(['db:migrate']);
+    execSync('npm run db:migrate');
     // ✅ Best Practice: Seed only metadata and not test record, read "Dealing with data" section for further information
-    await npmCommandAsPromise(['db:seed']);
+    execSync('npm run db:seed');
   }
 
   // 👍🏼 We're ready

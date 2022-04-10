@@ -95,7 +95,10 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
 test('When a poisoned message arrives, then it is being rejected back', async () => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid❌' };
-  const messageQueueClient = await testHelpers.startMQSubscriber('fake','user.deleted');
+  const messageQueueClient = await testHelpers.startMQSubscriber(
+    'fake',
+    'user.deleted'
+  );
 
   // Act
   await messageQueueClient.publish(
@@ -130,21 +133,6 @@ test('When user deleted message arrives, then all corresponding orders are delet
   );
   expect(aQueryForDeletedOrder.status).toBe(404);
 });
-
-// test('When user deleted message arrives, then order publishes when all deleted', async() => {
-//   // Arrange
-//   const orderToAdd = {userId: 1, productId: 2, status: 'approved'};
-//   const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data.id;
-//   const messageQueueClient = new MessageQueueClient(new FakeMessageQueueProvider());
-//   await new QueueSubscriber(messageQueueClient, 'user.deleted').start();
-
-//   // Act
-//   await messageQueueClient.publish('user.events', 'user.deleted', {id: addedOrderId});
-
-//   // Assert
-//   const {lastEventData} = await messageQueueClient.waitFor('publish', 1);
-//   expect(lastEventData).toMatchObject({orderId: addedOrderId, status: 'deleted'})
-// });
 
 // ️️️✅ Best Practice: Verify that messages are put in queue whenever the requirements state so
 test('When a valid order is added, then a message is emitted to the new-order queue', async () => {

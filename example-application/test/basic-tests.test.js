@@ -208,10 +208,7 @@ describe('/api', () => {
 
     test('When the user does not exist, return 404 response', async () => {
       //Arrange
-      nock('http://localhost/user/').get(`/7`).reply(404, {
-        message: 'User does not exist',
-        code: 'nonExisting',
-      });
+      nock('http://localhost/user/').get(`/7`).reply(404, null);
       const orderToAdd = {
         userId: 7,
         productId: 2,

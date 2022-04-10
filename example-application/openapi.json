@@ -80,11 +80,15 @@
             }
           },
           "400": {
-            "description": "Invalid Product ID",
+            "description": "User Not Found",
             "content": {}
           },
           "404": {
             "description": "User Not Found",
+            "content": {}
+          },
+          "500": {
+            "description": "Unknown error occured",
             "content": {}
           }
         }

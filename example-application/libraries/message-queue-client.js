@@ -1,4 +1,6 @@
 const { EventEmitter } = require('events');
+const amqplib = require('amqplib');
+
 const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
@@ -46,23 +48,6 @@ class MessageQueueClient extends EventEmitter {
     if (this.connection) {
       await this.connection.close();
     }
-  }
-
-  async sendMessage(queueName, message) {
-    if (!this.channel) {
-      await this.connect();
-    }
-    // TODO - It's problematic as if I wanna send to queue that has some options this will fail as the queues options are conflicting
-    // await this.channel.assertQueue(queueName);
-
-    const sendResponse = await this.channel.sendToQueue(
-      queueName,
-      Buffer.from(JSON.stringify(message))
-    );
-
-    this.emit('sendToQueue', { queueName, message });
-
-    return sendResponse;
   }
 
   async publish(exchangeName, routingKey, message, messageId) {

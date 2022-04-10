@@ -11,10 +11,7 @@ class QueueSubscriber {
   }
 
   async start() {
-    this.queueName !== undefined && (await this.consumeUserDeletionQueue());
-
-    this.deadLetterQueue !== undefined &&
-      (await this.consumeFailedUserDeletionQueue());
+    await this.consumeUserDeletionQueue();
   }
 
   async consumeUserDeletionQueue() {
@@ -32,17 +29,6 @@ class QueueSubscriber {
 
         const orderRepository = new OrderRepository();
         await orderRepository.deleteOrder(newMessageAsObject.id);
-      }
-    );
-  }
-
-  async consumeFailedUserDeletionQueue() {
-    // Let's now register to failed delete messages from the queue
-    return await this.messageQueueClient.consume(
-      this.deadLetterQueue,
-      async (message) => {
-        // TODO - do something
-        console.error('Failed message', message);
       }
     );
   }

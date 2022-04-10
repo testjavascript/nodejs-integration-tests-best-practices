@@ -133,10 +133,7 @@ describe('/api', () => {
 
       // ️️️✅ Best Practice: Simulate non-happy external services responses like 404, 422 or 500.
       // ✅ Best Practice: Override the default response with a custom scenario by triggering a unique path
-      nock('http://localhost/user/').get(`/7`).reply(404, {
-        message: 'User does not exist',
-        code: 'nonExisting',
-      });
+      nock('http://localhost/user/').get(`/7`).reply(404, null);
 
       //Act
       const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
@@ -209,7 +206,10 @@ describe('/api', () => {
     nock('http://localhost/user/')
       .get('/1')
       .reply(503, undefined, { 'Retry-After': 100 });
-    nock('http://localhost/user/').get('/1').reply(200);
+    nock('http://localhost/user/').get('/1').reply(200, {
+      id: 1,
+      name: 'John',
+    });
     const orderToAdd = {
       userId: 1,
       productId: 2,
