@@ -6,6 +6,10 @@
 
 <br/><br/>
 
+## Special workshop in Verona next week 🇮🇹 - Node.js testing - beyond the basics. [Tickes and more info](https://2022.jsday.it/workshop/nodejs_testing.html)
+
+<br/><br/>
+
 # 3 things to your benefit
 
 Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything extraneous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximizing the value demand some learning and skills. This is the mission statement of this repo. Warning: You might fall in love with testing  💚
@@ -22,6 +26,7 @@ This repository contains:
 
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
+
 
 <br/><br/>
 
