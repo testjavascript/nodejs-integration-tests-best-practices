@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "@types/npm": "^7.19.0",
     "chai": "^4.3.4",
     "chai-subset": "^1.6.0",
     "docker-compose": "^0.23.1",
