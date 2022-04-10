@@ -9,7 +9,7 @@ const orderRepository = require('../../example-application/data-access/order-rep
 const { getShortUnique } = require('./test-helpers');
 const {
   initializeWebServer,
-  stopWebServer
+  stopWebServer,
 } = require('../../example-application/entry-points/api');
 const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
 
@@ -24,7 +24,7 @@ beforeAll(async (done) => {
   nock.enableNetConnect('127.0.0.1');
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
-    validateStatus: () => true //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
 
@@ -38,7 +38,7 @@ beforeAll(async (done) => {
 beforeEach(async () => {
   nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
-    name: 'John'
+    name: 'John',
   });
   nock('http://mail.com').post('/send').reply(202);
 });
@@ -68,7 +68,7 @@ test('When a message is poisoned, then its rejected and put back to queue', asyn
 
   // Act
   await mqClient.publish(deleteOrderPerTestQueue.exchangeName, 'user.deleted', {
-    invalidField: 'invalid-value'
+    invalidField: 'invalid-value',
   });
 
   // Assert
@@ -95,7 +95,7 @@ test('When a delete message fails ONCE, than thanks to retry the order is delete
     deleteOrderPerTestQueue.exchangeName,
     'user.deleted',
     {
-      id: addedOrderId
+      id: addedOrderId,
     }
   );
 
@@ -128,7 +128,7 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
     deleteOrderPerTestQueue.exchangeName,
     'user.deleted',
     {
-      id: addedOrderId
+      id: addedOrderId,
     },
     goodMessageId
   ); //good message
@@ -136,7 +136,7 @@ test('When a batch of messages has ONE poisoned message, than only one is reject
     deleteOrderPerTestQueue.exchangeName,
     'user.deleted',
     {
-      nonExisting: 'invalid'
+      nonExisting: 'invalid',
     },
     badMessageId
   ); // bad message
@@ -163,7 +163,7 @@ test.skip('When a message failed after x times it should move to the dead letter
     queueName: 'user-deleted',
     bindingPattern: 'user.deleted',
     deadLetterExchange: dlqPerTestQueue.exchangeName,
-    deadLetterBindingPattern: 'failed.user.deleted'
+    deadLetterBindingPattern: 'failed.user.deleted',
   });
 
   const orderDeletedMessageQueueClient = await testHelpers.startMQSubscriber(
@@ -205,7 +205,7 @@ test.skip('When a message failed after x times it should move to the dead letter
   expect(aQueryForDeletedOrder.status).toBe(200);
 });
 
-test('When a message not being consumed after 200ms it should move to the dead letter exchange', async () => {
+test.only('When a message keeps failing, then it lands in the dead letter queue', async () => {
   // Arrange
   const mqClient = new MessageQueueClient(amqplib);
 
@@ -220,7 +220,7 @@ test('When a message not being consumed after 200ms it should move to the dead l
   const dlqPerTestQueue = await testHelpers.createDLQForTest({
     mqClient,
     exchangeName: 'failed-user-events',
-    queueName: 'failed-user-deleted'
+    queueName: 'failed-user-deleted',
   });
 
   // Create queue with TTL
@@ -230,7 +230,7 @@ test('When a message not being consumed after 200ms it should move to the dead l
     queueName: 'user-deleted',
     bindingPattern: 'user.deleted',
     deadLetterExchange: dlqPerTestQueue.exchangeName,
-    ttl: 2000
+    ttl: 500,
   });
 
   await testHelpers.startMQSubscriber(
@@ -249,8 +249,26 @@ test('When a message not being consumed after 200ms it should move to the dead l
 
   // Assert - the message arrived to the DLQ
   await mqClient.waitFor(`consume`, 1, {
-    queueName: dlqPerTestQueue.queueName
+    queueName: dlqPerTestQueue.queueName,
   });
+});
+
+test('When a message keeps failing, then it lands in the dead letter queue', async () => {
+  // Arrange
+  const mqClient = new MessageQueueClient('real');//not fake
+  sinon.stub(orderRepository.prototype, 'deleteOrder').rejects();
+
+  const testQueues = await testHelpers.createQueueForTest({
+    queueName: 'user-deleted',
+    deadLetterQueue: 'user-events-dead-letter'
+  });
+  await new QueueSubscriber(mqClient, 'user-events-dead-letter').start();
+
+  // Act
+  await mqClient.publish(testQueues.exchangeName, 'user.deleted', {id: 1,});
+
+  // Assert
+  await mqClient.waitFor(`consume`, 1, {queueName: 'user-events-dead-letter',});
 });
 
 test.skip('Pseudo code: When a message in `user-deleted` queue not being consumed after 2 seconds it should move to the dead letter exchange', async () => {
@@ -273,6 +291,6 @@ test.skip('Pseudo code: When a message in `user-deleted` queue not being consume
 
   // Assert - the message arrived to the DLQ
   await failedOrderDeletedMessageQueueClient.waitFor(`consume`, 1, {
-    queueName: 'failed-user-deleted'
+    queueName: 'failed-user-deleted',
   });
 });

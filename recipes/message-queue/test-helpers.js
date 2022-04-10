@@ -37,6 +37,22 @@ module.exports.createQueueForTest = async ({
   };
 };
 
+module.exports.createQForTest = async ({
+  exchangeName,
+  queueName,
+  deadLetterExchange = undefined,
+}) => {
+  const randomQueueName = `${queueName}-${this.getShortUnique()}`;
+  const randomExchangeName = `${exchangeName}-${this.getShortUnique()}`;
+  await mqClient.assertQueue(randomQueueName, { deadLetterExchange });
+
+  return {
+    mqClient,
+    queueName: randomQueueName,
+    exchangeName: randomExchangeName,
+  };
+};
+
 module.exports.createDLQForTest = async ({
   exchangeName,
   queueName,
