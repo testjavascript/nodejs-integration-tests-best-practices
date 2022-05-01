@@ -6,7 +6,7 @@ const authenticationMiddleware = require('../authentication-middleware');
 
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   sinon
     .stub(authenticationMiddleware, 'authenticationMiddleware')
     .callsFake((req, res, next) => {
@@ -33,16 +33,13 @@ beforeAll(async (done) => {
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
-
-  done();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
   sinon.restore();
   nock.cleanAll();
-  done();
 });
 
 // ️️️✅ Best Practice: Structure tests

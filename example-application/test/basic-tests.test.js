@@ -8,7 +8,7 @@ const OrderRepository = require('../data-access/order-repository');
 // all the tests to approach with a shortened syntax
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
@@ -20,8 +20,6 @@ beforeAll(async (done) => {
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
-
-  done();
 });
 
 beforeEach(() => {
@@ -36,11 +34,10 @@ afterEach(() => {
   sinon.restore();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
   nock.enableNetConnect();
-  done();
 });
 
 // ️️️✅ Best Practice: Structure tests

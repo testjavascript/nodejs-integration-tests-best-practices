@@ -10,7 +10,7 @@ const { getShortUnique } = require('./test-helper');
 
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
@@ -18,8 +18,6 @@ beforeAll(async (done) => {
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
-
-  done();
 });
 
 beforeEach(() => {
@@ -34,10 +32,9 @@ afterEach(() => {
   sinon.restore();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   await stopWebServer();
   nock.enableNetConnect();
-  done();
 
   // ️️️✅ Best Practice: Avoid cleaning-up the database after each test or afterAll
   // This will interfere with other tests that run in different processes
@@ -105,7 +102,7 @@ describe('/api', () => {
     });
   });
 
-  
+
   describe('Get /order', () => {
     // ️️️✅ Best Practice: Acknowledge that other unknown records might exist, find your expectations within
     // the result
@@ -119,7 +116,7 @@ describe('/api', () => {
       const orderToDelete = {
         userId: 1,
         productId: 2,
-        externalIdentifier: `id-${getShortUnique()}`, 
+        externalIdentifier: `id-${getShortUnique()}`,
       };
       const deletedOrder = (await axiosAPIClient.post('/order', orderToDelete)).data.id;
       const orderNotToBeDeleted = orderToDelete;
@@ -128,7 +125,7 @@ describe('/api', () => {
 
       // Act
       const deleteRequestResponse = await axiosAPIClient.delete(`/order/${deletedOrder}`);
-      
+
 
       // Assert
       const getDeletedOrderStatus = (await axiosAPIClient.get(`/order/${deletedOrder}`)).status;

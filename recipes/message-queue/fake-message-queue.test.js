@@ -21,7 +21,7 @@ const {
 
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   const apiConnection = await initializeWebServer();
 
@@ -35,8 +35,6 @@ beforeAll(async (done) => {
   axiosAPIClient = axios.create(axiosConfig);
 
   process.env.USE_FAKE_MQ = 'true';
-
-  done();
 });
 
 beforeEach(() => {
@@ -52,13 +50,12 @@ afterEach(() => {
   sinon.restore();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
   //await messageQueueClient.close();
   nock.enableNetConnect();
   process.env.USE_FAKE_MQ = undefined;
-  done();
 });
 
 // ️️️✅ Best Practice: Test a flow that starts via a queue message and ends with removing/confirming the message
