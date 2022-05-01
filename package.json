@@ -19,6 +19,8 @@
     "@nestjs/common": "^7.6.17",
     "@nestjs/core": "^7.6.17",
     "@nestjs/platform-express": "^7.6.17",
+    "@pulumi/pulumi": "^3.17.0",
+    "@pulumi/rabbitmq": "^3.1.0",
     "@types/amqplib": "^0.8.1",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/nock": "^11.1.0",
