@@ -9,7 +9,7 @@ const OrderRepository = require('../../../example-application/data-access/order-
 
 let axiosAPIClient, mailerNock, userServiceNock;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
@@ -20,8 +20,6 @@ beforeAll(async (done) => {
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the api
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
-
-  done();
 });
 
 beforeEach(() => {
@@ -40,13 +38,12 @@ afterEach(() => {
   sinon.restore();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
 
   // ️️️✅ Best Practice: Clean-up all nocks before the next file starts
   nock.enableNetConnect();
-  done();
 });
 
 // ️️️✅ Best Practice: Structure tests

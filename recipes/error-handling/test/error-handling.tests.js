@@ -15,7 +15,7 @@ const logger = require('../../../example-application/libraries/logger');
 
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
@@ -27,14 +27,11 @@ beforeAll(async (done) => {
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls except for the Api-Under-Test
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
-
-  done();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
-  done();
 });
 
 beforeEach(() => {
@@ -166,7 +163,7 @@ describe('Error Handling', () => {
       expect(loggerDouble.lastCall.firstArg).toMatchObject(errorToThrow);
     });
 
-    
+
     test.todo(
       "When an error is thrown during web request, then it's handled correctly"
     );

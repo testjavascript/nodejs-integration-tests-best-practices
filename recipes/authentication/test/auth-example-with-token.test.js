@@ -11,7 +11,7 @@ const {
 
 let axiosAPIClient, defaultValidToken;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
     defaultValidToken = signTokenSynchronously('test-user', 'user');
 
     // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -21,17 +21,14 @@ beforeAll(async (done) => {
       validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
     };
     axiosAPIClient = axios.create(axiosConfig);
-
-    done();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
     // ️️️✅ Best Practice: Clean-up resources after each run
     await stopWebServer();
-    done();
 });
 
-// ️️️✅ Best Practice: Structure tests 
+// ️️️✅ Best Practice: Structure tests
 describe("/api", () => {
     describe("POST /orders", () => {
         test("When token expired , Then get back 401", async () => {

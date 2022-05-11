@@ -9,7 +9,7 @@ const {
 
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   const apiConnection = await initializeWebServer();
     const axiosConfig = {
       baseURL: `http://127.0.0.1:${apiConnection.port}`,
@@ -19,7 +19,6 @@ beforeAll(async (done) => {
 
   // ❌ Anti-Pattern: By default, we allow outgoing network calls -
   // If some unknown code locations will issue HTTP request - It will passthrough out
-  done();
 });
 
 beforeEach(() => {
@@ -36,10 +35,8 @@ afterEach(() => {
   sinon.restore();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   await stopWebServer();
-
-  done();
 });
 
 describe('/api', () => {

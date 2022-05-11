@@ -8,7 +8,7 @@ const ordersData = require('./orders-data-for-paramterized-test.json');
 
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
@@ -16,8 +16,6 @@ beforeAll(async (done) => {
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
-
-  done();
 });
 
 beforeEach(() => {
@@ -31,10 +29,9 @@ afterEach(() => {
   nock.cleanAll();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
-  done();
 });
 
 // ️️️✅ Best Practice: Structure tests

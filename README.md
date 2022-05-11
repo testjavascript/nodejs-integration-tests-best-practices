@@ -299,7 +299,7 @@ module.exports = async () => {
 ```js
 const apiUnderTest = require('../api/start.js');
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   //Start the backend in the same process
 ```
 
@@ -345,14 +345,12 @@ const stopWebServer = async () => {
   });
 };
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   expressApp = await initializeWebServer();
-  done();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   await stopWebServer();
-  done();
 });
 
 
@@ -394,7 +392,7 @@ const initializeWebServer = async (customMiddleware) => {
 };
 
 // test.js
-beforeAll(async (done) => {
+beforeAll(async () => {
   expressApp = await initializeWebServer();// No port
 });
 ```
@@ -475,7 +473,7 @@ test('When asked for an existing order, Then should retrieve it and receive 200 
 const axios = require('axios');
 let axiosAPIClient;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
@@ -758,14 +756,12 @@ test('When the user does not exist, return http 404', async () => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```javascript
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ...
   // ️️️Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
   // Enable only requests for the API under test
   nock.enableNetConnect('127.0.0.1');
-
-  done();
 });
 ```
 
@@ -1021,11 +1017,9 @@ module.exports = async () => {
 describe('/api', () => {
   let user;
 
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     // Create context data once before all tests in the suite
     user = createUser();
-
-    done();
   });
 
   describe('GET /order', () => {
