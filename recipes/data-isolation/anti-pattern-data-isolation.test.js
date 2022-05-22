@@ -11,7 +11,7 @@ const { getShortUnique } = require('./test-helper');
 // ❌ Anti-Pattern: Test data is a global variable instead of being scoped inside tests
 let axiosAPIClient, existingOrderId = 0, existingOrder;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
   const apiConnection = await initializeWebServer();
   const axiosConfig = {
@@ -26,8 +26,6 @@ beforeAll(async (done) => {
     mode: 'approved',
     externalIdentifier: `some-id-1`,
   });
-
-  done();
 });
 
 beforeEach(() => {
@@ -46,11 +44,10 @@ afterEach(async () => {
   sinon.restore();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
   await stopWebServer();
   nock.enableNetConnect();
-  done();
 });
 
 describe('/api', () => {
@@ -106,7 +103,7 @@ describe('/api', () => {
   });
 
   test('When updating an already dispatched order, then should get get conflict 409', () => {
-    
+
   });
 
   describe('Get /order', () => {
