@@ -47,11 +47,11 @@ module.exports.addOrder = async function (newOrder) {
   return DBResponse;
 };
 
-module.exports.deleteUser = async function (userId) {
+module.exports.deleteOrder = async function (userId) {
   return await new OrderRepository().deleteOrder(userId);
 };
 
-module.exports.getUser = async function (userId) {
+module.exports.getOrderById = async function (userId) {
   return await new OrderRepository().getOrderById(userId);
 };
 
