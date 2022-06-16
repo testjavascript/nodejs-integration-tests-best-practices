@@ -47,12 +47,12 @@ module.exports.addOrder = async function (newOrder) {
   return DBResponse;
 };
 
-module.exports.deleteOrder = async function (userId) {
-  return await new OrderRepository().deleteOrder(userId);
+module.exports.deleteOrder = async function (id) {
+  return await new OrderRepository().deleteOrder(id);
 };
 
-module.exports.getOrderById = async function (userId) {
-  return await new OrderRepository().getOrderById(userId);
+module.exports.getOrderById = async function (id) {
+  return await new OrderRepository().getOrderById(id);
 };
 
 async function getUserFromUsersService(userId) {
