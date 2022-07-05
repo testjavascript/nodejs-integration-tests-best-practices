@@ -6,10 +6,6 @@
 
 <br/><br/>
 
-## Special workshop in Verona next week 🇮🇹 - Node.js testing - beyond the basics. [Tickes and more info](https://2022.jsday.it/workshop/nodejs_testing.html)
-
-<br/><br/>
-
 # 3 things to your benefit
 
 Component/integration test is an hybrid between E2E and unit tets. It's gaining a lot of popularity and going by the testing diamond model it is considered as the default technique for modern backend. Its main idea is testing an entire component (e.g., Microservice) as-is, through the API, with all the layers including database but fake anything extraneous. This brings **both** high confidence **and** great developer experience. However, doing it right, fast, exhaustive and maximizing the value demand some learning and skills. This is the mission statement of this repo. Warning: You might fall in love with testing  💚
@@ -37,7 +33,7 @@ This repository contains:
 - [`Database And Infrastructure Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup) - Optimizing your DB, MQ and other infra for testing (6 best practices)
 - [`Web Server Setup`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup) - Good practices for starting and stopping the backend API (3 best practices)
 - [`The Test Anatomy`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
-- [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
+- [`Integration`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#Section-4-integrations) - Techniques for testing collaborations with 3rd party components (8 best practices)
 - [`Dealing With Data`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
 - [`Message Queue`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-6-message-queues) - Correctly testing flows that start or end at a queue (8 best practices)
 - [`Development Workflow`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-7-development-workflow) - Incorporating component tests into your daily workflow (5 best practices)
@@ -632,7 +628,7 @@ Find here the [same content as a course](https://testjavascript.com/), online [w
 <br/><br/>
 
 
-## **Section 4: External services**
+## **Section 4: Integrations**
 
 <br/>
 
