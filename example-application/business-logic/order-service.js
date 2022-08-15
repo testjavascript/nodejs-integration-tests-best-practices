@@ -1,4 +1,3 @@
-const util = require('util');
 const axios = require('axios');
 const mailer = require('../libraries/mailer');
 const axiosRetry = require('axios-retry');
@@ -66,7 +65,6 @@ async function getUserFromUsersService(userId) {
         },
       }
     );
-    console.log(getUserResponse.data);
     return getUserResponse.data;
   } catch (error) {
     if (error?.code === 'ECONNABORTED') {

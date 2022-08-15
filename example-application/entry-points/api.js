@@ -48,7 +48,7 @@ const defineRoutes = (expressApp) => {
         `Order API was called to add new Order ${util.inspect(req.body)}`
       );
       const addOrderResponse = await orderService.addOrder(req.body);
-      return res.json(addOrderResponse);
+      return res.status(409).json(addOrderResponse);
     } catch (error) {
       next(error);
     }
@@ -60,11 +60,10 @@ const defineRoutes = (expressApp) => {
     const response = await orderService.getUser(req.params.id);
 
     if (!response) {
-      res.status(404).end();
-      return;
+      res.status(409);
     }
 
-    res.json(response);
+    res.status(409).json(response);
   });
 
   // delete order by id
@@ -84,7 +83,7 @@ const defineRoutes = (expressApp) => {
     }
     await errorHandler.handleError(error);
 
-    res.status(error?.status || 500).end();
+    res.status(409).end();
   });
 };
 

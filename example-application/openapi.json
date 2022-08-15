@@ -56,18 +56,6 @@
     "/order": {
       "post": {
         "summary": "Add a new Order",
-        "description": "Returns a single order",
-        "operationId": "addOrder",
-        "requestBody": {
-          "description": "New Order To Add",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Order"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Successful",
@@ -83,13 +71,20 @@
             "description": "User Not Found",
             "content": {}
           },
-          "404": {
-            "description": "User Not Found",
-            "content": {}
-          },
           "500": {
             "description": "Unknown error occured",
             "content": {}
+          }
+        },
+        "operationId": "addOrder",
+        "requestBody": {
+          "description": "New Order To Add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
           }
         }
       }

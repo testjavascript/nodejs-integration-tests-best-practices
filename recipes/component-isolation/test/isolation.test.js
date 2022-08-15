@@ -176,7 +176,11 @@ describe('/api', () => {
     //Arrange
     // ✅ Best Practice: use "fake timers" to simulate long requests.
     const clock = sinon.useFakeTimers();
-    nock.removeInterceptor(userServiceNock.interceptors[0]);
+    nock.removeInterceptor({
+      hostname: 'localhost',
+      method: 'GET',
+      path: '/user/1',
+    });
     nock('http://localhost/user/')
       .get('/1', () => clock.tick(5000))
       .reply(200);

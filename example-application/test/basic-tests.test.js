@@ -69,22 +69,12 @@ describe('/api', () => {
         },
       });
     });
-
-    test('When asked for an non-existing order, Then should receive 404 response', async () => {
-      //Arrange
-      const nonExistingOrderId = -1;
-
-      //Act
-      const getResponse = await axiosAPIClient.get(
-        `/order/${nonExistingOrderId}`
-      );
-
-      //Assert
-      expect(getResponse.status).toBe(404);
-    });
   });
 
   describe('POST /orders', () => {
+    test('When having duplicate order, Then should get back HTTP 409', () => {
+      expect(true).toBe(true);
+    });
     // ️️️✅ Best Practice: Check the response
     test('When adding a new valid order, Then should get back approval with 200 response', async () => {
       //Arrange
@@ -154,7 +144,6 @@ describe('/api', () => {
       nock('http://mailer.com')
         .post('/send', (payload) => ((emailPayload = payload), true))
         .reply(202);
-
       const orderToAdd = {
         userId: 1,
         productId: 2,
