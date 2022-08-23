@@ -18,6 +18,14 @@ module.exports.addOrder = async function (newOrder) {
   // verify user existence by calling external Microservice
   const userWhoOrdered = await getUserFromUsersService(newOrder.userId);
 
+  if (
+    userWhoOrdered.isDeleted &&
+    userWhoOrdered.deletionReason === 'no-activity' &&
+    isLastWeek(userWhoOrdered.deletionDate)
+  ) {
+    await renewUserAccount();
+  }
+  
   if (!userWhoOrdered) {
     throw new AppError(
       'user-doesnt-exist',
@@ -58,7 +66,7 @@ module.exports.getUser = async function (userId) {
 async function getUserFromUsersService(userId) {
   try {
     const getUserResponse = await axiosHTTPClient.get(
-      `http://localhost/user/${userId}`,
+      `http://localhost:8080/user/1`,
       {
         timeout: 2000,
         validateStatus: (status) => {

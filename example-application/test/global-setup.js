@@ -9,7 +9,9 @@ module.exports = async () => {
   // ️️️✅ Best Practice: Speed up during development, if already live then do nothing
   const isDBReachable = await isPortReachable(54310);
   if (!isDBReachable) {
-    // ️️️✅ Best Practice: Start the infrastructure within a test hook - No failures occur because the DB is down
+    // ️️️✅ Best Practice: Start thep infrastructure within a test hook - No failures occur because the DB is down
+    // change something
+    // change something
     await dockerCompose.upAll({
       cwd: path.join(__dirname),
       log: true,
