@@ -1,7 +1,7 @@
 const path = require('path');
 const axios = require('axios');
 const nock = require('nock');
-const jestOpenAPI = require('jest-openapi');
+const jestOpenAPI = require('jest-openapi').default;
 const {
   initializeWebServer,
   stopWebServer,
