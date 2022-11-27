@@ -18,8 +18,16 @@ beforeAll(async () => {
   axiosAPIClient = axios.create(axiosConfig);
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
+  const hostname = '127.0.0.1';
   nock.disableNetConnect();
-  nock.enableNetConnect('127.0.0.1');
+  nock.enableNetConnect(hostname);
+
+  // Some http clients swallow the "no match" error, so throw here for easy debugging
+  nock.emitter.on('no match', (req) => {
+    if (req.hostname !== hostname) {
+      throw new Error(`Nock no match for: ${req.hostname}`)
+    }
+  })
 });
 
 beforeEach(() => {
