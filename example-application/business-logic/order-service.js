@@ -51,7 +51,7 @@ module.exports.deleteOrder = async function (id) {
   return await new OrderRepository().deleteOrder(id);
 };
 
-module.exports.getOrderById = async function (id) {
+module.exports.getOrder = async function (id) {
   return await new OrderRepository().getOrderById(id);
 };
 
