@@ -57,7 +57,7 @@ const defineRoutes = (expressApp) => {
   // get existing order by id
   router.get('/:id', async (req, res, next) => {
     console.log(`Order API was called to get order by id ${req.params.id}`);
-    const response = await orderService.getOrderById(req.params.id);
+    const response = await orderService.getOrder(req.params.id);
 
     if (!response) {
       res.status(404).end();
