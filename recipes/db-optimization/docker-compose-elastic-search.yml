@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  database:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.0
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+
+      # Disable tracking actions taken as part of Snapshot Lifecycle Management (SLM) policies
+      # https://www.elastic.co/guide/en/elasticsearch/reference/8.6/snapshot-settings.html#_slm_settings
+      - slm.history_index_enabled=false
+
+    # Disable memory swap, this may not be supported in all OSs
+    # https://www.elastic.co/guide/en/elasticsearch/reference/8.6/setup-configuration-memory.html#setup-configuration-memory
+    mem_swappiness: 1
+
+    # Uncomment if you want to limit the memory to 512 MB
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+
+    container_name: 'elastic-search-for-testing'
+    ports:
+      - '9200:9200'
+    tmpfs: /usr/share/elasticsearch/data
