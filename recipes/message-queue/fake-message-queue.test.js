@@ -4,10 +4,6 @@ const nock = require('nock');
 const testHelpers = require('./test-helpers');
 
 const {
-  getNextMQConfirmation,
-  startFakeMessageQueue,
-} = require('./test-helpers');
-const {
   initializeWebServer,
   stopWebServer,
 } = require('../../example-application/entry-points/api');
@@ -74,15 +70,12 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
   );
 
   // Act
-  console.log('0');
   await messageQueueClient.publish('user.events', 'user.deleted', {
     id: addedOrderId,
   });
 
   // Assert
-  console.log('1');
   await messageQueueClient.waitFor('ack', 1);
-  console.log('2');
   const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
@@ -165,3 +158,4 @@ test.todo(
 test.todo(
   'When multiple user deletion message arrives and one fails, then only the failed message is not acknowledged'
 );
+  
