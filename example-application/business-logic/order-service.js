@@ -66,7 +66,6 @@ async function getUserFromUsersService(userId) {
         },
       }
     );
-    console.log(getUserResponse.data);
     return getUserResponse.data;
   } catch (error) {
     if (error?.code === 'ECONNABORTED') {
