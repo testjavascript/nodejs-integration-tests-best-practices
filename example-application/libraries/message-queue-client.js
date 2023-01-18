@@ -1,7 +1,7 @@
 const { EventEmitter } = require('events');
 const amqplib = require('amqplib');
-
 const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
+const { errorHandler } = require('../error-handling');
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
@@ -24,6 +24,7 @@ class MessageQueueClient extends EventEmitter {
       this.messageQueueProvider = new FakeMessageQueueProvider();
     }
 
+    this.setMaxListeners(50);
     this.countEvents();
   }
 
@@ -113,7 +114,7 @@ class MessageQueueClient extends EventEmitter {
           this.channel.nack(theNewMessage, false, this.requeue);
           this.emit('nack', { queueName, message: theNewMessage });
           error.isTrusted = true; //Since it's related to a single message, there is no reason to let the process crash
-          //errorHandler.handleError(error);
+          errorHandler.handleError(error);
         });
     });
   }
