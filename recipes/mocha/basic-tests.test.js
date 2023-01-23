@@ -183,19 +183,19 @@ describe('/api', () => {
     });
 
     // ️️️✅ Best Practice: Check invalid input
-    it('When adding an order without specifying product, stop and return 400', async () => {
-      //Arrange
-      const orderToAdd = {
-        userId: 1,
-        mode: 'draft',
-      };
+      it('When adding an order without specifying product, stop and return 400', async () => {
+        //Arrange
+        const orderToAdd = {
+          userId: 1,
+          mode: 'draft',
+        };
 
-      //Act
-      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
+        //Act
+        const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
-      //Assert
-      expect(orderAddResult.status).to.equal(400);
-    });
+        //Assert
+        expect(orderAddResult.status).to.equal(400);
+      });
 
     // ️️️✅ Best Practice: Check error handling
     it.skip('When a new order failed, an invalid-order error was handled');

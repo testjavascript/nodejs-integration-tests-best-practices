@@ -1,6 +1,8 @@
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
+const config = require('../../../example-application/config');
+
 const {
   initializeWebServer,
   stopWebServer,
@@ -172,13 +174,14 @@ describe('/api', () => {
     });
   });
 
-  test("When users service doesn't reply within 2 seconds, return 503", async () => {
+  test('When users service times out, then return 503 (option 1 with fake timers)', async () => {
     //Arrange
     // ✅ Best Practice: use "fake timers" to simulate long requests.
     const clock = sinon.useFakeTimers();
+    config.HTTPCallTimeout = 1000;
     nock.removeInterceptor(userServiceNock.interceptors[0]);
     nock('http://localhost/user/')
-      .get('/1', () => clock.tick(5000))
+      .get('/1', () => clock.tick(2000)) // Reply delay is bigger than configured timeout
       .reply(200);
 
     const orderToAdd = {

@@ -4,6 +4,7 @@ const logger = require('./libraries/logger');
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
   handleError: async (errorToHandle) => {
+    console.log('eh1');
     try {
       logger.error(errorToHandle);
       metricsExporter.fireMetric('error', {

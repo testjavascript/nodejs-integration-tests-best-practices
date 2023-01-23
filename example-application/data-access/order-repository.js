@@ -39,7 +39,10 @@ module.exports = class OrderRepository {
 
   async getOrderById(id) {
     return await orderModel.findOne({ where: { id } });
+  }
 
+  async getOrderByExternalIdentifier(externalIdentifier) {
+    return await orderModel.findOne({ where: { externalIdentifier } });
   }
 
   async addOrder(orderDetails) {

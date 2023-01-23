@@ -1,90 +1,54 @@
 const express = require('express');
-const util = require('util');
 const bodyParser = require('body-parser');
-const OrderRepository = require('../data-access/order-repository');
-const errorHandler = require('../error-handling').errorHandler;
-const orderService = require('../business-logic/order-service');
+const { errorHandler, AppError } = require('../error-handling');
+const routes = require('./routes');
 
 let connection;
 
 const initializeWebServer = (customMiddleware) => {
   return new Promise((resolve, reject) => {
-    // A typical Express setup
-    expressApp = express();
-    expressApp.use(
-      bodyParser.urlencoded({
-        extended: true,
-      })
-    );
-    expressApp.use(bodyParser.json());
-    if (customMiddleware) {
-      expressApp.use(customMiddleware);
+    try {
+      // A typical Express setup
+      expressApp = express();
+      expressApp.use(
+        bodyParser.urlencoded({
+          extended: true,
+        })
+      );
+      expressApp.use(bodyParser.json());
+      if (customMiddleware) {
+        expressApp.use(customMiddleware);
+      }
+      routes.defineRoutes(expressApp);
+      // ️️️✅ Best Practice 8.13: Specify no port for testing, only in production
+      // 📖 Read more at: bestpracticesnodejs.com/bp/8.13
+      const webServerPort = process.env.PORT ? process.env.PORT : null;
+      connection = expressApp.listen(webServerPort, () => {
+        resolve(connection.address());
+      });
+    } catch (error) {
+      const catastrophicError = new AppError(
+        'initialization-failure',
+        'An error occurred while trying to initialize the web server',
+        500,
+        false
+      );
+      errorHandler.handleError(catastrophicError).then(() => {
+        return reject(error);
+      });
     }
-    defineRoutes(expressApp);
-    // ️️️✅ Best Practice 8.13: Specify no port for testing, only in production
-    // 📖 Read more at: bestpracticesnodejs.com/bp/8.13
-    const webServerPort = process.env.PORT ? process.env.PORT : null;
-    connection = expressApp.listen(webServerPort, () => {
-      resolve(connection.address());
-    });
   });
 };
 
 const stopWebServer = () => {
   return new Promise((resolve, reject) => {
-    connection.close(() => {
+    if (connection) {
+      connection.close(() => {
+        resolve();
+      });
+    } else {
       resolve();
-    });
-  });
-};
-
-const defineRoutes = (expressApp) => {
-  const router = express.Router();
-
-  // add new order
-  router.post('/', async (req, res, next) => {
-    try {
-      console.log(
-        `Order API was called to add new Order ${util.inspect(req.body)}`
-      );
-      const addOrderResponse = await orderService.addOrder(req.body);
-      return res.json(addOrderResponse);
-    } catch (error) {
-      next(error);
     }
-  });
-
-  // get existing order by id
-  router.get('/:id', async (req, res, next) => {
-    console.log(`Order API was called to get order by id ${req.params.id}`);
-    const response = await orderService.getOrder(req.params.id);
-
-    if (!response) {
-      res.status(404).end();
-      return;
-    }
-
-    res.json(response);
-  });
-
-  // delete order by id
-  router.delete('/:id', async (req, res, next) => {
-    console.log(`Order API was called to delete order ${req.params.id}`);
-    await orderService.deleteOrder(req.params.id);
-    res.status(204).end();
-  });
-
-  expressApp.use('/order', router);
-
-  expressApp.use(async (error, req, res, next) => {
-    if (typeof error === 'object') {
-      if (error.isTrusted === undefined || error.isTrusted === null) {
-        error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
-      }
-    }
-    await errorHandler.handleError(error);
-
-    res.status(error?.status || 500).end();
   });
 };
 

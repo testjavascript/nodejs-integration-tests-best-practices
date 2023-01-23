@@ -21,10 +21,13 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  nock('http://localhost/user/').get(`/1`).reply(200, {
-    id: 1,
-    name: 'John',
-  }).persist();
+  nock('http://localhost/user/')
+    .get(`/1`)
+    .reply(200, {
+      id: 1,
+      name: 'John',
+    })
+    .persist();
 });
 
 afterEach(() => {
@@ -81,6 +84,30 @@ describe('/api', () => {
       //Assert
       expect(receivedAPIResponse.data.mode).toBe('approved');
     });
+
+    it('When adding an invalid order, then it returns 400 and NOT retrievable', async () => {
+      //Arrange
+      const orderToAdd = {
+        userId: 1,
+        mode: 'draft',
+        externalIdentifier: `100-${getShortUnique()}`, //unique value
+      };
+
+      //Act
+      const { status: addingHTTPStatus } = await axiosAPIClient.post(
+        '/order',
+        orderToAdd
+      );
+
+      //Assert
+      const { status: fetchingHTTPStatus } = await axiosAPIClient.get(
+        `/order/externalIdentifier/${orderToAdd.externalIdentifier}`
+      ); // Trying to get the order that should have fail early
+      expect({ addingHTTPStatus, fetchingHTTPStatus }).toMatchObject({
+        addingHTTPStatus: 400,
+        fetchingHTTPStatus: 404,
+      });
+    });
   });
   describe('GET /order:/id', () => {
     test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
@@ -102,7 +129,6 @@ describe('/api', () => {
     });
   });
 
-
   describe('Get /order', () => {
     // ️️️✅ Best Practice: Acknowledge that other unknown records might exist, find your expectations within
     // the result
@@ -118,18 +144,26 @@ describe('/api', () => {
         productId: 2,
         externalIdentifier: `id-${getShortUnique()}`,
       };
-      const deletedOrder = (await axiosAPIClient.post('/order', orderToDelete)).data.id;
+      const deletedOrder = (await axiosAPIClient.post('/order', orderToDelete))
+        .data.id;
       const orderNotToBeDeleted = orderToDelete;
       orderNotToBeDeleted.externalIdentifier = `id-${getShortUnique()}`;
-      const notDeletedOrder = (await axiosAPIClient.post('/order', orderNotToBeDeleted)).data.id;
+      const notDeletedOrder = (
+        await axiosAPIClient.post('/order', orderNotToBeDeleted)
+      ).data.id;
 
       // Act
-      const deleteRequestResponse = await axiosAPIClient.delete(`/order/${deletedOrder}`);
-
+      const deleteRequestResponse = await axiosAPIClient.delete(
+        `/order/${deletedOrder}`
+      );
 
       // Assert
-      const getDeletedOrderStatus = (await axiosAPIClient.get(`/order/${deletedOrder}`)).status;
-      const getNotDeletedOrderStatus = (await axiosAPIClient.get(`/order/${notDeletedOrder}`)).status;
+      const getDeletedOrderStatus = (
+        await axiosAPIClient.get(`/order/${deletedOrder}`)
+      ).status;
+      const getNotDeletedOrderStatus = (
+        await axiosAPIClient.get(`/order/${notDeletedOrder}`)
+      ).status;
       expect(getNotDeletedOrderStatus).toBe(200);
       expect(getDeletedOrderStatus).toBe(404);
       expect(deleteRequestResponse.status).toBe(204);

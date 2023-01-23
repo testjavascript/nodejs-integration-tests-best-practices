@@ -2,11 +2,10 @@ const express = require('express');
 const axios = require('axios');
 const sinon = require('sinon');
 const nock = require('nock');
-const {
-  initializeWebServer,
-  stopWebServer,
-} = require('../../../example-application/entry-points/api');
+const api = require('../../../example-application/entry-points/api');
 const OrderRepository = require('../../../example-application/data-access/order-repository');
+const routes = require('../../../example-application/entry-points/routes');
+
 const {
   metricsExporter,
 } = require('../../../example-application/error-handling');
@@ -17,7 +16,7 @@ let axiosAPIClient;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  const apiConnection = await initializeWebServer();
+  const apiConnection = await api.initializeWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
@@ -31,7 +30,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
-  await stopWebServer();
+  await api.stopWebServer();
 });
 
 beforeEach(() => {
@@ -106,6 +105,23 @@ describe('Error Handling', () => {
       ).toBe(true);
     });
 
+    test('When an error happens during the startup phase, then its logged and the process exit', async () => {
+      // Arrange
+      sinon.restore();
+      const processExitListener = sinon.stub(process, 'exit');
+      sinon
+        .stub(routes, 'defineRoutes') // Arbitrarily choose a function that throws an error
+        .throws(new Error('Cant initialize connection'));
+
+      // Act
+      try {
+        await api.initializeWebServer();
+      } catch (error) {} // Without this catch, the function's throw will make the test fail
+
+      // Assert
+      expect(processExitListener.called).toBe(true);
+    });
+
     test('When a non-trusted exception is throw, Then the process should exit', async () => {
       //Arrange
       const orderToAdd = {
@@ -162,7 +178,6 @@ describe('Error Handling', () => {
       // Assert
       expect(loggerDouble.lastCall.firstArg).toMatchObject(errorToThrow);
     });
-
 
     test.todo(
       "When an error is thrown during web request, then it's handled correctly"

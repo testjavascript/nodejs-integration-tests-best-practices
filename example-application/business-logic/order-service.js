@@ -5,6 +5,7 @@ const axiosRetry = require('axios-retry');
 const OrderRepository = require('../data-access/order-repository');
 const { AppError } = require('../error-handling');
 const MessageQueueClient = require('../libraries/message-queue-client');
+const config = require('../config');
 
 const axiosHTTPClient = axios.create();
 axiosRetry(axiosHTTPClient, { retries: 3 });
@@ -51,8 +52,12 @@ module.exports.deleteOrder = async function (id) {
   return await new OrderRepository().deleteOrder(id);
 };
 
-module.exports.getOrder = async function (id) {
-  return await new OrderRepository().getOrderById(id);
+module.exports.getOrderByExternalIdentifier = async function (
+  externalIdentifier
+) {
+  return await new OrderRepository().getOrderByExternalIdentifier(
+    externalIdentifier
+  );
 };
 
 async function getUserFromUsersService(userId) {
@@ -60,7 +65,7 @@ async function getUserFromUsersService(userId) {
     const getUserResponse = await axiosHTTPClient.get(
       `http://localhost/user/${userId}`,
       {
-        timeout: 2000,
+        timeout: config.HTTPCallTimeout,
         validateStatus: (status) => {
           return status < 500;
         },
