@@ -25,9 +25,9 @@ beforeAll(async () => {
   // Some http clients swallow the "no match" error, so throw here for easy debugging
   nock.emitter.on('no match', (req) => {
     if (req.hostname !== hostname) {
-      throw new Error(`Nock no match for: ${req.hostname}`)
+      throw new Error(`Nock no match for: ${req.hostname}`);
     }
-  })
+  });
 });
 
 beforeEach(() => {

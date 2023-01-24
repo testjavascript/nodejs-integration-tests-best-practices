@@ -93,13 +93,11 @@ test('When exception is throw during request, Then logger reports the mandatory 
 });
 ```
 
-## 👽 The 'mystery exception visitor' test - when an uncaught exception meets our code
+## 👽 The 'unexpected visitor' test - when an uncaught exception meets our code
 
-**👉What & why -** A typical error flow test falsely assumes two conditions: A valid error object was thrown, and it was caught. Neither is guaranteed, let's focus on the 2nd assumption: it's common for certain errors to left uncaught. The error might get thrown before your framework error handler is ready, some npm libraries can throw surprisingly from different stacks using timer functions, or you just forget to set someEventEmitter.on('error', ...). To name a few examples. These errors will find their way to the global process.on('uncaughtexception') handler, **hopefully if your code subscribed**. How do you simulate this scenario in a test? naively you may locate a code area that is not wrapped with try-catch and stub it to throw during the test. But here's a catch22: if you are familiar with such area - you are likely to fix it and ensure its errors are caught. What do we do then? we can bring to our benefit the fact the JavaScript is borderless, if some object can emit an event, we as its subscribers can make it emit this event ourselves, here's an example:
+**👉What & why -** A typical error flow test falsely assumes two conditions: A valid error object was thrown, and it was caught. Neither is guaranteed, let's focus on the 2nd assumption: it's common for certain errors to left uncaught. The error might get thrown before your framework error handler is ready, some npm libraries can throw surprisingly from different stacks using timer functions, or you just forget to set someEventEmitter.on('error', ...). To name a few examples. These errors will find their way to the global process.on('uncaughtException') handler, **hopefully if your code subscribed**. How do you simulate this scenario in a test? naively you may locate a code area that is not wrapped with try-catch and stub it to throw during the test. But here's a catch22: if you are familiar with such area - you are likely to fix it and ensure its errors are caught. What do we do then? we can bring to our benefit the fact the JavaScript is borderless, if some object can emit an event, we as its subscribers can make it emit this event ourselves, here's an example:
 
 researches says that, rejection
-
-Naive, better, enrich (so what, sexy visuals, link (social proof), numbers, advanced)
 
 **📝 Code**
 
@@ -119,26 +117,72 @@ test('When an unhandled exception is thrown, then process stays alive and the er
 });
 ```
 
-## 🔨 The 'overdoing' test - when the code mutates too much
-
-**👉What & why -** The thing with tests that deal with database is they focus on specific records, ignore effects to other records. This can be really bad, here's a story
-
-On top of your tests, write tests that check. Here is a nice trick that I was taught by Gil Tayar - when testing for...
-
-**📝 Code**
-
-```javascript
-
-```
-
 ## 🕵🏼 The 'hidden effect' test - when the code should not mutate at all
 
-**👉What & why -** A typical naive test is checking the API response as the source of the truth. Do you really believe this actor that much? Consider a test with validation, most check 400 response.
+**👉What & so what -** In common scenarios, the code under test should stop early like when the incoming payload is invalid or a user doesn't have sufficient credits to perform an operation. In these cases, no DB records should be mutated. Most tests out there in the wild settle with testing the HTTP response only - got back HTTP 400? great, the validation/authorization probably work. Or does it? The test trusts the code too much, a valid response doesn't guarantee that the code behind behaved as design. Maybe a new record was added although the user has no permissions? Clearly you need to test this, but how would you test that a record was NOT added? There are two options here: If the DB is purged before/after every test, than just try to perform an invalid operation and check that the DB is empty afterward. If you're not cleaning the DB often (like me, but that's another discussion), the payload must contain some unique and queryable value that you can query later and hope to get no records. This is how it looks like:
 
 **📝 Code**
 
 ```javascript
+it('When adding an invalid order, then it returns 400 and NOT retrievable', async () => {
+  //Arrange
+  const orderToAdd = {
+    userId: 1,
+    mode: 'draft',
+    externalIdentifier: uuid(), //no existing record has this value
+  };
 
+  //Act
+  const { status: addingHTTPStatus } = await axiosAPIClient.post(
+    '/order',
+    orderToAdd
+  );
+
+  //Assert
+  const { status: fetchingHTTPStatus } = await axiosAPIClient.get(
+    `/order/externalIdentifier/${orderToAdd.externalIdentifier}`
+  ); // Trying to get the order that should have failed
+  expect({ addingHTTPStatus, fetchingHTTPStatus }).toMatchObject({
+    addingHTTPStatus: 400,
+    fetchingHTTPStatus: 404,
+  });
+  // 👆 Check that no such record exists
+});
+```
+
+## 🧨 The 'overdoing' test - when the code should mutate but it's doing too much
+
+**👉What & why -** This is how a typical data-oriented test looks like: first you add some records, then approach the code under test, and finally assert what happens to these specific records. So far, so good. There is one caveat here though: since the test narrows it focus to specific records, it ignores whether other record were unnecessarily affected. This can be really bad, here's a short real-life story that happened to my customer: Some data access code changed and incorporated a bug that updates ALL the system users instead of just one. All test pass since they focused on a specific record which positively updated, they just ignored the others. How would you test and prevent? here is a nice trick that I was taught by my friend Gil Tayar: in the first phase of the test, besides the main records, add one or more 'control' records that should not get mutated during the test. Then, run the code under test, and besides the main assertion, check also that the control records were not affected:
+
+**📝 Code**
+
+```javascript
+test('When deleting an existing order, Then it should NOT be retrievable', async () => {
+  // Arrange
+  const orderToDelete = {
+    userId: 1,
+    productId: 2,
+  };
+  const deletedOrder = (await axiosAPIClient.post('/order', orderToDelete)).data
+    .id; // We will delete this soon
+  const orderNotToBeDeleted = orderToDelete;
+  const notDeletedOrder = (
+    await axiosAPIClient.post('/order', orderNotToBeDeleted)
+  ).data.id; // We will not delete this
+
+  // Act
+  await axiosAPIClient.delete(`/order/${deletedOrder}`);
+
+  // Assert
+  const { status: getDeletedOrderStatus } = await axiosAPIClient.get(
+    `/order/${deletedOrder}`
+  );
+  const { status: getNotDeletedOrderStatus } = await axiosAPIClient.get(
+    `/order/${notDeletedOrder}`
+  );
+  expect(getNotDeletedOrderStatus).toBe(200);
+  expect(getDeletedOrderStatus).toBe(404);
+});
 ```
 
 ## 🕰 The 'slow collaborator' test - when the other service times out

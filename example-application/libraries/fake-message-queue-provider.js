@@ -4,9 +4,12 @@ const { EventEmitter } = require('events');
 // and implement the same signature, but each method does nothing but emit an event which the test
 // can verify that indeed happened
 class FakeMessageQueueProvider extends EventEmitter {
+  constructor() {
+    super();
+    this.setMaxListeners(50);
+  }
   async consume(queueName, messageHandler) {
     this.messageHandler = messageHandler;
-    Promise.resolve();
   }
 
   async publish(exchangeName, routingKey, newMessage) {
