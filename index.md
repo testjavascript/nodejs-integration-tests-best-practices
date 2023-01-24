@@ -55,33 +55,36 @@ test('When an error happens during the startup phase, then the process exits', a
 });
 ```
 
-## 👽 The 'stranger in town' exceptions test
+## 👀 The observability test
 
-**👉What & why -** Naively, many mostly tests errors that they are expecting for and caught. BUT... In reality, researches says that. 3rd party libs
+**👉What & why -** For many, testing error means checking the exception type or the API response. This leaves one of the most essential parts uncovered - making the error **correctly observable**. In plain words, ensuring that it's being logged correctly and exposed to the monitoring system. It might sound like an internal thing, implementation testing, but actually, it goes directly to a user. Yes, not the end-user, but rather another important one - the ops user who is on-call. What are the expectations of this user? At the very basic level, when a production issue arises, she must see detailed log entries, including stack trace, cause and other properties. This info can save the day when dealing with production incidents. On to of this, in many systemss, monitoring is managed separately to conclude about the overall system state using cumulative heuristics (e.g., an increase in the number of errors over the last 3 hours). To support this monitoring needs, the code also must fire error metrics. Even tests that do try to cover these needs take a naive approach by checking that the logger function was called - but hey, does it include the right data? Some write better tests that check the error type that was passed to the logger, good enough? No! The ops user doesn't care about the JavaScript class names but the JSON data that is sent out. The following test focuses on the specific properties that are being made observable:
 
 **📝 Code**
 
 ```javascript
-test('When exception is throw during request, Then a metric is fired', async () => {
+test('When exception is throw during request, Then logger reports the mandatory fields', async () => {
   //Arrange
   const orderToAdd = {
     userId: 1,
     productId: 2,
     mode: 'approved',
   };
-
-  const errorToThrow = new AppError(
-    'example-error',
-    'some example message',
-    500
-  );
-  sinon.stub(OrderRepository.prototype, 'addOrder').throws(errorToThrow);
   const metricsExporterDouble = sinon.stub(metricsExporter, 'fireMetric');
+  sinon
+    .stub(OrderRepository.prototype, 'addOrder')
+    .rejects(new AppError('saving-failed', 'Order could not be saved', 500));
+  const loggerDouble = sinon.stub(logger, 'error');
 
   //Act
   await axiosAPIClient.post('/order', orderToAdd);
 
   //Assert
+  expect(loggerDouble.lastCall.firstArg).toMatchObject({
+    name: 'saving-failed',
+    status: 500,
+    stack: expect.any(String),
+    message: expect.any(String),
+  });
   expect(
     metricsExporterDouble.calledWith('error', {
       errorName: 'example-error',
@@ -90,18 +93,30 @@ test('When exception is throw during request, Then a metric is fired', async () 
 });
 ```
 
-## 👀 The observability test
+## 👽 The 'mystery exception visitor' test - when an uncaught exception meets our code
 
-**👉What & why -** When some bad things happen, make them visible is the best we can, this can save the day, and it might not happen until we test it. Observable here stands for logging+metrics.
+**👉What & why -** A typical error flow test falsely assumes two conditions: A valid error object was thrown, and it was caught. Neither is guaranteed, let's focus on the 2nd assumption: it's common for certain errors to left uncaught. The error might get thrown before your framework error handler is ready, some npm libraries can throw surprisingly from different stacks using timer functions, or you just forget to set someEventEmitter.on('error', ...). To name a few examples. These errors will find their way to the global process.on('uncaughtexception') handler, **hopefully if your code subscribed**. How do you simulate this scenario in a test? naively you may locate a code area that is not wrapped with try-catch and stub it to throw during the test. But here's a catch22: if you are familiar with such area - you are likely to fix it and ensure its errors are caught. What do we do then? we can bring to our benefit the fact the JavaScript is borderless, if some object can emit an event, we as its subscribers can make it emit this event ourselves, here's an example:
 
-Other idea? what is worth than the ops person noticing bad things happening in production? bad things happening in production without a notice
+researches says that, rejection
 
-There are also naive implementation of these tests - only log, no properties, check the type,
+Naive, better, enrich (so what, sexy visuals, link (social proof), numbers, advanced)
 
 **📝 Code**
 
 ```javascript
+test('When an unhandled exception is thrown, then process stays alive and the error is logged', async () => {
+  //Arrange
+  const loggerDouble = sinon.stub(logger, 'error');
+  const processExitListener = sinon.stub(process, 'exit');
+  const errorToThrow = new Error('An error that wont be caught 😳');
 
+  //Act
+  process.emit('uncaughtException', errorToThrow); //👈 Where the magic is
+
+  // Assert
+  expect(processExitListener.called).toBe(false);
+  expect(loggerDouble.lastCall.firstArg).toMatchObject(errorToThrow);
+});
 ```
 
 ## 🔨 The 'overdoing' test - when the code mutates too much
