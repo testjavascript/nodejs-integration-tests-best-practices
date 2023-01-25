@@ -185,16 +185,41 @@ test('When deleting an existing order, Then it should NOT be retrievable', async
 });
 ```
 
-## 🕰 The 'slow collaborator' test - when the other service times out
+## 🕰 The 'slow collaborator' test - when the other HTTP service times out
 
-**👉What & why -** Do you know what happen when is slow? when it times out? what can I do? if important - retry, back-off, at the bare minimum log and metric. How do you simulate this without making your tests too slow?
-
-Ideas: two versions, use this to simulate
+**👉What & why -** When your code approaches other services/microservices via HTTP, savvy testers minimize end-to-end tests because they lean toward happy paths (it's harder to simulate scenarios). This mandates using some mocking tool to act like the remote service, for example, using tools like [nock](https://github.com/nock/nock) or [wiremock](https://wiremock.org/). These tools are great, only some are using them naively and check mainly that calls outside were indeed made. What if the other service is not available **in production**, what if it is slower and times out occasionally? While you can't wholly save this transaction, your code should do the best given the situation and retry, or at least log and return the right status to the caller. All the network mocking tools allow simulating delays, timeouts and other 'chaotic' scenarios. Question left is how to simulate slow response without having slow tests? You may use [fake timers](https://sinonjs.org/releases/latest/fake-timers/) and trick the system into believing as few seconds passed in a single tick. If you're using [nock](https://github.com/nock/nock), it offers an interesting feature to simulate timeouts **quickly**: the .delay function simulates slow responses, then nock will realize immediately if the delay is higher than the HTTP client timeout and throw a timeout event immediately without waiting
 
 **📝 Code**
 
 ```javascript
+// In this example, our code accepts new Orders and while processing them approaches the Users Microservice
+test('When users service times out, then return 503 (option 1 with fake timers)', async () => {
+  //Arrange
+  const clock = sinon.useFakeTimers();
+  config.HTTPCallTimeout = 1000; // Set a timeout for outgoing HTTP calls
+  nock(`${config.userServiceURL}/user/`)
+    .get('/1', () => clock.tick(2000)) // Reply delay is bigger than configured timeout
+    .reply(200);
+  const loggerDouble = sinon.stub(logger, 'error');
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    mode: 'approved',
+  };
 
+  //Act
+  // 👇try to add new order which should fail due to User service not available
+  const response = await axiosAPIClient.post('/order', orderToAdd);
+
+  //Assert
+  // 👇At least our code does its best given this situation
+  expect(response.status).toBe(503);
+  expect(loggerDouble.lastCall.firstArg).toMatchObject({
+    name: 'user-service-not-available',
+    stack: expect.any(String),
+    message: expect.any(String),
+  });
+});
 ```
 
 ## 💊 The 'poisoned message' test - when the message consumer gets an invalid payload that might put it in stagnation
@@ -235,5 +260,6 @@ Ideas: Can't verify, always manual, failure image
 
 Reach all the corners
 Unlike unit and E2E
+Level-up - provide more examples
 
 • Packaged lib #write
