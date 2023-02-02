@@ -5,7 +5,7 @@ const authenticationMiddleware = require('./authentication-middleware');
 const {
   initializeWebServer,
   stopWebServer,
-} = require('../../example-application/entry-points/api');
+} = require('../../../example-application/entry-points/api');
 
 async function initializeWebServerAndAddHooks() {
   // Let's add login middleware to the main api

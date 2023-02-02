@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config");
+const config = require("./simple-jwt-token/config");
 
 function signTokenSynchronously(user, role) {
     return internalSignTokenSynchronously(user, role, Date.now() + (60 * 60));

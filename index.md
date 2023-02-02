@@ -198,7 +198,7 @@ test('When users service times out, then return 503 (option 1 with fake timers)'
   const clock = sinon.useFakeTimers();
   config.HTTPCallTimeout = 1000; // Set a timeout for outgoing HTTP calls
   nock(`${config.userServiceURL}/user/`)
-    .get('/1', () => clock.tick(2000)) // Reply delay is bigger than configured timeout
+    .get('/1', () => clock.tick(2000)) // Reply delay is bigger than configured timeout 👆
     .reply(200);
   const loggerDouble = sinon.stub(logger, 'error');
   const orderToAdd = {
@@ -224,13 +224,78 @@ test('When users service times out, then return 503 (option 1 with fake timers)'
 
 ## 💊 The 'poisoned message' test - when the message consumer gets an invalid payload that might put it in stagnation
 
-**👉What & why -** Unlike HTTP, in MQ - not rejecting messages correctly can result in paralyzed consumer. This is why this syndrome is called 'poisoned message'. To cover, we need to test all the pieces, not just the logic but working with real MQ is flaky. My advice here is to work with a fake (example) and wrap it with a promise that tells when things happen. This will spare quirky techniques like polling, callbacks, huge timeouts. Simply put, inject in your message queue client code a 'waitFor(eventName, howManyTimes) : Promise<EventInfo>' which will tell the test when things are done. Here is a full example of such a fake queue using RabbitMQ.
+**👉What & so what -** When testing flows that start or end in a queue, I bet you're going to bypass the message queue layer, where the code and libraries consume a queue, and you approach the logic layer directly. Yes, it makes things easier but leaves a class of uncovered risks. For example, what if the logic part throws an error or the message schema is invalid but the message queue consumer fails to translate this exception into a proper message queue action. For example, the consumer code might fail to reject the message or increment the number of attempts (depends on the type of queue that you're using). When this happens, the message will enter a loop where it always served again and again. Since this will apply to many messages, things can get really bad as the queue gets highly saturated. For this reason this syndrome was called the 'poisoned message'. To mitigate this risk, the tests' scope must include all the layers like how you probably do when testing against APIs. Unfortunately, this is not as easy as testing with DB because message queues are flaky
+
+When testing with real queues things get curios and curiouser: tests from different process will steal messages from each other, purging queues is harder that you might think (e.g. [SQS demand 60 seconds](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-using-purge-queue.html) to purge queues), to name a few challenges that you won't find when dealing with real DB
+
+Here is a strategy that works for many teams and holds a small compromise - use a fake in-memory message queue. By 'fake' I mean something simplistic that acts like a stub/spy and do nothing but telling when certain calls are made (e.g., consume, delete, publish). You might find reputable fakes/stubs for your own message queue like [this one for SQS](https://github.com/m-radzikowski/aws-sdk-client-mock) and you can code one **easily** yourself. No worries, I'm not a favour of maintaining myself testing infrastructure, this proposed component is extremely simply and unlikely to surpass 50 lines of code (see example below). On top of this, whether using a real or fake queue, one more thing is needed: create a convenient interface that tells to the test when certain things happened like when a message was acknowledged/deleted or a new message was published. Without this, the test never knows when certain events happened and lean toward quirky techniques like polling. Having this setup, the test will be short, flat and you can easily simulate common message queue scenarios like out of order messages, batch reject, duplicated messages and in our example - the poisoned message scenario (using RabbitMQ):
 
 **📝 Code**
 
-```javascript
+1. Create a fake message queue that does almost nothing but record calls, see full example here
 
+```javascript
+class FakeMessageQueueProvider extends EventEmitter {
+  // Implement here
+
+  publish(message) {}
+
+  consume(queueName, callback) {}
+}
 ```
+
+2. Make your message queue client accept real or fake provider
+
+```javascript
+class MessageQueueClient extends EventEmitter {
+  // Pass to it a fake or real message queue
+  constructor(customMessageQueueProvider) {}
+
+  publish(message) {}
+
+  consume(queueName, callback) {}
+}
+```
+
+3. Expose a convenient function that tells when certain calls where made
+
+```javascript
+class MessageQueueClient extends EventEmitter {
+  publish(message) {}
+
+  consume(queueName, callback) {}
+
+  // 👇
+  waitForEvent(eventName: 'publish' | 'consume' | 'acknowledge' | 'reject', howManyTimes: number) : Promise
+}
+```
+
+4. The test is now short, flat and expressive 👇
+
+```javascript
+const FakeMessageQueueProvider = require('./libs/fake-message-queue-provider');
+const MessageQueueClient = require('./libs/message-queue-client');
+const newOrderService = require('./domain/newOrderService');
+
+test('When a poisoned message arrives, then it is being rejected back', async () => {
+  // Arrange
+  const messageWithInvalidSchema = { nonExistingProperty: 'invalid❌' };
+  const messageQueueClient = new MessageQueueClient(
+    new FakeMessageQueueProvider()
+  );
+  messageQueueClient.consume('orders.new', newOrderService.addOrder);
+
+  // Act
+  await messageQueueClient.publish('orders.new', messageWithInvalidSchema);
+  // Now all the layers of the app will get stretched 👆, including logic and message queue libraries
+
+  // Assert
+  await messageQueueClient.waitFor('reject', { howManyTimes: 1 });
+  // This tells us that eventually our code asked the message queue client to reject this poisoned message
+});
+```
+
+**📝Full code example -** [is here](http://soon.com)
 
 ## 🗞 The 'false envelope' test - when the caller provides an invalid JWT token (not easy to test!)
 
@@ -244,16 +309,75 @@ Ideas: ?
 
 ```
 
-## 🗞 The 'misleading docs' test - when the code is great but its corresponding OpenAPI docs leads to a production bug
+## 🗞 The 'broken contract' test - when the code is great but its corresponding OpenAPI docs leads to a production bug
 
-**👉What & why -** Wrong docs can lead not only to users frustration but also to a production bug. Here is an example: Removed the field, deletionDate, forgot to update its OpenAPI, the client tries to base some logic on this field and BOOM -> production bug. While there are some fancy techniques like contract, some leaner options exist to cover this easily. Jest-openapi and mocha-openapi are solving this in a fantastic approach. They listen to the network and when a response bounces in, they validate they payload against the OpenAPI docs - if there is a mismatch they will fail
+**👉What & so what -** Quite confidently I'm sure that almost no team test their OpenAPI correctness. "It's just documentation", "we generate it automatically based on code" are typical belief found for this reason. Let me show you how this auto generated documentation can be wrong and lead not only to frustration but also to a bug. In production.
 
-Ideas: Can't verify, always manual, failure image
+Consider the following scenario, you're requested to return HTTP error status code if an order is duplicated but forget to update the OpenAPI specification with this new HTTP status response. While some framework can update the docs with new fields, none can realize which errors your code throws, this labour is always manual. On the other side of the line, the API client is doing everything just right, going by the spec that you published, adding orders with some duplication because the docs don't forbid doing so. Then, BOOM, production bug -> the client crashes and shows an ugly unknown error message to the user. This type of failure is called the 'contract' problem when two parties interact, each has a code that works perfect, they just operate under different spec and assumptions. While there are fancy sophisticated and exhaustive solution to this challenge (e.g., [PACT](https://pact.io)), there are also leaner approaches that gets you covered _easily and quickly_ (at the price of covering less risks).
+
+The following sweet technique is based on libraries (jest, mocha) that listen to all network responses, compare the payload against the OpenAPI document, and if any deviation is found - make the test fail with a descriptive error. With this new weapon in your toolbox and almost zero effort, another risk is ticked. It's a pity that these libs can't assert also against the incoming requests to tell you that your tests use the API wrong. One small caveat and an elegant solution: These libraries dictate putting an assertion statement in every test - expect(response).toSatisfyApiSpec(), a bit tedious and relies on human discipline. You can do better if your HTTP client supports plugin/hook/interceptor by putting this assertion in a single place that will apply in all the tests:
 
 **📝 Code**
 
-```javascript
+API throw a new error status
 
+```javascript
+if (doesOrderCouponAlreadyExist) {
+  throw new AppError('duplicated-coupon', { httpStatus: 409 });
+}
+```
+
+The OpenAPI doesn't document HTTP status '409', no framework knows to update the OpenAPI doc based on thrown exceptions
+
+```json
+"responses": {
+    "200": {
+      "description": "successful",
+      }
+    ,
+    "400": {
+      "description": "Invalid ID",
+      "content": {}
+    },// No 409 in this list
+}
+
+```
+
+Test it
+
+```javascript
+const jestOpenAPI = require('jest-openapi');
+jestOpenAPI('../openapi.json');
+
+test('When an order with duplicated coupon is added , then 409 error should get returned', async () => {
+  // Arrange
+  const orderToAdd = {
+    userId: 1,
+    productId: 2,
+    couponId: uuid(),
+  };
+  await axiosAPIClient.post('/order', orderToAdd);
+
+  // Act
+  // We're adding the same coupon twice 👇
+  const receivedResponse = await axios.post('/order', orderToAdd);
+
+  Assert;
+  expect(receivedResponse.status).toBe(409);
+  expect(res).toSatisfyApiSpec();
+  // This 👆 will throw if the API response, body or status, is different that was it stated in the OpenAPI
+});
+```
+
+Trick: If your HTTP client supports any kind of plugin/hook/interceptor, put the following code in 'beforeAll'. This covers all the tests against OpenAPI mismatches
+
+```javascript
+beforeAll(() => {
+  axios.interceptors.response.use((response) => {
+    expect(response.toSatisfyApiSpec());
+    // With this 👆, add nothing to the tests - each will fail if the response deviates from the docs
+  });
+});
 ```
 
 ## Ideas
@@ -263,3 +387,7 @@ Unlike unit and E2E
 Level-up - provide more examples
 
 • Packaged lib #write
+
+```
+
+```
