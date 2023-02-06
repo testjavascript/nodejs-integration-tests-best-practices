@@ -26,6 +26,7 @@
     "@types/aws-sdk": "^2.7.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/nock": "^11.1.0",
+    "@types/sequelize": "^4.28.14",
     "amqplib": "^0.10.3",
     "axios": "^1.2.2",
     "axios-retry": "^3.3.1",

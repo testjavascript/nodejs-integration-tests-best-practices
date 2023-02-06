@@ -74,6 +74,16 @@ const defineRoutes = (expressApp) => {
     res.status(204).end();
   });
 
+  // get orders by user id
+  router.get('/byUserId/:id', async (req, res, next) => {
+    console.log(
+      `Order API was called to get orders by user id ${req.params.id}`
+    );
+    const response = await orderService.getOrdersByUserId(req.params.id);
+
+    res.json(response);
+  });
+
   expressApp.use('/order', router);
 
   expressApp.use(async (error, req, res, next) => {

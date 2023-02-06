@@ -29,7 +29,7 @@ class FakeMessageQueueProvider extends EventEmitter {
     this.emit('message-handled', eventDescription);
   }
 
-  async assertQueue() {}
+  async assertQueue(queueName) {}
 
   async createChannel() {
     return this;

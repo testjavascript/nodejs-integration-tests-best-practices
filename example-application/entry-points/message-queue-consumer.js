@@ -14,13 +14,16 @@ class QueueConsumer {
 
   async consumeUserDeletionQueue() {
     await this.messageQueueClient.consume('user.deleted', async (message) => {
+      console.log(
+        `user.deleted consumer got a new message about user ${message}`
+      );
       // ️️️Validate message
       const newMessageAsObject = JSON.parse(message);
       if (!newMessageAsObject.id) {
         throw new AppError('invalid-message', 'Unknown message schema');
       }
 
-      await orderService.deleteOrder(newMessageAsObject.id);
+      await orderService.deleteUserOrders(newMessageAsObject.id);
     });
   }
 }

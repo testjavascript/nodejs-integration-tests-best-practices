@@ -34,7 +34,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  nock('http://localhost/user/').get(`/1`).reply(200, {
+  nock('http://localhost/user/').get(/\d/).reply(200, {
     id: 1,
     name: 'John',
   });
@@ -52,31 +52,6 @@ afterAll(async () => {
   //await messageQueueClient.close();
   nock.enableNetConnect();
   process.env.USE_FAKE_MQ = undefined;
-});
-
-// ️️️✅ Best Practice: Test a flow that starts via a queue message and ends with removing/confirming the message
-test('Whenever a user deletion message arrive, then his orders are deleted', async () => {
-  // Arrange
-  const orderToAdd = {
-    userId: 1,
-    productId: 2,
-    mode: 'approved',
-  };
-  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
-    .id;
-  const messageQueueClient = await testHelpers.startMQConsumer('fake');
-
-  // Act
-  await messageQueueClient.publish('user.events', 'user.deleted', {
-    id: addedOrderId,
-  });
-
-  // Assert
-  await messageQueueClient.waitFor('ack', 1);
-  const aQueryForDeletedOrder = await axiosAPIClient.get(
-    `/order/${addedOrderId}`
-  );
-  expect(aQueryForDeletedOrder.status).toBe(404);
 });
 
 test('When a poisoned message arrives, then it is being rejected back', async () => {
@@ -97,9 +72,8 @@ test('When a poisoned message arrives, then it is being rejected back', async ()
 
 test('When user deleted message arrives, then all corresponding orders are deleted', async () => {
   // Arrange
-  const orderToAdd = { userId: 1, productId: 2, status: 'approved' };
-  const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
-    .id;
+  const orderToAdd = { userId: 7, productId: 2, status: 'approved' };
+  await axiosAPIClient.post('/order', orderToAdd);
   const messageQueueClient = new MessageQueueClient(
     new FakeMessageQueueProvider()
   );
@@ -107,15 +81,15 @@ test('When user deleted message arrives, then all corresponding orders are delet
 
   // Act
   await messageQueueClient.publish('user.events', 'user.deleted', {
-    id: addedOrderId,
+    id: orderToAdd.userId,
   });
 
   // Assert
   await messageQueueClient.waitFor('ack', 1);
   const aQueryForDeletedOrder = await axiosAPIClient.get(
-    `/order/${addedOrderId}`
+    `/order/byUserId/${orderToAdd.userId}`
   );
-  expect(aQueryForDeletedOrder.status).toBe(404);
+  expect(aQueryForDeletedOrder.data).toMatchObject([]);
 });
 
 // ️️️✅ Best Practice: Verify that messages are put in queue whenever the requirements state so

@@ -39,7 +39,10 @@ module.exports = class OrderRepository {
 
   async getOrderById(id) {
     return await orderModel.findOne({ where: { id } });
+  }
 
+  async getOrdersByUserId(id) {
+    return await orderModel.findAll({ where: { userId: id } });
   }
 
   async addOrder(orderDetails) {
@@ -50,6 +53,11 @@ module.exports = class OrderRepository {
 
   async deleteOrder(orderToDelete) {
     await orderModel.destroy({ where: { id: orderToDelete } });
+    return;
+  }
+
+  async deleteUserOrders(userId) {
+    await orderModel.destroy({ where: { userId: userId } });
     return;
   }
 

@@ -51,8 +51,16 @@ module.exports.deleteOrder = async function (id) {
   return await new OrderRepository().deleteOrder(id);
 };
 
+module.exports.deleteUserOrders = async function (userId) {
+  return await new OrderRepository().deleteUserOrders(userId);
+};
+
 module.exports.getOrder = async function (id) {
   return await new OrderRepository().getOrderById(id);
+};
+
+module.exports.getOrdersByUserId = async function (userId) {
+  return await new OrderRepository().getOrdersByUserId(userId);
 };
 
 async function getUserFromUsersService(userId) {

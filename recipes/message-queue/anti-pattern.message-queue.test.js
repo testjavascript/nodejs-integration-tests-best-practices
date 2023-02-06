@@ -1,4 +1,7 @@
 const MessageQueueClient = require('../../example-application/libraries/message-queue-client');
+const {
+  QueueConsumer,
+} = require('../../example-application/entry-points/message-queue-consumer');
 
 beforeEach(async () => {
   const messageQueueClient = new MessageQueueClient();
@@ -13,23 +16,18 @@ test('When user deleted message arrives, then all corresponding orders are delet
   const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
     .id;
   const messageQueueClient = new MessageQueueClient();
-  await new QueueSubscriber(messageQueueClient, 'user.deleted').start();
+  await new QueueConsumer(messageQueueClient, 'user.deleted').start();
 
   // Act
   await messageQueueClient.publish('user.events', 'user.deleted', {
-    id: addedOrderId,
+    id: orderToAdd.userId,
   });
 
   // Assert
-  let aQueryForDeletedOrder;
-  await poller(10, async () => {
-    aQueryForDeletedOrder = await axiosAPIClient.get(`/order/${addedOrderId}`);
-    if (aQueryForDeletedOrder.status === 404) {
-      return true;
-    }
-    return false;
-  });
-  expect(aQueryForDeletedOrder.status).toBe(404);
+  const aQueryForDeletedOrder = await axiosAPIClient.get(
+    `/order/byUserId/${orderToAdd.userId}`
+  );
+  expect(aQueryForDeletedOrder.data).toMatchObject([]);
 });
 
 /**
