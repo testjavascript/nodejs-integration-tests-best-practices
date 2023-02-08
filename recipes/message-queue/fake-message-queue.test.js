@@ -34,7 +34,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  nock('http://localhost/user/').get(/\d/).reply(200, {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
     name: 'John',
   });
@@ -52,6 +52,24 @@ afterAll(async () => {
   //await messageQueueClient.close();
   nock.enableNetConnect();
   process.env.USE_FAKE_MQ = undefined;
+});
+test('When a valid order is added, then a message is published to the new orders queue', async () => {
+  // Arrange
+  const validOrder = { userId: 1, productId: 1 };
+  const listenToPublishMessage = sinon.stub(
+    MessageQueueClient.prototype,
+    'publish'
+  );
+
+  // Act
+  await axiosAPIClient.post('/order', validOrder);
+
+  // Assert
+  expect(listenToPublishMessage.lastCall.args).toMatchObject([
+    'order.events',
+    'order.events.new',
+    { productId: 1, userId: 1 },
+  ]);
 });
 
 test('When a poisoned message arrives, then it is being rejected back', async () => {
@@ -72,7 +90,7 @@ test('When a poisoned message arrives, then it is being rejected back', async ()
 
 test('When user deleted message arrives, then all corresponding orders are deleted', async () => {
   // Arrange
-  const orderToAdd = { userId: 7, productId: 2, status: 'approved' };
+  const orderToAdd = { userId: 1, productId: 2, status: 'approved' };
   await axiosAPIClient.post('/order', orderToAdd);
   const messageQueueClient = new MessageQueueClient(
     new FakeMessageQueueProvider()
@@ -100,14 +118,36 @@ test('When a valid order is added, then a message is emitted to the new-order qu
     productId: 2,
     mode: 'approved',
   };
-  const spyOnSendMessage = sinon.spy(MessageQueueClient.prototype, 'publish');
+  const spyOnSendMessage = sinon.stub(MessageQueueClient.prototype, 'publish');
 
   //Act
   await axiosAPIClient.post('/order', orderToAdd);
 
   // Assert
-  expect(spyOnSendMessage.lastCall.args[0]).toBe('order.events');
-  expect(spyOnSendMessage.lastCall.args[1]).toBe('order.events.new');
+  expect(spyOnSendMessage.lastCall.args).toMatchObject([
+    'order.events',
+    'order.events.new',
+    { mode: 'approved', productId: 2, userId: 1 },
+  ]);
+});
+
+test('When a duplicated message arrives, then it is being rejected back', async () => {
+  // Arrange
+  const messageWithInvalidSchema = { nonExistingProperty: 'invalid❌' };
+  const messageQueueClient = new MessageQueueClient(
+    new FakeMessageQueueProvider()
+  );
+  await new QueueConsumer(messageQueueClient, 'user.deleted').start();
+
+  // Act
+  await messageQueueClient.publish(
+    'user.events',
+    'user.deleted',
+    messageWithInvalidSchema
+  );
+
+  // Assert
+  await messageQueueClient.waitFor('nack', 1);
 });
 
 test.todo('When an error occurs, then the message is not acknowledged');
