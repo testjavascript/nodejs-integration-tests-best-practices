@@ -4,10 +4,6 @@ const nock = require('nock');
 const testHelpers = require('./test-helpers');
 
 const {
-  getNextMQConfirmation,
-  startFakeMessageQueue,
-} = require('./test-helpers');
-const {
   initializeWebServer,
   stopWebServer,
 } = require('../../example-application/entry-points/api');
@@ -16,8 +12,8 @@ const {
   FakeMessageQueueProvider,
 } = require('../../example-application/libraries/fake-message-queue-provider');
 const {
-  QueueSubscriber,
-} = require('../../example-application/entry-points/message-queue-starter');
+  QueueConsumer,
+} = require('../../example-application/entry-points/message-queue-consumer');
 
 let axiosAPIClient;
 
@@ -68,21 +64,15 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
   };
   const addedOrderId = (await axiosAPIClient.post('/order', orderToAdd)).data
     .id;
-  const messageQueueClient = await testHelpers.startMQSubscriber(
-    'fake',
-    'user.deleted'
-  );
+  const messageQueueClient = await testHelpers.startMQConsumer('fake');
 
   // Act
-  console.log('0');
   await messageQueueClient.publish('user.events', 'user.deleted', {
     id: addedOrderId,
   });
 
   // Assert
-  console.log('1');
   await messageQueueClient.waitFor('ack', 1);
-  console.log('2');
   const aQueryForDeletedOrder = await axiosAPIClient.get(
     `/order/${addedOrderId}`
   );
@@ -92,10 +82,7 @@ test('Whenever a user deletion message arrive, then his orders are deleted', asy
 test('When a poisoned message arrives, then it is being rejected back', async () => {
   // Arrange
   const messageWithInvalidSchema = { nonExistingProperty: 'invalid❌' };
-  const messageQueueClient = await testHelpers.startMQSubscriber(
-    'fake',
-    'user.deleted'
-  );
+  const messageQueueClient = await testHelpers.startMQConsumer('fake');
 
   // Act
   await messageQueueClient.publish(
@@ -116,7 +103,7 @@ test('When user deleted message arrives, then all corresponding orders are delet
   const messageQueueClient = new MessageQueueClient(
     new FakeMessageQueueProvider()
   );
-  await new QueueSubscriber(messageQueueClient, 'user.deleted').start();
+  await new QueueConsumer(messageQueueClient, 'user.deleted').start();
 
   // Act
   await messageQueueClient.publish('user.events', 'user.deleted', {

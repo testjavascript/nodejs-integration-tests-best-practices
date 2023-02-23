@@ -1,9 +1,9 @@
 const { initializeWebServer } = require('./entry-points/api');
-const { MessageQueueStarter } = require('./entry-points/message-queue-starter');
+const { QueueConsumer } = require('./entry-points/message-queue-consumer');
 
 async function start() {
   await initializeWebServer();
-  await new MessageQueueStarter().start();
+  await new QueueConsumer().start();
 }
 
 start()
