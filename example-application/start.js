@@ -11,5 +11,5 @@ start()
     console.log('The app has started successfully');
   })
   .catch((error) => {
-    console.log('App occured during startup', error);
+    console.log('Error occured during startup', error);
   });
