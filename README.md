@@ -322,7 +322,7 @@ beforeAll(async () => {
 <details><summary>✏ <b>Code Examples</b></summary>
 
 ```js
-const initializeWebServer = async (customMiddleware) => {
+const initializeWebServer = async () => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
@@ -377,7 +377,7 @@ afterAll(async () => {
 
 ```js
 // api-under-test.js
-const initializeWebServer = async (customMiddleware) => {
+const initializeWebServer = async () => {
   return new Promise((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
