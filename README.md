@@ -20,6 +20,8 @@ This repository contains:
 
 <br/><br/>
 
+### 👨‍🏫 Exciting news: I've just released my super-comprehensive testing course after two years of recording and editing. [It's now on a 🎁 limited-time sale during July](https://testjavascript.com/)
+
 
 ![Header](/graphics/component-diagram.jpg "Component Tests")
 
