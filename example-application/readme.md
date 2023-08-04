@@ -1,5 +1,7 @@
 # Running the example app
 
+> More tests exists in the [recipes](../recipes) folder
+
 ## Prerequisites
 
 1. Docker
