@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest",
+    "test:vitest": "vitest",
     "test:dev": "jest --watch --silent --maxWorkers=2 --verbose=false",
     "test:dev:debug": "node --inspect=9229 node_modules/.bin/jest --watch --runInBand",
     "test:nestjs": "jest --config='./recipes/nestjs/ts-jest.config.js' basic-nest-tests.test.ts",
@@ -71,6 +72,7 @@
     "sinon": "^19.0.2",
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.2",
-    "umzug": "^3.8.2"
+    "umzug": "^3.8.2",
+    "vitest": "^3.0.8"
   }
 }

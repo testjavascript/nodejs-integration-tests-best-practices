@@ -1,8 +1,8 @@
 import sinon from 'sinon';
-import OrderRepository from '../data-access/order-repository';
-import { AppError, metricsExporter } from '../error-handling';
-import logger from '../libraries/logger';
-import { testSetup } from './setup/test-file-setup';
+import OrderRepository from '../../data-access/order-repository';
+import { AppError, metricsExporter } from '../../error-handling';
+import logger from '../../libraries/logger';
+import { testSetup } from '../setup/test-file-setup';
 
 let processExitStub: sinon.SinonStub;
 

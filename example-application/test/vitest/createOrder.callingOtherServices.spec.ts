@@ -1,7 +1,8 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import OrderRepository from '../data-access/order-repository';
-import { testSetup } from './setup/test-file-setup';
+import OrderRepository from '../../data-access/order-repository';
+import { testSetup } from '../setup/test-file-setup';
+import { describe, test, expect, beforeAll, beforeEach, afterAll } from 'vitest';
 
 beforeAll(async () => {
   await testSetup.start({

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import colors from 'colors/safe';
-import dateFns from 'date-fns';
+import * as dateFns from 'date-fns';
 import { AddressInfo } from 'net';
 import nock from 'nock';
 import * as sinon from 'sinon';
@@ -9,7 +9,7 @@ import { startWebServer, stopWebServer } from '../../entry-points/api';
 import { Roles, User } from '../../libraries/types';
 const jwt = require('jsonwebtoken');
 
-export type TestStartOptions = {  
+export type TestStartOptions = {
   startAPI: boolean;
   disableNetConnect: boolean;
   includeTokenInHttpClient: boolean;
@@ -24,9 +24,12 @@ let chosenOptions: TestStartOptions | undefined;
 
 export const testSetup = {
   start: async function (options: TestStartOptions) {
+    console.log('testSetup.start');
     chosenOptions = options;
     if (options.startAPI === true) {
+      console.log('testSetup.start.startWebServer');
       apiAddress = await startWebServer();
+      console.log('testSetup.start.apiAddress', apiAddress);
     }
     if (options.disableNetConnect === true) {
       disableNetworkConnect();

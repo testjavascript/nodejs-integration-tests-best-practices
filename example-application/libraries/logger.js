@@ -2,9 +2,11 @@
 // but it has the structure of a real logger
 
 module.exports.info = (message) => {
+  console.log("😉");
   console.log(message);
 };
 
 module.exports.error = (message) => {
+  console.log("😉🎉");
   console.error(message);
 };

@@ -1,6 +1,6 @@
-import { buildOrder } from './order-data-factory';
-import { testSetup } from './setup/test-file-setup';
-
+import { buildOrder } from '../order-data-factory';
+import { testSetup } from '../setup/test-file-setup';
+import { describe, test, expect, beforeAll, beforeEach, afterAll } from 'vitest';
 beforeAll(async () => {
   await testSetup.start({
     startAPI: true,
@@ -49,7 +49,7 @@ describe('POST /orders', () => {
 });
 
 describe('DELETE /order', () => {
-  test.only('When deleting an existing order, Then it should NOT be retrievable', async () => {
+  test('When deleting an existing order, Then it should NOT be retrievable', async () => {
     // Arrange
     const deletedOrder = (
       await testSetup.getHTTPClienForArrange().post('/order', buildOrder())
