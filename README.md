@@ -266,7 +266,7 @@ module.exports = async () => {
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsupported features❌; Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
+👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsupported features❌; Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
