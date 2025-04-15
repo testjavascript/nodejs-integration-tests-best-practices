@@ -80,11 +80,11 @@ _Lessons Written in Blood: Hard-Won Insights from Consulting with 50 Companies_
 
 :white_check_mark: **Do:** No matter when testing starts, the first tests to write should be component tests. But what exactly are component/integration tests? They focus on testing an entire component (e.g., a microservice) as-is, through its API, with all layers included—database and all—while faking anything extraneous. This approach delivers both high confidence (it's like the production environment!) and a great developer experience.
 
-Why start here? When a new sprint or feature begins, the first known details are about the component's expected behavior. Developers can immediately outline what the API/MQ will receive and what kind of response it should return. Naturally, testing this public interface first makes the most sense. This powerful testing approach brings immense value: it is realistic, demands less effort than covering every function with tests, requires close to zero mocking, triggers high coverage, and keeps the tester focused on what truly matters
+Why start here? When a new sprint or feature begins, the first known details are about the component's expected behavior. Developers can immediately outline what the API/MQ will receive and what kind of response it should return. Naturally, testing this public interface first makes the most sense. This powerful testing approach brings immense value: it is realistic, demands less effort than covering every function with tests, requires close to zero mocking, triggers high coverage, and keeps the tester focused on what truly matters.
 
 On the other hand, writing unit tests for inner functions before the overall outcome is clear is a wasted effort. Even classic TDD books emphasize this approach—check out the [the double verification loop model](https://miro.medium.com/max/700/0*c5ahAZusp87Bo6Io.jpg).
 
-At the end of the day, every input and output of a component must be covered with component tests. This is the bread and butter of your testing strategy—the Swiss Army knife that catches 99% of the bugs. This strategy is known as the 'Testing Diamond'
+At the end of the day, every input and output of a component must be covered with component tests. This is the bread and butter of your testing strategy—the Swiss Army knife that catches 99% of the bugs. This strategy is known as the 'Testing Diamond'.
 
 ![Component tests](/graphics/component-diagram.jpg 'Component Tests')
 
@@ -94,9 +94,9 @@ At the end of the day, every input and output of a component must be covered wit
 
 🏷&nbsp; **Tags:** ``
 
-:white\*check_mark: **Do:** Write just a tiny handful of E2E tests on top of component tests like 3-10, tests, maybe a couple more for larger components, but nothing beyond that. While "E2E" means different things to different testers, in a backend context, it refers to tests that run against live collaborators (i.e., multiple microservices) on a real infrastructure. Since component tests catch 99% of bugs, E2E tests should focus on different risks: configuration issues, misunderstandings with third-party services, infrastructure problems, and similar surprises. Catching these issues requires only a few well-placed tests
+:white_check_mark: **Do:** Write just a tiny handful of E2E tests on top of component tests like 3-10, tests, maybe a couple more for larger components, but nothing beyond that. While "E2E" means different things to different testers, in a backend context, it refers to tests that run against live collaborators (i.e., multiple microservices) on a real infrastructure. Since component tests catch 99% of bugs, E2E tests should focus on different risks: configuration issues, misunderstandings with third-party services, infrastructure problems, and similar surprises. Catching these issues requires only a few well-placed tests.
 
-When are unit tests needed? Only when dealing with non-trivial logic or algorithms. If a module has significant complexity, isolating it from distractions can make testing easier. [This article greatly outlines when unit tests shine](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)
+When are unit tests needed? Only when dealing with non-trivial logic or algorithms. If a module has significant complexity, isolating it from distractions can make testing easier. [This article greatly outlines when unit tests shine](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/).
 
 <br/><br/>
 
@@ -106,7 +106,7 @@ When are unit tests needed? Only when dealing with non-trivial logic or algorith
 
 Focus your tests on features, not just functions. Features represent the core behavior of your application—often reflected in API routes—and testing them ensures an automated focus on what truly matters. This approach also helps set the right priorities and often requires fewer tests than function-level testing.
 
-Coverage reports are a great way to see which controllers, modules, and folders are exercised by tests. They help identify which critical features have been tested and, just as importantly, highlight gaps where essential functionality might still be missing. To verify meaningful coverage, compare test reports with requirements, check coverage reports to confirm key features are included, and ensure core routes and messages are covered by tests
+Coverage reports are a great way to see which controllers, modules, and folders are exercised by tests. They help identify which critical features have been tested and, just as importantly, highlight gaps where essential functionality might still be missing. To verify meaningful coverage, compare test reports with requirements, check coverage reports to confirm key features are included, and ensure core routes and messages are covered by tests.
 <br/><br/>
 
 ### ⚪️ 4. Write the tests _during_ coding, never after
@@ -131,15 +131,15 @@ That said, writing tests too early (e.g., strict TDD) can lead to unnecessary re
 
 :white_check_mark: &nbsp; **Do:** When planning your tests, consider covering the five typical backend flow's outputs. That is, when your test is triggering some action (e.g., API call), a reaction is happening, something meaningful occurs and calls for testing. Note that we don't care about how things work. Our focus is on outcomes, things that are noticeable from the outside and might affect the user. These outcomes/reactions can be put in 5 categories:
 
-**• Response -** The test invokes an action (e.g., via API) and gets a response. It's now concerned with checking the response data correctness, schema, and HTTP status
+**• Response -** The test invokes an action (e.g., via API) and gets a response. It's now concerned with checking the response data correctness, schema, and HTTP status.
 
-**• A new state -** After invoking an action, some data is probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly and mistakenly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are greatly covered below in the 📗 section 'Dealing with data'
+**• A new state -** After invoking an action, some data is probably modified. For example, when updating a user - It might be that the new data was not saved. Commonly and mistakenly, testers check only the response and not whether the data is updated correctly. Testing data and databases raises multiple interesting challenges that are greatly covered below in the 📗 section 'Dealing with data'.
 
-**• Calls to external services -** After invoking an action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge a credit card. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic which is discussed in the 📗 section 'Testing integrations' below
+**• Calls to external services -** After invoking an action, the app might call an external component via HTTP or any other transport. For example, a call to send SMS, email or charge a credit card. Anything that goes outside and might affect the user - Should be tested. Testing integrations is a broad topic which is discussed in the 📗 section 'Testing integrations' below.
 
-**• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message in some MQ product. Now other components can consume this message and continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic
+**• Message queues -** The outcome of a flow might be a message in a queue. In our example application, once a new order was saved the app puts a message in some MQ product. Now other components can consume this message and continue the flow. This is very similar to testing integrations only working with message queues is different technically and tricky. The 📗 section 'Message Queues' below delve into this topic.
 
-**• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straightforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon, but the example application already contains examples in the file "createOrder.observabilityCheck.test.ts"
+**• Observability -** Some things must be monitored, like errors or remarkable business events. When a transaction fails, not only do we expect the right response but also correct error handling and proper logging/metrics. This information goes directly to a very important user - The ops user (i.e., production SRE/admin). Testing error handler is not very straightforward - Many types of errors might get thrown, some errors should lead to process crash, and there are many other corners to cover. We plan to write the 📗 section on 'Observability and errors' soon, however, the demo application already contains examples in the file "createOrder.observabilityCheck.test.ts".
 
 ![Component tests](/graphics/exit-doors.png 'Component Tests')
 
@@ -153,11 +153,11 @@ That said, writing tests too early (e.g., strict TDD) can lead to unnecessary re
 
 🏷&nbsp; **Tags:** `#strategic`
 
-:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure that is being used by the app should run in a docker-compose environment for testing purposes. Only this technology check all these boxes: A mature and popular technology that can be reused among developer machines and CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not necessarily be part of this docker-compose and can keep on running locally - This is usually more comfortable for developers.
+:white_check_mark: &nbsp; **Do:** All the databases, message queues and infrastructure components that are used by the app should run in a docker-compose environment for testing purposes. Only this technology checks all these boxes: A mature and popular technology that can be reused among developer machines and in CI. One setup, same files, run everywhere. Sweet value but one remarkable caveat - It's different from the production runtime platform. Things like memory limits, deployment pipeline, graceful shutdown and a-like act differently in other environments - Make sure to test those using pre-production tests over the real environment. Note that the app under test should not necessarily be part of this docker-compose setup and can keep on running locally - This is usually more comfortable for developers.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kubernetes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;
+👀 &nbsp; **Alternatives:** A popular option is manual installation of a local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kubernetes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;
 
 <br/>
 
@@ -194,7 +194,7 @@ services:
 
 <br/>
 
-👀 &nbsp; **Alternatives:** A popular option is manual installation of local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kubernetes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;
+👀 &nbsp; **Alternatives:** A popular option is manual installation of a local database - This results in developers working hard to get in-sync with each other ("Did you set the right permissions in the DB?") and configuring a different setup in CI ❌; Some use local Kubernetes or Serverless emulators which act almost like the real-thing, sounds promising but it won't work over most CIs vendors and usually more complex to setup in developers machine❌;
 
 <br/>
 
@@ -224,11 +224,11 @@ module.exports = async () => {
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark: **Do:** Keep the database and other infrastructure always alive in developers' machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continuously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environment? This careful tune-up is mostly important in a developer machine where the test might get executed very frequently (e.g. after every editor save, once a minute), in a CI environnement the next tests execution might happen in a different machine and there is no motivation to keep the the docker-compose up.
+:white_check_mark: **Do:** Keep the database and other infrastructure always alive in developers machine so the next tests run will start at a glance, typically in 3-5ms. This super-fast start-up will encourage developers to run the tests continuously and treat them as a coding companion: It's an amazing coding experience to have the tests running all the time and watching your back as you type. Keeping the DB alive requires a clear data clean-up strategy, see our recommendation below. What about CI environments? This careful tune-up is mostly important in a developer machine where the test might get executed frequently (e.g. after every editor save, once per minute), in a CI environnement the next test execution might happen in a different machine and there is no motivation in keeping docker-compose setup up and running.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every tests execution, the startup time is likely to be 20x slower and is likely to kill this continuous-testing experience ❌;
+👀 &nbsp; **Alternatives:** Should you teardown the docker-compose and restart in every test execution, the startup time is likely to be 20x slower and is likely going to kill this continuous-testing experience ❌;
 
 <br/>
 
@@ -262,11 +262,11 @@ module.exports = async () => {
 
 🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark: **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain is achieved and hundreds tests can be run in a few seconds. Our guide includes a recipe with examples of how to tune-up the popular DBs for testing
+:white_check_mark: **Do:** Use the same DB product that is being used in production and configure it for faster execution. Typically, DBs accept flags that allow to trade durability (i.e., data safety) for performance. With just a few configuration flags ~20-40% performance gain can be achieved and hundreds of tests can run in a few seconds. Our guide includes a recipe with examples on how to tune-up the popular DBs for testing.
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Some memory-only DB engines (e.g. SQLLite) are tempting - Surprisingly they are likely to be even slower in a multi-process testing mode + Present noise due to unsupported features❌; Some mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
+👀 &nbsp; **Alternatives:** Some in-memory DB engines (e.g. SQLLite) are tempting - Surprisingly, they are likely to be even slower in a multi-process testing mode + present noise due to unsupported features❌; Some other engines mock/stub the DB layer - Cutting off few seconds does not justify the greatly decreased risks coverage ❌
 
 <br/>
 
@@ -293,11 +293,11 @@ services:
 
 <br/><br/>
 
-### ⚪️ 5. Store test data in RAM folder
+### ⚪️ 5. Store test data in a RAM directory
 
 🏷&nbsp; **Tags:** `#performance`
 
-:white_check_mark: **Do:** Use your real DB product, just store the data in a RAM folder to reduce IO and gain some performance boost. In Linux machine, this can be done quickly by mapping the data to the built-in `tmpfs` directory - This particular folder's content is stored in memory without disc involvement. In Mac and Windows, one should generate a RAM folder using a script that can be done once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - The other optimizations that were covered above already minimize the IO work and modern SSD discs are blazing fast. Some specific databases like Mongo comes with a built-in memory engine, this is an additional option to consider.
+:white_check_mark: **Do:** Use your real DB product, just store the data in a RAM directory to reduce IO and gain some performance boost. On Linux machines, this can be done quickly by mapping the data to the built-in `tmpfs` directory - This particular folders content is stored in memory without disc involvement. On a Mac or Windows machine, one should generate a RAM directory using a script that can be written once or automated. [We have conducted multiple performance benchmarks](https://github.com/testjavascript/nodejs-integration-tests-best-practices/issues/9#issuecomment-710674437) and found that this only slightly improves the performance - Other optimizations that were covered above already minimize the IO work and modern SSDs are blazing fast. Some specific databases, like MongoDB, come with a built-in memory engine. This is an additional option worth considering.
 
 <br/>
 
@@ -329,11 +329,11 @@ services:
 
 🏷&nbsp; **Tags:** `#intermediate`
 
-:white_check_mark: **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - probably migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern, without thoughtful setup every tests execution will start with the migration framework approaching the DB to check if updates are needed. Alternatively, run the migrations only if a specific environment flag was passed. This will result in tests failing when the DB should get updated, developers must manually run npm script for migration but will maximize the tests start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the tests data itself (See bullet: Each tests must act on its own data)
+:white_check_mark: **Do:** While there are various way to create the DB tables, always prefer the technique that is used in production - likely migrations. By doing so, another layer of bugs are covered: Should there be an issue with the DB schema - It will get caught during testing. Performance is always a critical concern. Without a thoughtful setup, every test execution will start with the migration framework approaching the DB, to check if updates are needed. Alternatively, only run migrations if a specific environment flag was passed. This will result in tests failing when the DB should get updated. In this case, developers must manually run npm scripts for migrations, which will maximize the tests' start time. Note that migration is the right tool for building the schema and potentially also some metadata - But not the test data itself (See bullet: Each tests must act on its own data).
 
 <br/>
 
-👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that build the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌; Some migration frameworks (e.g. [umzug which is also used by Sequelize](https://github.com/sequelize/umzug)) allow checking for newer version by looking at local files which is way faster, this is a viable option but not applicable in many ORMs ✅; You may store locally the last migration check and execute the migration command only if the migration folder changed since then ✅;
+👀 &nbsp; **Alternatives:** Most ORMs provide a 'sync' method that builds the DB by the code model - This technique is not recommended for production and using it only for testing will bypass issues that exist in the production technique (e.g. migrations) ❌; Some migration frameworks (e.g. [umzug which is also used by Sequelize](https://github.com/sequelize/umzug)) allow checking for newer versions by looking at local files, which is way faster. This is a viable option but not applicable in many ORMs ✅; You may store the last migration check locally and execute the migration command only if the migration folder has changed since then ✅;
 
 <br/>
 
