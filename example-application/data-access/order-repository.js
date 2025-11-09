@@ -61,6 +61,14 @@ module.exports = class OrderRepository {
     return;
   }
 
+  async updateOrder(id, orderDetails) {
+    await orderModel.update(orderDetails, {
+      where: { id },
+    });
+    
+    return await this.getOrderById(id);
+  }
+
   async cleanup() {
     await orderModel.truncate();
   }

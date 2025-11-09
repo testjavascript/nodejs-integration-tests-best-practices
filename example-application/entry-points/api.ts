@@ -77,6 +77,17 @@ const defineRoutes = (expressApp: express.Application) => {
     res.json(response);
   });
 
+  // update order by id
+  router.put('/:id', async (req, res, next) => {
+    try {
+      console.log(`Order API was called to update order ${req.params.id} with ${util.inspect(req.body)}`);
+      const updatedOrder = await orderService.updateOrder(req.params.id, req.body);
+      res.json(updatedOrder);
+    } catch (error) {
+      next(error);
+    }
+  });
+
   // delete order by id
   router.delete('/:id', async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
