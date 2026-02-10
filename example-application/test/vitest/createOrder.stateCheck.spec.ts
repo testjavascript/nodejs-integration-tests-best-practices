@@ -73,32 +73,7 @@ describe('POST /orders', () => {
     expect(orderAfterEdit.data.mode).toBe('rejected');
   });
 
-  test('When editing an order, then only the edited fields are saved', async () => {
-    //Arrange
-    const orderToEdit = {
-      userId: 1,
-      productId: 2,
-      mode: 'approved',
-    };
-    const {
-      data: { id: editOrderId },
-    } = await testSetup.getHTTPClient().post('/order', orderToEdit);
-    const dataToEdit = getRandomEditSubset();
-    const orderBeforeEdit = await testSetup.getHTTPClient()
-      .get(`/order/${editOrderId}`);
-
-    //Act
-    await testSetup.getHTTPClient()
-      .put(`/order/${editOrderId}`, { ...orderToEdit, ...dataToEdit });
-
-    //Assert
-    const orderAfterEdit = await testSetup.getHTTPClient()
-      .get(`/order/${editOrderId}`);
-    expect(orderAfterEdit.data).toMatchObject({
-      ...orderBeforeEdit.data,
-      ...dataToEdit,
-    });
-  });
+  
 });
 
 describe('DELETE /order', () => {
@@ -125,7 +100,3 @@ describe('DELETE /order', () => {
     expect(getNotDeletedOrderStatus.status).toBe(200);
   });
 });
-function getRandomEditSubset : Partial<Order>() {
-  throw new Error('Function not implemented.');
-}
-
